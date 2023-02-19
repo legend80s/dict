@@ -47,7 +47,7 @@ const i18n = {
   'en-US': {
     error: {
       noWord: 'Please input word to query.',
-      englishWordOnly: 'Please input an English word.',
+      englishWordOnly: 'Please input an valid English word.',
       notFound: 'Not found',
     }
   },
@@ -74,6 +74,7 @@ exports.query = async function (word) {
   let explanations = await byJSON(word);
 
   if (!Array.isArray(explanations)) {
+    debug('Fallback to HTML when json fetch failed');
     explanations = await byHtml(word);
   }
 
@@ -165,7 +166,7 @@ async function byHtml(word) {
  * @throws no error
  */
 async function byJSON(word) {
-  const label = '? by fetch';
+  const label = '? by fetch JSON';
   verbose && console.time(label);
   const url = `https://fanyi.youdao.com/openapi.do?keyfrom=Nino-Tips&key=1127122345&type=data&doctype=json&version=1.1&q=${word}`;
 
