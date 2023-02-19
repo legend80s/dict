@@ -7,7 +7,7 @@ const flags = {
   help: ['-h', '--help'],
   version: ['-v', '--version'],
   verbose: '--verbose',
-  silent: ['-s', '--silent', true],
+  speak: ['-s', '--speak', false],
 };
 
 const parser = new ArgParser(flags)
@@ -248,8 +248,8 @@ function help() {
 }
 
 function speak(word) {
-  if (parser.isHit('silent')) {
-    debug('Not speak because "silent" flag', parser.flags.silent ,'is on.');
+  if (!parser.isHit('speak')) {
+    debug('Not speak because "speak" flag', parser.flags.speak ,'is off.');
 
     return;
   }
