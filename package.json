@@ -1,0 +1,23 @@
+{
+  "name": "dict",
+  "version": "1.0.0",
+  "description": "Explain English word in Chinese. 查询英文单词的中文释义。",
+  "main": "index.js",
+  "bin": {
+    "dict": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/legend80s/dict.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/legend80s/dict/issues"
+  },
+  "homepage": "https://github.com/legend80s/dict#readme"
+}
