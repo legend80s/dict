@@ -1,16 +1,18 @@
 #!/usr/bin/env node
-const { query, help, showVersion } = require('./src/core');
+const { query, help, showHelp, parser, debug, speak } = require('./src/core');
 
 main()
 
 function main() {
-  if (showVersion()) {
+  debug('args:', parser.args);
+
+  if (showHelp()) {
     help();
     return;
   }
 
-  const word = process.argv[2]?.trim();
-  // console.log('Word:', `"${word}"`);
+  const word = parser.firstArg();
 
-  query(word)
+  speak(word);
+  query(word);
 }

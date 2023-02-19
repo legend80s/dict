@@ -1,12 +1,37 @@
-// const { execSync } = require("child_process");
-const https = require("https");
+const https = require("node:https");
+const { exec } = require('node:child_process');
+
+const { ArgParser } = require('./args');
 
 const flags = {
-  help: ['-h', '--help', '-v', '--version'],
+  help: ['-h', '--help'],
+  version: ['-v', '--version'],
   verbose: '--verbose',
+  silent: ['-s', '--silent'],
 };
 
-const args = process.argv.slice(2);
+const parser = new ArgParser(flags)
+exports.parser = parser;
+
+const verbose = parser.isHit('verbose');
+
+function debug(...args) {
+  if (!verbose) {
+    return;
+  }
+
+  const containsError = args.some((arg) => arg instanceof Error || /error|fail/i.test(arg));
+
+  const level = containsError ? 'error' : 'log';
+  const DEBUG_ICON = '?';
+
+  // console.log(debugIcon, 'level =', level)
+  console[level](DEBUG_ICON, ...args)
+}
+
+exports.debug = debug;
+
+// const args = process.argv.slice(2);
 
 const config = {
   // listItemIcon: "🟢",
@@ -37,10 +62,8 @@ const i18n = {
 
 const text = i18n[getLanguage()];
 
-const verbose = isVerbose();
-
 exports.query = async function (word) {
-  verbose && console.log('Word:', `"${word}"`);
+  debug('Word:', `"${word}"`);
 
   if (!word) {
     exitWithErrorMsg(text.error.noWord);
@@ -104,7 +127,7 @@ function getLanguage(configLang) {
  * @type {IQuerierAsync}
  */
 async function byHtml(word) {
-  const label = 'by html fetch';
+  const label = '? by html fetch';
   verbose && console.time(label);
 
   const htmlUrl = `https://dict.youdao.com/w/${word}/#keyfrom=dict2.top`
@@ -118,7 +141,7 @@ async function byHtml(word) {
 
   // 中文不支持
   if (!lis || !lis.includes("<li>")) {
-    verbose && console.log({ lis, html });
+    debug('No list found:', { lis, html });
 
     return text.error.englishWordOnly;
   }
@@ -142,7 +165,8 @@ async function byHtml(word) {
  * @throws no error
  */
 async function byJSON(word) {
-  verbose && console.time('by fetch');
+  const label = '? by fetch';
+  verbose && console.time(label);
   const url = `https://fanyi.youdao.com/openapi.do?keyfrom=Nino-Tips&key=1127122345&type=data&doctype=json&version=1.1&q=${word}`;
 
   /** @type {IDictResult | null} */
@@ -159,13 +183,11 @@ async function byJSON(word) {
 
   const explains = json?.basic?.explains;
 
-  if (verbose) {
-    console.log({ method });
-    verbose && console.timeEnd('by fetch');
-  }
+  debug({ method })
+  verbose && console.timeEnd(label);
 
   if (!explains) {
-    verbose && console.log({ json });
+    debug({ json });
     return text.error.notFound + (msg ? '. ' + msg : '');
   }
 
@@ -208,12 +230,8 @@ async function fetchIt(url, { type = 'json' } = {}) {
   });
 }
 
-function showVersion() {
-  return args.some(flag => flags.help.some((h) => flag === h));
-}
-
-function isVerbose() {
-  return args.some(flag => flag === flags.verbose)
+function showHelp() {
+  return parser.isHit('help', 'version')
 }
 
 function help() {
@@ -228,6 +246,22 @@ function help() {
   console.log(`> $ npx dict <word> [${Object.values(flags).flat().join(' ')}]`);
 }
 
+function speak(word) {
+  if (parser.isHit('silent')) {
+    debug('Not speak because "silent" flag', parser.flags.silent ,'is on.');
+
+    return;
+  }
+
+  const cmd = `sxay ${word}`;
+
+  exec(cmd, (error) => {
+    if (error) {
+      debug(`Execute \`${cmd}\` failed:`, error);
+    }
+  });
+}
+
 exports.help = help;
-exports.isVerbose = isVerbose
-exports.showVersion = showVersion;
+exports.speak = speak;
+exports.showHelp = showHelp;
