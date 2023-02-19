@@ -253,7 +253,7 @@ function speak(word) {
     return;
   }
 
-  const cmd = `sxay ${word}`;
+  const cmd = `say ${word}`;
 
   exec(cmd, (error) => {
     if (error) {
