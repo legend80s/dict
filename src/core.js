@@ -2,6 +2,7 @@ const https = require("node:https");
 const { exec } = require('node:child_process');
 
 const { ArgParser } = require('./args');
+const { italic, chunk, bold, h2 } = require('./utils');
 
 const flags = {
   help: ['-h', '--help'],
@@ -71,14 +72,16 @@ exports.query = async function (word) {
     return;
   }
 
-  let explanations = await byJSON(word);
+  const { explanations: exp1, examples } = await byHtml(word);
+  let explanations = exp1;
 
   if (!Array.isArray(explanations)) {
-    debug('Fallback to HTML when json fetch failed');
-    explanations = await byHtml(word);
+    debug('Fallback to JSON when HTML fetch failed');
+
+    explanations = await byJSON(word);
   }
 
-  print(word, explanations)
+  print(word, { explanations, examples })
 }
 
 function exitWithErrorMsg(msg) {
@@ -91,20 +94,43 @@ function exitWithErrorMsg(msg) {
 
 /**
  * @param {string} word
- * @param {string | string[]} explanations
+ * @param {{explanations: string | string[]; examples: Array<[sentence: string, translation: string, via: string]>}}
  */
-function print(word, explanations) {
+function print(word, {explanations, examples}) {
   if (typeof explanations === 'string') {
     return exitWithErrorMsg(explanations);
   }
 
   console.log();
-  console.log("Word:", `"${word}"`);
+  h2("Word:", `"${word}"`);
   console.log();
-  console.log("Explanations:");
+  h2("Explanations:");
 
   explanations.forEach(exp => {
     console.log(config.listItemIcon, exp);
+  });
+
+  if (examples?.length) {
+    printExamples(word, examples);
+  }
+
+  console.log();
+  console.log(italic(`See more at https://dict.youdao.com/w/${word}/#keyfrom=dict2.top`));
+}
+
+/**
+ *
+ * @param {Array<[sentence: string, translation: string, via: string]>} examples
+ */
+function printExamples(word, examples) {
+  console.log();
+  h2('Examples:');
+
+  examples.forEach(([sentence, translation, via], idx) => {
+    console.log(sentence.replace(new RegExp(word, 'gi'), (m) => bold(m)));
+    console.log(translation);
+    console.log(italic(via));
+    idx !== examples.length -1 && console.log();
   });
 }
 
@@ -138,7 +164,8 @@ async function byHtml(word) {
   // 尽量少依赖故未使用查询库和渲染库
   // https://www.npmjs.com/package/node-html-parser
   // https://github.com/charmbracelet/glow
-  const lis = html.match(/<div class=\"trans-container\">\s*<ul>([\s\S]+?)<\/ul>/)?.[1].trim();
+  const matches = html.match(/<div class="trans-container">\s*<ul>([\s\S]+?)<\/ul>/s);
+  const lis = matches ? matches[1].trim() : '';
 
   // 中文不支持
   if (!lis || !lis.includes("<li>")) {
@@ -155,9 +182,19 @@ async function byHtml(word) {
     .filter(Boolean)
   ;
 
+  const bilingual = html.match(/(<div id="bilingual".+?<\/div>)/s)?.[1].trim() || '';
+
+  // console.log('bilingual:', bilingual);
+
+  const examples = (bilingual.match(/<p(?:.*?)>(.+?)<\/p>/gs) || [])
+    .map(m => m.replace(/<\/?.+?>/g, '').trim());
+
   verbose && console.timeEnd(label);
 
-  return explanations;
+  return {
+    explanations,
+    examples: chunk(examples, 3),
+  };
 }
 
 /**
@@ -213,11 +250,16 @@ async function fetchIt(url, { type = 'json' } = {}) {
   return new Promise(function (resolve, reject) {
     https.get(url, function (res) {
       res.setEncoding('utf-8');
+      let result = '';
 
       res.on('data', function (data) {
-      const parsed = asJSON ? JSON.parse(data) : data;
+        result += data;
+      });
 
-      // console.log('parsed:', parsed);
+      res.on('end', () => {
+        const parsed = asJSON ? JSON.parse(result) : result;
+
+        // console.log('parsed:', parsed);
 
         try {
           resolve([parsed, 'https']);

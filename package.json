@@ -1,5 +1,5 @@
 {
-  "name": "@legend80s/dict",
+  "name": "yisi",
   "version": "1.0.0",
   "description": "Explain English word in Chinese. 查询英文单词的中文释义。",
   "main": "index.js",
