@@ -7,7 +7,7 @@ const flags = {
   help: ['-h', '--help'],
   version: ['-v', '--version'],
   verbose: '--verbose',
-  silent: ['-s', '--silent'],
+  silent: ['-s', '--silent', true],
 };
 
 const parser = new ArgParser(flags)

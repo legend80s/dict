@@ -1,5 +1,8 @@
 /**
- * @template {Record<string, string | string[]>} Flags
+ * @typedef {string | string[] | Array<string|boolean>} IFlagItem
+ */
+/**
+ * @template {Record<string, IFlagItem>} Flags
  *
  * @example
  * const p = new ArgParser({
@@ -28,10 +31,46 @@ class ArgParser {
    * @returns {boolean}
    */
   isHit(...keys) {
+    // console.log('keys:', keys);
+
+    const fallback = this.getFallback(keys[0]);
+
+    // console.log('fallback:', fallback);
+
     /** @type {string[]} */
     const flags = keys.reduce((acc, key) => acc.concat(this.flags[key] || []), []);
 
-    return this.args.some(flag => flags.some((f) => flag === f));
+    // console.log('this.args:', this.args);
+    // console.log('flags:', flags);
+
+    for (const arg of this.args) {
+      // flags [-s, --silent]
+      // arg --silent=false
+      for (const flag of flags) {
+        if (arg === flag) {
+          return true;
+        }
+
+        if (arg === `${flag}=true`) { return true }
+
+        if (arg === `${flag}=false`) { return false }
+      }
+    }
+
+    return fallback;
+  }
+
+  getFallback(key) {
+    const DEFAULT_FALLBACK = false;
+    const first = this.flags[key];
+
+    if (!Array.isArray(first)) {
+      return DEFAULT_FALLBACK;
+    }
+
+    const fallback = first.at(-1);
+
+    return typeof fallback === 'boolean' ? fallback : DEFAULT_FALLBACK;
   }
 
   /**
