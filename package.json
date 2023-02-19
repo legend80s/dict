@@ -4,7 +4,7 @@
   "description": "Explain English word in Chinese. 查询英文单词的中文释义。",
   "main": "index.js",
   "bin": {
-    "dict": "./index.js"
+    "yisi": "./index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
