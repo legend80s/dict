@@ -1,12 +1,18 @@
 {
-  "name": "yisi",
+  "name": "ydd",
   "version": "1.0.0",
   "description": "Explain English word in Chinese. 查询英文单词的中文释义。",
   "main": "index.js",
   "bin": {
-    "yisi": "./index.js"
+    "ydd": "./index.js"
   },
   "scripts": {
+    "pub:patch": "npm version patch",
+    "pub:minor": "npm version minor",
+    "pub:major": "npm version major",
+    "preversion": "npm test && npm run lint",
+    "postversion": "npm publish && git push && git push --tags",
+    "lint": "echo not lint yet",
     "test": "node --test"
   },
   "repository": {
