@@ -25,5 +25,8 @@
   "bugs": {
     "url": "https://github.com/legend80s/dict/issues"
   },
-  "homepage": "https://github.com/legend80s/dict#readme"
+  "homepage": "https://github.com/legend80s/dict#readme",
+  "devDependencies": {
+    "git-commit-msg-linter": "^4.7.3"
+  }
 }

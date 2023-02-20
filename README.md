@@ -13,5 +13,5 @@ bunx ydd vite
 
 ## Features
 
-- Zero dependencies.
-- Robust. Use double source: openapi and html.
+- Light weight: Zero dependencies. Built with speed in mind, no cheerio and request library.
+- Robust: Use double source: openapi and html.
