@@ -117,7 +117,6 @@ function print(word, {explanations, examples}) {
     return exitWithErrorMsg(explanations);
   }
 
-  console.log();
   h2("Word:", `"${word}"`);
   console.log();
   h2("Explanations:");
