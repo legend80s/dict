@@ -9,6 +9,7 @@ const flags = {
   version: ['-v', '--version'],
   verbose: '--verbose',
   speak: ['-s', '--speak', false],
+  example: ['-e', '--example', false],
 };
 
 const parser = new ArgParser(flags)
@@ -72,6 +73,21 @@ exports.query = async function (word) {
     return;
   }
 
+  const showExamples = parser.isHit('example');
+
+  /** @type {{ explanations: string[]; examples: Array<[string, string, string]> }} */
+  let result = {};
+
+  if (showExamples) {
+    result = await translateWithExamples(word);
+  } else {
+    result.explanations = await byJSON(word);
+  }
+
+  print(word, result)
+}
+
+async function translateWithExamples(word) {
   const { explanations: exp1, examples } = await byHtml(word);
   let explanations = exp1;
 
@@ -81,7 +97,7 @@ exports.query = async function (word) {
     explanations = await byJSON(word);
   }
 
-  print(word, { explanations, examples })
+  return { explanations, examples }
 }
 
 function exitWithErrorMsg(msg) {
@@ -115,7 +131,7 @@ function print(word, {explanations, examples}) {
   }
 
   console.log();
-  console.log(italic(`See more at https://dict.youdao.com/w/${word}/#keyfrom=dict2.top`));
+  console.log(italic(`See more at https://dict.youdao.com/w/${encodeURIComponent(word)}/#keyfrom=dict2.top`));
 }
 
 /**
@@ -157,7 +173,7 @@ async function byHtml(word) {
   const label = '? by html fetch';
   verbose && console.time(label);
 
-  const htmlUrl = `https://dict.youdao.com/w/${word}/#keyfrom=dict2.top`
+  const htmlUrl = `https://dict.youdao.com/w/${encodeURIComponent(word)}/#keyfrom=dict2.top`
   // const html = execSync(`curl --silent ${htmlUrl}`).toString("utf-8"); // 367.983ms
   const [html] = await fetchIt(htmlUrl, { type: 'html' }); // 241.996ms
 
@@ -219,7 +235,7 @@ async function byJSON(word) {
     console.error(error);
   }
 
-  const explains = json?.basic?.explains;
+  const explains = json?.basic?.explains || json?.translation;
 
   debug({ method })
   verbose && console.timeEnd(label);
