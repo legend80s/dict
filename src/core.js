@@ -81,14 +81,14 @@ exports.query = async function (word) {
   if (showExamples) {
     result = await translateWithExamples(word);
   } else {
-    result.explanations = await byJSON(word);
+    result.explanations = await byJSON(word) || (await byHtml(word, { example: false })).explanations;
   }
 
   print(word, result)
 }
 
 async function translateWithExamples(word) {
-  const { explanations: exp1, examples } = await byHtml(word);
+  const { explanations: exp1, examples } = await byHtml(word, { example: true });
   let explanations = exp1;
 
   if (!Array.isArray(explanations)) {
@@ -167,9 +167,8 @@ function getLanguage(configLang) {
 
 /**
  * cost: 367.983ms
- * @type {IQuerierAsync}
  */
-async function byHtml(word) {
+async function byHtml(word, { example = false } = {}) {
   const label = '? by html fetch';
   verbose && console.time(label);
 
@@ -197,6 +196,10 @@ async function byHtml(word) {
     .map(x => x.replace('</li>', '').trim())
     .filter(Boolean)
   ;
+
+  if (!example) {
+    return { explanations };
+  }
 
   const bilingual = html.match(/(<div id="bilingual".+?<\/div>)/s)?.[1].trim() || '';
 

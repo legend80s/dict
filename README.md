@@ -13,4 +13,5 @@ bunx ydd vite
 
 ## Features
 
-- Zero dependencies
+- Zero dependencies.
+- Robust. Use double source: openapi and html.
