@@ -316,6 +316,8 @@ function speak(word) {
 
   const cmd = `say ${word}`;
 
+  debug(`executing \`${cmd}\``);
+
   exec(cmd, (error) => {
     if (error) {
       debug(`Execute \`${cmd}\` failed:`, error);
