@@ -2,7 +2,7 @@ const https = require("node:https");
 const { exec } = require('node:child_process');
 
 const { ArgParser } = require('./args');
-const { italic, chunk, bold, h2 } = require('./utils');
+const { italic, chunk, bold, h2, white } = require('./utils');
 
 const flags = {
   help: ['-h', '--help'],
@@ -117,15 +117,17 @@ function print(word, {explanations, examples}) {
     return exitWithErrorMsg(explanations);
   }
 
-  h2("Word:", `"${word}"`);
-  console.log();
-  h2("Explanations:");
+  const showExample = !!examples?.length;
+
+  verbose && h2("Word:", `"${word}"`);
+  verbose && console.log();
+  showExample && h2("Explanations:");
 
   explanations.forEach(exp => {
-    console.log(config.listItemIcon, exp);
+    console.log(config.listItemIcon, white(exp));
   });
 
-  if (examples?.length) {
+  if (showExample) {
     printExamples(word, examples);
   }
 
@@ -142,8 +144,8 @@ function printExamples(word, examples) {
   h2('Examples:');
 
   examples.forEach(([sentence, translation, via], idx) => {
-    console.log(sentence.replace(new RegExp(word, 'gi'), (m) => bold(m)));
-    console.log(translation);
+    console.log(white(sentence.replace(new RegExp(word, 'gi'), (m) => bold(m))));
+    console.log(white(translation));
     console.log(italic(via));
     idx !== examples.length -1 && console.log();
   });
