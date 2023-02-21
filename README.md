@@ -1,4 +1,6 @@
-# ydd - YouDao Dictionary
+# ydd
+
+> `Y`ou`D`ao `D`ictionary
 
 Explain English word in Chinese. 查询英文单词的中文释义。
 
