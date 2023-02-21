@@ -15,7 +15,7 @@ pnpx ydd vite
 bunx ydd vite
 ```
 
-Or show More details with bilingual `e`xamples and `s`peak it out:
+Or show more details with bilingual `e`xamples and `s`peak it out:
 
 ```shell
 bunx ydd vite -e -s
