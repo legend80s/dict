@@ -1,8 +1,9 @@
-
 const WHITE = '\x1b[97m'
+
 const BOLD = '\x1b[1m';
 const UNDERLINED = '\x1b[4m'
 const ITALIC = '\x1b[3m'
+
 const RESET = '\x1b[0m'
 const RESET_BOLD = '\x1b[22m'
 const RESET_UNDERLINED = '\x1b[24m'

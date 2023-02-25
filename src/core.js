@@ -27,7 +27,7 @@ const verbose = parser.isHit('verbose');
 
 function debug(...args) {
   if (!verbose) {
-    return;
+    return false
   }
 
   const containsError = args.some((arg) => arg instanceof Error || /error|fail/i.test(arg));
@@ -44,7 +44,9 @@ function debug(...args) {
     rest = args.slice(1);
   }
 
-  console[level](first, ...rest)
+  console[level](first, ...rest);
+
+  return true
 }
 
 exports.debug = debug;
@@ -286,10 +288,12 @@ async function byJSON(word) {
   const explains = json?.basic?.explains;
   const hasExplanations = !!explains;
 
+  !hasExplanations && debug('byJSON: not has `explains` in json. try to suggest')
+
   const suggestions = hasExplanations ? [] : await fetchSuggestions(encoded);
   const explanations = explains || json?.translation;
 
-  !hasExplanations && debug('not has `explains` in json. try to suggest %j', { suggestions, method, json })
+  !hasExplanations && debug('suggest result = %j', { suggestions, method, json })
   verbose && console.timeEnd(label);
 
   if (!explanations) {
@@ -311,9 +315,18 @@ async function fetchSuggestions(word) {
 
   const [str] = await fetchIt(url, { type: 'text' });
 
-  const first = decodeURIComponent(str.match(/form.updateCall\((.+?)\)/)?.[1] || '').match(/>([^><]+?)<\/td>/)?.[1];
+  let first = '';
 
-  !first && debug(str);
+  try {
+    first = decodeURIComponent(str.match(/form.updateCall\((.+?)\)/)?.[1] || '').match(/>([^><]+?)<\/td>/)?.[1];
+  } catch (error) {
+    verbose && debug(error);
+  }
+
+  if (!first) {
+    debug('url=[%s]', url)
+    debug('str=[%s]', str)
+  }
 
   return first ? [first] : [];
 }
