@@ -28,9 +28,9 @@ class ArgParser {
   /**
    *
    * @param {Array<keyof Flags>} keys
-   * @returns {boolean}
+   * @returns {boolean | number}
    */
-  isHit(...keys) {
+  get(...keys) {
     // console.log('keys:', keys);
 
     const fallback = this.getFallback(keys[0]);
@@ -51,9 +51,14 @@ class ArgParser {
           return true;
         }
 
-        if (arg === `${flag}=true`) { return true }
+        const value = arg.match(new RegExp(`${flag}=(.+)`))?.[1];
 
-        if (arg === `${flag}=false`) { return false }
+        if (value === `true`) { return true }
+        if (value === `false`) { return false }
+
+        if (value) {
+          return value;
+        }
       }
     }
 
@@ -70,7 +75,7 @@ class ArgParser {
 
     const fallback = first.at(-1);
 
-    return typeof fallback === 'boolean' ? fallback : DEFAULT_FALLBACK;
+    return ['boolean', 'number'].includes(typeof fallback) ? fallback : DEFAULT_FALLBACK;
   }
 
   /**

@@ -8,13 +8,16 @@ const flags = {
   help: ['-h', '--help'],
   version: ['-v', '--version'],
   verbose: '--verbose',
+
   speak: ['-s', '--speak', false],
   example: ['-e', '--example', false],
+  collins: ['-c', '--collins', 1],
 };
 
 /**
  * @typedef {{
  *  explanations: string[];
+ *  englishExplanation?: ICollinsItem[];
  *  suggestions?: string[];
  *  examples?: IExample[];
  * } | { errorMsg: string }} IParsedResult
@@ -23,7 +26,7 @@ const flags = {
 const parser = new ArgParser(flags)
 exports.parser = parser;
 
-const verbose = parser.isHit('verbose');
+const verbose = parser.get('verbose');
 
 function debug(...args) {
   if (!verbose) {
@@ -82,6 +85,9 @@ const i18n = {
 
 const text = i18n[getLanguage()];
 
+/** @type {(sentence: string) => string} */
+let highlightWord;
+
 exports.query = async function (word) {
   debug('Word:', `"${word}"`);
 
@@ -91,7 +97,7 @@ exports.query = async function (word) {
     return;
   }
 
-  const showExamples = parser.isHit('example');
+  const showExamples = parser.get('example');
 
   /** @type {IParsedResult} */
   let result = {};
@@ -108,6 +114,8 @@ exports.query = async function (word) {
       result = json;
     }
   }
+
+  highlightWord = (sentence) => highlight(sentence, word);
 
   print(word, result)
 }
@@ -152,13 +160,13 @@ function print(word, result) {
     return exitWithErrorMsg(result.errorMsg);
   }
 
-  const { explanations, examples, suggestions } = result;
+  const { explanations, englishExplanation, examples, suggestions } = result;
 
   const showExample = !!examples?.length;
 
   verbose && h2("Word:", `"${word}"`);
   verbose && console.log();
-  showExample && h2("Explanations:");
+  showExample && h2("Explanations");
 
   explanations.forEach(exp => {
     console.log(config.listItemIcon, white(exp));
@@ -167,8 +175,19 @@ function print(word, result) {
   const sug = suggestions && suggestions[0];
   sug && console.log('\n你要找的是不是:', white(sug));
 
+  if (englishExplanation?.[0]) {
+    console.log();
+    h2('柯林斯英汉双解大词典')
+
+    const str = englishExplanation.map(([english, chinese]) => {
+      return [english, chinese].filter(Boolean).map(highlightWord).join('\n');
+    }).join('\n\n');
+
+    console.log(str);
+  }
+
   if (showExample) {
-    printExamples(word, examples);
+    printExamples(examples);
   }
 
   console.log();
@@ -179,16 +198,20 @@ function print(word, result) {
  *
  * @param {Array<[sentence: string, translation: string, via: string]>} examples
  */
-function printExamples(word, examples) {
+function printExamples(examples) {
   console.log();
-  h2('Examples:');
+  h2('Examples');
 
   examples.forEach(([sentence, translation, via], idx) => {
-    console.log(white(sentence.replace(new RegExp(word, 'gi'), (m) => bold(m))));
-    console.log(white(translation));
+    console.log(white(highlightWord(sentence)));
+    console.log(white(highlightWord(translation)));
     console.log(italic(via));
     idx !== examples.length -1 && console.log();
   });
+}
+
+function highlight(sentence, word) {
+  return sentence.replace(new RegExp(word, 'gi'), (m) => bold(m))
 }
 
 /**
@@ -208,7 +231,7 @@ function getLanguage(configLang) {
 
 /**
  * cost: 367.983ms
- * @returns {Promise<{ errorMsg: string; } | { explanations: string[]; examples?: string[] } >}
+ * @returns {Promise<{ errorMsg: string; } | { englishExplanation?: ICollinsItem[], explanations: string[]; examples?: string[] } >}
  */
 async function byHtml(word, { example = false } = {}) {
   const label = '? by html fetch';
@@ -241,6 +264,9 @@ async function byHtml(word, { example = false } = {}) {
     .filter(Boolean)
   ;
 
+
+  // console.log('englishExplanation:', englishExplanation);
+
   if (!example) {
     return { explanations };
   }
@@ -250,14 +276,67 @@ async function byHtml(word, { example = false } = {}) {
   // console.log('bilingual:', bilingual);
 
   const examples = (bilingual.match(/<p(?:.*?)>(.+?)<\/p>/gs) || [])
-    .map(m => m.replace(/<\/?.+?>/g, '').trim());
+    .map(removeTags);
+
+  const englishExplanation = extractCollins(html);
 
   verbose && console.timeEnd(label);
 
   return {
     explanations,
     examples: chunk(examples, 3),
+    englishExplanation,
   };
+}
+
+/** @typedef {[english: string, chinese?: string]} ICollinsItem */
+
+/**
+ * @param {string} html
+ * @returns {ICollinsItem[]}
+ */
+function extractCollins(html) {
+  const englishExplanationHtml = html.match(/<div id="collinsResult".+?<\/ul>\s*<\/div>\s*<\/div>/s)?.[0].trim();
+
+  if (!englishExplanationHtml) {
+    return [];
+  }
+
+  // console.log('englishExplanationHtml:', englishExplanationHtml);
+  const size = Number(parser.get('collins')) || 1;
+
+  debug('size:', size);
+
+  // debug(englishExplanationHtml)
+
+  const list = englishExplanationHtml
+    .replace(/&nbsp;/g, ' ')
+    .replace(/\s{2,}/g, ' ')
+    .match(/<li>.+?<\/li>/sg);
+
+  if (!list) {
+    return [];
+  }
+
+  // console.log('list:', list);
+
+  return list.slice(0, size)
+    .map(li => li
+      .match(/<div.+?>(.+?)<\/div>/g)
+      .map(m =>
+        removeTags(m).replace(/\s{2,}/g, ' ').trim()
+      )
+    )
+  ;
+}
+
+/**
+ *
+ * @param {string} html
+ * @returns {string}
+ */
+function removeTags(html) {
+  return html.replace(/<\/?.+?>/g, '').trim()
 }
 
 /**
@@ -379,7 +458,7 @@ async function fetchIt(url, { type = 'json' } = {}) {
 }
 
 function showHelp() {
-  return parser.isHit('help', 'version')
+  return parser.get('help', 'version')
 }
 
 function help() {
@@ -395,7 +474,7 @@ function help() {
 }
 
 function speak(word) {
-  if (!parser.isHit('speak')) {
+  if (!parser.get('speak')) {
     debug('Not speak because "speak" flag', parser.flags.speak ,'is off.');
 
     return;
