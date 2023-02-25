@@ -38,3 +38,10 @@ test('Should show Explanations only', (t) => {
   assert.match(stdout, /美好的女孩/);
   assert.match(stdout, /See more at https:\/\/dict.youdao.com\/w\/wonderful%20girl\/#keyfrom=dict2.top/);
 });
+
+test('Should show suggested word when no explanations found', (t) => {
+  const stdout = execSync(`node ./ dogfood`).toString('utf-8');
+
+  assert.match(stdout, /你要找的是不是:/);
+  assert.match(stdout, /dogfooding/);
+});

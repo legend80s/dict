@@ -2,7 +2,7 @@ const https = require("node:https");
 const { exec } = require('node:child_process');
 
 const { ArgParser } = require('./args');
-const { italic, chunk, bold, h2, white } = require('./utils');
+const { italic, chunk, bold, h2, white, isString } = require('./utils');
 
 const flags = {
   help: ['-h', '--help'],
@@ -11,6 +11,14 @@ const flags = {
   speak: ['-s', '--speak', false],
   example: ['-e', '--example', false],
 };
+
+/**
+ * @typedef {{
+ *  explanations: string[];
+ *  suggestions?: string[];
+ *  examples?: IExample[];
+ * } | { errorMsg: string }} IParsedResult
+ */
 
 const parser = new ArgParser(flags)
 exports.parser = parser;
@@ -28,7 +36,15 @@ function debug(...args) {
   const DEBUG_ICON = '?';
 
   // console.log(debugIcon, 'level =', level)
-  console[level](DEBUG_ICON, ...args)
+  let first = DEBUG_ICON;
+  let rest = args;
+
+  if (isString(args[0])) {
+    first = `${DEBUG_ICON} ${args[0]}`
+    rest = args.slice(1);
+  }
+
+  console[level](first, ...rest)
 }
 
 exports.debug = debug;
@@ -75,29 +91,42 @@ exports.query = async function (word) {
 
   const showExamples = parser.isHit('example');
 
-  /** @type {{ explanations: string[]; examples: Array<[string, string, string]> }} */
+  /** @type {IParsedResult} */
   let result = {};
 
   if (showExamples) {
     result = await translateWithExamples(word);
   } else {
-    result.explanations = await byJSON(word) || (await byHtml(word, { example: false })).explanations;
+    const json = await byJSON(word);
+
+    // failed
+    if ('errorMsg' in json) {
+      result = await byHtml(word, { example: false })
+    } else {
+      result = json;
+    }
   }
 
   print(word, result)
 }
 
+/**
+ *
+ * @param {string} word
+ * @returns {Promise<IParsedResult>}
+ */
 async function translateWithExamples(word) {
-  const { explanations: exp1, examples } = await byHtml(word, { example: true });
-  let explanations = exp1;
+  const htmlResult = await byHtml(word, { example: true });
 
-  if (!Array.isArray(explanations)) {
+  if ('errorMsg' in htmlResult) {
     debug('Fallback to JSON when HTML fetch failed');
 
-    explanations = await byJSON(word);
+    const jsonResult = await byJSON(word);
+
+    return jsonResult;
   }
 
-  return { explanations, examples }
+  return htmlResult
 }
 
 function exitWithErrorMsg(msg) {
@@ -109,13 +138,19 @@ function exitWithErrorMsg(msg) {
 }
 
 /**
- * @param {string} word
- * @param {{explanations: string | string[]; examples: Array<[sentence: string, translation: string, via: string]>}}
+ * @typedef {[sentence: string, translation: string, via: string]} IExample
  */
-function print(word, {explanations, examples}) {
-  if (typeof explanations === 'string') {
-    return exitWithErrorMsg(explanations);
+
+/**
+ * @param {string} word
+ * @param {IParsedResult} result
+ */
+function print(word, result) {
+  if ('errorMsg' in result) {
+    return exitWithErrorMsg(result.errorMsg);
   }
+
+  const { explanations, examples, suggestions } = result;
 
   const showExample = !!examples?.length;
 
@@ -126,6 +161,9 @@ function print(word, {explanations, examples}) {
   explanations.forEach(exp => {
     console.log(config.listItemIcon, white(exp));
   });
+
+  const sug = suggestions && suggestions[0];
+  sug && console.log('\n你要找的是不是:', white(sug));
 
   if (showExample) {
     printExamples(word, examples);
@@ -168,6 +206,7 @@ function getLanguage(configLang) {
 
 /**
  * cost: 367.983ms
+ * @returns {Promise<{ errorMsg: string; } | { explanations: string[]; examples?: string[] } >}
  */
 async function byHtml(word, { example = false } = {}) {
   const label = '? by html fetch';
@@ -175,7 +214,7 @@ async function byHtml(word, { example = false } = {}) {
 
   const htmlUrl = `https://dict.youdao.com/w/${encodeURIComponent(word)}/#keyfrom=dict2.top`
   // const html = execSync(`curl --silent ${htmlUrl}`).toString("utf-8"); // 367.983ms
-  const [html] = await fetchIt(htmlUrl, { type: 'html' }); // 241.996ms
+  const [html] = await fetchIt(htmlUrl, { type: 'text' }); // 241.996ms
 
   // 尽量少依赖故未使用查询库和渲染库
   // https://www.npmjs.com/package/node-html-parser
@@ -187,7 +226,9 @@ async function byHtml(word, { example = false } = {}) {
   if (!lis || !lis.includes("<li>")) {
     debug('No list found:', { lis, html });
 
-    return text.error.englishWordOnly;
+    return {
+      errorMsg: text.error.englishWordOnly
+    };
   }
 
   const explanations = lis.replace(/\s{2,}/g, " ")
@@ -219,13 +260,16 @@ async function byHtml(word, { example = false } = {}) {
 
 /**
  * cost: 173.837ms
- * @type {IQuerierAsync}
+ * @param {string} word
+ * @returns {Promise<{ explanations: string[], suggestions: string[] } | { errorMsg: string }>}
  * @throws no error
  */
 async function byJSON(word) {
   const label = '? by fetch JSON';
   verbose && console.time(label);
-  const url = `https://fanyi.youdao.com/openapi.do?keyfrom=Nino-Tips&key=1127122345&type=data&doctype=json&version=1.1&q=${word}`;
+
+  const encoded = encodeURIComponent(word);
+  const url = `https://fanyi.youdao.com/openapi.do?keyfrom=Nino-Tips&key=1127122345&type=data&doctype=json&version=1.1&q=${encoded}`;
 
   /** @type {IDictResult | null} */
   let json = null;
@@ -233,28 +277,56 @@ async function byJSON(word) {
   let method = '';
 
   try {
-    [json, method] = await fetchIt(url);
+    [json, method] = await fetchIt(url, { type: 'json' });
   } catch (error) {
     msg = `Fetch "${url}" failed.`;
     console.error(error);
   }
 
-  const explains = json?.basic?.explains || json?.translation;
+  const explains = json?.basic?.explains;
+  const hasExplanations = !!explains;
 
-  debug({ method })
+  const suggestions = hasExplanations ? [] : await fetchSuggestions(encoded);
+  const explanations = explains || json?.translation;
+
+  !hasExplanations && debug('not has `explains` in json. try to suggest %j', { suggestions, method, json })
   verbose && console.timeEnd(label);
 
-  if (!explains) {
-    debug({ json });
-    return text.error.notFound + (msg ? '. ' + msg : '');
+  if (!explanations) {
+    return {
+      errorMsg: text.error.notFound + (msg ? '. ' + msg : '')
+    };
   }
 
-  return explains;
+  return { explanations, suggestions };
 }
 
 /**
  *
- * @returns {Promise<[unknown, method: string]>}
+ * @param {string} word encoded
+ * @returns string[]
+ */
+async function fetchSuggestions(word) {
+  const url = `https://dsuggest.ydstatic.com/suggest.s?query=${word}&keyfrom=dict2.top.suggest&o=form&rn=10&h=19&le=eng`
+
+  const [str] = await fetchIt(url, { type: 'text' });
+
+  const first = decodeURIComponent(str.match(/form.updateCall\((.+?)\)/)?.[1] || '').match(/>([^><]+?)<\/td>/)?.[1];
+
+  !first && debug(str);
+
+  return first ? [first] : [];
+}
+
+/**
+ * @typedef {Record<string, any>} IJSON
+ */
+
+/**
+ * @template {'json' | 'text' | undefined} T
+ * @param {string} url
+ * @param {{ type: T }} [settings]
+ * @returns {Promise<[T extends 'json' | undefined ? IJSON : string, method: string]>}
  */
 async function fetchIt(url, { type = 'json' } = {}) {
   const asJSON = type === 'json';

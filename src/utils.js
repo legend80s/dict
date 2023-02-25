@@ -16,6 +16,13 @@ exports.h2 = (...text) => console.log(bold(text.join(' ')));
 exports.WHITE = WHITE;
 exports.RESET = RESET;
 
+/**
+ * @type {(val: any) => val is string}
+ */
+const isString = (val) => typeof val === 'string'
+
+exports.isString = isString;
+
 function italic(str) {
   return `${ITALIC}${str}${RESET}`;
 }
