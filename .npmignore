@@ -1,0 +1,4 @@
+.editorconfig
+.vscode/
+index.d.ts
+test/
