@@ -1,8 +1,9 @@
-const https = require("node:https");
-const { exec } = require('node:child_process');
+import https from "node:https";
+import { exec } from "node:child_process";
 
-const { ArgParser } = require('./args');
-const { italic, chunk, bold, h2, white, isString } = require('./utils');
+import { ArgParser } from "./args.mjs";
+import { italic, chunk, bold, h2, white, debug } from "./utils/lite-lodash.mjs";
+import { Fatigue } from './utils/fatigue.mjs';
 
 const flags = {
   help: ['-h', '--help'],
@@ -23,36 +24,19 @@ const flags = {
  * } | { errorMsg: string }} IParsedResult
  */
 
-const parser = new ArgParser(flags)
-exports.parser = parser;
+export const parser = new ArgParser(flags)
 
 const verbose = parser.get('verbose');
 
-function debug(...args) {
+export function debugC(...args) {
   if (!verbose) {
     return false
   }
 
-  const containsError = args.some((arg) => arg instanceof Error || /error|fail/i.test(arg));
-
-  const level = containsError ? 'error' : 'log';
-  const DEBUG_ICON = '?';
-
-  // console.log(debugIcon, 'level =', level)
-  let first = DEBUG_ICON;
-  let rest = args;
-
-  if (isString(args[0])) {
-    first = `${DEBUG_ICON} ${args[0]}`
-    rest = args.slice(1);
-  }
-
-  console[level](first, ...rest);
+  debug('[core]', ...args);
 
   return true
 }
-
-exports.debug = debug;
 
 // const args = process.argv.slice(2);
 
@@ -88,8 +72,8 @@ const text = i18n[getLanguage()];
 /** @type {(sentence: string) => string} */
 let highlightWord;
 
-exports.query = async function (word) {
-  debug('Word:', `"${word}"`);
+export const query = async function (word) {
+  debugC('Word:', `"${word}"`);
 
   if (!word) {
     exitWithErrorMsg(text.error.noWord);
@@ -129,7 +113,7 @@ async function translateWithExamples(word) {
   const htmlResult = await byHtml(word, { example: true });
 
   if ('errorMsg' in htmlResult) {
-    debug('Fallback to JSON when HTML fetch failed');
+    debugC('Fallback to JSON when HTML fetch failed');
 
     const jsonResult = await byJSON(word);
 
@@ -162,18 +146,18 @@ function print(word, result) {
 
   const { explanations, englishExplanation, examples, suggestions } = result;
 
-  const showExample = !!examples?.length;
+  const hasExample = !!examples?.length;
 
   verbose && h2("Word:", `"${word}"`);
   verbose && console.log();
-  showExample && h2("Explanations");
+  hasExample && h2("Explanations");
 
   explanations.forEach(exp => {
     console.log(config.listItemIcon, white(exp));
   });
 
-  const sug = suggestions && suggestions[0];
-  sug && console.log('\n你要找的是不是:', white(sug));
+  const suggestedWord = suggestions && suggestions[0];
+  suggestedWord && console.log('\n你要找的是不是:', white(suggestedWord));
 
   if (englishExplanation?.[0]) {
     console.log();
@@ -186,12 +170,38 @@ function print(word, result) {
     console.log(str);
   }
 
-  if (showExample) {
+  if (hasExample) {
     printExamples(examples);
   }
 
+  introduceFeatures(word, suggestedWord)
+
   console.log();
   console.log(italic(`See more at https://dict.youdao.com/w/${encodeURIComponent(word)}/#keyfrom=dict2.top`));
+}
+
+function introduceFeatures(word, suggestedWord) {
+  const fatigue = new Fatigue(verbose);
+
+  const exampleFlagSet = parser.get('example');
+  if (exampleFlagSet) {
+    fatigue.setTired('example')
+  }
+
+  const speakFlagSet = parser.get('speak');
+  if (speakFlagSet) {
+    fatigue.setTired('speak')
+  }
+
+  if (!exampleFlagSet && !fatigue.hit('example')) {
+    console.log();
+    console.log(white(`Try \`npx ydd ${suggestedWord || word} ${bold('-e -c=2')}\` to get some examples ✨.`));
+    fatigue.increment('example')
+  } else if (!speakFlagSet && !fatigue.hit('speak')) {
+    console.log();
+    console.log(white(`Try \`npx ydd ${suggestedWord || word} ${bold('-s')}\` to speak it out 📣.`));
+    fatigue.increment('speak')
+  }
 }
 
 /**
@@ -234,7 +244,7 @@ function getLanguage(configLang) {
  * @returns {Promise<{ errorMsg: string; } | { englishExplanation?: ICollinsItem[], explanations: string[]; examples?: string[] } >}
  */
 async function byHtml(word, { example = false } = {}) {
-  const label = '? by html fetch';
+  const label = '? [core] by html fetch';
   verbose && console.time(label);
 
   const htmlUrl = `https://dict.youdao.com/w/${encodeURIComponent(word)}/#keyfrom=dict2.top`
@@ -249,7 +259,7 @@ async function byHtml(word, { example = false } = {}) {
 
   // 中文不支持
   if (!lis || !lis.includes("<li>")) {
-    debug('No list found:', { lis, html });
+    debugC('No list found:', { lis, html });
 
     return {
       errorMsg: text.error.englishWordOnly
@@ -305,7 +315,7 @@ function extractCollins(html) {
   // console.log('englishExplanationHtml:', englishExplanationHtml);
   const size = Number(parser.get('collins')) || 1;
 
-  debug('size:', size);
+  debugC('size:', size);
 
   // debug(englishExplanationHtml)
 
@@ -367,12 +377,12 @@ async function byJSON(word) {
   const explains = json?.basic?.explains;
   const hasExplanations = !!explains;
 
-  !hasExplanations && debug('byJSON: not has `explains` in json. try to suggest')
+  !hasExplanations && debugC('byJSON: not has `explains` in json. try to suggest')
 
   const suggestions = hasExplanations ? [] : await fetchSuggestions(encoded);
   const explanations = explains || json?.translation;
 
-  !hasExplanations && debug('suggest result = %j', { suggestions, method, json })
+  !hasExplanations && debugC('suggest result = %j', { suggestions, method, json })
   verbose && console.timeEnd(label);
 
   if (!explanations) {
@@ -399,12 +409,12 @@ async function fetchSuggestions(word) {
   try {
     first = decodeURIComponent(str.match(/form.updateCall\((.+?)\)/)?.[1] || '').match(/>([^><]+?)<\/td>/)?.[1];
   } catch (error) {
-    verbose && debug(error);
+    verbose && debugC(error);
   }
 
   if (!first) {
-    debug('url=[%s]', url)
-    debug('str=[%s]', str)
+    debugC('url=[%s]', url)
+    debugC('str=[%s]', str)
   }
 
   return first ? [first] : [];
@@ -457,12 +467,12 @@ async function fetchIt(url, { type = 'json' } = {}) {
   });
 }
 
-function showHelp() {
+export function showHelp() {
   return parser.get('help', 'version')
 }
 
-function help() {
-  const { name, description, version } = require('../package.json')
+export function help() {
+  const { name, description, version } = require("../package.json");
 
   console.log();
   console.log([name, version].join('@'));
@@ -473,24 +483,20 @@ function help() {
   console.log(`> $ npx dict <word> [${Object.values(flags).flat().join(' ')}]`);
 }
 
-function speak(word) {
+export function speak(word) {
   if (!parser.get('speak')) {
-    debug('Not speak because "speak" flag', parser.flags.speak ,'is off.');
+    debugC('Not speak because "speak" flag', parser.flags.speak ,'is off.');
 
     return;
   }
 
   const cmd = `say ${word}`;
 
-  debug(`executing \`${cmd}\``);
+  debugC(`executing \`${cmd}\``);
 
   exec(cmd, (error) => {
     if (error) {
-      debug(`Execute \`${cmd}\` failed:`, error);
+      debugC(`Execute \`${cmd}\` failed:`, error);
     }
   });
 }
-
-exports.help = help;
-exports.speak = speak;
-exports.showHelp = showHelp;

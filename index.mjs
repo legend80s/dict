@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const { query, help, showHelp, parser, debug, speak } = require('./src/core');
+import { query, help, showHelp, parser, debugC as debug, speak } from './src/core.mjs';
 
 main()
 

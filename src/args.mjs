@@ -1,22 +1,22 @@
 /**
- * @typedef {string | string[] | Array<string|boolean>} IFlagItem
+ * @typedef {string | string[] | Array<string|number|boolean>} IFlagItem
  */
 /**
  * @template {Record<string, IFlagItem>} Flags
  *
  * @example
- * const p = new ArgParser({
+ * const parser = new ArgParser({
  *   verbose: ['--verbose', '-v'],
  * });
  *
  * // node cli.js --verbose
  * // node cli.js -v
- * p.isHit('verbose'); // true
+ * parser.get('verbose'); // true
  *
  * // node cli.js
- * p.isHit('verbose'); // false
+ * parser.get('verbose'); // false
  */
-class ArgParser {
+export class ArgParser {
   /**
    * @param {Flags} flags
    */
@@ -85,9 +85,3 @@ class ArgParser {
     return this.args[0]?.trim() || '';
   }
 }
-
-function cast2Array(val) {
-  return Array.isArray(val) ? val : [val];
-}
-
-exports.ArgParser = ArgParser;
