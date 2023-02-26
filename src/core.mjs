@@ -102,8 +102,6 @@ export const query = async function (word) {
     }
   }
 
-  highlightWord = (sentence) => highlight(sentence, word);
-
   return print(word, result)
 }
 
@@ -149,6 +147,11 @@ function print(word, result) {
   }
 
   const { explanations, englishExplanation, examples, suggestions } = result;
+  const explanationWords = explanations.reduce((acc, row) => {
+    return acc.concat(row.split(/[，；\s]/).slice(1))
+  }, []).map(w => w.replace(/([的地])/, '$1?'));
+
+  highlightWord = (sentence) => highlight(sentence, [word, ...explanationWords]);
 
   const hasExample = !!examples?.length;
 
@@ -226,8 +229,14 @@ function printExamples(examples) {
   });
 }
 
-function highlight(sentence, word) {
-  return sentence.replace(new RegExp(word, 'gi'), (m) => bold(m))
+/**
+ *
+ * @param {string} sentence
+ * @param {string[]} words
+ * @returns
+ */
+function highlight(sentence, words) {
+  return sentence.replace(new RegExp(words.join('|'), 'gi'), (m) => bold(m))
 }
 
 /**
