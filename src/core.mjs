@@ -147,9 +147,12 @@ function print(word, result) {
   }
 
   const { explanations, englishExplanation, examples, suggestions } = result;
-  const explanationWords = explanations.reduce((acc, row) => {
-    return acc.concat(row.split(/[，；\s]/).slice(1))
-  }, []).map(w => w.replace(/([的地])/, '$1?'));
+  const explanationWords = explanations
+    .map((row) => row.replace(/（.+?）|<.+?>/g, ''))
+    .reduce((acc, row) => {
+      return acc.concat(row.split(/[，；\s]/).slice(1))
+    }, [])
+    .map(w => w.replace(/([的地])/, '$1?'));
 
   highlightWord = (sentence) => highlight(sentence, [word, ...explanationWords]);
 
