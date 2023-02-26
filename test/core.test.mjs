@@ -11,7 +11,7 @@ test('Should show help', () => {
   assert.match(stdout, /> \$ npx dict <word> \[-h --help -v --version --verbose -s --speak false -e --example false -c --collins 1\]/);
 });
 
-test('Should show explanations and without examples by default', (t) => {
+test('Should show explanations and without examples by default', () => {
   const stdout = execSync(`node ./ wonderful`).toString('utf-8');
 
   assert.doesNotMatch(stdout, /Word: "wonderful"/);
@@ -20,7 +20,7 @@ test('Should show explanations and without examples by default', (t) => {
   assert.doesNotMatch(stdout, /Examples/);
 });
 
-test('Should show explanations and examples and collins', (t) => {
+test('Should show explanations and examples and collins', () => {
   const stdout = execSync(`node ./ wonderful --example`).toString('utf-8');
 
   assert.doesNotMatch(stdout, /Word: "wonderful"/);
@@ -38,7 +38,7 @@ test('Should show explanations and examples and collins', (t) => {
   assert.match(stdout, /See more at https:\/\/dict.youdao.com\/w\/wonderful\/#keyfrom=dict2.top/);
 });
 
-test('Should show 2 collins', (t) => {
+test('Should show 2 collins', () => {
   const stdout = execSync(`node ./ wonderful -c=2 --example`).toString('utf-8');
 
   assert.match(stdout, /柯林斯英汉双解大词典/);
@@ -46,13 +46,13 @@ test('Should show 2 collins', (t) => {
   assert.match(stdout, /2\./);
 });
 
-test('Should show word on verbose', (t) => {
+test('Should show word on verbose', () => {
   const stdout = execSync(`node ./ wonderful --verbose`).toString('utf-8');
 
   assert.match(stdout, /Word: "wonderful"/);
 });
 
-test('Should show Explanations only', (t) => {
+test('Should show Explanations only', () => {
   const stdout = execSync(`node ./ "wonderful girl"`).toString('utf-8');
 
   assert.doesNotMatch(stdout, /Word: "wonderful girl"/);
@@ -61,14 +61,14 @@ test('Should show Explanations only', (t) => {
   assert.match(stdout, /See more at https:\/\/dict.youdao.com\/w\/wonderful%20girl\/#keyfrom=dict2.top/);
 });
 
-test('Should show suggested word when no explanations found', (t) => {
+test('Should show suggested word when no explanations found', () => {
   const stdout = execSync(`node ./ dogfood`).toString('utf-8');
 
   assert.match(stdout, /你要找的是不是/);
   assert.match(stdout, /dogfooding/);
 });
 
-test('Should show collins and Examples', (t) => {
+test('Should show collins and Examples', () => {
   const stdout = execSync(`node ./ router -e`).toString('utf-8');
 
   assert.match(stdout, /Explanations/);
@@ -78,11 +78,19 @@ test('Should show collins and Examples', (t) => {
   assert.match(stdout, /See more at/);
 });
 
-test('Should not show collins for word "sulfate"', (t) => {
+test('Should not show collins for word "sulfate"', () => {
   const stdout = execSync(`node ./ sulfate -e`).toString('utf-8');
 
   assert.match(stdout, /Explanations/);
   assert.doesNotMatch(stdout, /柯林斯英汉双解大词典/);
   assert.match(stdout, /Examples/);
   assert.match(stdout, /See more at/);
+});
+
+test('Should match as longer as possible', () => {
+  const stdout = execSync(`node ./ exclusive -e`).toString('utf-8');
+
+  assert.match(stdout, /n. 独家新闻，独家报道/);
+  assert.match(stdout, /柯林斯英汉双解大词典 \[#\d\]/);
+  assert.match(stdout, /一些报社以为他们有一条\x1B\[1m\x1B\[4m独家报道\x1B\[22m\x1B\[24m。/);
 });

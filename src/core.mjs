@@ -155,6 +155,8 @@ function print(word, result) {
     }, [])
     .map(w => w.trim())
     .filter(Boolean)
+    // match as longer as possible
+    .sort((a, b) => b.length - a.length)
     .map(w => w.replace(/([的地])/, '$1?'));
 
   highlightWord = (sentence) => highlight(sentence, [word, ...explanationWords]);
