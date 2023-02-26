@@ -22,6 +22,7 @@ const flags = {
  * @typedef {{
  *  explanations: string[];
  *  englishExplanation?: ICollinsItem[];
+ *  englishExplanationTotalCount?: number;
  *  suggestions?: string[];
  *  examples?: IExample[];
  * } | { errorMsg: string }} IParsedResult
@@ -146,12 +147,14 @@ function print(word, result) {
     return false;
   }
 
-  const { explanations, englishExplanation, examples, suggestions } = result;
+  const { explanations, englishExplanation, englishExplanationTotalCount, examples, suggestions } = result;
   const explanationWords = explanations
-    .map((row) => row.replace(/（.+?）|<.+?>/g, ''))
+    .map((row) => row.replace(/（.+?）|<.+?>|\[.+?\]/g, ''))
     .reduce((acc, row) => {
       return acc.concat(row.split(/[，；\s]/).slice(1))
     }, [])
+    .map(w => w.trim())
+    .filter(Boolean)
     .map(w => w.replace(/([的地])/, '$1?'));
 
   highlightWord = (sentence) => highlight(sentence, [word, ...explanationWords]);
@@ -171,13 +174,17 @@ function print(word, result) {
 
   if (englishExplanation?.[0]) {
     console.log();
-    h2('柯林斯英汉双解大词典')
+    h2(`柯林斯英汉双解大词典 [#${englishExplanationTotalCount}]`)
 
     const str = englishExplanation.map(([english, chinese]) => {
       return [english, chinese].filter(Boolean).map(highlightWord).join('\n');
     }).join('\n\n');
 
     console.log(str);
+
+    if (englishExplanation.length < englishExplanationTotalCount) {
+      console.log('...');
+    }
   }
 
   if (hasExample) {
@@ -306,7 +313,7 @@ async function byHtml(word, { example = false } = {}) {
   const examples = (bilingual.match(/<p(?:.*?)>(.+?)<\/p>/gs) || [])
     .map(removeTags);
 
-  const englishExplanation = extractCollins(html);
+  const [englishExplanation, englishExplanationTotalCount] = extractCollins(html);
 
   verbose && console.timeEnd(label);
 
@@ -314,6 +321,7 @@ async function byHtml(word, { example = false } = {}) {
     explanations,
     examples: chunk(examples, 3),
     englishExplanation,
+    englishExplanationTotalCount,
   };
 }
 
@@ -321,7 +329,7 @@ async function byHtml(word, { example = false } = {}) {
 
 /**
  * @param {string} html
- * @returns {ICollinsItem[]}
+ * @returns {[ICollinsItem[]?, number?]}
  */
 function extractCollins(html) {
   const englishExplanationHtml = html.match(/<div id="collinsResult".+?<\/ul>\s*<\/div>\s*<\/div>/s)?.[0].trim();
@@ -348,7 +356,7 @@ function extractCollins(html) {
 
   // console.log('list:', list);
 
-  return list.slice(0, size)
+  const collins = list.slice(0, size)
     .map(li => li
       .match(/<div.+?>(.+?)<\/div>/g)
       .map(m =>
@@ -356,6 +364,8 @@ function extractCollins(html) {
       )
     )
   ;
+
+  return [collins, list.length]
 }
 
 /**
