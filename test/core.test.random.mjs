@@ -12,7 +12,7 @@ test('should not throw error on random word', () => {
 
   for (const word of randomWords) {
     assert.doesNotThrow(() => {
-      execSync(`node ./ ${word} -e`).toString('utf-8');
+      execSync(`node ./ '${word}' -e`).toString('utf-8');
     })
   }
 })

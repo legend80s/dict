@@ -5,6 +5,9 @@ import { ArgParser } from "./args.mjs";
 import { italic, chunk, bold, h2, white, debug } from "./utils/lite-lodash.mjs";
 import { Fatigue } from './utils/fatigue.mjs';
 
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
+
 const flags = {
   help: ['-h', '--help'],
   version: ['-v', '--version'],
@@ -78,7 +81,7 @@ export const query = async function (word) {
   if (!word) {
     exitWithErrorMsg(text.error.noWord);
 
-    return;
+    return false;
   }
 
   const showExamples = parser.get('example');
@@ -101,7 +104,7 @@ export const query = async function (word) {
 
   highlightWord = (sentence) => highlight(sentence, word);
 
-  print(word, result)
+  return print(word, result)
 }
 
 /**
@@ -128,7 +131,6 @@ function exitWithErrorMsg(msg) {
   // console.info('\n> Example: $ npx dict water');
 
   help();
-  process.exitCode = 1;
 }
 
 /**
@@ -141,7 +143,9 @@ function exitWithErrorMsg(msg) {
  */
 function print(word, result) {
   if ('errorMsg' in result) {
-    return exitWithErrorMsg(result.errorMsg);
+    exitWithErrorMsg(result.errorMsg);
+
+    return false;
   }
 
   const { explanations, englishExplanation, examples, suggestions } = result;
@@ -178,6 +182,8 @@ function print(word, result) {
 
   console.log();
   console.log(italic(`See more at https://dict.youdao.com/w/${encodeURIComponent(word)}/#keyfrom=dict2.top`));
+
+  return true;
 }
 
 function introduceFeatures(word, suggestedWord) {

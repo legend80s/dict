@@ -2,6 +2,15 @@ import test from 'node:test';
 import assert from 'node:assert';
 import { execSync } from 'node:child_process';
 
+test('Should show help', () => {
+  const stdout = execSync(`node ./ -v`).toString('utf-8');
+
+  assert.match(stdout, /ydd@\d/);
+  assert.match(stdout, /> Explain English word in Chinese. 查询英文单词的中文释义。/);
+  assert.match(stdout, /> Example:/);
+  assert.match(stdout, /> \$ npx dict <word> \[-h --help -v --version --verbose -s --speak false -e --example false -c --collins 1\]/);
+});
+
 test('Should show explanations and without examples by default', (t) => {
   const stdout = execSync(`node ./ wonderful`).toString('utf-8');
 
