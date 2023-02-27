@@ -26,3 +26,9 @@ bunx ydd vite -e -s
 - Light weight: Zero dependencies. Built with speed in mind, no cheerio and request library.
 - Robust: Use double source: openapi and html.
 - Speak 👄: `bunx ydd vite --speak`.
+
+## Show your support ❤️
+
+如果给你带来小小便捷不妨[一键三连 🍻！](https://github.com/legend80s/dict)
+
+Give [a ⭐️](https://github.com/legend80s/dict) if this project helped you!
