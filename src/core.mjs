@@ -147,17 +147,33 @@ function print(word, result) {
     return false;
   }
 
-  const { explanations, englishExplanation, englishExplanationTotalCount, examples, suggestions } = result;
+  const {
+    explanations,
+    englishExplanation,
+    englishExplanationTotalCount,
+    examples,
+    suggestions,
+  } = result;
+
+  const collinsChineseExplanation = !englishExplanation ? [] : englishExplanation
+    .flatMap(([english]) => english.match(/[\u4e00-\u9fa5]+/g))
+    // filter out the `null`s
+    .filter(Boolean)
+  ;
+
   const explanationWords = explanations
     .map((row) => row.replace(/（.+?）|<.+?>|\[.+?\]/g, ''))
     .reduce((acc, row) => {
       return acc.concat(row.split(/[，；\s]/).slice(1))
     }, [])
+    .concat(collinsChineseExplanation)
     .map(w => w.trim())
-    .filter(Boolean)
+    .filter(w => !!w && w !== '的')
     // match as longer as possible
     .sort((a, b) => b.length - a.length)
     .map(w => w.replace(/([的地])/, '$1?'));
+
+  // console.log('explanationWords:', explanationWords);
 
   highlightWord = (sentence) => highlight(sentence, [word, ...explanationWords]);
 
@@ -248,7 +264,15 @@ function printExamples(examples) {
  * @returns
  */
 function highlight(sentence, words) {
+  // console.log('sentence:', sentence);
+  const uniqWords = uniq(words);
+  // console.log('words:', { uniqWords });
+
   return sentence.replace(new RegExp(words.join('|'), 'gi'), (m) => bold(m))
+}
+
+function uniq(arr) {
+  return [...new Set(arr)];
 }
 
 /**
