@@ -171,7 +171,7 @@ function print(word, result) {
     .filter(w => !!w && w !== '的')
     // match as longer as possible
     .sort((a, b) => b.length - a.length)
-    .map(w => w.replace(/([的地])/, '$1?'));
+    .map(w => w.replace(/([的地])$/, '$1?'));
 
   // console.log('explanationWords:', explanationWords);
 
@@ -300,7 +300,9 @@ async function byHtml(word, { example = false } = {}) {
 
   const htmlUrl = `https://dict.youdao.com/w/${encodeURIComponent(word)}/#keyfrom=dict2.top`
   // const html = execSync(`curl --silent ${htmlUrl}`).toString("utf-8"); // 367.983ms
-  const [html] = await fetchIt(htmlUrl, { type: 'text' }); // 241.996ms
+  const [html, method] = await fetchIt(htmlUrl, { type: 'text' }); // 241.996ms
+
+  debug('byHtml', { method });
 
   // 尽量少依赖故未使用查询库和渲染库
   // https://www.npmjs.com/package/node-html-parser
