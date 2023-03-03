@@ -4,6 +4,8 @@
 
 Explain English word in Chinese. 查询英文单词的中文释义。
 
+Dictionary for programmers who prefer terminals. 有道词典，致喜欢在终端工作的程序员。
+
 ## Usage
 
 Query the meaning of "vite":
