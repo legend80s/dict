@@ -81,7 +81,11 @@ export class ArgParser {
   /**
    * @returns {string}
    */
-  firstArg() {
-    return this.args[0]?.trim() || '';
+  firstArg(flag = false) {
+    if (flag) {
+      return this.args[0]?.trim() || '';
+    }
+
+    return this.args.find(arg => !arg.startsWith('-')) || ''
   }
 }

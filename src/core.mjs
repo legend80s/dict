@@ -302,7 +302,7 @@ async function byHtml(word, { example = false } = {}) {
   // const html = execSync(`curl --silent ${htmlUrl}`).toString("utf-8"); // 367.983ms
   const [html, method] = await fetchIt(htmlUrl, { type: 'text' }); // 241.996ms
 
-  debug('byHtml', { method });
+  debugC('byHtml', { method });
 
   // 尽量少依赖故未使用查询库和渲染库
   // https://www.npmjs.com/package/node-html-parser
