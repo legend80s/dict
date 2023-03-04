@@ -1,6 +1,6 @@
 {
   "name": "ydd",
-  "version": "2.3.4",
+  "version": "2.3.5",
   "description": "Explain English word in Chinese. 查询英文单词的中文释义。",
   "main": "index.mjs",
   "bin": {
