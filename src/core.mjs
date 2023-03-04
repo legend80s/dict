@@ -232,7 +232,7 @@ function introduceFeatures(word, suggestedWord) {
 
   if (!exampleFlagSet && !fatigue.hit('example')) {
     console.log();
-    console.log(white(`Try \`npx ydd ${suggestedWord || word} ${bold('-e -c=2')}\` to get some examples ✨.`));
+    console.log(white(`Try \`npx ydd ${suggestedWord || word} ${bold('-e -c=2|all')}\` to get some examples ✨.`));
     fatigue.increment('example')
   } else if (!speakFlagSet && !fatigue.hit('speak')) {
     console.log();
@@ -367,10 +367,6 @@ function extractCollins(html) {
   }
 
   // console.log('englishExplanationHtml:', englishExplanationHtml);
-  const size = Number(parser.get('collins')) || 1;
-
-  debugC('size:', size);
-
   // debug(englishExplanationHtml)
 
   const list = englishExplanationHtml
@@ -382,6 +378,11 @@ function extractCollins(html) {
     return [];
   }
 
+  const num = parser.get('collins');
+  // `--collins=all` to show all collins
+  const size = /^a/.test(num) ? list.length : (Number(num) || 1);
+
+  debugC('size:', size);
   // console.log('list:', list);
 
   const collins = list.slice(0, size)
