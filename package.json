@@ -20,7 +20,18 @@
     "type": "git",
     "url": "git+https://github.com/legend80s/dict.git"
   },
-  "keywords": [],
+  "keywords": [
+    "youdao",
+    "dictionary",
+    "translation",
+    "translate",
+    "explanation",
+    "English",
+    "Chinese",
+    "vite",
+    "pnpx",
+    "bunx"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -28,6 +39,6 @@
   },
   "homepage": "https://github.com/legend80s/dict#readme",
   "devDependencies": {
-    "git-commit-msg-linter": "^4.7.3"
+    "git-commit-msg-linter": "latest"
   }
 }
