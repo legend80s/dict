@@ -7,7 +7,7 @@ const RESET_BOLD = '\x1b[22m'
 const RESET_UNDERLINED = '\x1b[24m'
 
 export const WHITE = '\x1b[97m'
-export const h2 = (...text) => console.log(bold(text.join(' ')));
+export const h2 = (...text) => bold(text.join(' '));
 
 /**
  * @type {(val: any) => val is string}

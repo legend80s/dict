@@ -1,11 +1,12 @@
 import https from "node:https";
 import { exec } from "node:child_process";
+import { createRequire } from 'node:module';
+import { log } from 'node:console';
 
 import { ArgParser } from "./args.mjs";
 import { italic, chunk, bold, h2, white, debug } from "./utils/lite-lodash.mjs";
 import { Fatigue } from './utils/fatigue.mjs';
 
-import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
 
 const flags = {
@@ -179,9 +180,9 @@ function print(word, result) {
 
   const hasExample = !!examples?.length;
 
-  verbose && h2("Word:", `"${word}"`);
+  verbose && log(h2("Word:", `"${word}"`));
   verbose && console.log();
-  hasExample && h2("Explanations");
+  hasExample && log(h2("Explanations"));
 
   explanations.forEach(exp => {
     console.log(config.listItemIcon, white(exp));
@@ -192,7 +193,22 @@ function print(word, result) {
 
   if (englishExplanation?.[0]) {
     console.log();
-    h2(`柯林斯英汉双解大词典 [#${englishExplanationTotalCount}]`)
+
+    let sub = '';
+
+    // number 1 - is default value `npx ydd`
+    // string 1 - is passed value `npx ydd -c=1`
+    const isDefaultValue = parser.get('collins') === 1;
+
+    if (englishExplanationTotalCount > 1 && isDefaultValue) {
+      const surround = (str) => '`' + italic(white(str)) + '`';
+      const tips = ['-c=2', '-c=all'].map(surround).join(' or ');
+
+      sub = `. Add ${tips} to show more examples.`;
+    }
+
+    const header = `柯林斯英汉双解大词典 [#${englishExplanationTotalCount}]`;
+    log(h2(header) + sub);
 
     const str = englishExplanation.map(([english, chinese]) => {
       return [english, chinese].filter(Boolean).map(highlightWord).join('\n');
@@ -247,12 +263,13 @@ function introduceFeatures(word, suggestedWord) {
  */
 function printExamples(examples) {
   console.log();
-  h2('Examples');
+  log(h2('Examples'));
 
   examples.forEach(([sentence, translation, via], idx) => {
-    console.log(white(highlightWord(sentence)));
-    console.log(white(highlightWord(translation)));
-    console.log(italic(via));
+    log(white(highlightWord(sentence)));
+    log(white(highlightWord(translation)));
+    log(italic(via));
+
     idx !== examples.length -1 && console.log();
   });
 }
