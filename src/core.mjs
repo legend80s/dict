@@ -4,7 +4,17 @@ import { createRequire } from 'node:module';
 import { log } from 'node:console';
 
 import { ArgParser } from "./args.mjs";
-import { italic, chunk, bold, h2, white, debug } from "./utils/lite-lodash.mjs";
+
+import {
+  italic,
+  chunk,
+  bold,
+  h2,
+  white,
+  debug,
+  highlight,
+} from "./utils/lite-lodash.mjs";
+
 import { Fatigue } from './utils/fatigue.mjs';
 
 const require = createRequire(import.meta.url);
@@ -272,24 +282,6 @@ function printExamples(examples) {
 
     idx !== examples.length -1 && console.log();
   });
-}
-
-/**
- *
- * @param {string} sentence
- * @param {string[]} words
- * @returns
- */
-function highlight(sentence, words) {
-  // console.log('sentence:', sentence);
-  const uniqWords = uniq(words);
-  // console.log('words:', { uniqWords });
-
-  return sentence.replace(new RegExp(words.join('|'), 'gi'), (m) => bold(m))
-}
-
-function uniq(arr) {
-  return [...new Set(arr)];
 }
 
 /**

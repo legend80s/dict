@@ -93,4 +93,30 @@ function getBreakpoint(args) {
   return -1;
 }
 
+/**
+ *
+ * @param {string} sentence
+ * @param {string[]} words
+ * @returns
+ */
+export function highlight(sentence, words) {
+  // console.log('sentence:', sentence);
+  const uniqWords = uniq(words);
+  // console.log('words:', { uniqWords });
+
+  const isEnglish = (w) => /\w/.test(w)
+
+  return sentence.replace(
+    new RegExp(uniqWords
+      .map(w => isEnglish(w) ? `\\b${w}\\b` : w)
+      .join('|'), 'gi'),
+
+    (m) => bold(m)
+  )
+}
+
+function uniq(arr) {
+  return [...new Set(arr)];
+}
+
 // todo cache
