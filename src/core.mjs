@@ -1,4 +1,3 @@
-import https from "node:https";
 import { exec } from "node:child_process";
 import { createRequire } from 'node:module';
 import { log } from 'node:console';
@@ -16,6 +15,7 @@ import {
 } from "./utils/lite-lodash.mjs";
 
 import { Fatigue } from './utils/fatigue.mjs';
+import { fetchIt } from './utils/fetch.mjs';
 
 const require = createRequire(import.meta.url);
 
@@ -484,53 +484,6 @@ async function fetchSuggestions(word) {
   }
 
   return first ? [first] : [];
-}
-
-/**
- * @typedef {Record<string, any>} IJSON
- */
-
-/**
- * @template {'json' | 'text' | undefined} T
- * @param {string} url
- * @param {{ type: T }} [settings]
- * @returns {Promise<[T extends 'json' | undefined ? IJSON : string, method: string]>}
- */
-async function fetchIt(url, { type = 'json' } = {}) {
-  const asJSON = type === 'json';
-
-  if (typeof fetch === 'function') {
-    // html 391.83ms
-    // json 175.426ms
-    const parse = (resp) => asJSON ? resp.json() : resp.text();
-
-    return [await fetch(url).then(parse), 'fetch']
-  }
-
-  return new Promise(function (resolve, reject) {
-    https.get(url, function (res) {
-      res.setEncoding('utf-8');
-      let result = '';
-
-      res.on('data', function (data) {
-        result += data;
-      });
-
-      res.on('end', () => {
-        const parsed = asJSON ? JSON.parse(result) : result;
-
-        // console.log('parsed:', parsed);
-
-        try {
-          resolve([parsed, 'https']);
-        } catch (error) {
-          reject(error);
-        }
-      });
-    }).on('error', function (error) {
-      reject(error);
-    });
-  });
 }
 
 export function showHelp() {
