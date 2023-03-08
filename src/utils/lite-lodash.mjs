@@ -108,13 +108,26 @@ export function highlight(sentence, words) {
 
   return sentence.replace(
     new RegExp(uniqWords
-      .map(w => isEnglish(w) ? `\\b${w}\\b` : w)
+      .map(w => isEnglish(w) ? `\\b(${genWordVariants(w)}\\b` : w)
       .join('|'), 'gi'),
 
     (m) => bold(m)
   )
 }
 
+/**
+ * @param {string} word
+ * @returns {string}
+ */
+function genWordVariants(word) {
+  return word.slice(0, word.length - 1) + `(?:${word.at(-1)})?` + `(?:ed|ing|s|es|ies)?`;
+}
+
+/**
+ * @template T
+ * @param {T[]} arr
+ * @returns {T[]}
+ */
 function uniq(arr) {
   return [...new Set(arr)];
 }
