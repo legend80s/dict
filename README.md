@@ -29,6 +29,10 @@ bunx ydd vite -e -s
 - Robust: Use double source: openapi and html.
 - Speak 👄: `bunx ydd vite --speak`.
 
+## TODO
+
+- [ ] Translate long sentence.
+
 ## Show your support ❤️
 
 如果给你带来小小便捷不妨[一键三连 🍻！](https://github.com/legend80s/dict)

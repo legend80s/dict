@@ -108,7 +108,7 @@ export function highlight(sentence, words) {
 
   return sentence.replace(
     new RegExp(uniqWords
-      .map(w => isEnglish(w) ? `\\b(${genWordVariants(w)}\\b` : w)
+      .map(w => isEnglish(w) ? `\\b${genWordVariants(w)}\\b` : w)
       .join('|'), 'gi'),
 
     (m) => bold(m)

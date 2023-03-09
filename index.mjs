@@ -8,7 +8,6 @@ import {
   speak,
 } from './src/core.mjs';
 import { translate } from './src/translator/index.mjs';
-import { italic, white } from './src/utils/lite-lodash.mjs';
 
 main()
 
@@ -24,21 +23,13 @@ async function main() {
 
   speak(word);
 
-  const isEnglishSentence = /\w+/.test(word) && word.split(' ').length > 10;
-
-  const verbose = parser.get('verbose')
+  const threshold = 50000;
+  const isEnglishSentence = /\w+/.test(word) && word.split(' ').length > threshold;
 
   if (isEnglishSentence) {
-    try {
-      console.log(white(await translate(word)));
-    } catch (error) {
-      console.error('Translated failed:');
-      verbose && console.error(error);
-    } finally {
-      console.log();
-      console.log(italic(`Powered by "${white('Yandex Translate')}".`));
-      console.log(italic(`See more at https://translate.yandex.com/?source_lang=en&target_lang=zh&text=${encodeURIComponent(word)}`));
-    }
+    const verbose = parser.get('verbose')
+
+    translate(word, { verbose });
 
     return;
   }

@@ -1,17 +1,11 @@
 import fs from 'node:fs';
-import { homedir } from 'node:os';
 import { createRequire } from 'node:module';
 
 import { debug } from './lite-lodash.mjs';
+import { rcFilepath, writeFullConfig } from '../config.mjs';
 
 const require = createRequire(import.meta.url);
 
-// cannot be .mjs because it's generated dynamically so must be `required`.
-const rcFilepath = `${homedir()}/ydd-data.js`;
-const header = `
-// You can delete this file whenever.
-// https://www.npmjs.com/package/ydd
-`.trim();
 const limit = 2;
 
 /** @template {string} K */
@@ -26,7 +20,7 @@ export class Fatigue {
     if (!fs.existsSync(rcFilepath)) {
       // console.log('not found');
 
-      writeFullConfig('module.exports = {}')
+      writeFullConfig({})
     }
   }
 
@@ -62,7 +56,7 @@ export class Fatigue {
 
     this.debugF('increment after key=%s, config=%j', key, config);
 
-    writeFullConfig(`module.exports = ${JSON.stringify(config, null, 2)}`)
+    writeFullConfig(config)
   }
 
   /**
@@ -74,14 +68,4 @@ export class Fatigue {
       debug('[fatigue]', ...args)
     }
   }
-}
-
-/**
-* @param {string} content
-*/
-function writeFullConfig(content) {
-  fs.writeFileSync(
-    rcFilepath,
-    `${header}\n${content}\n`
-  )
 }
