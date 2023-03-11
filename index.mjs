@@ -23,7 +23,7 @@ async function main() {
 
   speak(word);
 
-  const threshold = 50000;
+  const threshold = 5;
   const isEnglishSentence = /\w+/.test(word) && word.split(' ').length > threshold;
 
   if (isEnglishSentence) {

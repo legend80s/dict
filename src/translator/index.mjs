@@ -2,16 +2,16 @@ import { createRequire } from 'node:module';
 
 import { rcFilepath, writeFullConfig } from '../config.mjs';
 import { italic, white } from '../utils/lite-lodash.mjs';
-import { translate as trans } from './translate.mjs';
+import { translate as trans } from './engines/baidu.mjs';
 
 const require = createRequire(import.meta.url);
 
 export async function translate(text, { verbose = false } = {}) {
   const [lastTime, data] = estimate(verbose);
-  console.log(`翻译中……，预计 ${lastTime || 6}s`);
+  lastTime > 1 && console.log(`翻译中……，预计 ${lastTime || 6}s`);
 
   const start = Date.now();
-  let end = 0;
+  let end;
 
   try {
     console.log(white(await trans(text)));
@@ -20,8 +20,8 @@ export async function translate(text, { verbose = false } = {}) {
     verbose && console.error(error);
   } finally {
     console.log();
-    console.log(italic(`Powered by "${white('Yandex Translate')}".`));
-    console.log(italic(`See more at https://translate.yandex.com/?source_lang=en&target_lang=zh&text=${encodeURIComponent(text)}`));
+    console.log(italic(`Powered by "${white('Baidu 翻译')}".`));
+    console.log(italic(`See more at https://fanyi.baidu.com/?aldtype=23#en/zh/${encodeURIComponent(text)}`));
 
     end = Date.now()
   }
@@ -31,7 +31,7 @@ export async function translate(text, { verbose = false } = {}) {
 
 function saveTime(time, data) {
   const updated = data || {};
-  const sec = parseInt(time / 1000);
+  const sec = time / 1000;
   // console.log('updated before:', updated);
 
   if (!updated.translate) {

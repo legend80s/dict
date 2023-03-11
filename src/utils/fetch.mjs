@@ -13,6 +13,8 @@ import https from "node:https";
 export async function fetchIt(url, {
   type = 'json',
   method = 'GET',
+  body,
+  headers = {},
 } = {}) {
   const asJSON = type === 'json';
 
@@ -21,11 +23,24 @@ export async function fetchIt(url, {
     // json 175.426ms
     const parse = (resp) => asJSON ? resp.json() : resp.text();
 
-    return [await fetch(url, { method }).then(parse), 'fetch']
+    return [await fetch(url, { method, headers, body }).then(parse), 'fetch']
+  }
+
+  let postData = '';
+
+  if (body) {
+    postData = typeof body === 'string' ? body : JSON.stringify(body);
+  }
+
+  if (body && !headers['Content-Length']) {
+    headers['Content-Length'] = Buffer.byteLength(postData);
   }
 
   return new Promise(function (resolve, reject) {
-    (https[method] || https.get)(url, function (res) {
+    const req = https.request(url, {
+      method,
+      headers,
+    }, function (res) {
       res.setEncoding('utf-8');
       let result = '';
 
@@ -47,5 +62,11 @@ export async function fetchIt(url, {
     }).on('error', function (error) {
       reject(error);
     });
+
+    if (postData) {
+      req.write(postData);
+    }
+
+    req.end();
   });
 }
