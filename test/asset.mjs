@@ -15,10 +15,10 @@ export const pickRandomWords = (limit) => {
 }
 
 /**
- *
- * @param {any[]} arr
+ * @template T
+ * @param {T[]} arr
  * @param {number} limit
- * @returns {any[]}
+ * @returns {T[]}
  */
 function pickRandoms(arr, limit) {
   const set = new Set();

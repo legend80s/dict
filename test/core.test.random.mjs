@@ -12,7 +12,9 @@ test('should not throw error on random word', () => {
 
   for (const word of randomWords) {
     assert.doesNotThrow(() => {
-      const stdout = execSync(`node ./ '${word}' -e`).toString('utf-8');
+      const p = word.includes(`'`) ? '"' : "'";
+
+      const stdout = execSync(`node ./ ${p}${word}${p} -e`).toString('utf-8');
       console.log('word:', `"${word}"`);
 
       assert.match(stdout, /💬 \x1B\[97m/);
