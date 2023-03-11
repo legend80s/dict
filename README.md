@@ -28,10 +28,11 @@ bunx ydd vite -e -s
 - Light weight: Zero dependencies. Built with speed in mind, no cheerio and request library.
 - Robust: Use double source: openapi and html.
 - Speak 👄: `bunx ydd vite --speak`.
+- Translate long sentences powered by "Baidu Fanyi".
 
 ## TODO
 
-- [ ] Translate long sentence.
+- [x] Translate long sentence.
 
 ## Show your support ❤️
 
