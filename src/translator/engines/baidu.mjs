@@ -1,5 +1,7 @@
 import { fetchIt } from '../../utils/fetch.mjs';
 
+const baidUid = '203FABAEBC0ED8BC125002543A739551';
+
 /**
  * @param {string} query
  * @returns {Promise<string>}
@@ -9,13 +11,12 @@ export function translate(query) {
     type: 'json',
     "headers": {
       "content-type": "application/x-www-form-urlencoded;",
-      "cookie": "BAIDUID=203FABAEBC0ED8BC125002543A739551:FG=1",
+      "cookie": `BAIDUID=${baidUid}:FG=1`,
     },
     "body": `from=en&to=zh&query=${decodeURIComponent(query)}&transtype=realtime&simple_means_flag=3&sign=${sign(query)}&token=919f77e781dc705c7861ccf34a9a52b8&domain=common`,
     "method": "POST"
   })
   .then(([resp, method]) => {
-
     if (resp.trans_result) {
       return resp.trans_result.data[0].dst;
     } else {
