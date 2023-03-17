@@ -97,18 +97,22 @@ export const query = async function (word) {
   }
 
   const showExamples = parser.get('example');
+  const showCollins = shouldShowCollins(parser.get('collins'));
 
   /** @type {IParsedResult} */
   let result = {};
 
-  if (showExamples) {
-    result = await translateWithExamples(word);
+  if (showExamples || showCollins) {
+    result = await translateWithExamples(word, {
+      example: showExamples,
+      collins: showCollins,
+    });
   } else {
     const json = await byJSON(word);
 
     // failed
     if ('errorMsg' in json) {
-      result = await byHtml(word, { example: false })
+      result = await byHtml(word, { example: false, collins: false, })
     } else {
       result = json;
     }
@@ -122,8 +126,8 @@ export const query = async function (word) {
  * @param {string} word
  * @returns {Promise<IParsedResult>}
  */
-async function translateWithExamples(word) {
-  const htmlResult = await byHtml(word, { example: true });
+async function translateWithExamples(word, { example, collins }) {
+  const htmlResult = await byHtml(word, { example, collins });
 
   if ('errorMsg' in htmlResult) {
     debugC('Fallback to JSON when HTML fetch failed');
@@ -303,7 +307,7 @@ function getLanguage(configLang) {
  * cost: 367.983ms
  * @returns {Promise<{ errorMsg: string; } | { englishExplanation?: ICollinsItem[], explanations: string[]; examples?: string[] } >}
  */
-async function byHtml(word, { example = false } = {}) {
+async function byHtml(word, { example = false, collins = false } = {}) {
   const label = '? [core] by html fetch';
   verbose && console.time(label);
 
@@ -336,10 +340,9 @@ async function byHtml(word, { example = false } = {}) {
     .filter(Boolean)
   ;
 
-
   // console.log('englishExplanation:', englishExplanation);
 
-  if (!example) {
+  if (!example && !collins) {
     return { explanations };
   }
 
@@ -347,10 +350,14 @@ async function byHtml(word, { example = false } = {}) {
 
   // console.log('bilingual:', bilingual);
 
-  const examples = (bilingual.match(/<p(?:.*?)>(.+?)<\/p>/gs) || [])
-    .map(removeTags);
+  const examples = example ?
+    (bilingual.match(/<p(?:.*?)>(.+?)<\/p>/gs) || [])
+      .map(removeTags) :
+    [];
 
-  const [englishExplanation, englishExplanationTotalCount] = extractCollins(html);
+  const [englishExplanation, englishExplanationTotalCount] = collins ?
+    extractCollins(html) :
+    [];
 
   verbose && console.timeEnd(label);
 
@@ -518,4 +525,23 @@ export function speak(word) {
       debugC(`Execute \`${cmd}\` failed:`, error);
     }
   });
+}
+
+/**
+ *
+ * @param {string | 1} val
+ * @returns
+ */
+function shouldShowCollins(val) {
+  const isDefaultValue = val === 1;
+
+  if (isDefaultValue) {
+    return false;
+  }
+
+  if (Number(val) || val.startsWith('a')) {
+    return true;
+  }
+
+  return true;
 }
