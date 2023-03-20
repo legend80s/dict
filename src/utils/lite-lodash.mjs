@@ -104,13 +104,12 @@ export function highlight(sentence, words) {
   const uniqWords = uniq(words);
   // console.log('words:', { uniqWords });
 
-  const isEnglish = (w) => /\w/.test(w)
+  const isEnglish = (w) => /^\w+$/.test(w)
 
   return sentence.replace(
     new RegExp(uniqWords
       .map(w => w
         .replace(/([()])/g, '\\$1')
-        .replace('?', '')
       )
       .map(w => isEnglish(w) ? `\\b${genWordVariants(w)}\\b` : w)
       .join('|'), 'gi'),
@@ -124,7 +123,11 @@ export function highlight(sentence, words) {
  * @returns {string}
  */
 function genWordVariants(word) {
-  return word.slice(0, word.length - 1) + `(?:${word.at(-1)})?` + `(?:ed|ing|s|es|ies)?`;
+  // console.log('word:', word);
+  return word.slice(0, word.length - 1)
+    + `(?:${word.at(-1)})?`
+    + `(?:ed|ing|s|es|ies)?`
+  ;
 }
 
 /**

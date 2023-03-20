@@ -186,7 +186,10 @@ function print(word, result) {
     .filter(w => !!w && w !== '的')
     // match as longer as possible
     .sort((a, b) => b.length - a.length)
-    .map(w => w.replace(/([的地])$/, '$1?'));
+    .map(w => w
+      .replaceAll('?', '')
+      .replace(/([的地])$/, '$1?')
+    );
 
   // console.log('explanationWords:', explanationWords);
 
