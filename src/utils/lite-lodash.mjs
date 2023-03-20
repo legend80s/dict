@@ -108,7 +108,10 @@ export function highlight(sentence, words) {
 
   return sentence.replace(
     new RegExp(uniqWords
-      .map(w => w.replace(/([()])/g, '\\$1'))
+      .map(w => w
+        .replace(/([()])/g, '\\$1')
+        .replace('?', '')
+      )
       .map(w => isEnglish(w) ? `\\b${genWordVariants(w)}\\b` : w)
       .join('|'), 'gi'),
 
