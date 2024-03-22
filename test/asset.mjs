@@ -1,14 +1,22 @@
 import fs from 'node:fs';
 const fp = './test/asset.txt';
 
-const words = Array.from(new Set(fs.readFileSync(fp).toString('utf8')
-  .toLowerCase()
-  .match(/[^-<>"\s,.:+#\/\\()@]+/g)));
+const article = fs.readFileSync(fp).toString('utf8').toLowerCase();
+const seg = new Intl.Segmenter('en', { granularity: 'word' })
+
+const words = Array.from(
+  new Set(
+    Array.from(seg.segment(article))
+      .filter(item => item.isWordLike)
+      .map(item => item.segment)
+  )
+)
 
 // 2279
 // 895
-// console.log('words.length:', words.length);
+console.log('words.length:', words.length);
 // 825
+// 789 2024-03-22 after use Segmenter
 
 export const pickRandomWords = (limit) => {
   return pickRandoms(words, limit)
