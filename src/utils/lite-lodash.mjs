@@ -7,6 +7,10 @@ const RESET_BOLD = '\x1b[22m'
 const RESET_UNDERLINED = '\x1b[24m'
 
 export const WHITE = '\x1b[97m'
+export const CYAN = '\x1b[36m'
+// FIXME: not see how to reset cyan only
+// export const RESET_CYAN = '\x1b[29m'
+
 export const h2 = (...text) => bold('## ' + text.join(' '));
 
 /**
@@ -21,7 +25,7 @@ export function white(str) {
   return `${WHITE}${str}${RESET}`;
 }
 export function bold(str, underlined = true) {
-  return BOLD+UNDERLINED+str+RESET_BOLD+RESET_UNDERLINED;
+  return CYAN+BOLD+UNDERLINED+str+RESET;
 }
 
 export function chunk(arr, count) {
