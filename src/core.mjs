@@ -444,7 +444,7 @@ async function byJSON(word) {
   let method = '';
 
   try {
-    [json, method] = await fetchIt(url, { type: 'json' });
+    // [json, method] = await fetchIt(url, { type: 'json' });
   } catch (error) {
     msg = `Fetch "${url}" failed.`;
     console.error(error);
