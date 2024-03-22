@@ -198,7 +198,7 @@ function print(word, result) {
   const hasExample = !!examples?.length;
 
   verbose && log(h2("Word:", `"${word}"`));
-  verbose && console.log();
+  console.log();
   hasExample && log(h2("Explanations"));
 
   explanations.forEach(exp => {
