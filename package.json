@@ -13,7 +13,7 @@
     "preversion": "npm test && npm run lint",
     "postversion": "npm publish && git push && git push --tags",
     "lint": "echo not lint yet",
-    "cov": "node --test --coverage",
+    "cov": "node --test --experimental-test-coverage",
     "test": "node --test"
   },
   "repository": {
