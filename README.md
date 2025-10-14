@@ -1,5 +1,7 @@
 # ydd
 
+![ydd-snapshot](assets/ydd-snapshot.png)
+
 > `Y`ou`D`ao `D`ictionary
 
 Explain English word in Chinese. 查询英文单词的中文释义。
