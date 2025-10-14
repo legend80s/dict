@@ -422,11 +422,13 @@ async function byHtml(word, { example = false, collins = false } = {}) {
  * @returns {[ICollinsItem[]?, number?]}
  */
 function extractCollins(data) {
-  const list = data.wordData.collins.collins_entries[0].entries.entry;
+  const collinsInData = data.wordData.collins;
 
-  if (!list?.length) {
+  if (!collinsInData) {
     return [];
   }
+
+  const list = collinsInData.collins_entries[0].entries.entry;
 
   const num = parser.get('collins');
   // `--collins=all` to show all collins

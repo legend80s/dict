@@ -76,7 +76,7 @@ interface WordData {
   syno: Syno2;
   input: string;
   music_sents: Musicsents;
-  collins: Collins;
+  collins?: Collins;
   meta: Meta;
   webster: OxfordAdvanceHtml;
   le: string;
