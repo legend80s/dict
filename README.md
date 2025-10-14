@@ -4,31 +4,35 @@
 
 Explain English word in Chinese. 查询英文单词的中文释义。
 
-Dictionary for programmers who prefer terminals. 有道词典，致喜欢在终端工作的程序员。
+A **Beautiful and Elegant** Dictionary for Programmers Who Prefer Terminals. 有道词典，致喜欢在终端工作的程序员。
 
 ## Usage
 
-Query the meaning of "vite":
+Query the meaning of "silhouette":
 
 ```shell
-pnpx ydd vite
+# Fast 🚀
+pnpx ydd silhouette
 
-# Recommended! Super fast 🚀
-bunx ydd vite
+# Super fast 🚀
+bunx ydd silhouette
 ```
 
 Or show more details with bilingual `e`xamples and `s`peak it out:
 
 ```shell
-bunx ydd vite -e -s
+pnpx ydd vite -e -s
 ```
 
 ## Features
 
-- Light weight: Zero dependencies. Built with speed in mind, no cheerio and request library.
-- Robust: Use double source: openapi and html.
-- Speak 👄: `bunx ydd vite --speak`.
-- Translate long sentences powered by "Baidu Fanyi".
+- **Light weight**: Zero dependencies.
+- **Built with speed in mind**:
+  - It's a CLI but not use commander or inquirer or yargs and chalk!
+  - No cheerio, node-html-parser or request library just use Robust regular expressions to parse and native  `fetch`.
+  - Instead of heavy renderer charmbracelet/glow, we use our own lightweight markdown render—yet the output still looks gorgeous.
+- **Robust**: Use double source: openapi and html. Downgrade to `https.request` when `fetch` not supported.
+- Speak 👄: `pnpx ydd vite --speak`.
 
 ## TODO
 
@@ -39,3 +43,10 @@ bunx ydd vite -e -s
 如果给你带来小小便捷不妨[一键三连 🍻！](https://github.com/legend80s/dict)
 
 Give [a ⭐️](https://github.com/legend80s/dict) if this project helped you!
+
+## Development
+
+```shell
+pnpm i
+node index.mjs "word"
+```

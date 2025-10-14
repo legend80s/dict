@@ -1,21 +1,21 @@
-import { exec } from "node:child_process";
-import { createRequire } from 'node:module';
+// oxlint-disable no-unused-expressions
+// @ts-check
+import { exec } from 'node:child_process';
 import { log } from 'node:console';
+import { createRequire } from 'node:module';
 
-import { ArgParser } from "./args.mjs";
-
-import {
-  italic,
-  chunk,
-  bold,
-  h2,
-  white,
-  debug,
-  highlight,
-} from "./utils/lite-lodash.mjs";
-
+import { ArgParser } from './args.mjs';
 import { Fatigue } from './utils/fatigue.mjs';
 import { fetchIt } from './utils/fetch.mjs';
+import {
+  bold,
+  debug,
+  evaluateNuxtInScriptTagUseVM,
+  h2,
+  highlight,
+  italic,
+  white,
+} from './utils/lite-lodash.mjs';
 
 const require = createRequire(import.meta.url);
 
@@ -30,68 +30,78 @@ const flags = {
 };
 
 /**
+ * @typedef {{ errorMsg: string, error?: Error }} IErrorResult
+ */
+
+/**
  * @typedef {{
  *  explanations: string[];
  *  englishExplanation?: ICollinsItem[];
  *  englishExplanationTotalCount?: number;
  *  suggestions?: string[];
  *  examples?: IExample[];
- * } | { errorMsg: string }} IParsedResult
+ * } | IErrorResult} IParsedResult
  */
 
-export const parser = new ArgParser(flags)
+export const parser = new ArgParser(flags);
 
-const verbose = parser.get('verbose');
+const verbose = !!parser.get('verbose');
 
 export function debugC(...args) {
   if (!verbose) {
-    return false
+    return false;
   }
 
   debug('[core]', ...args);
 
-  return true
+  return true;
 }
 
 // const args = process.argv.slice(2);
 
 const config = {
-  // listItemIcon: "🟢",
+  // listItemIcon: '📖',
+  listItemIcon: '🟢',
   // listItemIcon: "⭕️",
   // listItemIcon: "✅",
-  listItemIcon: "💬",
+  // listItemIcon: '💬',
 };
 
 /**
- * @type {I18n}
+ * @type {import('../typings').I18n}
  */
 const i18n = {
   'en-US': {
     error: {
       noWord: 'Please input word to query.',
-      englishWordOnly: 'Please input an valid English word.',
-      notFound: 'Not found',
-    }
+      // englishWordOnly: 'Please input an valid English word.',
+      notFound: (word) => `Word "${word}" Not found in dictionary.`,
+    },
   },
   'zh-CN': {
     error: {
       noWord: '请输入需要查询的单词',
-      englishWordOnly: '目前仅支持英文单词查询',
-      notFound: '未查询到该词',
-    }
+      // englishWordOnly: '目前仅支持英文单词查询',
+      notFound: (word) => `抱歉没有找到“${word}”相关的词`,
+    },
   },
-}
+};
 
 const text = i18n[getLanguage()];
 
 /** @type {(sentence: string) => string} */
 let highlightWord;
 
-export const query = async function (word) {
+/**
+ *
+ * @param {string} word
+ * @returns {Promise<boolean>}
+ */
+export const query = async (word) => {
   debugC('Word:', `"${word}"`);
 
   if (!word) {
-    exitWithErrorMsg(text.error.noWord);
+    exitWithErrorMsg(word, { errorMsg: text.error.noWord });
 
     return false;
   }
@@ -100,7 +110,7 @@ export const query = async function (word) {
   const showCollins = shouldShowCollins(parser.get('collins'));
 
   /** @type {IParsedResult} */
-  let result = {};
+  let result = { explanations: [] };
 
   if (showExamples || showCollins) {
     result = await translateWithExamples(word, {
@@ -112,14 +122,14 @@ export const query = async function (word) {
 
     // failed
     if ('errorMsg' in json) {
-      result = await byHtml(word, { example: false, collins: false, })
+      result = await byHtml(word, { example: false, collins: false });
     } else {
       result = json;
     }
   }
 
-  return print(word, result)
-}
+  return print(word, result);
+};
 
 /**
  *
@@ -137,12 +147,22 @@ async function translateWithExamples(word, { example, collins }) {
     return jsonResult;
   }
 
-  return htmlResult
+  return htmlResult;
 }
 
-function exitWithErrorMsg(msg) {
-  console.error(`\n> ❌ ${msg}`);
-  // console.info('\n> Example: $ npx dict water');
+/**
+ * @param {string} word
+ * @param {IErrorResult} param0
+ */
+function exitWithErrorMsg(word, { errorMsg, error }) {
+  if (verbose) {
+    console.error(error);
+  } else {
+    console.error(`\n> ❌ ${errorMsg}`);
+    // console.info('\n> Example: $ npx dict water');
+  }
+
+  console.error(`> ${makeHTMLUrl(word)}`);
 
   help();
 }
@@ -157,7 +177,7 @@ function exitWithErrorMsg(msg) {
  */
 function print(word, result) {
   if ('errorMsg' in result) {
-    exitWithErrorMsg(result.errorMsg);
+    exitWithErrorMsg(word, result);
 
     return false;
   }
@@ -165,43 +185,44 @@ function print(word, result) {
   const {
     explanations,
     englishExplanation,
-    englishExplanationTotalCount,
+    englishExplanationTotalCount = 0,
     examples,
     suggestions,
   } = result;
 
-  const collinsChineseExplanation = !englishExplanation ? [] : englishExplanation
-    .flatMap(([english]) => english.match(/[\u4e00-\u9fa5]+/g))
-    // filter out the `null`s
-    .filter(Boolean)
-  ;
+  /** @type {string[]} */
+  // @ts-expect-error
+  const collinsChineseExplanation = !englishExplanation
+    ? []
+    : englishExplanation
+        .flatMap(([english]) => english.match(/[\u4e00-\u9fa5]+/g))
+        // filter out the `null`s
+        .filter(Boolean);
 
   const explanationWords = explanations
     .map((row) => row.replace(/（.+?）|<.+?>|\[.+?\]/g, ''))
-    .reduce((acc, row) => {
-      return acc.concat(row.split(/[，；\s]/).slice(1))
+    .reduce((/** @type {string[]} */ acc, row) => {
+      return acc.concat(row.split(/[，；\s]/).slice(1));
     }, [])
     .concat(collinsChineseExplanation)
-    .map(w => w.trim())
-    .filter(w => !!w && w !== '的')
+    .map((w) => w.trim())
+    .filter((w) => !!w && w !== '的')
     // match as longer as possible
     .sort((a, b) => b.length - a.length)
-    .map(w => w
-      .replaceAll('?', '')
-      .replace(/([的地])$/, '$1?')
-    );
+    .map((w) => w.replaceAll('?', '').replace(/([的地])$/, '$1?'));
 
   // console.log('explanationWords:', explanationWords);
 
-  highlightWord = (sentence) => highlight(sentence, [word, ...explanationWords]);
+  highlightWord = (sentence) =>
+    highlight(sentence, [word, ...explanationWords]);
 
   const hasExample = !!examples?.length;
 
-  verbose && log(h2("Word:", `"${word}"`));
+  verbose && log(h2('Word:', `"${word}"`));
   console.log();
-  hasExample && log(h2("Explanations"));
+  hasExample && log(h2('💡 Explanations'));
 
-  explanations.forEach(exp => {
+  explanations.forEach((exp) => {
     console.log(config.listItemIcon, white(exp));
   });
 
@@ -224,12 +245,14 @@ function print(word, result) {
       sub = `. Add ${tips} to show more examples.`;
     }
 
-    const header = `柯林斯英汉双解大词典 [#${englishExplanationTotalCount}]`;
+    const header = `📖 柯林斯英汉双解大词典 [#${englishExplanationTotalCount}]`;
     log(h2(header) + sub);
 
-    const str = englishExplanation.map(([english, chinese]) => {
-      return [english, chinese].filter(Boolean).map(highlightWord).join('\n');
-    }).join('\n\n');
+    const str = englishExplanation
+      .map(([english, [eng_sent, chn_sent]]) => {
+        return highlightWord(`${english}\n  | ${eng_sent}\n  | ${chn_sent}`);
+      })
+      .join('\n\n');
 
     console.log(str);
 
@@ -242,35 +265,48 @@ function print(word, result) {
     printExamples(examples);
   }
 
-  introduceFeatures(word, suggestedWord)
+  introduceFeatures(word, suggestedWord);
 
   console.log();
-  console.log(italic(`See more at https://dict.youdao.com/w/${encodeURIComponent(word)}/#keyfrom=dict2.top`));
+  console.log(italic(`See more at ${makeHTMLUrl(word)}`));
 
   return true;
 }
 
+/**
+ *
+ * @param {string} word
+ * @param {string | undefined} suggestedWord
+ */
 function introduceFeatures(word, suggestedWord) {
   const fatigue = new Fatigue(verbose);
 
   const exampleFlagSet = parser.get('example');
   if (exampleFlagSet) {
-    fatigue.setTired('example')
+    fatigue.setTired('example');
   }
 
   const speakFlagSet = parser.get('speak');
   if (speakFlagSet) {
-    fatigue.setTired('speak')
+    fatigue.setTired('speak');
   }
 
   if (!exampleFlagSet && !fatigue.hit('example')) {
     console.log();
-    console.log(white(`Try \`npx ydd ${suggestedWord || word} ${bold('-e -c=2|all')}\` to get some examples ✨.`));
-    fatigue.increment('example')
+    console.log(
+      white(
+        `Try \`npx ydd ${suggestedWord || word} ${bold('-e -c=2|all')}\` to get some examples ✨.`,
+      ),
+    );
+    fatigue.increment('example');
   } else if (!speakFlagSet && !fatigue.hit('speak')) {
     console.log();
-    console.log(white(`Try \`npx ydd ${suggestedWord || word} ${bold('-s')}\` to speak it out 📣.`));
-    fatigue.increment('speak')
+    console.log(
+      white(
+        `Try \`npx ydd ${suggestedWord || word} ${bold('-s')}\` to speak it out 📣.`,
+      ),
+    );
+    fatigue.increment('speak');
   }
 }
 
@@ -280,68 +316,71 @@ function introduceFeatures(word, suggestedWord) {
  */
 function printExamples(examples) {
   console.log();
-  log(h2('Examples'));
+  log(h2('⭐ Examples'));
 
   examples.forEach(([sentence, translation, via], idx) => {
     log(white(highlightWord(sentence)));
     log(white(highlightWord(translation)));
-    log(italic(via));
+    via && log(italic(via));
 
-    idx !== examples.length -1 && console.log();
+    idx !== examples.length - 1 && console.log();
   });
 }
 
 /**
- * @typedef {'en-US' | 'zh-CN'} ILang
+ * @returns {import('../typings').ILang}
  */
+function getLanguage() {
+  const lang = Intl.DateTimeFormat().resolvedOptions().locale;
 
-/**
- * @returns {ILang}
- */
-function getLanguage(configLang) {
-  const lang = configLang
-    || Intl.DateTimeFormat().resolvedOptions().locale
-  ;
-
+  // @ts-expect-error
   return lang || 'zh-CN';
 }
 
 /**
+ *
+ * @param {string} word
+ * @returns {string}
+ */
+function makeHTMLUrl(word) {
+  return `https://dict.youdao.com/result?word=${encodeURIComponent(word)}&lang=en`;
+}
+
+/**
  * cost: 367.983ms
- * @returns {Promise<{ errorMsg: string; } | { englishExplanation?: ICollinsItem[], explanations: string[]; examples?: string[] } >}
+ * @param {string} word
+ * @returns {Promise<IErrorResult | { englishExplanation?: ICollinsItem[]; englishExplanationTotalCount?: number; explanations: string[]; examples?: IExample[] } >}
  */
 async function byHtml(word, { example = false, collins = false } = {}) {
   const label = '? [core] by html fetch';
   verbose && console.time(label);
 
-  const htmlUrl = `https://dict.youdao.com/w/${encodeURIComponent(word)}/#keyfrom=dict2.top`
+  // const htmlUrl = `https://dict.youdao.com/w/${encodeURIComponent(word)}/#keyfrom=dict2.top`;
+  const htmlUrl = makeHTMLUrl(word);
+  const html = htmlUrl;
   // const html = execSync(`curl --silent ${htmlUrl}`).toString("utf-8"); // 367.983ms
-  const [html, method] = await fetchIt(htmlUrl, { type: 'text' }); // 241.996ms
+  // const [html, method] = await fetchIt(htmlUrl, { type: 'text' }); // 241.996ms
 
-  debugC('byHtml', { method });
+  // debugC('byHtml', { method });
 
-  // 尽量少依赖故未使用查询库和渲染库
-  // https://www.npmjs.com/package/node-html-parser
-  // https://github.com/charmbracelet/glow
-  const matches = html.match(/<div class="trans-container">\s*<ul>([\s\S]+?)<\/ul>/s);
-  const lis = matches ? matches[1].trim() : '';
+  const nuxt = evaluateNuxtInScriptTagUseVM(html);
 
-  // 中文不支持
-  if (!lis || !lis.includes("<li>")) {
-    debugC('No list found:', { lis, html });
+  const data = nuxt.data[0];
+  // console.log('data:', JSON.stringify(data, null, 2));
+
+  // 找不到单词或输入了非英语
+  if (!data) {
+    debugC('No translate found:', { nuxt, html });
 
     return {
-      errorMsg: text.error.englishWordOnly
+      errorMsg: text.error.notFound(word),
+      error: new Error(text.error.notFound(word)),
     };
   }
 
-  const explanations = lis.replace(/\s{2,}/g, " ")
-    // .matchAll(/<li>([\s\S]+?)<\/li>/g))
-    // .map(([, item]) => item)
-    .split('<li>')
-    .map(x => x.replace('</li>', '').trim())
-    .filter(Boolean)
-  ;
+  const explanations = data.wordData.ec.word.trs.map((item) =>
+    [item.pos, item.tran].filter(Boolean).join(' '),
+  );
 
   // console.log('englishExplanation:', englishExplanation);
 
@@ -349,71 +388,67 @@ async function byHtml(word, { example = false, collins = false } = {}) {
     return { explanations };
   }
 
-  const bilingual = html.match(/(<div id="bilingual".+?<\/div>)/s)?.[1].trim() || '';
+  const examples = data.wordData.blng_sents_part['sentence-pair'].map(
+    (item) => {
+      /** @type {IExample} */
+      const example = [
+        item['sentence-eng'],
+        item['sentence-translation'],
+        item.source || '',
+      ];
 
-  // console.log('bilingual:', bilingual);
+      return example;
+    },
+  );
 
-  const examples = example ?
-    (bilingual.match(/<p(?:.*?)>(.+?)<\/p>/gs) || [])
-      .map(removeTags) :
-    [];
-
-  const [englishExplanation, englishExplanationTotalCount] = collins ?
-    extractCollins(html) :
-    [];
+  const [englishExplanation, englishExplanationTotalCount] = collins
+    ? extractCollins(data)
+    : [];
 
   verbose && console.timeEnd(label);
 
   return {
     explanations,
-    examples: chunk(examples, 3),
+    examples,
     englishExplanation,
     englishExplanationTotalCount,
   };
 }
 
-/** @typedef {[english: string, chinese?: string]} ICollinsItem */
+/** @typedef {[english: string, [eng_sent?: string, chn_sent?: string]]} ICollinsItem */
 
 /**
- * @param {string} html
+ * @param {import('../typings').IData} data
  * @returns {[ICollinsItem[]?, number?]}
  */
-function extractCollins(html) {
-  const englishExplanationHtml = html.match(/<div id="collinsResult".+?<\/ul>\s*<\/div>\s*<\/div>/s)?.[0].trim();
+function extractCollins(data) {
+  const list = data.wordData.collins.collins_entries[0].entries.entry;
 
-  if (!englishExplanationHtml) {
-    return [];
-  }
-
-  // console.log('englishExplanationHtml:', englishExplanationHtml);
-  // debug(englishExplanationHtml)
-
-  const list = englishExplanationHtml
-    .replace(/&nbsp;/g, ' ')
-    .replace(/\s{2,}/g, ' ')
-    .match(/<li>.+?<\/li>/sg);
-
-  if (!list) {
+  if (!list?.length) {
     return [];
   }
 
   const num = parser.get('collins');
   // `--collins=all` to show all collins
-  const size = /^a/.test(num) ? list.length : (Number(num) || 1);
+  // @ts-expect-error
+  // oxlint-disable-next-line prefer-string-starts-ends-with
+  const size = /^a/.test(num) ? list.length : Number(num) || 1;
 
   debugC('size:', size);
   // console.log('list:', list);
 
-  const collins = list.slice(0, size)
-    .map(li => li
-      .match(/<div.+?>(.+?)<\/div>/g)
-      .map(m =>
-        removeTags(m).replace(/\s{2,}/g, ' ').trim()
-      )
-    )
-  ;
+  const collins = list.slice(0, size).map((item) => {
+    const entry = item.tran_entry[0];
+    /** @type {ICollinsItem} */
+    const tuple = [
+      entry.tran,
+      [entry.exam_sents.sent[0].eng_sent, entry.exam_sents.sent[0].chn_sent],
+    ];
 
-  return [collins, list.length]
+    return tuple;
+  });
+
+  return [collins, list.length];
 }
 
 /**
@@ -422,16 +457,21 @@ function extractCollins(html) {
  * @returns {string}
  */
 function removeTags(html) {
-  return html.replace(/<\/?.+?>/g, '').trim()
+  return html.replace(/<\/?.+?>/g, '').trim();
 }
 
 /**
  * cost: 173.837ms
  * @param {string} word
- * @returns {Promise<{ explanations: string[], suggestions: string[] } | { errorMsg: string }>}
+ * @returns {Promise<{ explanations: string[], suggestions: string[] } | IErrorResult>}
  * @throws no error
  */
 async function byJSON(word) {
+  // https://fanyi.youdao.com/ not available
+  return {
+    errorMsg: text.error.notFound,
+  };
+
   const label = '? by fetch JSON';
   verbose && console.time(label);
 
@@ -439,9 +479,9 @@ async function byJSON(word) {
   const url = `https://fanyi.youdao.com/openapi.do?keyfrom=Nino-Tips&key=1127122345&type=data&doctype=json&version=1.1&q=${encoded}`;
 
   /** @type {IDictResult | null} */
-  let json = null;
+  const json = null;
   let msg = '';
-  let method = '';
+  const method = '';
 
   try {
     // [json, method] = await fetchIt(url, { type: 'json' });
@@ -453,17 +493,19 @@ async function byJSON(word) {
   const explains = json?.basic?.explains;
   const hasExplanations = !!explains;
 
-  !hasExplanations && debugC('byJSON: not has `explains` in json. try to suggest')
+  !hasExplanations &&
+    debugC('byJSON: not has `explains` in json. try to suggest');
 
   const suggestions = hasExplanations ? [] : await fetchSuggestions(encoded);
   const explanations = explains || json?.translation;
 
-  !hasExplanations && debugC('suggest result = %j', { suggestions, method, json })
+  !hasExplanations &&
+    debugC('suggest result = %j', { suggestions, method, json });
   verbose && console.timeEnd(label);
 
   if (!explanations) {
     return {
-      errorMsg: text.error.notFound + (msg ? '. ' + msg : '')
+      errorMsg: text.error.notFound + (msg ? '. ' + msg : ''),
     };
   }
 
@@ -476,32 +518,34 @@ async function byJSON(word) {
  * @returns string[]
  */
 async function fetchSuggestions(word) {
-  const url = `https://dsuggest.ydstatic.com/suggest.s?query=${word}&keyfrom=dict2.top.suggest&o=form&rn=10&h=19&le=eng`
+  const url = `https://dsuggest.ydstatic.com/suggest.s?query=${word}&keyfrom=dict2.top.suggest&o=form&rn=10&h=19&le=eng`;
 
   const [str] = await fetchIt(url, { type: 'text' });
 
   let first = '';
 
   try {
-    first = decodeURIComponent(str.match(/form.updateCall\((.+?)\)/)?.[1] || '').match(/>([^><]+?)<\/td>/)?.[1];
+    first = decodeURIComponent(
+      str.match(/form.updateCall\((.+?)\)/)?.[1] || '',
+    ).match(/>([^><]+?)<\/td>/)?.[1];
   } catch (error) {
     verbose && debugC(error);
   }
 
   if (!first) {
-    debugC('url=[%s]', url)
-    debugC('str=[%s]', str)
+    debugC('url=[%s]', url);
+    debugC('str=[%s]', str);
   }
 
   return first ? [first] : [];
 }
 
 export function showHelp() {
-  return parser.get('help', 'version')
+  return parser.get('help', 'version');
 }
 
 export function help() {
-  const { name, description, version } = require("../package.json");
+  const { name, description, version } = require('../package.json');
 
   console.log();
   console.log([name, version].join('@'));
@@ -514,7 +558,7 @@ export function help() {
 
 export function speak(word) {
   if (!parser.get('speak')) {
-    debugC('Not speak because "speak" flag', parser.flags.speak ,'is off.');
+    debugC('Not speak because "speak" flag', parser.flags.speak, 'is off.');
 
     return;
   }
