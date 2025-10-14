@@ -220,10 +220,10 @@ export function evaluateNuxtInScriptTagUseVM(html) {
   // console.log('script:', script);
 
   if (!scriptContent) {
-    console.warn(
-      'No script content starts with `window.__NUXT__` found in html.',
-      { scriptContent, html },
-    );
+    // console.warn(
+    //   'No script content starts with `window.__NUXT__` found in html.',
+    //   { scriptContent, html },
+    // );
     return { data: [] };
   }
 

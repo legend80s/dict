@@ -1,0 +1,2269 @@
+data: {
+  "q": "water",
+  "wordData": {
+    "web_trans": {
+      "web-translation": [
+        {
+          "@same": "true",
+          "key": "Water",
+          "key-speech": "Water",
+          "trans": [
+            {
+              "summary": {
+                "line": [
+                  "锻炼 锻炼(Exercise)：坚持适当的锻炼，每天至少应该走 2-3 公里或者快走 30 分 锻炼 ： 钟。 3.饮水 饮水(Water)：每天喝足够的水。 饮水 ： 4."
+                ]
+              },
+              "value": "水(W Ater Tow Er)",
+              "support": 3658,
+              "url": ""
+            },
+            {
+              "summary": {
+                "line": [
+                  "...：粉量是指在冲泡时所用的咖啡粉的重量。只有粉量和<b>水</b>量达到一定比例，咖啡的品质才能达到完美，否则咖啡的口味会变得过浓或过淡。 3.<b>水</b>（Water）：<b>水</b>质对于咖啡的品质起决定性作用。此外，<b>水</b>的温度和与粉量的比例同样会极大影响咖啡的口味。"
+                ]
+              },
+              "value": "水",
+              "support": 3349,
+              "url": ""
+            },
+            {
+              "summary": {
+                "line": [
+                  "在贫寒境况下减少——是基于一项严重特色——自信心，人生最大的错误是不断担心会犯错真实的、十足<b>水分</b>(Water)的自信心(Self-confidence)。独一的自信心(Self-confidence)是清楚能投中，而这来自你的身手以及怎么诈骗这些工夫的技能。"
+                ]
+              },
+              "value": "水分",
+              "support": 1038,
+              "url": ""
+            },
+            {
+              "summary": {
+                "line": [
+                  "<b>浇水</b>也能够获取必然的金币，只不过<b>浇水</b>(Watering)得到的金币(Gold)是有下限的，你的至友越多，下限就越高。"
+                ]
+              },
+              "value": "浇水",
+              "support": 897,
+              "url": ""
+            }
+          ]
+        },
+        {
+          "key": "Mineral Water",
+          "key-speech": "Mineral+Water",
+          "trans": [
+            {
+              "cls": {
+                "cl": [
+                  "食品"
+                ]
+              },
+              "value": "矿泉水"
+            },
+            {
+              "value": "矿地下水"
+            },
+            {
+              "value": "纯净水"
+            }
+          ]
+        },
+        {
+          "key": "water pollution",
+          "key-speech": "water+pollution",
+          "trans": [
+            {
+              "cls": {
+                "cl": [
+                  "环境"
+                ]
+              },
+              "value": "水污染"
+            },
+            {
+              "value": "水源污染"
+            },
+            {
+              "value": "水体污染"
+            }
+          ]
+        },
+        {
+          "key": "fresh water",
+          "key-speech": "fresh+water",
+          "trans": [
+            {
+              "cls": {
+                "cl": [
+                  "地质"
+                ]
+              },
+              "value": "淡水"
+            },
+            {
+              "value": "淡水资源"
+            },
+            {
+              "value": "食水"
+            },
+            {
+              "value": "清水"
+            }
+          ]
+        },
+        {
+          "key": "Soda Water",
+          "key-speech": "Soda+Water",
+          "trans": [
+            {
+              "cls": {
+                "cl": [
+                  "食品"
+                ]
+              },
+              "value": "苏打水"
+            },
+            {
+              "value": "苏打汽水"
+            },
+            {
+              "value": "苏汲水"
+            }
+          ]
+        },
+        {
+          "key": "distilled water",
+          "key-speech": "distilled+water",
+          "trans": [
+            {
+              "cls": {
+                "cl": [
+                  "化工"
+                ]
+              },
+              "value": "蒸馏水"
+            },
+            {
+              "value": "基质"
+            },
+            {
+              "value": "去离子水"
+            },
+            {
+              "value": "纯净水"
+            }
+          ]
+        },
+        {
+          "key": "Water Margin",
+          "key-speech": "Water+Margin",
+          "trans": [
+            {
+              "value": "水浒传"
+            },
+            {
+              "value": "水浒"
+            },
+            {
+              "value": "水浒传专辑"
+            },
+            {
+              "value": "水浒坊"
+            }
+          ]
+        },
+        {
+          "key": "water vapor",
+          "key-speech": "water+vapor",
+          "trans": [
+            {
+              "value": "水蒸气"
+            },
+            {
+              "value": "水汽"
+            },
+            {
+              "value": "蒸汽"
+            },
+            {
+              "value": "透水汽"
+            }
+          ]
+        },
+        {
+          "key": "water pipe",
+          "key-speech": "water+pipe",
+          "trans": [
+            {
+              "value": "进水管"
+            },
+            {
+              "value": "供水管"
+            },
+            {
+              "value": "给水管"
+            }
+          ]
+        },
+        {
+          "key": "holy water",
+          "key-speech": "holy+water",
+          "trans": [
+            {
+              "value": "圣水"
+            },
+            {
+              "value": "天赐圣水"
+            },
+            {
+              "value": "天赐神水"
+            }
+          ]
+        }
+      ]
+    },
+    "oxfordAdvanceHtml": {
+      "encryptedData": "Oi7q_uLf41Op8q1BEZge7AaqKJM17DSt_ReKlwt7eUNsZLx3e_fQkBYq0xZGX44cx8z4cc30_6BOI-d3ivxWKg68Z_eKiI7AgRbDYdmQGspDtnMX_HzfvtKodHiBt4-3MXtfRwk8AX-fFZHvtnwFVsngD9X_lHu4hwMZHNijUnnTuQrRw3O8ueD0bKEQ1Q2SZiELU15rghyEHFgNtoXkDAR0vnxHor7YwuMEvHnl6eBzA7F3bd-kwC4ocjvY7vJ3NsFv5Y_XBeF90TxrcQyUyT3Mth_mT6Dmx34g8tURfuciCJIAH7otprQ0144vuWhmW77nlQXddPlhcxKxY8CAFKg_GkkLxTOaqQ-8I8IgcS1AnVZg4wX8JKv77V7SSt9ky4EnzyxXo-uR5Rxit0_FQVwhuhnIuUgZPIHuR2ZEmphiVRPDQww6OoxIoVjP8Ak_FMvmR8x2LlxJe8R6pUb09ZX5U-7Zq9R1VsCFPsY4aqOmy8mRG5wIB9JzmUN7N82tLJZfXZMHtsryF6Ft20xZ3bvCVh1h-gFG_M7nph0urEZuJuiUZdIoxSFxjTckgAOGk5epBL9PaTsc8128nqOrVKe-0SjuHWhA34pcRLvB-du4mEvthamebTLzTgNffKvTWfFxm_KITTcGUKSwttHy_YAQrRL-BPGeMz6TRGJ_Naw_tfv9DQRk1NPewTvSMxvZyoX97sjhvlAwBhYxrsRUC6pydiQl3K5KntScSAVOCdd2GZBVPLYcOP5xXIzOvI5W9rM11IH7vMbIpzqt2BIGVpyz-EjA6MilYF7Ip1THW3FE-RpBOGf4aHOGSp11k9aS76bttMKWH5BS_cmIXQmBPJujWVwPqwb73d9415ONRKQCh0LD5hWZ3EWVYPLGD2Tvg1GflEYvZi5WYlJSOv9SdIvilS7pr0IjvFa3T7drI_iQ5wL1nwVQm3xG8pTIfLnSP5ZJtLN1-lPHPYguX980uk2-aoBzHiBPPmqV2OxEroPqtmCrirjxvM3ilrj_8bTEDnMr5AT54d18Oi6Un02pCXA5biZbM8D0_Pc9LtygVpmjBvMVOkOxi9mIaFEzXWFwyDxJvX1l-HacWlQ1r5fpLnSWq7pwu7RT19QkobvX-PqPH2omSMhKuTBnkr0cKPQHXCNti8cTQzCp6f0rOf7E689j1I7HXfIY85El8Oen6ve2fQpHIWsNc51UTTZCcJ4ihTetv0iOTko2P7QlfYq_voA0pB00Mt-U5PHay6C_H39l9b5IFgpAob8tI_iPIsmuFqVunYTY7CD0IhJHEiAfiH3PUrrOEOqvmGkFf2uhMcPhOIPxneUa2nPTq3l6pSA0w-EXjsxvw3MN38CW1fNTDrAbtX4QOvTR7bkMvC8wwvXUhs4iULzgXcBV12xvuKpjIkLtVdJjvkVx_XVoFh5YkPj-VKTGwHiA71aqll8AdsjHTBHbhpOB-tuSOsq7YRncNUERdcYCn5xVXtxAt_EjV3L8p-WQDCHTuI3mDCDMliksU4XemywMDzEbZXFlaGjGqJq_9EEAbv55JlB5fOHlnEL8_WUTEOXCutSRNtkbKiOWevduWkwck-Ta-U5-nBukZPqRxC9tZu_pAZEkeKJvGEqAPR8aLXmiNp8eCkf79V1MIkgJe49XkQRO8HOVCQryBgkRVbjsMq8wIdtyGBnh3NOtwCOcZ2zKqS00k4T7fh1ITqUHAaI8gf5lmBpQ1B7vretS_wQUdHdMRIfYAXe4lESpRfPTOPOWdNSbUhGU9-xidOH2CnCCTU51Mcsgn6gc_JePe-krxnAUv8saSa1ZQBsqbEf6Qe1Jp12t8xRO0xIWi9x86PfsgD-r5ZU5qelKhCUyZ0FcIxMCLbHB3VUbxR1Irtft-dakc0v4SjQSGuE8wlNK2VA_Le6qoLUElNrMUzz0M8ujJ4VwRS52u7V6uAFIggCwgsAaPpgKR6qk0FW9R9PP_wwlJQF-JoGHgnWzNpPMjFDeM4bXySkzRSiURnitmtwYZJta1DTindHxeS6xMziJGUsVdWehvgPsFw8T5w4-6JW3X9InTv1d5uBRdwKQN6dVsjBJ-AcSe_fRGJXusgUXCcoAkEtHNwd1a3E3f5RRkG6_hhOVLQunxmDk4mkawI2oxgy9VXnpPLjaEJg1hQcSBwz5df7bkxO1jlL40wZhh2VweWrlmVs1kiU4GiFhT_Heh6tFaAiURlAux7hCFic53KCRCQ-5YGNaQzTDnGqbYz03HFvxyQjYmM7QnA-iT7H07tPyWUa7sfknjrW61GGgDkaeV4jtwD0DrbUVHFjespWTDwgP6IpVY_SdrzjglagJnXYn9nf95H3507yAEbDRUH5zRuBytJHyxWNekyEkhSeJKJmOX-41k4E860OcqNnYoSJtyxmC89JF8kG7qAonLrEaoNXciqlxhlgcf104aik8Y7LzaUJgyWWBFczVqTPUCcA8ddIJF95MmBrav06nz8oDsa4wSAZ44mNJsy92sRyk9fmj1jPzj-tI6Ha95NH8LwsoN0cfjbSdLQ53WslSIGjaBPaoC1OU356hjtWovy0yxaZ8jUog_cOmOd4BF-r4feLlG_OYtb5YVRxQ5q3O_rQxxpTExf-eSIhZGVYXJAQs0X8PZhqPWf_iB8daDmq-SM5vFLXmovQxC_nDO76qB_UyXByj63dwvaXpX2SPZ3JO6C3FZsSnsJN4NCPe-BdXKcQKacR4RVAYpygbEF4mAz19SC2CryrLXTEh8SlSMVsp0FSue-ugWkrzjBxjIGVAbw8PQ3_Csh5yTouni4_9IRmEXZ1N_9mC_PiN4TBv4A6O0fnSBnvOmvMAXsPVkbTIWb_NlMhTybT8_4D1uJZH3mb1mTYzVV6CbAEnAnSak02paFHgpzE4c1OFL9aIKw0W_oblCCKgSbUJu4Nhu7aqsyepvKieYSHJd0IFbSpszXeSDu3uUIkMdStjLB_TUQDM1lpZzIK4sUSEyQ1gF5cLDdsvroftuq6RahwP81bsWjUuC5xdljOelws39wvNVHWrl58tiIKLmEoHYQryczqUpvCFsHLUEYZT7CqQlvNrZBiK-Ls7yOGmTYAhl3EovYrg7UaBxWqN1TodHB-cd-n6carvuTcUvC7-vhdhM2x3gqOOl6avDZzPwNA-rEJT4VbDpKRhDiicxz2M6kwH0Bf0z9ljM97QQtNWcwlNFrcN_56dzV1j1dSsXXDL4F8hHxgTojFDWl86Fj-oLdWgQW8dIdmlJzyXiVOX_zAGD8orxE_QPrDLs0Wf_4a88qL9D3LGwgkhjea9KrOUHJOq8XEnCx3VjVu2QlZeWsNGMuIrxVrwL8TUd0wxk8dIV6_yjDHg-C9AJ6V5L-9jmknk5KCMkTLGKoiIZzf1GIuxSY8d-9xUD4XBszUhziED4CqmPYA8hGDbHwZ89okh8ZKBhjhQuorlk41UbIazmUCgQFEi7Rt4n_VfJOWenhdXHdYyiCu77Q6gsfN9u0SgLaxkPhdArvTNV6iCGW3E2SfnP9xdHbIKkawCO4r1sP9kQILlAsJTWbjB8XJWNISh9e7Vx-4C4amWNUVafl3Oi10Ph4AiLMiCA1YMsjltFSXX2SbYQtS1KNblPFbhMywQzNjtCZnkXNBKzJpE143tC4Hl9hQS_NTFW1aNF7AxBm16FMJPrC4_FCMViXSCE2xdb1YGiaym0Zpwz400LOuWB8ffHmQA5FWBCLoVh1rH2s4euHoycETvd_8IuzCR1ELecaXCyNF8W1lNdEGhfBRMkM4mfPeK9B3DPgfW_fF9ZUvDhab7jCuhEVAwHvBNomCAehmHaZO2WaSkGk68xEeQH7owCrJmXV_U0ynzNVnFzFr-4bp9L5GWuQNChRKCM60iiiGDfKmUCg_EXHr84BwE-yZfoNfw4GETe3aOJZliCKO0coog2GUIA62hJqfLLJ67luJSUKsyahwEETk4e58Hfl1wib1iw-GdlJw68kmlUpv8iFSMd3pkK3X_Uz6WUANqZv_1ixrfLCpmlqdjC6TzU07X2TopGsLV4rAUohu-lUGXn0va2YjDSO5lFVM79Q9qtAexkpA1lklnhezKBOES3k1UfAnzoFDffAI9v-YaiQnbpZYXA5t478lJh5Z_jZJ2Gv3aqTYFMsZ47pyE4lSwAuFLGvDPJezZCLaE_CeWO2AH-E3CDD4vAIp9vsrm-yNORA2wkt0jlO6lPwJhlr64V6ItqKgCLVb3VHSXM9bZ0-YGJFS-KuMZQRrP3e79rg69Ma3ymUMZ1yXmhFUS-_MLKWviPQvpxVp0eC6GP_Hxt_Xa70wTmVqkgLlE6UP32Bl6Dvr171taw8THOgS0dBcgyWRzoZ-qqpvXHdFzgkt2pQAcgA3z_vfNyKjnThQpyDkJQfdJ9cVijMAbcRcDtLKeUhZTs2TuI7Wcv4oK-tuDGzl7ULnu0RbSSjbKSNuB_TUQ6B46_qDnWlJMloK4lTZqDdc1S47Ry_h9hAPa-qnjsg_kY3qxs8ZpuVF06Vwk3hyq46n9wQCdtbXOf-20iU65fEJPQjTtgkZxhSl7_7QrohiJm_e3zx9hf3_7jWk8Pbe_9BTk4NqegfczMZwyLdLgy6rvXOOaOPlOyvrz5s834h2Jk0XiEKB17vTkATq11_p64M5VZZeOfQwdLAsF0bTzUziu_G6-oT5OvMWDgHRYcrVAd62PGu3BsuE_NBbi9lfaYVhTDZx3OWD-ZoquD936nMC7MxdQ26UUSJvE89RYW1QFtlwHO8B5_qiCDCTmukqoA7uD5X22o4XMCa8yUjfBDr_3Ij-Lj4A380UHpJCTiVCHYKGkJy18ICOedKHbloKvDvMRiGoEFidcMKMD8djKrDOu9tfKaFdZlLFv_Zy6kUmY5JFFjucaBI9kM_NZaOrOhWZPvLBHnfIywAQZxlDi3fw0wQLgCtzFJ0phsYY9UhWeDN-8a-WpTC_q4yJMZiEmj9ketxnE87wXs-eah6KnMb0iVJeE-KQT7jmTYeDTYrr9zcDhRWNdCqZkOwX3z1oUG--VDYuyBlrcOuUeOpfZXtbI6Wai1eVbE1q-6UZRWk608JnmZbgg_1Bgd51_gfA65qJdCs_zM8WPngQly-zlD9LLvyPXNJgXCLXuJOcEPttRmn7qjzj4tqpCVVjjjpDO_H00S_gUaRj4vIIgHpq0wCKUWb_GbLTO8FIuJCj1Sy8CpQOAPIKAN8UuORXS4maxeHzxX7CKCflKVzH96KlFnohk2EeIK7kGafTL5iuUXvLxdVAmUemb7gKSuDrcg2dkXsRzLPXY9Kl2rLOFpE2FqTsJ6F9fHRnbWAp-UlI2gci18k5-1SsN_L2W2ej2ewBGpBfg5N0-FD4uNJeXDz9afIhE53DxRCSTKu5JINP8l2OsFY8iqIiXd6GowwznhVABBy8XOLBkWyx3fq4Y3Nqn8Y8hb5FX8-gJLs73HTNNKCY9JBZGLEG5s3DGy0aDFs8DFVFzFmD013BmEO9jizVjnP7sN7IZqVBNv0zStqZlbSt2o-ppymFJ0RuYcKcsYQtLl7DN-cKVvbhrZNQU_Ge9tstO5hO5T8xUW2hi4yZSLW71ZFg8dQEneVeQ-7IszhZxFHMZIKS-QhRaRLQKXfZBC_kjFnArmoSGkdAeijTNelBnlfPmi42pOjNM9EMT-eXfUbI9OehLo-XdtOMg_vw5I42Lxfjp7oKmTubyv8_8qsfKHgQer9ttOZbvz7KCQGM1sXIZ-FsHwejKM_fzwPzxIxYVyD5GtsaUg7kmpX-KnviuXAayVVh-8LOkAMOuq14fkDxovuCzQAIahfz4p5eaZ8uEICRnYjvyFCXMZQfyC--rp-iSwF3rDnIUSLboPuf_9Y_fpX6ClB1PM2EFnD-_ORwG60qCOq9lsZwLcyACyL_XH-u5IY8e1jQnJqkhk27IJIdAIp2xo_e2eNOZ1gonz0ofCpByvsXREVrU0qcc5HjhQ-thc0yU1t5z8IujjvIOLd1wM2LxHgSZOoPxKMWXPixlF0OSkWg0q0aRrZae5tThjjco1njcxJ56oUCWVG1t5yIcdita2LztJVHFd5xr1qmv0vqm5jMvZiBNP8-FgDcI9iyub6BPwoWlHIBY3zrbGXuk5tCsMW536JWUWRyGoUrKBQ431DSnMVN4UycpTi67Z9d0HdXwIyt8baCk-idxiwFIpXIN4xnVpR6XXAW6uqcGQ85Qkjtd7mLTMbp26NRnVf2-oWpsPUkpA04CrPUJeL4jWpX3YKsu01L9TWvIzsbS9CfzGhMlhus71-n4gFqz8eUmEML8oUVMzQk_kOn1cPx8BxIcoEL9D4GxssQHRhVDwfY2Fgpwqt8FE1lHH1kdtzxCPqlMEeD0SjaWJGlsnJL3_WmwiWsAeda8-zc5PqsLE2kvhX2qnol-s7wN4N7nFnDaqYhw31TwMlo-pSeCJ7FjFdZ6Hv_KlbRZmrjUwUwAXL1xAF16qtb81oh4YON8AMLrOkKKEmBv-o6Pm-JZW9AcrD5e-hO1yFvHC-7YtkLAWffaV7h1HqgkQNexKmlQgTwrD729xJZPBi-ATECwKERNzyfdUz07bFdYF5UvySK_2xMSw270vqez_lynF7YgCKEPVJuosVzZIlF7Zq7Jw0TTMd9A32YP2BqQV-Ayho7fkPGxZUGwW4uzh1Do6YGXVZ4VmlA7XVcLoavj26lRQ9XoYN6j7Wcjzl67RxAebAAKTM_B57P-HCV6YqVV_61gWAmDZ6yhKLJYlquv0SeyM2q90AIm_gMH4a0Q7JZPBbtxAAh8l7ZF88YrEDPzGBfHSsMVXH9MUHyVJUVrnkfWYhPU6UyMOnmHyzz6hsQDVCIFaKbLdsIL_SQSaSZD5QhgTweCVdwdIca0bEXeYBOjbC1XVkwnKKVifinwDYlMFBbexLXxnnbCwwV2rB9OjO7nX8EiNwpvpZbqjxMScHUyBrKXT5FZ3CD0v4jXG8vLdrZ1hPTakwsKH6GroQk25SVe_Cm_NVQOrNON9w6eUa4ka8US1IpZgGXx-mmLxNe720gpLavlBJ95VwDTyf7-C5xJ5CZfZWhJtop77asIhHfgvk_8QFPAD6GK5YRXIcktB3HK2Kv0W5f5ynZJumeCZP_sDYu7MiQNAVm7k05iYtxaVwgzsruXY4p0o2F4GXl1IjEWQBXjGp_Ycf1nb_qlP0aR9_UPkF8Y9fb2_lI7_fSu8_OhJzZyflw11XCIDQu7klbTuWqcODX4J_h6K0tYpXCuTBFuUbmGsMZSu6JvqiqWXFggfGiG52hiK1_nuJkJWRTjSi3C2QdU55FtwLfNriYoqSHcJ2jPepsefnj-w3z3PnQl0NM-ojcSK_Ge15Q4ngiAJ6HHrAWmS7Tvwcil2FZvWqfCwAIXGWiF3FI31B8_LufYswaP47cNtXhkmcl34I3HVlpbBGTKcIflVAQX7fwUMER1lNcqm_LKzyq16bjCJV2j1AeSLvNwG0l3XgSRA8cD8dJPgepJOILa5-G1DOI3KyCoOQ4yDLnh7ayqchdAGD0O4z_yovTTUDJgrTtnMIZrWApXl2aJh7tfSiqfkEk1Zk3qlJNZObqTSAtvxmavrzjQnkcepa4nak2d7qX45bC5Ux2rBiyTKfYdB4iZPO5RHfOeDeYZPxGAAFI6Yd3GRSey-ep63eBbj_uy2-oZH1zAM4g9HZX18dMi_T5Rr_CveGJMq9449YrfzZlYDLUQxVIw8uu7Vc_w08maTjppsmalaTQTyNamipopoC7frmbO7FhdfACjNv_3Jdpi4EvyPeiTIk8kqnNIBf0tXPoTLJegGnoJzif5CcteV2aKDnYjI5YqiVwBoLKvpg-xC5NYywlfB0iimX-OWp82RuoNklxMkj0rLeeIYfV0P4k0VKKWJS7ZppHe8TTJwAwwWxIFh34_MZBVLQCzcr3oYEpVJfgk_718FwW0JemW8D1rYjM6oHwl3SnJzHNrpN4R347WaIDllMQf7Q21gIhHzHv554hhuFWVagOhTCCXiElvWOUvQkDCutVwQhOQK7BFUitjJK-xW0Q9uduYivsgPFn1lgAyulyCc2fmgsYdVQw1uThAidy2wGMHUttS42Q_pioPrm61N0bkk4lxmVDzb21RhSvPR6Zexl2oQf42PE-IBEv-aFCAaZsr5LbaJsgM4-4uVYfOPsK_InVIr_byl1V5jHJq8-OTmsaW1gfSV6PdJ-Z0GPfMoAvUWOb6iomDsqHT1bK0AYaMdx-W5-hDX2TsczyvoIRUA6bUDcg_TVWGuPEEYAdgVePhAOpwtiT57cPq497_gPWnKgQpzVj-nCR1U8Ps0RatwPxHGLD8OyTeOx3H4fMXYQukxQjun_GTgbsqXqL6CMHuZAMFiVfch0hFeBAGF358ejWKoAQ6yM8f1ZZJJSsPhgIJs8SiicBY2TkSr-C6gf1TJQOzZI_PfyXpUQUFJkU3f3h64rC-Yr8pwxQIUzMe3-5_tB6jqsY47HWjyQqjAnc7YxBu6YPRuz8lQkXzj_xvLpG3zFLzpFRtEYxkHK-2EQ4Nw8_qnw05-Jp4fQ_Ovkhi2Y3qQhF_9-ESvs5in9xJErEDvCy2o0bU-9_NR38Iq-_JPK3Lr7itl9ranOq7m1b7StQ54KcChc2GPVoztZA-w-1CtAwS1cPNX92cyvvOl8aoOyThZabMbhScqHSafM6V4dOgyYmQiQ-VTHDcRg0W0JgT4PQsBitmLVD-0FfG6ZVx71LUsJ61Fswfh6AFO5mRmEf6KxGUEYGYXnvkGlexgsDiKCdO9aOnZcl9BKx_mF1_JXGAO2F2ObjxucOUBMeYEPXJeHdCv68OELXXyFEjfMwxiYeflmSs2CSTHUtI1A-i1mk7TdYYb7jeB5XuJwRzk4a7pgBstQCwqZHqCZES8-H-0yqcc1LaVyGOoIM8YiG-XrNAtETyjok16TfSNh8rut9vAxnB_xiYzUS8FUL42mRkWgGQ8yqFH32sJBqMIM-VzUjvOU6Vjqx6iSB0YGKdXCFGxXHVG5ApMSTlOnBb-ZUrcj9t-vBHNu8c6GF5eCHojZOiiLl714OhJW0DnOQAJc1aKQxbnvXJGWKxBt64zDMQTx545YpoMS3QORFX2sWrYz7HqUUJDfkhjdemqdH_7blMELNTqajFFm5cLK5ybA_jpq49fYpk6IU5lnRhbJ5t3HCJNOecVjHLFqQfI_ZssCfeHJ5_sHwAE0UCiAgAeEvBcZw6svjlXDdSytoWHG0O-KQ3qx0IsIrNb5bRwd-SeVusMVb4qzusHdHWtzF3bXufse1GqgdvyhnUnRsEkp0JMQR2TbmPLpCOoMH8qGFNSdEgd__g1tiSSYKQX8OmRIDZKKGG0l2qCp39RzWJC3Yse8TJLvgDTY4DFe-h0t2TOLMP_0U7dl1O3GKSbTSqtTxGMZ1T_7hGkBK-DnEgBVKDHUSGex9QqiduAR2X30h_q_8MOfeCG1RcPlvCrZZXuLQ2-Y1H6SR7cfEjQI8zflmr5GcsRpeAQJpzwSYuv238UW3VbUeNDHdRrq6G2NeVZx04jZlOqlft6WontqDscTz6b57_gFNafp-8aXHCOra9m0UJjCql_oygxJZJVMnixzEq6u_pSkUDng36FvYaS5fnYGmJDMbpSfv3sup2-MJK3rBm_-8VDwOzWxu5-VO1WMgomLLm9UbMf4Grqb9IGClI1kRMP-foRmb1ZSl1bXKR8S1fIOS-lHOu0G9I9xLuSB9fzsCCfKmwqEeM1xju573IKxF6uqT1TGlCl7X1lqvz0tJiJd9fd5hNyHPhznhN7qbLN24_kEzKYn5iojpSam7KvePR5p1C18SY6OfYtYJQPoYvm6la94sBoRgL8VfYzjCyTA1SgVdujlbsUATJsVeyVnVLjSjB5zwJJQ5hvBGJDsghm9AIT6_wctoOYnGVPEghHhHgTqHPzaE511YKxfLreQCwJOg1s3GMDbpQCifthDm6UzV3rDu8EdD4KZvQYU0Pq6sNzPhRR7MTaRHaUvfu4am4Ah4xU-2ZceDCDK0lDChJ4JogrTK5HYTje0C8wY7UrlXQOWgnFsu2hglJyJaly0FBW4NBiajgdcJtdaVQG5rAyRz_BOb9UIcKMF19xl6fmCPeUKib2mqOI-RIlvLAbrj37wPv2I4XxODSRCIX1GD1DFbRTV1Eh3f3L6l12yYqY6fOAdPIAYWjzBZCpT94aC6RXSv5ih93SrJcUVbtQXqG3W7hOIIpTpxOu4VAAndLNfJGoRRu8yA6J4duCGBdyZeWb7BjpFDFoOhV-OuxsMLScse4oB7my5RI4ob6fxdOa2BNHTxEHOV7CNNI4AYwASfi93Ua3IPPOE6dah50CQ04uvJwWLJeqpmUZ1x-IUhIIjmjmo9LdijiitXce6nQNROBF8xFl5Mfs05C4fq-vgmYlVCNJOpEXreoz96TZ0EQgxGcNtGm2nKN4kLiXj79w0rRqZGtRLzRsF2nvABERP0EUh9d9XmJ3ApLffGclL0xxtxrm4Uxv3_XW35Mn5WPs8quA0cIOddbVpxkQx7X8LpqSwEabfbZeTmt-arSeE0hhpbj4lMKwcWVcxtRBCaPP_JAEAm0uBxaTCloHsxB6AEbwvuXtBgd_7kQi7bJObdSkDAyKkeTKXIOQoMj2ICEiLoVb2PtbS92jtGu-yEZ6mK6Ci_zS9m6MZS6o6EQcx9B_7uAQ0MRAtdURliP9IfDMrg6tT9tcehHjrkyZcW4ApsGzCoyUjzl955DpX5murDNemxfl7k_1QQN5p37oHsrU-82OTPfJuiwaXdT6PBoEqgbXSEPuL4c5t3fP3UAl6Yolwc8K_8_AYzda-59zbJ4ZL7Ce2l_sXiUWIEin260xSyUyA4nsCE3QIV26igNyQ9xnDfRUTWIz_gMpUb3OzRUKpRq61vLdUJLnQKPnVkZD8OgYOoya383yS1uPzjojt2WhLZYbzbGorzo3CfG5gBGQBKkEDfBjHi1YPLH07DQ1HRnS4z7nWp71SLk0K67X0vlgGNaK4v4wt63Sj3g_vn1lPopcw6q7HST6Ob9lnns1SZ5IawaaWlP0iKP4m6-LDM-PqzeGk2zN57zYbGimK4ca5AKjAB0jPIpQg-KWsY6bhxLhMnAjJWbKbG64WkcLTSoCtK-x4pzACmRp00a-K4Q2HjYHdgJSeWmPDjBi8-aOf_EC7yrdU9wde8se4H4hjgfjRfaPUhHiyLNOMTBurDCidhXDY69xsRTUdv1G-AGGflisqgTtnJbKCqTjzOcHA8-JXS76eqhmJnxhDRh84k1EzLA4zRLR1VqgiInvVCaS4wvGD1cCzBoStrs9t2pIGVDs3HNJy8E5-e4ZsYDcl2WKJr5dUvkc5dSGv1sOUvp41EQjkqfHJc_v9SIF1rvQcMjRtyPkcKKwTFww8a1EswNWnsfAiwmHsGeVrbrvjTP1_2aclvPU9Xp2WVcwmt7RwIgA1y3KdmYIrlCCEfkcNuH-Y4k73JxcmvNH_FP5vKnFkRthNwPQ4sW9tE0sdEG9N5bwiecARrJGxBQu-ZjTUKgLILk1QGFGDjM_xFCSiOeimwBWpfu17KwVU7eh6mEGcx6iRxcuPr7BOaiGMPa0AmAukEgOh16uIx20o4y2_cfHN4jzZhz9_VDXdeSgHUv610LkYihr4E_u7qtJ4S_ybNXsnnbAGhkCsVdrjRkJ5L0QBG7sV76Vloh28TA6dTzHg6PcEeSPfKPJ0s9q20fqjDrTdxReg4uK1KKoo1OrQWLgtAiX_uz_1oY9EYeJV4Bz3V-3gHEwya86bWvFBBxq3QB06GyezLS975weUOH2qYDfjKXkd0aIPR6iY3gO9-rSH24EBCbm02s8Wq_STcyW3j_TdK_ouj09G2225roKeIUZe74d_GJCFS8C6EfoXtZGbgiz4OcjsDLrkGKSeH06NIO_phLdwhmpflDqfDQwYUagz3leZzE_ElZuHzBIS0MrmjJYlotagBU5H3zdH6JpBGF4AJY-H58ZMjwuACGyjribMKGSJWF5EAP913inQPwPQxlZmBJtMGinzVg8wRwpTQPoBe1j88qwOqThArRu0FK0_Mk7dzQLNdvtVB7rV5kR4aw-uqN0kYim8mveUznyG_nqI04YT6fWZj5mFySSonOM53y6tqBK1zwE1tRvc4qajp43SBNwdQOi10ZnpWUWK8Q23OlmWcAx-OuB_AwTucEyu1Ld5YrHeePqeEgehhn2Ru3fVEOj3TPK3ANgk4KypUFHZc8vqY4QYCa3cig7zCKgOIc4_3M0M8Mzu7HqlPD5Bo-52pazgztik6fstl-0zBl4M6BASpNpGiucY2sp3h70af3BVge6M4rKz2AAbOM_EsHiPUbnuiAk0WPCu_KFADojUc9T2qwyfMxkCnDvxqWbKYbyyDe5hmhOiff2hzVwuumeo5GtGBuZOze2XPRLjWVGorPgX9wiX6bnrOVX-ExaSUX4-qnX36OJzR7F9_wl-9ZpNYHQk97pskapSvyie1DzWNFhiWkc_1VRPXbyMu8YoJfnN0gMwBfumSRMP4zoiw_8dcyWB0Ra5tfaCcqNofywY30vRdGXpOpFxy4GFgJR-AlxN2q7Tk1Y5h6tU4yrNs8qAV1T5kgRbf3ft72KkVM7NbJ9dUeqXxPn4ydMsthS7PFqQmLUpMOqjfXS759M-ZUYA6ljLPhRhyBYfXR6_H65DfRwDdUz8rnQW4t_YKNYvng6cGRA3hjZ33Aj-wXA4vpVKZMLwQJob5ekb5FJ8GzvwqrI8QvAuGJf73qhLBa-HIQ9G7YNlaV3V7O62R3-fpPwwF2bMGmAKbq9nIlGoJrBxxXTT7_L-LxrpLUtHl02XOaGJ6NFyBSL2Gtw6i0WcWfr1h9msnVb1v2wToRiQqm3qvJBHK6VqY4QfcGASIBv-scYplT4YsWpXOwqsF1_Dc9-gBmPkZqgHUYCWJKDrQMpJRo8wIvzLV16l-12mfKNuHT4SUTgbpegKKFeRTHynCOcGulpLnRZY_zxpVC8qvVqVY9296AuOdd-y4qNAzaM_abUqphbZaSMjS-s1s01czb9c07eFyb_vgEmwNHzUZNjZ4KkuiGdZ61MO0lOkVcplaAbBz9eNx-35WIWRVn3gbGVKfEke4lUe8wfIRFV4ivnBHwRL0lrOp_qCa2A9yW1V5BK3WUPsv2Z3qWHPUmV-OnyE0KxBwqTqzt7fcHL6YdmmQKQKlL9SWvbE8PFsthgoJAPRlcIom3BCt63--NpSz8Cwddjxj_FARR5gA6wWqdeZ2XsZnl8_qo3MpvCZdWKK48o1ahaxNzytuV2l5VotOGmYKWlSDQgT8lihMHsMF1ekXwgujN_giQ-PrrxGr-GgetjGkWB-zLmlNLJ7fi7ELPMbIApMmE0iw6HDv-QK-w0_UJol_ZbOONGGZQqow7GKOMbEGtDiRlJib4QvRn56qUW0SB-mS9JWDyHIQT7wrGET-1gYLoJGPwFqxz_Zbplpy9hpw83T078bToYoVCOxPbnriOlGJBb_kr9DuwcBK2UwycxYVS3xtOG8JtOIRpU_3QcCWdgpEVPxWMobPBA2V4i-ihJE9iUij_aGlbGFWPkRMY3uwBTjQlCuo6tm4X2YqIYKo09Bcjx2dU9ChIRouE-q8-n2MhR-VN4WUDd2cpZi30ea7wGj_CtriwPgDM2Wj5Y3ARX_rd42oCivaA0bc0hF0HrQ2cEIeoPIqUrxu3UIFIynR93la760CjwcpKOArAIFgsjPJYWT8ZClJNRCYDKoSMG2UMu5tuWzFgOL_CqpKJtHjmEpDHpu_CbxAhQEcTL7tS1MtgJsYXGLdSYfQ3_Sws1lqoy0wmk3RKqVlHP3Dq4jONYXH33dkfSvAp9jJwy9WhRlHVKwKMoCB1eLQHFj2ECLRlkH7Mx3wLi2p5qMr9mxoGQTJibfGzsER8T5aImU6f_vFBaEzclO3bUTws8SQkbYt77wvl96X9zkcTgmATMygWH4sN-Kenf9Mim_-nmmEZkRVXiUdMSXkEc9dPkrpv-3bUuIqL1TLGhbQWxRBBQvb4OiKRy7ndjndOzxi9RsniRiL3BpPLjynk-ZQPDdh8AbZbXdSc4KNio8FRlZelqICNGDsIdLarb7qvlmmzOCMzg3FTOclgM7C3FItJSojald5N66B2pNPIw-AaC_WlIY4huswqqNJ2R_qw2JZQySaXVeYKqn00apbT_oNT_muMf6V5zHb1PrVpvX2nbaRuI9y47N1Mz3BqOatdaezU1jFqHq1HqIkSdQ8svWd8Z2n0ZEzaIjd8CpItQmeOlRjBa6eNG9U5bsahaB0JTLtMoEIMz9GZk4ST8t18pfpXG-XT3NEOUJJDrT8iQnlItF3ANsy-xHQG8b55mOnnq1SN5mxUgJA8Whqiza4hF87kfohht0NfGyr8XyJkYaanhbTzq9XztyiRKMPq6Y08HzwJCG2rcT4pNsupp-cI79k-n1CfhWIS51sAjySEfrtzmtEfuKIdDopJevKdk0yIb6PKYOzf9wOH6R_dd6Bm4h5iTfD1VQiE3Twfz_KqWdcK7Snq1KNYKe8ttrDW6Zm9XT3IRMeFKwmtEUvBRhl4kRyyD5aDqPalYzXXf4FrbfUDez2ms7IeoQ-d3ZMIPQJp7WZJzhrfO0pBE2wBWU21Hs71tjQDNSdktmMxpwK9SP6LCt2iAZy0frURRCUVVcAPNSHl9P1zS-gDXSdVEseqjaMmBXvU4rjISfOWNq-n0G70U7HqRwVntVrS7-5hJBZbYbDxTeenoQ2Y8XJoy-W4Mq42dyyzW9EBnA2euAbr0jrdcHwnDhfqfi-o2Ov6JSiL3iDKAbBPoYK4bgwXi0EoFp-Eb658zETuZHO_eRr-PyvlUHkAYywenqCK4Dt_Ikfamkz_VVtnqvanEwfgoHRjo0_giFOvBP7iMPzu6-QsJHKsCc3hmwNNnAio1_d3ZYaYWupPaMqkDrd1n6fyG4O0r2h4jMtUQlWkAdwV4kJ5Q7QhdZKCehl7r94hrstcqpR0qFpKw0wEahZnLLRWj2ATFSO4XnW24W1asbmsIIPb2BalmGD_2sf9vt-LaVq5uUUoggISpFFKscXkAykGw6JqDT4I30mC52qIqF4FeAQIm5ppu3zWzizc5EIby4aRetrmldwupjLx7DkuBpwxfL6ctYDaJqWhL-hwcdayDqDeWOnft1yQL3RXnAwp748Jbq1kBu2amY03utIbgLFU4uk3kVO7m1e30IbkJr3beJ7Zcx62AkZ5k3yweKcNAXTN53UOn4tdW5CzSh_733TGqLZBC89uAbtiwRWqXwCeJq00BPL2xVa_oS04jR7trRBHSB1m3hil6iXisKZa61AgPONGhdlN1-qSaDUcnKdGVhaAwg925ZKJmegn3wEmuzGphmfRcdAR4oHLmVAlSwVBUbHzuZzNpmjnEijvDScIm-ahI1jOPboxzz2vECtlTAiS-sUDqGiqP65xyp-yham1uy7dBZARx4g5EnQF0mVj8xB1wksJO0eL_UV4gpMyhpBHvwebdIBZFe66XBmeMtijXnyI_jENwEsUbMCbi8ZVzZOif1S1SGiMlakPe2l7Vk6BhZg8KdI42pb3KA7gWt-kX4_JK62tsANB6TTP7OwTQGDpIFH2Cm_9f4TFMF5-9rheDuUPx-N2bIFBob966XSAHM-LFFZfxEYyGunvpCCkS3zKBA2W-eMtO1jluMPYNRjebzk4Lxk0eDzXoUhrzXdaUj48Cu0H0SSrCxh_NEt7UhZpj0VNfvxTfqtdEvWYXlvlCgysi9YUuMASNQvkIGQu3vw0TZaZtua-80ovp4M6-rNaOZKNryVGbxmFYZGw01SIzojJPbfFh_iTHgfgmBKqrEDJ9atPna78-xhXLzsdP_soiHLbO0jaMFKY_4wkMljwWlJ1-dt2Gk66zATayE-ym_ev-JKZFYMv15ZWbkoGakPlgYyIabhyYZ0x55lmUeESri8tgtO7UJLX2uHK19BxU5ednC-3jXwPXnTVVMX_2xq6C0RMJwGniIVZqRblGEvQ7RreWH9HXRgLVFOuAVYc45TB7TlkvofVcoPuBXeJqvPSB6XFK_aqB9lKJzlOILdGZohn2t0rebIB3Pmnyn07vvz69Ysi3GA1ZrhLhR_WNLgmDJq-BOGbHDa6TU7L_eobfOGLIV9Zgf8NxqSOEtAdMenDPNNkJJlGnZk6CEcnqYi01iJJsXUb78q1QaT0_2_ixiyekAFU1_GNp0H869roWs5-fUQHX7K5iCQHsuaNrW3dQZQ5Na2XImd5sfYFfCi5ewHkw4oRUpYhHy15ngbV9TUVNpSu4S0mGSoSqyJgrabnuiLZBa_hrbk2wOvGBk0ComK2zDoWNA4Z60CSXIkxfAZ59UwOXTvT0s-42oJwudZHG0IKeMclu2E0HvxqKnjz_YA80uXBArakAqqgY-ge1nIiMCKPww24kSxdD_N8D8SfjIPAQRYp90euwDK7mNV5O8HjWCYZvyQKb1q6U_6DRk7uvG-JMc5HPDOONjO4Tc-3mDdn0yHX-UVPkm4DQW-StowlRtI2G-GqqnoCPhg5bPdwWSLFIl33MmOyaxyIE66GNFaDciV17Y3mbtG_5xyWeXZFhuH6fpRSq3gks8OpxmxBSWWGBm5_UrIqsg22a3cWtcmz3z0qiub-xjiwg3qAmB9a9HJ-wu4SsqY8A9tnE62TNMbqohhFgX9_1UuBNHrZadU1OJ90X7nPU2JeO1BriWRG1pHa_Sxbs4rY0OTkYtoXymrhMh8OTMIXQ9POWo1oIgc5dNemWneJx_svMh9c4OF2h5_TSqmQRrWOxSLhC7w4RpQLwAqtemZK8P4xrBhfSOZGxzdgSicSf6PbDdpk_c1Bhl4JO_Jtu1ZGfCjYz37-kbaU5zCkdutcv3x4q5Ql-HxlyRvhEVdnpE2Vh7U94LAKoIB7VjV4rG9mdphb-XOlwfCoZrdtb0m4_ZQ3huD-dBu7DGTaxiIBqweXtQVJ8ZoIrHwBfVyRugDXuha1R3_A2zNAsnE_VCMNTjBdWVMW3x-C6SbDXlbcKQFHMsHsHa1K_CJKsnHBg0UbTsIU0Q6j08CgBcIuFRjAxiSnvkE6ez3yZ_h7BDaDOElTAJ5oSv_0MRFEHfDJ2rHI8DZhDbsYdyQHIjuw_A8UpUIQNHUYgiPRdr8s_6BF2QeKxzLrtwoUO-Z4vRBfDs7lStZ043qQxdS_U_h33vE30-YxM9Sv6DSrLnUB7MyiS2DvW53AFVJPrpXURoAvKBxgHwCpnoyajOFoigEp6wBSogPFBozijp-6jRu9XOcJaJF8WpDu18FqriUQjVUj_0vbnjimA4vOmb4KsHvEUmYLJ7wVutkj1C_TcaT5Bcn4c5pdXGtCjdXoajwFjQNrg_kGl7ygvpCJS6UmEPa8LsvRGtS0hQ4cjU3I8lVQmjsP48jJ_HbV45lmQ3WQSNwLh6E5qfKVLuLmyPgBV79fRxys8bFcepz0KyBjxQbPLxIKqNxmMuCRpdoiEo0L38BG6RTSwT6CAH593Acr9YRTAHuuvtJmLT6DKU4YgQdqwCmqwB4PKxITzX3jALdt2TcGaNPnuQ9qxb3GNr4urrg43EKACGy4f0j85WLPD1Pzkd11e9g_9-qV5m9P2McC8tskieYWS5768qMIzQ00PhtMgbn8mKSr9NOszdshmwQSa339AoWeuRcKt3asUla7aWMxqtOzLzrFF4W0ypNAd7tMyh_cSi6EgCXzwbqeA2RiM7vAh4fQvz8hbm2q8ypWiIpUL0DvxY_OHl3Fo5WT1Ugku9w-nasaFFuGSCojncKjrYXkifWtuT5uVr8PdT0jfsDOqVuT4oH6YtprnqMwSEIGHszlCtVzKyrber12ZfwFsuHJYtykc7aQ-zuRvOeWuQpGVnNQCgwKqTw7xND_PJ7oPQfUaix5nZSGfqEvH2iP9EV_bo9CiLjYQLL0pqzm-YJeZop-BtjCsg73EgloZV_KKvGz4KPBPzpV4d-qjXPuq4UQQ8AstNJzPyOrVhuiyVb24zvaz9gCMUmSVxBIUoNJChah--RcU3NhyAimBtNKVnO-a5a2utZEdUr8OaUU_ChxxSMLrL5PzfaRE8rYHmvyGIdJAsCDE32PjloN6p6dSGKObqowuqTRquQuU-1BqpSEJBwiUPDzpBmuy4j96mGzdOLTJFc7pvjWbXAJQuWPcizLArPx91FY6f2TVtnSEeTXUByWTn5tgZodGnYn3pBN3wi780PpwNB1em3OXhgXakvvqXk1pDu1_AnnG3Y97alfD6wpstSkzmfKcabXbXYf6a1ahd8tddMIiWc-2sSrq_H3bKxmo6H7hWpzGjgVkF-t3QTLza_4muN96GUzU_Xo_X2Qw02H_7KjE8I0H3ONb3S0OuNrkocU3JF1H6kJ5_DSJCZZyetuXTfO1aUJrMv1qel5fHqER9Ogbwvrgxw1V0V8eanKspMdNTEaJruE4-uJkLUVSu5rBLrsY1tVBlroB3RU9sIsbqV5brVLDto7cgrV_41HPEksaFLbWMM4hOG2aEeaBG8f7lI6G-xXS7BL36B-VXE4UUSSvA7bY5jfzi0YDdlwGRUqKznvHX8NOROVfy1lhE-RpJuaqjvSvRTNPSAWvFX55FXmhRq4sD9A6uYILhXYMQG3xAHbpDTVT6OEy-JTOZJmcHpIhWHfTUQag1GV3jEch7FwnpcmfCETosP3V0qUEQPiyKZNJhSaA8hOrq2HLolcYZcZvmNXI1gYg0CgEXCjQXGFah9PrVTGBz3Frf2Tn8Zl4csaze7Vl9XDjZAQAZbifOemrciz58CVj8Tmn03pw-_CCml8s2ow-PQKMyLHan4GAtUCAo0MBkZ3OuMa6LUEnH3zOJIqSKFw23DDImHuPv1ajYWnHIwgQpS60TbThghuyGxqtuickbUa1o-t1wx-XXveJ54BomzZiG4cpN_s5TOCGrypMJn1mV_8-b4aMx31dKZGFXaAzIykCja43XDCSCWquPLgxQde1gP3dCJMth9euCAccjg-yr2s_7OTb30uc9RKySt_iucWsBb3L0QfIyfkgaTU0SJyOjmG4HaZUIsTmRG5Tc6PcHvZFz7ON_bwJwhv2clZErbDiUuzJZM0gkhCyiVatGKD6c5i76GHe_Qjg83rmhTm6FdaDETW73YBqC3vgKwKGYN4MdnCIRiiBGgxl2F557BCx0nAQz5fCyyTm5W2T_kgF3GhLV9d2P0ZrBa6tPyOEhndP1pyku5lto4gBJpuk3P44JKYDoM0ZEI41CgljLa-AhZ3ns6Tc0b03qa2fgHBvoUglOn2_B8xZlxLpOel391rwRNAE5MIw6Arw8alIv-oNhkJErTWcKdj9PYB7qSJlYsCS2s5UKwkbDDwe9mIbZ0nmnzkx9a77_QH7Px1htz4FZxTJZTYpB8b-lXnfSxdU1xosHL1itrqxVG6oNC5-Pq1fntRUooA2PA9eInUuJFqnqSONjX4TxqMjtUuqCa0Ri1G26u2wm2E-iCQs6sYGvVSEav-HFbd0QuFSLNUwPft5RELKPA9lqMS1VInK0spXul3gbpDe77LLqP5R9JR2CafL6SKJ5jp0Z0LoHvFYBR9wRjOodOy9DxwmH8R6rTTUzUKVcY3smxzsLgGhz4eXRabLxObPNPEggX0K40xRHymQQq99coKYtZxyq84vuN9LViwCCXzUgPRX_F9R2ToSRNB8HlFoUQ6B8NYj4xWwWBpEBHEwwzrGBqkwFcbmSmU2ytnqQ7-9QGXrGlzLYLg-BUf-8b2xY4R_awsmawtG8-T3k-L2uZBJAvIbNr6WVqOXcaAKDX8FE2Vt_1TvVtjr1ehxRpnmjJGPdBBgEo8udmv-oNJT3nTd9wkqVYqaTxGp7ITSZCV8G3BBO6lQzDOI9pgoeh8aM0dLFGETSDk_Zff_yKQnDI7LMcBxYV6ca9PRLA-Jap0nsGuJTjJb6Yo5TMjYMj_e0jqx-FeJLp1oL-wJs1X8Fm2pVIZr2WdXg3FmDncc6l4Ye53bXbIIr4bBF4JCDFKnQK_vMt_3ktdCEeJB_LBRZmtMordU1dcBJxldcr55Wj2R4u_OLUkwsn6ZgAx9yG-s1aoTqZlPdsARP-K2nPDbS2c1sFM4IXUOFHJ6SwZE-nUtbXMJhM4chEyoXjVVFiBAYQDdJwAe4V7Y82YQxpKvBGaljBUVCfEh5VgQfP5PFiHrrEfTgZ2ISda76STlzqWmTjuLUZigOO_p__MUgnCzjh-JX11w492Z4nlCNiLENQNX4kFbPhuJBlFbfkiWnKWakAtB9I3mxL8vvMohRHnzy216alhLsJKWDazVB64ZF3zqnqNCyOq0ud7ExdMLKUZGJM349vk9PWgEq6_icpoistb0z0yD7UfezuuK0m3bQXOMw2a_KUbrOjAWIkmozds-qs99py10NqhvBNGCsgI_kg6KS579_BkihIj8WIBvhYiOcVY-w8BcxPx0WmHClK98p7z1bkcEHAGK3HTRW1wb0hO309A04IDBo4ixEx7xcc_EyjhGMXH1JEWw_A3OmsGjbD96PV5dFCJieeAu206aTaIox6_E7sMRTqwOsG9_qHiyK9Pc4tRueRY7gBNQEjWolcN7R8hOpNc2dln_ePgZNiOhzGIHx4w5kgitI-l7IvVPCg_lWhZuY30zr97UOveZ9Fve8pfth140dVQs2ELfwXDcbMyemavGzDRCD9EVzS33aOthhwgvjWW1fjvB_ATJieis2sIjn_fvB5SbmhvuwZQXa9MX11hsX3yaE5d3x0n8AiIEHuIEQ7IsGMZiRXTGRpxo1bPjt5JvomWdDBB_YQ7Jromh04rwmTDDw7fCRy3JDMZOx162x4Q0r8hBUnawYgxerOGJ_2muUePNqIOQaMggP6Qx-qjcFsdfZy7Xx2_eGxlCJPZa8jUKEtXWHLX5r1Msj6xgk5zKDSRjhKCItjOB6p54LW_0vK6w_ob9kTvBMEV2FgnyJe3HO08prA_NupImUB_alashHgkO2YVNmsuCVTBUrmnzUqaS442EGi32BbukAOrTkhhrOxjaEclPodWQCdO4gg_CcYQqo9KK_seuXbe8onP88pVzPQ3gzPZaQYnE_Uy4qZzcU__yeMAccfJMtzj58YUxeInkHqKAwUi4P3ZkUKEI7TR06MvNh7_8hQp6BHhNmQPvEhDvC7_F3KZJPQt96bJRTVCvFQ6XfRwmBUVdDXMOiyqh3Hzf1eHxUudGQrLxuMHrqr0JwwN2-Lh9CQLxstxg9CF9-9XcXJdFnR9KS9ahNgJXDiKNXUs05xgxuNQZo0-hzEeqV6o9Wtlgww9zxtM4ZvX4D3c2R6jq4E7kr-pMLkBWY7XiZMyWHlULmv-mHlhpyW1tK5WtFWCb5DYR8N58H9T_bQ8zFVN5zMsO-UBCS_JvVfap47nZeKETgUIIOziXx-EYBcoQu4QnGwuCz3WTXFadBwepeIb7_qINWsZ9d9NyENsJdyo-ueoQcg2d8GUb5ZM0qVbewpxHIG1_cb6zl9V9kNOuYLT9-1jGJLeciFk-NAYQu8C4B-TEdCZp03PAYRRzNBoJ746oIlgjsylWcWVAqjduvpe8sYzeuDhczAJ-wBHX2D71oPqb_3CGpzT6w0IrbV-cRr0zxOPrhTRs1KDWRHQ1OuO3XQpBhPHgiGSVtibDWWjViMROmlRGOSdLb2kBgNG_iK1iTmZ3eM2J16liV8tgPhKQz7KWSYUe1l59Or2_6SxT9ZJB4mMZndUG_t4un4RGggULVyijHcSVMl2yiCa5HS3OAto0wUaN-YQiEOdN6d5dUxVZFaHvMoTWt7QYOivU6hZnG2A-urd1WebBvNrpSbnZn6YtgCNMhJYrJGRGXGt32r5jf23tG3OreCM3wNvoeV5kLRvkV0_BHbG_TA6b4gTFOrg7jwAd_HImCqCsyc4Fay9gloHOwK44ms8OzUdVB0ZEy-6SxhV0PMtlvX5P8cYN9-F4QxboEDHlXPu8BsjRIZeGutQ967LIC904lofL-HIGCeQCnLVq3Lm4_riAEJziNXx1DwJJSy-amp3zfp5JBnD8ao20ntuDimiv_FIRssCLCUrAJwhZAx-Mf5HokGbMtj5FY1TR73X_aUz9CBHMAwvpkUQBx0mMmwC5HrPaaGYWwRaNMf96VNKMdPdk1UodYaOcm8HOPX4qU_GBWH7I_wxduFptE0W_4FNB_PUrBqXpsme4aEWPbuKQm3HS1yi0upS2GIE_gdZqhdnxZwEBElLoBRfIW9GbDMx6iZiwJ-Yhowkt9p0eKzapI2cMz3oLLDEB817KvlGV3QnhLxZAmkI72Khs-XXFb2v3vWlXV81E5iZQU76SUwllNbSaPfbAdNTyTzHUUD3sQzYMj5FMmY_NxhpNgnfyZiN6GS2dQhACYx6DKrv3k_XvwF0G5wWrNFcShkAih9dX-Issrs3lYUOxWBIY9_3CWiqqi-E0ioef-ovS3rI3DN5Erg1riQT6memME3AfGdyyVdVW9aUSSpFq7kqqpy4qXTbvMmiYzUE-xszYtNWHuaWQc2_02CklgKBzprc_4RoVmDkFx8JveB4NDt9hTzjm25oYZ9JwHMwHYTVXl9i9jcrAPFeRd5JRhFTQdJ3ZFXHy95p8kcoutatxclFcnrzMZtL9iAVTJC4ZaMiIoBTvxNKa10pbp3DijicCdzYjrwYQ3vY0ukd53bHs6KfxZIg3Ye1UjeYzg3eIdNn1_e-10vnsce0ExF7QMBq8JQ1tb6gPLf1IQX-jZXqsqu2YN3EOTTBDyAgUKvVUVHhLa7eMORxD-6_v6327TcmDFLp9ZEdimTRAXVRV_o6Se43MWP88qqfYZ-HMDu2aP8OZIQxCh3cI1etufgml5g="
+    },
+    "video_sents": {
+      "sents_data": [
+        {
+          "video_cover": "https://ydschool-video.nosdn.127.net/0947dabc-a8c0-4150-9d82-785427c744fc.jpg",
+          "contributor": "Risk Bites",
+          "subtitle_srt": "1\n00:00:00,000 --> 00:00:03,340\nOr even turning polluted <font color=#FF3D48>water</font> into drinkable <font color=#FF3D48>water</font>.\n\n",
+          "id": 12656,
+          "video": "https://ydschool-video.nosdn.127.net/c84aa369-7ca2-4186-b838-fef46e71b3cc.mp4"
+        },
+        {
+          "video_cover": "https://ydschool-video.nosdn.127.net/5074ad36-261e-4438-99f8-ad9adb2a64f1.jpg",
+          "contributor": "vlogbrothers",
+          "subtitle_srt": "1\n00:00:00,000 --> 00:00:04,000\nSo in those spaces, there's some <font color=#FF3D48>water</font> and that <font color=#FF3D48>water</font> is absorbing neutrons.\n\n",
+          "id": 12768,
+          "video": "https://ydschool-video.nosdn.127.net/9efdea09-21df-4fc0-aee1-1b5b144acde7.mp4"
+        },
+        {
+          "video_cover": "https://ydschool-video.nosdn.127.net/9e045e19-b5d0-413c-844e-2a8a984e2c7e.jpg",
+          "contributor": "vlogbrothers",
+          "subtitle_srt": "1\n00:00:00,000 --> 00:00:03,550\nSpecifically, because the flow of <font color=#FF3D48>water</font> through the reactor had been slowed down,\n\n2\n00:00:03,580 --> 00:00:05,080\nthe <font color=#FF3D48>water</font> started to boil.\n\n",
+          "id": 12774,
+          "video": "https://ydschool-video.nosdn.127.net/5ec34e17-d7b5-4318-9035-ddd0f6906903.mp4"
+        },
+        {
+          "video_cover": "https://ydschool-video.nosdn.127.net/34dddda9-fbcc-468a-b893-c688d1558f1c.jpg",
+          "contributor": "vlogbrothers",
+          "subtitle_srt": "1\n00:00:00,000 --> 00:00:04,230\nNow the RBMK reactor used regular <font color=#FF3D48>water</font> as a coolant because that's cheaper,\n\n2\n00:00:04,260 --> 00:00:06,810\nbut regular <font color=#FF3D48>water</font> is actually a neutron absorber.\n\n",
+          "id": 12728,
+          "video": "https://ydschool-video.nosdn.127.net/84a959b2-67e8-4da8-be2b-332bd92bef84.mp4"
+        },
+        {
+          "video_cover": "https://ydschool-video.nosdn.127.net/1ac0016c-8589-43ed-8b7e-dc8914b32681.jpg",
+          "contributor": "vlogbrothers",
+          "subtitle_srt": "1\n00:00:00,000 --> 00:00:01,980\n<font color=#FF3D48>Water</font> is usually there absorbing neutrons.\n\n",
+          "id": 12775,
+          "video": "https://ydschool-video.nosdn.127.net/90dfe438-0871-463a-bb3a-091dfe48053c.mp4"
+        }
+      ],
+      "word_info": {
+        "return-phrase": "water",
+        "sense": [
+          "n. 水，雨水；水域",
+          "v. 给……浇水，灌溉；给…...水喝",
+          "【名】 （Water）（英）沃特（人名）"
+        ]
+      }
+    },
+    "simple": {
+      "query": "water",
+      "word": [
+        {
+          "usphone": "ˈwɔːtər",
+          "ukphone": "ˈwɔːtə(r)",
+          "ukspeech": "water&type=1",
+          "return-phrase": "water",
+          "usspeech": "water&type=2",
+          "collegeExamVoice": {
+            "speechWord": "water"
+          }
+        }
+      ]
+    },
+    "phrs": {
+      "word": "water",
+      "phrs": [
+        {
+          "headword": "water quality",
+          "translation": "水质"
+        },
+        {
+          "headword": "water supply",
+          "translation": "供水系统；水源"
+        },
+        {
+          "headword": "water treatment",
+          "translation": "水处理；水的处理"
+        },
+        {
+          "headword": "waste water",
+          "translation": "污水，废水"
+        },
+        {
+          "headword": "drinking water",
+          "translation": "饮用水"
+        },
+        {
+          "headword": "hot water",
+          "translation": "热水；困境"
+        },
+        {
+          "headword": "water pollution",
+          "translation": "水污染"
+        },
+        {
+          "headword": "water resource",
+          "translation": "水资源"
+        },
+        {
+          "headword": "water content",
+          "translation": "含水量"
+        },
+        {
+          "headword": "water system",
+          "translation": "水系；供水系统（等于water supply）"
+        },
+        {
+          "headword": "water conservancy",
+          "translation": "水利；水资源保护"
+        },
+        {
+          "headword": "cooling water",
+          "translation": "冷却水"
+        },
+        {
+          "headword": "water level",
+          "translation": "n. 水位；水平面；水准仪"
+        },
+        {
+          "headword": "by water",
+          "translation": "由海路，乘船；由水路"
+        },
+        {
+          "headword": "surface water",
+          "translation": "[地]地表水"
+        },
+        {
+          "headword": "fresh water",
+          "translation": "湖水，淡水"
+        },
+        {
+          "headword": "cold water",
+          "translation": "冷水；凉水；凉开水"
+        },
+        {
+          "headword": "high water",
+          "translation": "高潮，高水位；水位达到最高点的"
+        },
+        {
+          "headword": "water injection",
+          "translation": "注水；喷水"
+        },
+        {
+          "headword": "ground water",
+          "translation": "地下水"
+        }
+      ]
+    },
+    "oxford": {
+      "encryptedData": "TNvL5RvzrtPgEpLHE_NgTvMMps7y4fRHaUEzdolM_-WBHuFB8Sgrf1hzjIJ3c5growu1-B4Z3VdilAVpWx8asPn3xU6WNYSofHyYnn4V6BZ0vGItANDOoKYSNMpEEFUUu5MAqPpNvy0EVqH-OCeNFeCSFlt3786vfhECYapEYioa3ZwNFFr_vcG9tiPyoY4EyySaE4HoHZ7m4P0OPNfnI3YjLzXdiPJTn3edF0WICxVnyNfaAMjgFMliF8KgfgBI7YrinMynegkSJILJmkF-LheZj6dXcDkkv1r4d7tVZP1yW5YxCShPw4Fr17gH2PUUkVKA1Y6UdOVYjQ9QtKmy942IvwZ877XX0KBpskjWknvlqROYerznpoGDzFZwr2jk6M1kPYxd3nJmXX6exyGT55nrTZpYnnOoq-R6zvCUze192hcxG6PzEtKRtOIV5fu45xVKtz3yTdEHy0uBXFTIGf-6ITzeRPfsnOxXskb4Wkl2Fbudw23fgybMkzIODagu31789ejYXgu4rbl0gdN8Vqjsqt-AqDlBVk94lLmAUbfZxHXo4awaldBqTKgESIdLLgrakmwR31l-HTDHdHHwyDEE99l2r_nbLz7IC41UmlRSzELA9IaxItAAD5mXXU8wpt9StG04m1KAt9opYQrFINkkUrk7tXrYDK9zuCfbm1eGC_nS_cJMBASUxx7wh4cw7cfpCMAyp-qLWC0XyKu-1Q9HcN1zq-Wjd4JH2SL97phIRwhjbB-xAgG59WHqcwKhp0gNL8EMJhI3ak02MRz_m4Y9Vw72SbBg2VbP4qsAjyGnWkUIy67P6hyNiSSDzBgmee6e9kKCRrOU49s-n93y5KngoCmcl9EPVdrgv4NIsPIWCY5qYAiVaZ5AeraV8xVGAE5g4q8wbebLJh4x6rEcWGyincjiurbXLw8dZeft1_Gra2ZwP5S5ZbtEmI9Sg0N9tN5PFalXJk04jdJ1cb0JZPRJMz7zFTuW1ByBS76cwfL2tcriAGYll-zS0oX-idpQ71Eum9ybEbA8BCcDv710mB8S0x4KYE0_JVtppoIhPU7JqKgSmF-4v8drCUDiKITc90vOQjgShR5vxAAE-Qz_-5KYr0azFBlUDyZOPDJBI1zY8YLfEg6bznvpT-J0YqJ_HIYmRNNfmcfhG_iNevyS7cP1QtLZNooh5UiVqU3z5q2fqQXrSJHbUyt3LYS94RupL6jzgc9QoUmPhmY7FcS-n_ydNIpe1kvmxP-Vk6sEpJT9A7uIPVIJLS_h8j1RHAfJ-1KYSNDyjjdGfuGMXWfolp68MCoJ2NOKlobT2HmdKqgoTu3zaiuuTanztLSNSIQbyZwFzLx0myS-tJOGaEyqz_JBVaQMTJQ5ISCgr6vBkMfDSM391Ia73yfozSJDyZjz6Tfb5_d9r0ZggoPuYE17hO7sZ_655A-_Wcql8E3VOXIdmQJ8pOrUILjFkjrcjBAvKKq37oJkDEzUHyFi7-PK9uZgXE0rdrdB82KZBRdlGuO_YD6xVLjlhWEv8zj19os0VGCjp62LeF19ZH7ObiGeaLfnR_ik5QWsivMbIiXeWhgBgCSIF654CagXirmCgut9shJxRQJsMy6Y9_MYpw8IMjO03-sztsGGrgH1UF_XY8Kw1_QyJ-2n8xgzIlPtV2DDtUIVkrPTkXyMpl_XvZaBWJ3F7ZkXFnv7e6U_JdQ7mjR81qxkunBCLRsMSwwDkmQP3W8eeNls9VgsiGspz_x2vy4ZE0V3SbcS-755rK1Xo3mA2CspRxzgYxYNqO9WI1rV7QDPDwKuU0Wm753nzTbv7yejWMUr6dk60f8syelt9ZZ_wddl6SSAM07BaLRrmhCGo3wLs5RI7U2F3fVvPLE6-amlhHRcymuLqriNFxkbVvZP0c0U1uX8F_2LrP4KSai5NNXtpxHONq_z9l6M0ZD33RNbH97ZRMso7L04FKQz1rRXwUQETu_4o3YmJZd0yoQTPZLn8IP91Fewg1ojfJaFxIOFuK-xZVRKIUw1inPDnrzjz5Ji0aERrGuvNZqb-MffPBr0I8T8Zw2n2VhluSDPvuuDAwARmDxNflFBgQnMQPj7Vveq7QQUYDFB23l0ltXho_GJ2FclYF1lly0eW6g7eZ08bzgD6LBrWWaBcsdbmuo72Z7zRa1hNNnlD3KA7msakL-4q2p3ndJW2NfTDUNpQ_FBKFzbmSkySL1iaICA52p_UJl3wXqjEdb4-wxmY5PyW6D-J1RCt5_lk7YxQnCmfBRfvRjjrT-wD3Rt7GPkoPlxeos6dmmbmk3-jsbhxPKT1FX_WOKYOKWVekf_DmBrJhboL5WBbhmMlAvuI14fjkq1sVBwUgOZ1Gqbr2m-Beln_oM0sm1xsSlp13rpo2AXUeL6o7ohokuJd5FH_APru4Isc0BvK6AfwSCg95-qXUQAkx0Usx96j9k5uNDflP3We8QQ-Ea7pwlG9EsyyIx48KTkG_peO4_xThlGlwUtd4y5UdXC5u-0rccSN2isdIR5kss6IL3PLOinDe3y9XPemOjt5WJFY31Wt9LDffM4vLcorF8-id-FvYe3WVbp3ZNeCEVUV1kaogvrx3HdvvVn2EflMp6sLkLbhXC3TDAaTDSwMWuQRuD6nhMZKInOr38Nkm3SR7yBIvDHaQhbzvFA-kYijTYxJam2lDc6n29KFFp8RyNqsOPM_LwDPOxqRD0cwiiKHeibume3YTp60Y8ztARq3MPKBjKyeuOPrqeFE_jSV-NkA8rDb0DOUoJona3blAYcJNF0yCDG1ompG0WTwhk8hX1mwRzwm9MZNkzp_aUU4lK_zoNagK3XdtgjAuT_SODP_F7eS2blUdtFuuUhXn5YVLOsRUnxxfQJDUY3iGQqCKwuVpeONSKjKDtv-En-fcI_fSDCOdDjCNfWrWihhHvxn-eyn7GVAOBxJw2gHFtUAtTideMxUTdQ5p4KvtuuRDc_CoMKXVR0VuGYYUmzBYBdIzHX_rxlG9JZd5mzOziySBBq-6MnwjcFQYNXNknWZ9jNskaX_5d_EMRIIbZoxafa5EDqJb90UqlklWnMu5A8lJKHK-EHKEWURjW-F4lz8wKoBvlkGJc6vO-5abhzHkCAP3Xtcjuc7GwqBU3YodtpgSU-KLULTdkGvgGIy-IFRQ9XK4l_nHyhMHq6znZeNIizBJ7_70NvH1lT8bxbNhYL1fKtyc3zCBgvldUGsH-F4rhCelc7rHo7C5S9oC021Lfycb4RObTqI0GSzI2w-S4_d9LCNrSeIKznHq1m_591e4m5v3_fsYXBMNZFmMTTR61v5LcWwlEPcsEtbHSnXaOOebITh7oZ6AILCh-R7Gfms3vREbkE3bOsDMa2k8hIDFFNG80gp6MVR5BCk_RVsctMyNwpqFvazfsGmKNBg-lZN3ko7cxbSkZo8_WXbA-Z9Hnj6q9xxRPeesie9iAYI0EvRuvHmrWRJXzCIkd0xCRSseLLXTvPPP5l1wl5Cn4rBYmyfSE65hITC7dlNxsKBnd214W5zjc1I3RnjpiFOq-rC60FSXrKQRtW37SGLC1A87Ly11iZ8w6TUg18KuMuiOS6e4vc3E4ol0e3msJWJn_5AIZsAOpmrSiLo73uftpJqnK2nGVQZBXIKZktA0dVYnaKT2ULa9SHOrBujedZDphcHMe6gSVWF_XbANZONd6OrhJP4GuZ7m0-YIkMul_w-oYflWx0ae8dhKg2puaNm4YfyPZCjgy27bU8xcGfpkQJqRliE4zYXHugSHe56ZhMh8mgeLfSV9GbEQ-zaK3RrQJLnOkDr9dHP1I5Kr6poRp-Y2S9JibGjvJxvtmqMyzUrKhKFOCr9qI1XVN8une42uKiDIvk0pNhbt-HOAHouLS3e_h--X8-ilOEzmFMWY5TWHX5bvprhlPNqu5WKIzIMHSy6ivKufm073TLxkqlJlMTbWsoJhViazWfCNJzBkiAZKYuyMwmr89EAhOq9XuZXE1kJ8JRCc4Fm8eDEsxTYZ8d1ATqKC71J8vjMTW0AKs13o68uXHw-B6DwtOnG_WpDez_o1u2s73DpMYxoBRC1oK-bGdNDMj1BPwlQV90-wnlkz5SAjP90pQapeVpBuxCafo7RarK2rytCvemww7mDGIimtBqAZjk4bTukAWMv5r8MV8zqqXQuW6H4eyr_WEuNdqgch7Sm2agQlpXFpcFFCed20wviQBRVGUDlPRG1Wk-TRLiWXcjucMq-N-lrcaTIHjqESXzi7GNABsVE32e4wow8rJ4MboCzn5NHJDbZ2UVb8awAMJvehb2ERQ0aZVrEnU-APhjuc4h7B74rZo6uiKgmLwaPB3kFe8GQfLjog0qfxzUYqLdWmv4k9oZFtUDK1s5ZwTFICm-j6P2NH8QUNFIMO1bjMA4sK3OQwssUYJnudUhK5e28_nrIpioEcpV3OG6u7mZ1pWI3h5mNO4qeXaY_S9zbUXl_3y_wRNOukdKG2gQSjI9Q8lwLPEML8ZmiQ7Rvu4nGcJhpHxuA10LaOr6CjTLd4RzhhKuuncXEUyRjX1EtdIvbOyUyS5jOT2RJit4cQcaw_43IKzpxA4tffOTBOnVvPOLWs0DR434RszVUvFdYUlN9hAGbYZ8hXSAuLskaRh9GqDkKC8ExFP733xlLjfl-nan4x0db0MYXG-C6qoo2iK5NUu-XAySl8urcx5OqbMscaXJPM7RiHoQCc1M7J2ooTNg1-02M7OOX0tgT7Srhw1tB9mgl6up-1AbOTR1bTj104qXSocUGFTOjfKoEy4vKPD_NBsQ9ZyC9U8klxffC4p0JFREapyIBHM_O3RqWdOvakuNRLtAGK-WWAuPS6tziAYIuRVMtqGmZ6AAckzlEUGcatVtVfP2bN3NHs8LudAWUCUbEaFzAKfZ7n0SEm5MGeIjualHEnKLd7p6yBoFvOiCoYeQQlzLWhqektNuRFi9785lCN7U7wdbXO9hOEpZVeCCdEhV1VHQ3WOR5DZYzMR4vNSec0Ia7WzgBj8moSUCwhfvdDxionu1aYtWZc0zY3LSGf_iqnQNb6-97E0HfB9JMDHRhvzg4hNUPNAq7AaT6UM0MYgZTXaGpFLWTAAY5R7KGysQKSfiQvHUs22wDPsb2itft8N52rI_1owvjA_478XwIsth_H_mljtVnP-hKJpWdQSU7tbXHaoWYlobKHZQf9Me_qjenev3tPi-baBt_5psgflzpkvol80sTHmxqw22SKxFDQOthdztuS3FupdDPqB7Rw6dhxuMcnWa-PXoB8qCliwQPNmuGFfuxxEUmrgtbZtQVwzKWpRgcr41nq5hjL3neypIwk9oUlFMnEeLVQpQt0NY8s58alQ0RBLY2idGPw-gfHtKg6mB3rMIddw-Js-R-E_6nHcg7cmrpgTLDNHhtXrL6NYUzjNKXJHirlTp2p7WrV8AIKTNwb8fewMGyBnpRVs4-wEBA5ootprHBf8RpMDyk0M4ajj3Hf3wVv1obO-BZnaShikFbeRvzYJBhLBMY2HRMwiXM_-KUhK5_VshvxjhBltrGjUj0Sc0DAVlrzL-1M69bXXTEjVtst_8KTTlQtvxhmI6e3o8EolvSXe5pkOqjpz7IH-g5hSIr_jiUluEqw_1d6WAnXsnod7B7ooZsV2r7csgvpRIQRRUW7U_L-rIOq9f_vN0bdm35XtWeSc5mDvtfgZgIB6dXoqNK45zWy8lRH6r2YT541yyl_gHqXeHgD3MihxW4CXH9J86FAIUBcQvuIC8voCHX1Y1zfwPqRNgZynI2agtPOnHZ18RgZfZrK3hXp0wKb0SNTENQUayfxs0pqcvUwsQoF9EJ7VW61xwfqrYnvBlkQDjCng9sqvway7hH-DUShjIt_YckXdrDjw9Np1sn6WEySvTOFzQ0MA1Zzo183BmXww_FhGoyDzcYVU2MLrgqjDFI0RDXWuW3Y5R-Xx6mqwxGGsoREhbMj2dJ4UOxRxZTNj_8fa6B9tnceBCsrsU7Yu5c7G_5P3NdYxAdd2TfIZudlQvRlXJqHA8Q-ixmpTPUjIhW-DC6Cul6Ekgjfnp_-s-QqfdzveBo3FHYG1lGx4xd1yVmwk17w2QUgNVjmsoLjWSUyZB-PRk_HtbMAcKCFppYBQn6CS5_yLThhq4BdKBIjfNufCEEeSjXv6iwsHNGqnmoyeB4gP_4WowTXBbngffs0bBksPv5sujLUkNoUz2_E0uPa-TmsaKWXNmJFcWzTB_LCy8baAUR2-6cRJGMdbStvswFehihJuDkDaQmD-JEy11vER4j2bEVSOIICM0hwSp7OqF_qVLrRJa31gmZlEJ2QsM8EMrfbxV0whnotTYowZrGkmEZyUfgdtTTWudMgg-z54SmeENWURkOIfyTl0KD4MZcRQIjIdPTKRZT8VyXpjA_n9lzcqRyoS4fUYpC3kRg8GA26L_lTsIl0K9G9ViIVMJYhWqYKkCv959FSYQNa5BpWCxe-Ib6nZKeEq5WQAsy8nyd6a1iRpSaucms2092TuSNmSljd57MaZJAu_L-QNaqQSG-h_z1lZzE2E93bdn4x5RXmu8xvd6LJNpFaUQZTVgmhPzhHy7KvT4Xxc2kIP7zrUEYN7FQeMB7-i1UoV4yVm2pEuyCdC64UGeJYz6KzyGt-v_kobisr8RTOkACyO5BxDJLvqm4x-mxWzQ_PkBnhB6ok9JyACTZq2x69Ge_MH2-CbNjCqsEkaFGV8zeNY-pZ9tBoU2sKo6nCOKFrlEeefFl0TZVW8GJ-4L7xNChDfxkbgpJ2AP-gL05R_8RolkRiNy4Qq2vFUmJ3A-laQjHBEs2v4SrYP4ivgOFT6HToXaY4KcpnVrOlylK-kM_rVqpA6nYhwejo3XXFowWDE5Ty_sGfu9ibMIzYMMdF3kiYT59J8v5s9bhGkTonRWBxUzMrcpBstn0jOXq4b3S58qB2WaANBoXUJUohA6s8ctkaTPCBmRKv4WK2OqzOyEg0BdYDKqAM9glZqMu2spoTvBU3pUim8OwOp1wdxd8eQee85yALBup9hlbFUfRL6jZm9SK9DnOFDgszZwgfYuRp2MCFY5HGrHwOfSj_DnDSp-8hmvk0R9jtwZisgQfnJGYljy4FwbiqPTb4Xs1bQflXmS4r8MtVEHdmDpD1_i0Pu-BuxZ8xE9I7OUlbTB56BBn1Tl_3NzoetgJ6xHlZHrKcQkWxBZsRhq118bU4PbkSpLDjvqco4g46U06pssRxlKzZK6FxCRrIWlxF-CoZp8McWninZFnkH0J1_MuR-U0_zhLXjOcXmMzjZlNtWhtchPTZ8_1eWO3dKSzIrnopYi05cuX0yyjMwn7OwiEU9XxxrC3LpfzJyt-20DRZ1lYlzrFQ4uWvkzH4dPuvInr8UEY7N_dUlSRQO7srvxKdGRUi39YFGyaK1pnZWCZEJ3s0DUvUaAQxFtmjYDOrcoFalNP4gN2ll52itHQIkowuMZFuJVD5Cu8DvsAtAR04-Kny4a3B7AduRvHv42qrYrLvPYcB4kr8mmO_DoIDNmY74DovIE9v-vL60Ai70BeU71ojrtYwbfOm2IWwXrmnGupmPAOb4hi-aoz5pGTbqif4gz4QlKPCZa9mJJfp_qKA3l5lR6-yqBEJWlwgvJ_o8iM3kXY-p6HBkkxVG-Wb8GzVxXMLoL-tbz3OtAP28mRAwAwOUL08a6TTdqrD5LZv5PSo1i6yHxn9I1_S2HS_IZ4EF6JJKk9qOQuUN_qXt_AYgHUMzODTtrzS-bEZUxB0XvNWDohXz63IJcrys_4lIN5M1-Kv9ZlxWIfJbnCrHrO6qo0-D2sBtUcjuM7KoQ8uca5qutloHy7JVdrujCIgErfJy6a0w8JpdcxetxyK69geDF3bqJJsgkGWjVbzFFolaiBDlVLtB-gLGXZaIARF5EwWQdJtQvEwcu9UQtraBeBl2U2xgpKojlYk-_uZKGs6m3aklrfc4XiF_jjepAfS5gkvtkgeICIFdNeW48CXZ9KoUptea4unNGTC0YymYfuYQJ64p8hnGrrVLv1OCFQOlGNfqKOeOd8MJYAebu7CtMTeGorBztrUUln32hRQtZlGpeUdEaUnNm4imPTKtks_FMcNEPDmJlaIm5ePHi7YqfaxYWu3JAgF935Dc-3eeQVho2MyqX4NC9GaWYrJboVRcar0rShOdOqjJyVPP_ZRPRn1Vr7WLhNRArrGRtdzMCrU32mz_XGz8e_9uW2qN6iS9qwcFNoIPdxR5444XBPZsG5B_AmvTl2oRsfeLZGONkWfpi2POUy1cJXFnSBOLxRpybViHCqYb1xIRGY58-trWznBa0YfqtA-7s1tnsk02ih5OYz12YJrvxV6fFdSpVQwxgBhd2e2yUcEcUScjKKpb3w8KrqZFJxNBAF318vodSOLVbbJSRd4yzHOE48BiGBsz7POQtgh4ycpQwuuW6rjhrRA63gGKxs7xS04vkilWtxKhbDsprBwSaybYCSUtxMFtN9ajRGflttfbRqRx8VwlsHXjVRnU9xSPC4gOfOcjGG9XtSyvpRfwEcpKuZbSc6fphwYWSEMNy2EAC79YafgwFMsuuAjh0C3sQ9nHVpP2D0D2zSsR97G8cCJxwSfOZ8Y1Pz6w1mbgkD1riJkeP_zYTL6oeMQTvVav0J1mV2qcKADUmVcC2u8ntPRXRF0-WWnZ3Ex9ieOVLSL_P968njl9ahmEh0KjxBrBWgNwr4tHHknLqJpdWiNi0zKXXdgHPkTy9xQ4ZAABxamVEUkfHPEEyDcc_84TMPeptZFXUs8fji8NO2NA7HNUGIrzlRcWWNYurW20Rf0ofoKbmtE6XEmkC-764XHZsIM3eVsx0rewvzAEL5DaRYtD4V1VLHlCxAqLYsv8TtqSOt-DXNCABjrWuSSuVD3edwbE2efk62Ikj-AAQEC1cGRBEB-QS_zMK2CyPstbpdv7k2gEHoQc4dK9597tehNG1o7AK7DZM3PZ6UW7P7Q-e10LuR7KE2qEPjzkcNdLjgAM1x53c5ubZGueBn06Ge8yDNhtNCB58D97J8lC-4-6L5W3TRAufn-SdhYQ0lUy8Twr1JElq011Ca2YG2U7Jn6_PdjVrR7MFpsyFdF6WDt19gRfInjimwI6e_eU4cjK7ucwc6HYe6Z3fSIhRsg8qZJb4JdSy_4aWjLZNl7To0b3LjruPMn3G5OtzUE71juB42ETh2VN6V9tAtD2SVsISvAJgzMn3LZYSvWvf6ZfxnpPgm8kCR2N3C9-mBNN-1-MMhTUzzGx2CYYn04rmkqWYRHtfaH6-qvHZJdaUGVq1DACuLCot_Y2nQ4cqbyS47F2pntl79UA9Ju2wVQtb6dD4t95aUZzFEIJtmfyPWucPye92qJJgJITI3UyM4xZwfYaYYZA8l4GT6uLls0115fKLsdcI-0AzysuWpTF9FfEk_6cRMQOKXn4GzK5ww2YTTblkqjrMhGdT-PoYPxxrX6dbPkPxn0UV2ZVpdEm1CXlTBdkoivf-jLPJ9k3ynYuAf9z2IOfEWWDTtbL66FO6rXU_bjaMNrfmSaoP0bu-aUvYYrs5AhlDj1ZHjo_v3kNSHq6DnYnuziTzQULGB9xLwnUPIRsXZ2P03a4baSjpUP3Ij8PjOnAVRA5IyJsezYi-nUHLKHaHyHiMKHLofTwGhAS6Y_rrQ98dUotot20IUj8SceyqPMzXtCiwVjO7WuHFOld6-vL18IgxFZSss4RfkL65ozckoUsNuQSCUrEyJVPi8MQTlO2DYR2v7XWNBOOEg4h7BQ--cMqb1A6S_67DLBBSoxDCNp_CPvISo1iT4LaqnIQuAEi1LwAt64nIsRGiRqugodHgEK9nJXqJgrd6WjoSkdDNjEWw0a2EsJEK6SBaStUqslXk9bsxZApopfTG6d5apRcBL_aQi6h9lr9ERjxa_UlusGqGHAMZo59MVE3KTumgbi8HcF174LMUdcFv4cxy_xmrzJ5WSQS5fRA2tN5v2wSDIvdbCfLKfsMzK3Iwg5-AeiCDWpLMwRgvw7Wg1z2wil7TsQzjcBXmNdEw-4fyVuqXWhqAMrQZtcic4B6_dyFfpO-2_NYxVy5HNDwhA8nwUmsmkA4UZ5nAGLAd4X14LTGRSuBMSqa3KQaXgDoSTzcB7OLdrWOLIP3woPxpNYGKBpqErPiVtyLX9upcQwQupE12DeEb_0u_MkNesls5WSQMqTIOjhKMwXjWvXpWqLWsZgksa5uDedX3sk4uGEisUPgAVniIpCoL77Mn8faAwcuOkLaKgRD9sxXUoqbbx_NBgAkMW05fmLX5YHj-IEJCyYoM5biVHNzTPtoAhcPy-0aKQWBufJsrtRXYSm2XikPtDX-A3YCD4P1PeoIEewUfwNhKiTYFt8yyS5-etp71TbYWHKuXWdrfEBw0j7xQeSMkPXs_FkEGtsIfhmuJE8ZUQm3vHmr3ybFZeIzkGPM9DF7RlcGtVQzP9rLx_wWWiqDBt7FUx1wwqwlLF8DuhKPBE_25-rN4T28V2UUATqkCkohOD7mN82QECzJhV_gk2ED5IZlQymB9rZgW_K7jfaY1IkkSr7VHrlyKmuFjuseyYm5JWpnvaELa4PjIxWj2ufqXmV3qRkE2NOAwwd_SRBLKJP2x_TvONfzUzMHyfG9N-W8RMvSIxeE1DzKM4LL5xZ11gFUfEtVlam9KDNAlomNR_xnyUpm6LBiaI9vmiAAn2DqqD75Ufd5qV_LXjOJhQ1diWI5aBxVqRkPIA0g3I-c4hlIBRUW3thkFnEmkzPnu7PED1P5eTvJZnCgTwYF19b7loAPZRshG4bLRrV97KVzzPiVBIzYMeWu4y2Emt_r-5ZwsOnUkwu_hekBKq0iz3-VtjW3BeT5H8-zBUxz4YwMnO8d4TLMbRnkiyUDF8utwrwml_AFntJaEHHXeoAt8fh0F45Lgr07Si70efykqQMX6Imdoo4QyJoKxBKsWQ0JZ66ZOUewyOen1Vbd-5QmwDjkCnr-jpIBdUPTWnszsnr9gECyCLcd-WIl-_N7q2YJXU45-RFInQLeKVbU30hLlRy__I4nTEI4lKO9r4d88GjraOKI4_pocyQEjW2TO1tFpjlM1OSJjYgeGazeCPl7L4R7EACC3VA4nQ_gpAabv96rRgP-ITL5JqJ5KU451E4xw7Wv65tFfdgmtM04DL8Zh5Xro2Va48c32WecsXMN5cuVEM09CuCOAeW-ZSE0Wg3YmT2tuSYxCBhWd8yT4te0cogg6x2DWpOYAWZKJWmFIrf0qiIJQSxFXoxw6gvltYyBtXrK4BpcR61jWI5gb6frnc_IT9KT_KO2Yt_lcJO04t-C13ZcqoA4RONmBDTiYE1B7TS72fUl8HhJjsTLC3EXcdjfLHv3SCMwQ_kt0bNFo3HxqVIUu"
+    },
+    "wordElaboration": {
+      "encryptedData": "beGALoEcIOl0nd25FWxKlOCd5KuGJNm2NMIXTjVSfDgjBPSlQFRdWZ4W3SDfQge3sYPxb4s3gXBCwQd5dS4EwhYXjihtaDLDnwp8GiUtybhgrf8V4Hf4M0IDXHi4786gYLjfdUfNX6H1Ij6k5P7PTIX7DihAT9pMjrfDmD-Qn68e5e6obs1jPcmXj59ZzFaT1qEYBD5t2H3RcEAfijC23s5L8EYw9ECb8007ZoL18Sg4_WI99xn4d9KvxatH_7CbZS3c3n14MWAHxG2LrQw4CCV4-OsBK0dQLBWM2PRRh1PIZfPEANnN_TB5UzZrs27VdUIaDSTr7Mnzp6oc57vty99fTdsUu1zBx7IIHDhB8mZzghlHVSEf5X8k2x5eg_DILO5C3_ImjLJwklNYRM43VB_FQYlEGbSyjSKGQLA03iyq0jvMWCi-ypHGsAHo79Z2GA5adTn651MZL4eAxr46Qdh7F5-GRr1T8nqDdFJlpj0Nu7mNUN0mE1U6JXTOQx8W"
+    },
+    "syno": {
+      "synos": [
+        {
+          "pos": "n.",
+          "ws": [
+            "seawater",
+            "eau"
+          ],
+          "tran": "水；海水；雨水；海域，大片的水"
+        },
+        {
+          "pos": "vi.",
+          "ws": [
+            "shed tears",
+            "pipe one's eye"
+          ],
+          "tran": "加水；流泪"
+        }
+      ],
+      "word": "water"
+    },
+    "collins": {
+      "collins_entries": [
+        {
+          "entries": {
+            "entry": [
+              {
+                "tran_entry": [
+                  {
+                    "pos_entry": {
+                      "pos": "N-UNCOUNT",
+                      "pos_tips": "不可数名词"
+                    },
+                    "exam_sents": {
+                      "sent": [
+                        {
+                          "chn_sent": "给我一杯水。",
+                          "eng_sent": "Get me a glass of water."
+                        },
+                        {
+                          "chn_sent": "…雨水敲打着金属屋顶的声音。",
+                          "eng_sent": "...the sound of water hammering on the metal roof."
+                        }
+                      ]
+                    },
+                    "tran": "<b>Water</b> is a clear thin liquid that has no colour or taste when it is pure. It falls from clouds as rain and enters rivers and seas. All animals and people need water in order to live. 水"
+                  }
+                ]
+              },
+              {
+                "tran_entry": [
+                  {
+                    "pos_entry": {
+                      "pos": "N-PLURAL",
+                      "pos_tips": "复数型名词"
+                    },
+                    "exam_sents": {
+                      "sent": [
+                        {
+                          "chn_sent": "这艘船将继续停留在中国领海之外。",
+                          "eng_sent": "The ship will remain outside Chinese territorial waters."
+                        }
+                      ]
+                    },
+                    "tran": "You use <b>waters</b> to refer to a large area of sea, especially the area of sea that is near to a country and that is regarded as belonging to it. 海域; (尤指) 领海"
+                  }
+                ]
+              },
+              {
+                "tran_entry": [
+                  {
+                    "pos_entry": {
+                      "pos": "V-T",
+                      "pos_tips": "及物动词"
+                    },
+                    "exam_sents": {
+                      "sent": [
+                        {
+                          "chn_sent": "他出去给植物浇水。",
+                          "eng_sent": "He went out to water the plants."
+                        }
+                      ]
+                    },
+                    "tran": "If you <b>water</b> plants, you pour water over them in order to help them to grow. 浇水"
+                  }
+                ]
+              },
+              {
+                "tran_entry": [
+                  {
+                    "pos_entry": {
+                      "pos": "V-I",
+                      "pos_tips": "不及物动词"
+                    },
+                    "exam_sents": {
+                      "sent": [
+                        {
+                          "chn_sent": "他的眼睛被香烟烟雾呛出了泪水。",
+                          "eng_sent": "His eyes watered from cigarette smoke."
+                        }
+                      ]
+                    },
+                    "tran": "If your eyes <b>water</b>, tears build up in them because they are hurting or because you are upset. 流泪"
+                  }
+                ]
+              },
+              {
+                "tran_entry": [
+                  {
+                    "pos_entry": {
+                      "pos": "V-I",
+                      "pos_tips": "不及物动词"
+                    },
+                    "exam_sents": {
+                      "sent": [
+                        {
+                          "chn_sent": "…令你流口水的曲奇饼。",
+                          "eng_sent": "...cookies to make your mouth water."
+                        }
+                      ]
+                    },
+                    "tran": "If you say that your mouth <b>is watering</b>, you mean that you can smell or see some nice food that makes you want to eat it. 流口水"
+                  }
+                ]
+              },
+              {
+                "tran_entry": [
+                  {
+                    "pos_entry": {
+                      "pos": "PHRASE",
+                      "pos_tips": "习语"
+                    },
+                    "exam_sents": {
+                      "sent": [
+                        {
+                          "chn_sent": "他对自己的刑期已满而感到如释重负，把那视为桥下之水过往之事而不再挂怀。",
+                          "eng_sent": "He was relieved his time in jail was over and regarded it as water under the bridge."
+                        }
+                      ]
+                    },
+                    "tran": "If you say that an event or incident is <b>water under the bridge</b>, you mean that it has happened and cannot now be changed, so there is no point in worrying about it anymore. 桥下水 (比喻无需再挂怀的往事)"
+                  }
+                ]
+              },
+              {
+                "tran_entry": [
+                  {
+                    "pos_entry": {
+                      "pos": "PHRASE",
+                      "pos_tips": "习语"
+                    },
+                    "exam_sents": {
+                      "sent": [
+                        {
+                          "chn_sent": "你的确看起来像是陷入了困境中。",
+                          "eng_sent": "You certainly seem to be in deep water."
+                        }
+                      ]
+                    },
+                    "tran": "If you are <b>in deep water</b>, you are in a difficult or awkward situation. 陷入困境"
+                  }
+                ]
+              },
+              {
+                "tran_entry": [
+                  {
+                    "pos_entry": {
+                      "pos": "PHRASE",
+                      "pos_tips": "习语"
+                    },
+                    "exam_sents": {
+                      "sent": [
+                        {
+                          "chn_sent": "这种论点在欧洲根本就说不通。",
+                          "eng_sent": "This argument simply cannot hold water in Europe."
+                        }
+                      ]
+                    },
+                    "tran": "If an argument or theory does not <b>hold water</b>, it does not seem to be reasonable or be in accordance with the facts. (理论或论点) 符合逻辑; 与事实相符"
+                  }
+                ]
+              },
+              {
+                "tran_entry": [
+                  {
+                    "registr": "非正式",
+                    "pos_entry": {
+                      "pos": "PHRASE",
+                      "pos_tips": "习语"
+                    },
+                    "exam_sents": {
+                      "sent": [
+                        {
+                          "chn_sent": "该公司今年已陷入了高价的困境中。",
+                          "eng_sent": "The company has already been in hot water over high prices this year."
+                        }
+                      ]
+                    },
+                    "tran": "If you are <b>in hot water</b>, you are in trouble. 陷入困境"
+                  }
+                ]
+              },
+              {
+                "tran_entry": [
+                  {
+                    "pos_entry": {
+                      "pos": "PHRASE",
+                      "pos_tips": "习语"
+                    },
+                    "exam_sents": {
+                      "sent": [
+                        {
+                          "chn_sent": "大学的经济学家们对经济已经开始复苏的观点泼冷水。",
+                          "eng_sent": "University economists pour cold water on the idea that the economic recovery has begun."
+                        }
+                      ]
+                    },
+                    "tran": "If you <b>pour cold water on</b> an idea or suggestion, you show that you have a low opinion of it. (对想法或建议) 泼冷水"
+                  }
+                ]
+              },
+              {
+                "tran_entry": [
+                  {
+                    "pos_entry": {
+                      "pos": "PHRASE",
+                      "pos_tips": "习语"
+                    },
+                    "exam_sents": {
+                      "sent": [
+                        {
+                          "chn_sent": "当你涉足其中时你应该小心谨慎，在表态之前要先行试探。",
+                          "eng_sent": "You should be cautious when getting involved and test the water before committing yourself."
+                        }
+                      ]
+                    },
+                    "tran": "If you <b>test the water</b> or <b>test the waters</b>, you try to find out what reaction an action or idea will get before you do it or tell it to people. 试探"
+                  }
+                ]
+              },
+              {
+                "tran_entry": [
+                  {
+                    "headword": "keep one's head above water",
+                    "sees": {
+                      "see": [
+                        {
+                          "seeword": "head"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "phonetic": "ˈwɔːtə",
+          "basic_entries": {
+            "basic_entry": [
+              {
+                "cet": "CET4 TEM4",
+                "headword": "water",
+                "wordforms": {
+                  "wordform": [
+                    {
+                      "word": "watering"
+                    },
+                    {
+                      "word": "watered"
+                    },
+                    {
+                      "word": "waters"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "headword": "water",
+          "star": "5"
+        }
+      ]
+    },
+    "word_video": {
+      "word_videos": [
+        {
+          "ad": {
+            "avatar": "https://ydlunacommon-cdn.nosdn.127.net/2b3a28325962aade6b60042cabe38b1a.png",
+            "title": "看美剧搞定3000万用词",
+            "url": "https://ke.study.163.com/topic/study/cpcjcj.html?outVendor=cidianccsp_lhz0517"
+          },
+          "video": {
+            "cover": "https://ydlunacommon-cdn.nosdn.127.net/ea9804438e5bfb0ac64f6b4da018cd79.jpg",
+            "image": "https://ydlunacommon-cdn.nosdn.127.net/75973cbd9e2d68eb964fb7fbea04f03d.jpg",
+            "title": "语境记单词 | water",
+            "url": "https://ydlunacommon-cdn.nosdn.127.net/fa11b05cd9e159212706a8fa0ffb0145.mp4"
+          }
+        }
+      ]
+    },
+    "webster": {
+      "encryptedData": "VcKA3WTZEeIeiUjhssApFxkoDpN03nMT0h2UeIQ5Km913GiZJjr66Qgwx_Hjma0CjTJUWnoeih4PijC47yJzhK8ATUUfTD6-CczyzTAdbp6GOxIyYMrWVhM2huvikwdq_m-PbM9tx5hDS3bYdKttm7QAXrdYm_Q-wi1VWAAK77Lf39-xBmSWKkcBqWunwwuhaBQg3Rc8QDXgt4jctFgpe_1c9-50Nx6OwxaCIOcJ0T2XOi10h_LCfgkr-QkmdcyBxqs5qa6Jl6TFWe0sPrHQI06ZwEJ7B9seq9YmPRR0GwUTJs_AyDTLIwrQvDcW2_SfQVE9B_k__z5l_83DhF1eyQWwZfGcUuReORTCgOImDzJM_p5EjM_aGCNMjQC8FsVlhpp7AVmxk7CbGvTKONOMToFn9VGtwC91AqMTjNnSk5NI6giaxkXb5v0XCWzonDZN3adiVTUkob-J8vmL0tdGhsZa5cIXG-gGRpXGs_qLwDMPvviYhf3xiDlazu5YkBJOUT9ZYGqgz6dealr8LZRgcK-Yf2jeoPOz9aPymKG2izYwwe-pqd9MUk5kK8IBxSkw1_9x9uGGhSCp-g_eNyT3ZnqT44MB6VEi7i57XMOIQQRpC-_aMXsjsRGkeL2xLOokxl1ifoAIri4KNZnYvfDN7QZtW_-suehZsi-Uc3TAjuRkCUGhFTUMYl7RGwnI2t5J2vej9Csi4betKlOdavUiBjHsPGOosrQ26ZUZr4hIA-avsN-zlLhI-VyE6yd35zvkq1GsnLFFN3Z8XAHPK3cHpY3SvQA87EcFEwd2Hypdzaxz867daThCceayM1V2epm8JxxRCAbKfvPn9QwItUNDEE-QVEzbA7ovnFm5iwe3ef5eordi-RWMtlHzeculEJ_P0Jkr1GcT0GfMeNKZG3RHcekZIA08GmacLfm4ZPMdcXG3o-gxdFo0XvBRrvwWU2Ug8Wdl_bjicoVre8WsihkBXd9nfDwObHAOx6WAsNhJ57_YJ66lnaTwi_AsNeD8W4WYNT6le-rmAm8zqvPrxnJvz8RwFD40ADCxWk5EU-GRiHzN69BC_9mSzpYHT6LSivawZVeehqbrVk8e6bMji_wxJGbAUEmDJEnAvPceXo9WklYBSk0Dj5YKUC7qmuEFq4fuqM2itarqlTyCNqGCmPIjuBVjozefJ_w7xzQFWes6kRA82I_iolObwRNjbi0TSVOltN8SK1NS8gu-G0wIHB3ZAZ2UJPXzMvXsAxGkCQD4tE3CnFWrdayLNMMtml8QVcx-w80ZmzNq6kgMRhkSPXSijtFAvxo_IredYENHJS8EvCOSCdIPtlOfidvn9oM3wxNpPlhLZZIQH8r4gn6yxfo9bB25-1Mkusw2OFC7SZz6914NW89g1W3peO70KDiKYj4dg5ycNqvlYkbAVTDEpdk-nZ-_KkHURaMoLsKR9ldXsCcaA41BEUb-vJM_Hbet7p7ecHrheIbIyNcbfD5lL_PZ8GY_NM-iSJKIbECzDDYccv0Dw8ghO7tOX82S2g785706S0cywiBrFcjTjN7Tis-pQsELDoDRxC9PZy7MDVJOXv4ZAQH2mpyzZMnJa1bJMgaKnG4oEH-q6TpeCFuPFfIBesSRkL4tGnpo07qbEqvMggWIE_8sKgEdOe3nKswdaAd-UX1WWETN9-oYsTDEIIF5LdDlxdBxHZLSIcOJ6Y9HCWa9Y4k3D9ZDA3_gOYbwGRdiBMxGMdt_kYFdlkNgSNVTVCYPBQ4PBBNJQnG-CfSl7DNXGe_cZ0S7RaniZtRs1MTkMHjATuqgZ9f_jlLR5kpb_9f_Rh2ADWId89qpoHFlaOKIzca-ZheuXhiqtrgrWjnniMfWCYgCLabpXcEFSQppH4wtWJCwOvql8CMBmAz0PIGdZo574lJk2T-Wee6RKSqMMR12CmL7tJaE8w-7TFlPmZWrNTTvNLIxvkSxWY1NWJeCAX6DhJBfkn0i5n-OVDhPHLeC0siHCUI6V7PqRR6mVn2fb41mcSapEzP_WCuy4IRe9CtHLcKbv3zxnXOz9Qeqrd_lYTogs_iXJEgRxKgou-fV6j-msQVCjd5IfmSkkntlJgsu1dNlHpGlVF0uWtiHSsMcX_9gkCQx0flEAmxq5NO1k_--0LCCqBDxxE_CcOYZNj04uQAlVYg9-qnmVmIlCCw7EAbAV4HSgklGgMPkLxm9JjW0ky1R6qEtTjT6AWz4P45RiawH7D1JN1v1Q_JfHf23wXZaxUcPowDn1RaTtqpgXJAfNoySVmrkF1SKTWPUJzlT6rHWC_Ve9bzoNpfGqPMt28mWf7R1IGQfgn4mNm1RjJxXz-mL7CUsOA1k-X4uwh-Sf0hpPpwuAKK98Y_SVjJP5EgyQfbDlbLKNXNvEF-wXjOF6T6-bbFZdcTzlbbLyHeKsbIhHs_c3CCfErIEJ8OrOhfpmSaM4oZS1VGmAxxxQjbq9F6AvViSIgOaB5Wo1gTG2VLvP6QsVw8ZcQSN_UWCq2JyaOjDQ0eonrQxoZddGLp8lDMxoSa9LsUZ2qB-ZltSECsC98R6zgeh_hA3ahhZEyB8KQGUB9VKWSyAcorpY4C6DFShiP2Wo5yMs46SxLoFL8axdPlWApr2FwofB__hitn3RZiStYse4n0V9CkZFtBYCDrbzWLyL0zQY5xh_lYsQdTJbczmehRnp1A4yLXwZLVWSIZA4sWtWVcroRDknCgrYL2pjor7rLbGt0pSV7uDbsc-3Xo6NsOCJqK6oO2IoxkBWMYbZOTSllS0Nu87hwJCJI1sPxmcAEOGUTp4DzALTEBAVO0k0x-6xvxZJ46-zklKD-a6C5tzCLZi_PNmTCNGv7HboBSjKkEiQgxuU2aU4n0k9r6Ig1C8nKyfhV7qD37j6VgFAtiQzMz47JvAI3lR-GeChHRCqQD2dnXrjPG-CViQCaGZws-A919T0AqBUsxaer9-BT2tbHuscKtFxXMb8qPDfbqwKC11Hj-y1YEIUbRLp8ILaPqOCRy5KfdZflw6kxQ6LebZb4xo8qTYQCCvJ-Af_R7nH5xjPC2m7j-AbfZjHCuggNdykT3Sjwy-kwlprT0Z9OEH1IBmwIR3cn-4kX9ZssTEGEierKsy5PurYdEmyBw101jHEy8c0qReWNRXsJQFxRRFfF80K7leRZwlO_nLaNvJYgn0TQrj0-A-yKY5I77MfwYYavD-EzRkAcaJiehq464fVpIbKdDcirK8FSyoAwz064aQWYZzSlG0kb4_wl9pfcDetvrQtit_RNK5Il0SxZOVBPsmbh_SQeX3yt3XjZ_QYhmn6D3IhlVtzTmzO9Zq8_wyNHmlaTk9fKgARQ4lGENpQE_rHH9PiR8ncYtRLWn35gN5i9XP3QXFOi2MxbQABYCFsXQjTK-5aCgLgmfQ9-mwsEZaGUm1gxq0454ZMWUmn3sFd_GwTgo_8bL21vOZIMarwPvG_pPnW4g_T5aJO9naUKIIA7dqKinL2EFWzZFI87KaE61jMJl1fU2r8svm61DeANqdOAtX_O99UeHyl-ttFE8DHaKzgll9LzOJKWF-mldcmeB_sBpB5xgGMeWo6eWEpPhWuGFzxni5FHzqE2ddpxkCW7UhsLVoEoKEU3LWLcTREWJeGzMsbFqFVBAR2b-9sQkY--7kuMsF9zCJCzrGEthC7r9IEpLyGgTKricbICmcIsX7dRb6X17ZkwtjaS8BHn_Hq11GJg43DtF-pa0zP-WItRrFci3uDmsz34JUDDRP2e684SNItsiLCkXBvyMlCMVMAf5pd4aMK0GvPZi8AvHAF8RY8qhHXKcQuAWIMn19z8K6DZ-qEY84VoPsrsXgmjTWqa0s-1fEnXtmq_ckOvQTIuNHRoKXpABiGVcXH7AoBwcHWUojwRzwBbFmnrchg_bicZ-3tekvbYj0PoplRxSleLPayNvDCWsOh2L3sjVdoBL9XG32E5sNYt9Ue0GG5GRgJ1S3pnVVaDtxzypOHmPZU8b0Sbkeq71ezLwKhmZC8BTgun_DhpbIMk7CAWWOiPtjm4LziFJcB6G_eBWAJ8XPDtDbLrJ46VlVAAAHTldp0LS22M6hYrR9XVXaXA6CLWWW-rsPyPhncmmQixHNB8RchohFyioLS_Fv39rhFNKlHIdrKfkF92P66iKMS2XqRSrPEkW1Q0FE1AqQ4wEpNqjVt1gRtUYur9QHDX6ZXEm2xrzRZjAcsCdgDceJeRxgGPvM5Zsovahc9kguCCY_8p8hIfW7K6jo9DfzcuuwsVrCrQrV3-UMPiSMFigjHbb3gOXZ_pDtknkZhl9B4DbmDtY6YSuReG0PZfde6utBrtRe_csftdBX5KyL-FiZ9U6hpuw8Docvmlkkr_9OyIXm24ju62gjCZvPXvepIIlrUBDNlF9ZKSRoUXHfagQST7pTZg8sK4MD-ECoi9fVGEiHejs2ebFkHMVudSW-XOBWztHglk5mbHE_CV2kNbFP8T7YSSilpXAZeXoHeYX_O2GsaIq1n_NuPrupPBJ9Q9xf0Q_bPkKieHVWXShtFnj8SGpwL4YJsWKUSAa4eoiXdMt1ymvPVUahGI_qlunfOkGNYYvPSqvGHzDVZu-X0_lNpQ7o8Eg85tolZGwskFLzGk3pAqhWE716V3S258KClZCMm38tIo4Yxseeqjmc2rw3ZklXybJFmnVK7mQtjfcP1VTZqA5U-BEv-p3oqwXDo-PgCzZia01xt2kCxh-JcaMGJZuDP0Xr0OV6u8m0mCDgci_srn1eCT36-XLspp_q3zKIsPZTW5G55j7gpEyZJk4mGGyGgvCD4f04mQ6p2cKKp0NGlO0A4_EWYLLiq7kXAJjxBmw_rItRC0Y744qs9hYswA-NzgpP5ga-tMR9PdWFD85nII4L-ge4L-ZYthiKpk0aal2WNbd-82Fs5Y6RKUKvEJYzJxs_0_mTKpFsqAitsf2-zI3-KKOv9SQDB9SQWvf8V6CvQR01pegRXKmqNYcsHCrLM4BqKZ7ffsUrakLeRhgXFofWVuZUnrxVw1UmeHPV8AXSKYbivVMvSF9-W1Amsw2ifB8sokuzXY_CYDdLO8JVsyG0vyGT3iqtJqx0BzJsdkc-rz2bKwlFfH5lkECtjCRc9ThVWBIBl2K4vZ_AdhoAcv1U_1oUpD95OJnMaZM_oLrHivuSJVB3w5LkU3lO93Fz_K17aC9qhzck3-n9dA2Ood4wl3WdCwjf35A2I8vEPTlXUWg1VjlTiSsVjriEw9cw_VB8MFqyE7qCLjExwoTgG0KA-_RfWKbuCTIw8E0K35vNfcktxVHwjH_4rAFOWeS-qhbfipX77TOD9FModXD0puS4ofX67peXMqSCH_7tFswQQdOCsNFeLL27I49adXFd1nKYXuxVTWq6bmU1OtBIsu1Mowbvz0MGNuGCJMur6Hcc4U8PxYh5v4mbD9BT2knlkmreOnP_Mvryg_UTfpcms0nIGZe05ZhN1kyDPJRi6ywroSzVuJG2rAzpeYTfp3V-P5LHYyvpYo2wubMekazrFCeWXh2iX1uxc6eva6eI094PWN51ZkqoG0sR6k8v8VeHkAKgmlq-DPXWODI1-ieIvLRPF1LQPEdfIk9jpabt8zr3q2gmrtIIGnl9iINkVtXHt_APbFX7YUvxsQHrGIVyDh-9wWo_6LhqlqcIcGkTMaXQ1zA1jqXQMHS9InfCbYr0-lz9a3GkGn_DFwMrexOkkmnhUhN8TZsqtnCAkPNmuJyj0EqzfeAFbbcNAmaZWTd22as1V8ZewjzkUhmwtTNZlLppXZuS8wxH3vwSjU7u3I7m3_TiYXZo5zfpwtvZx-PtiNGWFFzGb65_hQoenh0PmPRajz1TuPSshWySWSe34Ww5Aisw58uB2rt1MS_7g8Tl0-zhoKC_irs4uojXz4zCvA2rRJkFsvn7MNKboQWPXzweeWzmEtCxon8kMZLVE7qr637GtTB1nCzjQwjuhZcGUUAlJxIvyWU00d-GoiXBH6hEzNUhDwCIi3kFKuycCRmx-Gmljk7bsNURdhD0yiCKZb5faZjsrpL164B3aAPglommtOM="
+    },
+    "wikipedia_digest": {
+      "summarys": [
+        {
+          "summary": "Water is a transparent fluid which forms the world's streams, lakes, oceans and rain, and is the major constituent of the fluids of living things. As a chemical compound, a water molecule contains one oxygen and two hydrogen atoms that are connected by covalent bonds. Water is a liquid at standard ambient temperature and pressure, but it often co-exists on Earth with its solid state, ice; and gaseous state, steam (water vapor). It also exists as snow, fog, dew and cloudWater covers 71% of the Earth's surface. It is vital for all known forms of life. On Earth, 96.5% of the planet's water is found in seas and oceans, 1.7% in groundwater, 1.7% in glaciers and the ice caps of Antarctica and Greenland, a small fraction in other large water bodies, and 0.001% in the air as vapor, clouds (formed of solid and liquid water particles suspended in air), and precipitation. Only 2.5% of the Earth's water is freshwater, and 98.8% of that water is in ice and groundwater. Less than 0.3% of all freshwater is in rivers, lakes, and the atmosphere, and an even smaller amount of the Earth's freshwater (0.003%) is contained within biological bodies and manufactured products.Water on Earth moves continually through the water cycle of evaporation and transpiration (evapotranspiration), condensation, precipitation, and runoff, usually reaching the sea. Evaporation and transpiration contribute to the precipitation over land. Water used in the production of a good or service is known as virtual water.Safe drinking water is essential to humans and other lifeforms even though it provides no calories or organic nutrients. Access to safe drinking water has improved over the last decades in almost every part of the world, but approximately one billion people still lack access to safe water and over 2.5 billion lack access to adequate sanitation. There is a clear correlation between access to safe water and gross domestic product per capita. However, some observers have estimated that by 2025 more than half of the world population will be facing water-based vulnerability. A report, issued in November 2009, suggests that by 2030, in some developing regions of the world, water demand will exceed supply by 50%. Water plays an important role in the world economy, as it functions as a solvent for a wide variety of chemical substances and facilitates industrial cooling and transportation. Approximately 70% of the fresh water used by humans goes to agriculture.",
+          "key": "Water"
+        }
+      ],
+      "source": {
+        "name": "维基百科",
+        "url": "http://en.wikipedia.org/wiki/Water"
+      }
+    },
+    "lang": "eng",
+    "ec": {
+      "web_trans": [
+        "水(W Ater Tow Er)",
+        "水",
+        "水分"
+      ],
+      "exam_type": [
+        "初中",
+        "高中",
+        "CET4",
+        "CET6",
+        "考研"
+      ],
+      "source": {
+        "name": "有道词典",
+        "url": "https://dict.youdao.com"
+      },
+      "word": {
+        "usphone": "ˈwɔːtər",
+        "ukphone": "ˈwɔːtə(r)",
+        "ukspeech": "water&type=1",
+        "trs": [
+          {
+            "pos": "n.",
+            "tran": "水，雨水；水域，（江、河、湖、海等）大片的水；（某个国家的）领海，海域（waters）；不明朗（或未知的、困难、危险等）局面（waters）；羊水（waters）；（湖、海的）水面；水位；乘船，走水路"
+          },
+          {
+            "pos": "v.",
+            "tran": "给……浇水，灌溉；给…...水喝，饮（动物）；（风等使眼睛）流泪；流口水；（江河）流经并给（某地区）供水；加水冲淡，稀释"
+          },
+          {
+            "tran": "【名】 （Water）（英）沃特（人名）"
+          }
+        ],
+        "wfs": [
+          {
+            "wf": {
+              "name": "复数",
+              "value": "waters"
+            }
+          },
+          {
+            "wf": {
+              "name": "第三人称单数",
+              "value": "waters"
+            }
+          },
+          {
+            "wf": {
+              "name": "现在分词",
+              "value": "watering"
+            }
+          },
+          {
+            "wf": {
+              "name": "过去式",
+              "value": "watered"
+            }
+          },
+          {
+            "wf": {
+              "name": "过去分词",
+              "value": "watered"
+            }
+          }
+        ],
+        "return-phrase": "water",
+        "usspeech": "water&type=2"
+      }
+    },
+    "ee": {
+      "source": {
+        "name": "WordNet",
+        "url": "https://wordnet.princeton.edu"
+      },
+      "word": {
+        "trs": [
+          {
+            "pos": "n.",
+            "tr": [
+              {
+                "tran": "binary compound that occurs at room temperature as a clear colorless odorless tasteless liquid; freezes into ice below 0 degrees centigrade and boils above 100 degrees centigrade; widely used as a solvent",
+                "similar-words": [
+                  "H2O"
+                ]
+              },
+              {
+                "examples": [
+                  "they invaded our territorial waters",
+                  "they were sitting by the water's edge"
+                ],
+                "tran": "the part of the earth's surface covered with water (such as a river or lake or ocean)",
+                "similar-words": [
+                  "body of water"
+                ]
+              },
+              {
+                "examples": [
+                  "the town debated the purification of the water supply",
+                  "first you have to cut off the water"
+                ],
+                "tran": "a facility that provides a source of water",
+                "similar-words": [
+                  "water system",
+                  "water supply"
+                ]
+              },
+              {
+                "tran": "once thought to be one of four elements composing the universe (Empedocles)"
+              },
+              {
+                "examples": [
+                  "the child had to make water"
+                ],
+                "tran": "liquid excretory product",
+                "similar-words": [
+                  "urine",
+                  "piss",
+                  "pee",
+                  "piddle",
+                  "weewee"
+                ]
+              },
+              {
+                "examples": [
+                  "he asked for a drink of water"
+                ],
+                "tran": "a fluid necessary for the life of most animals and plants"
+              }
+            ]
+          },
+          {
+            "pos": "v.",
+            "tr": [
+              {
+                "tran": "supply with water, as with channels or ditches or streams",
+                "similar-words": [
+                  "irrigate"
+                ]
+              },
+              {
+                "examples": [
+                  "We watered the buffalo"
+                ],
+                "tran": "provide with water"
+              },
+              {
+                "examples": [
+                  "My mouth watered at the prospect of a good dinner",
+                  "His eyes watered"
+                ],
+                "tran": "secrete or form water, as tears or saliva"
+              },
+              {
+                "examples": [
+                  "His eyes were watering"
+                ],
+                "tran": "fill with tears"
+              }
+            ]
+          }
+        ],
+        "speech": "water",
+        "return-phrase": "water"
+      }
+    },
+    "blng_sents_part": {
+      "sentence-count": 6,
+      "sentence-pair": [
+        {
+          "sentence": "The water deepened gradually.",
+          "sentence-eng": "The <b>water</b> deepened gradually.",
+          "sentence-translation": "水渐渐变深了。",
+          "speech-size": "8kb",
+          "aligned-words": {
+            "src": {
+              "chars": [
+                {
+                  "@s": "5",
+                  "@e": "10",
+                  "aligns": {
+                    "sc": [
+                      {
+                        "@id": "0"
+                      }
+                    ],
+                    "tc": [
+                      {
+                        "@id": "0"
+                      }
+                    ]
+                  },
+                  "@id": "0"
+                },
+                {
+                  "@s": "11",
+                  "@e": "19",
+                  "aligns": {
+                    "sc": [
+                      {
+                        "@id": "1"
+                      }
+                    ],
+                    "tc": [
+                      {
+                        "@id": "1"
+                      }
+                    ]
+                  },
+                  "@id": "1"
+                }
+              ]
+            },
+            "tran": {
+              "chars": [
+                {
+                  "@s": "1",
+                  "@e": "2",
+                  "aligns": {
+                    "sc": [
+                      {
+                        "@id": "0"
+                      }
+                    ],
+                    "tc": [
+                      {
+                        "@id": "0"
+                      }
+                    ]
+                  },
+                  "@id": "0"
+                },
+                {
+                  "@s": "4",
+                  "@e": "7",
+                  "aligns": {
+                    "sc": [
+                      {
+                        "@id": "1"
+                      }
+                    ],
+                    "tc": [
+                      {
+                        "@id": "1"
+                      }
+                    ]
+                  },
+                  "@id": "1"
+                }
+              ]
+            }
+          },
+          "source": "《牛津词典》",
+          "url": "https://《牛津词典》/",
+          "sentence-speech": "The+water+deepened+gradually.&le=eng"
+        },
+        {
+          "sentence": "Salt dissolves in water.",
+          "sentence-eng": "Salt dissolves in <b>water</b>.",
+          "sentence-translation": "盐溶于水。",
+          "speech-size": "7kb",
+          "aligned-words": {
+            "src": {
+              "chars": [
+                {
+                  "@s": "1",
+                  "@e": "5",
+                  "aligns": {
+                    "sc": [
+                      {
+                        "@id": "0"
+                      }
+                    ],
+                    "tc": [
+                      {
+                        "@id": "0"
+                      }
+                    ]
+                  },
+                  "@id": "0"
+                },
+                {
+                  "@s": "6",
+                  "@e": "18",
+                  "aligns": {
+                    "sc": [
+                      {
+                        "@id": "1"
+                      }
+                    ],
+                    "tc": [
+                      {
+                        "@id": "1"
+                      }
+                    ]
+                  },
+                  "@id": "1"
+                },
+                {
+                  "@s": "19",
+                  "@e": "24",
+                  "aligns": {
+                    "sc": [
+                      {
+                        "@id": "2"
+                      }
+                    ],
+                    "tc": [
+                      {
+                        "@id": "2"
+                      }
+                    ]
+                  },
+                  "@id": "2"
+                }
+              ]
+            },
+            "tran": {
+              "chars": [
+                {
+                  "@s": "1",
+                  "@e": "2",
+                  "aligns": {
+                    "sc": [
+                      {
+                        "@id": "0"
+                      }
+                    ],
+                    "tc": [
+                      {
+                        "@id": "0"
+                      }
+                    ]
+                  },
+                  "@id": "0"
+                },
+                {
+                  "@s": "2",
+                  "@e": "4",
+                  "aligns": {
+                    "sc": [
+                      {
+                        "@id": "1"
+                      }
+                    ],
+                    "tc": [
+                      {
+                        "@id": "1"
+                      }
+                    ]
+                  },
+                  "@id": "1"
+                },
+                {
+                  "@s": "4",
+                  "@e": "5",
+                  "aligns": {
+                    "sc": [
+                      {
+                        "@id": "2"
+                      }
+                    ],
+                    "tc": [
+                      {
+                        "@id": "2"
+                      }
+                    ]
+                  },
+                  "@id": "2"
+                }
+              ]
+            }
+          },
+          "source": "《牛津词典》",
+          "url": "https://《牛津词典》/",
+          "sentence-speech": "Salt+dissolves+in+water.&le=eng"
+        },
+        {
+          "sentence": "The water was blackish.",
+          "sentence-eng": "The <b>water</b> was blackish.",
+          "sentence-translation": "水带着黑色。",
+          "speech-size": "6kb",
+          "aligned-words": {
+            "src": {
+              "chars": [
+                {
+                  "@s": "1",
+                  "@e": "23",
+                  "aligns": {
+                    "sc": [
+                      {
+                        "@id": "0"
+                      }
+                    ],
+                    "tc": [
+                      {
+                        "@id": "0"
+                      }
+                    ]
+                  },
+                  "@id": "0"
+                }
+              ]
+            },
+            "tran": {
+              "chars": [
+                {
+                  "@s": "1",
+                  "@e": "3",
+                  "aligns": {
+                    "sc": [
+                      {
+                        "@id": "0"
+                      }
+                    ],
+                    "tc": [
+                      {
+                        "@id": "0"
+                      }
+                    ]
+                  },
+                  "@id": "0"
+                }
+              ]
+            }
+          },
+          "source": "《柯林斯英汉双解大词典》",
+          "url": "https://《柯林斯英汉双解大词典》/",
+          "sentence-speech": "The+water+was+blackish.&le=eng"
+        }
+      ],
+      "more": "blng_sents",
+      "trs-classify": [
+        {
+          "proportion": "100%",
+          "tr": "全部"
+        },
+        {
+          "proportion": "84.3%",
+          "tr": "水"
+        },
+        {
+          "proportion": "5.0%",
+          "tr": "水中"
+        },
+        {
+          "proportion": "4.3%",
+          "tr": "用水"
+        },
+        {
+          "proportion": "1.7%",
+          "tr": "水面"
+        },
+        {
+          "proportion": "1.4%",
+          "tr": "水上"
+        },
+        {
+          "proportion": "1.3%",
+          "tr": "供水"
+        },
+        {
+          "proportion": "1.1%",
+          "tr": "海水"
+        },
+        {
+          "proportion": "0.4%",
+          "tr": "浇水"
+        },
+        {
+          "proportion": "0.3%",
+          "tr": "加水"
+        },
+        {
+          "proportion": "0.2%",
+          "tr": "雨水"
+        }
+      ]
+    },
+    "individual": {
+      "trs": [
+        {
+          "pos": "n.",
+          "tran": "水，雨水"
+        }
+      ],
+      "idiomatic": [
+        {
+          "colloc": {
+            "en": "water pipe",
+            "zh": "水管"
+          }
+        },
+        {
+          "colloc": {
+            "en": "water pollution",
+            "zh": "水污染"
+          }
+        },
+        {
+          "colloc": {
+            "en": "running water",
+            "zh": "自来水"
+          }
+        },
+        {
+          "colloc": {
+            "en": "drink water",
+            "zh": "喝水"
+          }
+        }
+      ],
+      "level": "中考",
+      "examInfo": {
+        "year": 5,
+        "questionTypeInfo": [
+          {
+            "time": 1066,
+            "type": "阅读"
+          },
+          {
+            "time": 140,
+            "type": "短文填空"
+          },
+          {
+            "time": 64,
+            "type": "听力"
+          },
+          {
+            "time": 8,
+            "type": "翻译"
+          },
+          {
+            "time": 14,
+            "type": "情景对话"
+          },
+          {
+            "time": 6,
+            "type": "写作"
+          },
+          {
+            "time": 221,
+            "type": "完形填空"
+          },
+          {
+            "time": 58,
+            "type": "单项选择"
+          },
+          {
+            "time": 27,
+            "type": "句子填空"
+          }
+        ],
+        "recommendationRate": 5,
+        "frequency": 1604
+      },
+      "return-phrase": "water",
+      "pastExamSents": [
+        {
+          "en": "It's well known for the Severn Bore—a tall wave of water that regularly—flows up the river from the sea.",
+          "source": "2021·湖南-长沙·阅读",
+          "zh": "它因塞文潮而闻名，塞文潮是一种定期从海里沿河向上流动的巨浪。"
+        },
+        {
+          "en": "As fog passes by, the nets catch the water drops.",
+          "source": "2021·湖南-株洲·阅读",
+          "zh": "当雾气经过时，这些网就收集水滴。"
+        },
+        {
+          "en": "Centuries before scientists created fog-catching nets, nature was making fog into water on its own.",
+          "source": "2021·湖南-株洲·阅读",
+          "zh": "早在科学家们发明雾收集网的几个世纪前，大自然自己就把雾转化成水了。"
+        },
+        {
+          "en": "Rivers can differ in size and there is no strict rule on how big a flow of water must be to be called as a river.",
+          "source": "2021·湖北-十堰·阅读",
+          "zh": "河流的流域会有不同，对于有多大的流量才能被称为河流没有严格的规定。"
+        },
+        {
+          "en": "By the time I climbed down to the rocks below, my husband had pulled Wyatt out of the water with the help of a young woman.",
+          "source": "2021·浙江-嘉兴·完形填空",
+          "zh": "当我爬到下面的岩石上时，我丈夫已经在一个年轻女人的帮助下把怀亚特从水里拉了出来。"
+        },
+        {
+          "en": "I have serious kidney problems because I don't have enough water to drink.",
+          "source": "2021·湖北-荆州·短文填空",
+          "zh": "我有严重的肾脏问题，因为我没有足够的水喝。"
+        },
+        {
+          "en": "If it feels there are hands, the water with the air will come from the tap.",
+          "source": "2021·广西-桂林·阅读",
+          "zh": "如果它感觉到有手，水和空气就会从水龙头里流出来。"
+        },
+        {
+          "en": "We should save water in our daily life.",
+          "source": "2021·辽宁-锦州·情景对话",
+          "zh": "我们应该在日常生活中节约用水。"
+        },
+        {
+          "en": "What's more, the area will improve the water quality of Baiyangdian Lake, one of the largest freshwater wetlands in North China.",
+          "source": "2021·辽宁-锦州·阅读",
+          "zh": "此外，该区将改善白洋淀的水质，白洋淀是中国北方最大的淡水湿地之一。"
+        },
+        {
+          "en": "People and animals visit an oasis for water and food.",
+          "source": "2021·天津·阅读",
+          "zh": "人类和动物到绿洲获取水和食物。"
+        },
+        {
+          "en": "That's why we need to drink plenty of water every day.",
+          "source": "2021·陕西·阅读",
+          "zh": "这就是我们每天需要喝大量的水的原因。"
+        },
+        {
+          "en": "Since the 1950s, the amount of water people use has increased by three times.",
+          "source": "2021·陕西·阅读",
+          "zh": "自20世纪50年代以来，人类用水量增加了三倍。"
+        },
+        {
+          "en": "This village used to fight with water shortage, but now we have enough water because of him.",
+          "source": "2021·山东-日照·阅读",
+          "zh": "这个村子过去常与缺水作斗争，但现在因为他，我们有了足够的水源。"
+        },
+        {
+          "en": "Birbal asked the neighbor, \"Why don't you let the farmer take water from the well? You did sell the well to the farmer.\"",
+          "source": "2021·湖北-十堰·完形填空",
+          "zh": "比巴尔问邻居：“你为什么不让农夫从井里打水呢？你确实把井卖给农夫了。”"
+        },
+        {
+          "en": "It was sometimes filled with water for ship battles.",
+          "source": "2021·辽宁-沈阳·阅读",
+          "zh": "有时它会被装满水用于船战。"
+        },
+        {
+          "en": "Machine-made tea floats longer in water and tastes bitter.",
+          "source": "2021·湖北-荆州·阅读",
+          "zh": "机制茶在水中漂浮的时间更长，味道苦涩。"
+        },
+        {
+          "en": "In a moment, water stops.",
+          "source": "2021·黑龙江-龙东地区·阅读",
+          "zh": "过了一会儿，水停了。"
+        },
+        {
+          "en": "Scientists worry that soon there won't be enough water for us, as well as for the animals and plants that share our world.",
+          "source": "2021·陕西·阅读",
+          "zh": "科学家们担心，很快就会没有足够的水供我们使用，与我们共享这个世界的动植物同样也会没有足量的水可供使用。"
+        },
+        {
+          "en": "Land and water pollution kills many animals every year.",
+          "source": "2021·江苏-宿迁·阅读",
+          "zh": "土地和水污染每年都会导致许多动物死亡。"
+        },
+        {
+          "en": "Along the way, he met bad weathers, a shortage of food and water and so on.",
+          "source": "2021·山西·阅读",
+          "zh": "一路上，他遇到了恶劣的天气，食物和水的缺乏等等。"
+        }
+      ]
+    },
+    "collins_primary": {
+      "words": {
+        "indexforms": [
+          "water",
+          "water's",
+          "waters",
+          "watering",
+          "watered"
+        ],
+        "word": "water"
+      },
+      "gramcat": [
+        {
+          "audiourl": "https://ydlunacommon-cdn.nosdn.127.net/bdd0ed3a8f54b4b82d868115a92c11e4.mp3",
+          "pronunciation": "ˈwɔːtə",
+          "senses": [
+            {
+              "examples": [
+                {
+                  "sense": {
+                    "lang": "ZH-CN",
+                    "word": "请给我一杯水好吗?"
+                  },
+                  "example": "Could I have a glass of water, please?"
+                }
+              ],
+              "labelgrammar": "uncountable",
+              "definition": "a clear, thin liquid that has no colour or taste. It falls from clouds as rain",
+              "lang": "ZH-CN",
+              "word": "水"
+            }
+          ],
+          "partofspeech": "noun",
+          "audio": "61154",
+          "forms": []
+        },
+        {
+          "audiourl": "https://ydlunacommon-cdn.nosdn.127.net/bdd0ed3a8f54b4b82d868115a92c11e4.mp3",
+          "pronunciation": "ˈwɔːtə",
+          "senses": [
+            {
+              "sensenumber": "1",
+              "examples": [
+                {
+                  "sense": {
+                    "lang": "ZH-CN",
+                    "word": "你去度假前一定要给植物浇水。"
+                  },
+                  "example": "Make sure you water the plants before you go on holiday."
+                }
+              ],
+              "definition": "to pour water over plants in order to help them to grow",
+              "lang": "ZH-CN",
+              "word": "给…浇水；灌溉"
+            },
+            {
+              "sensenumber": "2",
+              "examples": [
+                {
+                  "sense": {
+                    "lang": "ZH-CN",
+                    "word": "他的眼睛在烟中流泪。"
+                  },
+                  "example": "His eyes were watering in the smoke."
+                }
+              ],
+              "definition": "when your eyes water, tears appear in them",
+              "lang": "ZH-CN",
+              "word": "充满眼泪"
+            }
+          ],
+          "partofspeech": "verb",
+          "audio": "61154",
+          "forms": [
+            {
+              "form": "waters"
+            },
+            {
+              "form": "watering"
+            },
+            {
+              "form": "watered"
+            }
+          ]
+        }
+      ]
+    },
+    "rel_word": {
+      "word": "water",
+      "stem": "water",
+      "rels": [
+        {
+          "rel": {
+            "pos": "adj.",
+            "words": [
+              {
+                "word": "watery",
+                "tran": "水的；淡的；湿的；松软的；有雨意的"
+              },
+              {
+                "word": "watering",
+                "tran": "灌溉的；浇水用的"
+              },
+              {
+                "word": "watered",
+                "tran": "掺水的；洒有水的，洒了水的；有波纹的；加虚股的（面值增加而实值未按比例增加）"
+              },
+              {
+                "word": "waterless",
+                "tran": "无水的；干的；不用水的，不需水的"
+              }
+            ]
+          }
+        },
+        {
+          "rel": {
+            "pos": "n.",
+            "words": [
+              {
+                "word": "watering",
+                "tran": "浇水；灌溉；排水沟"
+              },
+              {
+                "word": "waterer",
+                "tran": "饮水器；供给饮水的人"
+              },
+              {
+                "word": "wateriness",
+                "tran": "平淡；多水；稀薄"
+              }
+            ]
+          }
+        },
+        {
+          "rel": {
+            "pos": "v.",
+            "words": [
+              {
+                "word": "watering",
+                "tran": "浇水；灌溉（water的ing形式）"
+              },
+              {
+                "word": "watered",
+                "tran": "浇水，供以水（water的过去式和过去分词）"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "auth_sents_part": {
+      "sentence-count": 6,
+      "more": "auth_sents",
+      "sent": [
+        {
+          "score": 0.9831475019454956,
+          "speech": "Mr+Alexander%27s+new+pay+package+was+approved+by+Thames+Water%27s+parent+company%2C+German+utility+giant+RWE.+",
+          "speech-size": "28kb",
+          "source": "BBC: <i>Water chief sees salary doubled</i>",
+          "url": "youdao",
+          "foreign": "Mr Alexander's new pay package was approved by Thames Water's parent company, German utility giant RWE. "
+        },
+        {
+          "score": 0.9831475019454956,
+          "speech": "The+pay+rise+attracted+criticism+from+various+consumer+groups%2C+including+the+National+Campaign+for+Water+Justice.+",
+          "speech-size": "32kb",
+          "source": "BBC: <i>Water chief sees salary doubled</i>",
+          "url": "youdao",
+          "foreign": "The pay rise attracted criticism from various consumer groups, including the National Campaign for <b>Water</b> Justice. "
+        },
+        {
+          "score": 0.9831475019454956,
+          "speech": "The+water+company+Thames+Water+has+doubled+the+salary+of+its+chief+executive%2C+Bill+Alexander.+",
+          "speech-size": "29kb",
+          "source": "BBC: <i>Water chief sees salary doubled</i>",
+          "url": "youdao",
+          "foreign": "The <b>water</b> company Thames <b>Water</b> has doubled the salary of its chief executive, Bill Alexander. "
+        }
+      ]
+    },
+    "media_sents_part": {
+      "sentence-count": 6,
+      "more": "media_sents",
+      "query": "water",
+      "sent": [
+        {
+          "@mediatype": "audio",
+          "snippets": {
+            "snippet": [
+              {
+                "streamUrl": "https://dict.youdao.com/pureaudio?docid=1710963193856389241",
+                "duration": "11100",
+                "swf": "",
+                "name": "special.2009.07.06",
+                "source": "VOA",
+                "win8": "https://dict.youdao.com/pureaudio?docid=1710963193856389241&dist=win8"
+              }
+            ]
+          },
+          "speech-size": "37kb",
+          "eng": "Then they are mixed with <b>water</b>. After the <b>water</b> has been removed, the flat,thin form remaining is permitted to dry."
+        },
+        {
+          "@mediatype": "video",
+          "snippets": {
+            "snippet": [
+              {
+                "sourceUrl": "youdao",
+                "streamUrl": "movie=http://dict.youdao.com/purevideo?docid=4608193296725574468&auto=true",
+                "swf": "http://shared.ydstatic.com/dict/4.0/simplayer.swf",
+                "imageUrl": "http://dict.youdao.com/pureimage?docid=4608193296725574468",
+                "name": "麻省理工公开课",
+                "source": "热力学与动力学课程节选"
+              }
+            ]
+          },
+          "chn": "里面放一块冰，这是固态；,于是我们得到了水，冰和水蒸气三态共存的点。<br>",
+          "eng": "There's the <b>water</b> phase, there's the ice cube is the solid phase, and there's some <b>water</b>, gas, vapor, and that's one bar.<br>"
+        },
+        {
+          "@mediatype": "video",
+          "snippets": {
+            "snippet": [
+              {
+                "sourceUrl": "youdao",
+                "streamUrl": "movie=http://dict.youdao.com/purevideo?docid=-6734869357079760618&auto=true",
+                "swf": "http://shared.ydstatic.com/dict/4.0/simplayer.swf",
+                "imageUrl": "http://dict.youdao.com/pureimage?docid=-6734869357079760618",
+                "name": "耶鲁公开课",
+                "source": "旧约导论课程节选"
+              }
+            ]
+          },
+          "chn": "有原始的淡水，淡水海洋，它与男性神道有关，这个男性神灵叫做。<br>",
+          "eng": "There's the primeval fresh <b>water</b>, fresh <b>water</b> ocean, Apsu Which is identified with a male divine principle, a male god Apsu.<br>"
+        },
+        {
+          "@mediatype": "audio",
+          "snippets": {
+            "snippet": [
+              {
+                "streamUrl": "https://dict.youdao.com/pureaudio?docid=5222934323645148959",
+                "duration": "11400",
+                "swf": "",
+                "name": "special.2009.01.05",
+                "source": "VOA",
+                "win8": "https://dict.youdao.com/pureaudio?docid=5222934323645148959&dist=win8"
+              }
+            ]
+          },
+          "speech-size": "34kb",
+          "eng": "Most of the11 lakes contain cold <b>water</b> fisheries like trout as well as bass and other warm <b>water</b> fishing."
+        },
+        {
+          "@mediatype": "audio",
+          "snippets": {
+            "snippet": [
+              {
+                "streamUrl": "https://dict.youdao.com/pureaudio?docid=-2594793626160667598",
+                "duration": "9200",
+                "swf": "",
+                "name": "special.2009.04.20",
+                "source": "VOA",
+                "win8": "https://dict.youdao.com/pureaudio?docid=-2594793626160667598&dist=win8"
+              }
+            ]
+          },
+          "speech-size": "37kb",
+          "eng": "When the <b>water</b> heater is working correctly, <b>water</b> will flow from the storage tank to the collector and back again."
+        }
+      ]
+    },
+    "expand_ec": {
+      "return-phrase": "water",
+      "source": {
+        "name": "有道词典",
+        "url": "https://dict.youdao.com"
+      },
+      "word": [
+        {
+          "transList": [
+            {
+              "content": {
+                "detailPos": "un.",
+                "examType": [
+                  {
+                    "zh": "高中"
+                  },
+                  {
+                    "en": "CET4",
+                    "zh": "四级"
+                  }
+                ],
+                "sents": [
+                  {
+                    "sentOrig": "Get me a glass of <b>water</b>.",
+                    "sourceType": "权威",
+                    "sentSpeech": "Get me a glass of water.",
+                    "sentTrans": "给我一杯水。",
+                    "source": "《柯林斯英汉双解大词典》",
+                    "usages": [
+                      {
+                        "phrase": "glass of water",
+                        "phraseTrans": "一杯水"
+                      }
+                    ]
+                  },
+                  {
+                    "sentOrig": "We were raised on books and computers, highways and cell phones, but now we were living in a village without running <b>water</b> or electricity.",
+                    "sourceType": "真题",
+                    "sentSpeech": "We were raised on books and computers, highways and cell phones, but now we were living in a village without running water or electricity.",
+                    "sentTrans": "我们在书本、电脑、高速公路和手机的陪伴下长大，但现在我们生活在一个没有自来水和电的村庄。",
+                    "source": "2020·高考江苏卷·阅读理解",
+                    "usages": [
+                      {
+                        "phrase": "running water",
+                        "phraseTrans": "自来水"
+                      }
+                    ],
+                    "type": "SENIOR"
+                  },
+                  {
+                    "sentOrig": "The company employs its trucks and planes to deliver food, medicine, and <b>water</b>.",
+                    "sourceType": "真题",
+                    "sentSpeech": "The company employs its trucks and planes to deliver food, medicine, and water.",
+                    "sentTrans": "该公司使用卡车和飞机运送食品、药品和水。",
+                    "source": "CET4·2019年12月·阅读理解",
+                    "type": "CET4"
+                  }
+                ]
+              },
+              "trans": "水，雨水"
+            },
+            {
+              "content": {
+                "detailPos": "un.",
+                "examType": [
+                  {
+                    "en": "SENIOR",
+                    "zh": "高考"
+                  }
+                ],
+                "sents": [
+                  {
+                    "sentOrig": "She fell into the <b>water</b>.",
+                    "sourceType": "权威",
+                    "sentSpeech": "She fell into the water.",
+                    "sentTrans": "她失足落水。",
+                    "source": "《牛津词典》"
+                  },
+                  {
+                    "sentOrig": "They lived on both land and <b>water</b>.",
+                    "sourceType": "真题",
+                    "sentSpeech": "They lived on both land and water.",
+                    "sentTrans": "他们既生活在陆地上，又生活在水上。",
+                    "source": "2020·高考新课标卷III·阅读理解",
+                    "type": "SENIOR"
+                  }
+                ]
+              },
+              "trans": "水域，（江、河、湖、海等）大片的水"
+            },
+            {
+              "content": {
+                "detailPos": "n. (pl.)",
+                "sents": [
+                  {
+                    "sentOrig": "The ship will remain outside Chinese territorial <b>waters</b>.",
+                    "sourceType": "权威",
+                    "sentSpeech": "The ship will remain outside Chinese territorial waters.",
+                    "sentTrans": "这艘船将继续停留在中国领海之外。",
+                    "source": "《柯林斯英汉双解大词典》"
+                  }
+                ]
+              },
+              "trans": "（某个国家的）领海，海域（waters）"
+            },
+            {
+              "content": {
+                "detailPos": "n. (pl.)",
+                "sents": [
+                  {
+                    "sentOrig": "The government has warned of stormy <b>waters</b> ahead.",
+                    "sourceType": "权威",
+                    "sentSpeech": "The government has warned of stormy waters ahead.",
+                    "sentTrans": "政府已告诫说，以后的局势将很严峻。",
+                    "source": "《牛津词典》",
+                    "usages": [
+                      {
+                        "phrase": "stormy/turbulent waters",
+                        "phraseTrans": "窘迫的境况，困境"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "trans": "不明朗（或未知的、困难、危险等）局面（waters）"
+            },
+            {
+              "content": {
+                "detailPos": "n. (pl.)",
+                "sents": [
+                  {
+                    "sentOrig": "Her <b>waters</b> broke and the baby was to be born.",
+                    "sourceType": "权威",
+                    "sentSpeech": "Her waters broke and the baby was to be born.",
+                    "sentTrans": "她的羊水破了，婴儿就要出生了。",
+                    "source": "《精选例句》"
+                  }
+                ]
+              },
+              "trans": "羊水（waters）"
+            },
+            {
+              "content": {
+                "detailPos": "n.",
+                "examType": [
+                  {
+                    "en": "CET4",
+                    "zh": "四级"
+                  }
+                ],
+                "sents": [
+                  {
+                    "sentOrig": "She dived under the <b>water</b>.",
+                    "sourceType": "权威",
+                    "sentSpeech": "She dived under the water.",
+                    "sentTrans": "她潜入水下。",
+                    "source": "《牛津词典》"
+                  },
+                  {
+                    "sentOrig": "The ocean <b>water</b> becomes calm and still.",
+                    "sourceType": "权威",
+                    "sentSpeech": "The ocean water becomes calm and still.",
+                    "sentTrans": "海面变得平静无波。",
+                    "source": "《精选例句》"
+                  },
+                  {
+                    "sentOrig": "The ships had nine decks, and White Star Line decided to focus on making them the most luxurious ships on the <b>water</b>.",
+                    "sourceType": "真题",
+                    "sentSpeech": "The ships had nine decks, and White Star Line decided to focus on making them the most luxurious ships on the water.",
+                    "sentTrans": "这些船有九层甲板，而且白星航运公司决定专注于把它们打造成水面上最豪华的船只。",
+                    "source": "CET4·2018年6月·阅读理解",
+                    "usages": [
+                      {
+                        "phrase": "on the water",
+                        "phraseTrans": "在水面上"
+                      }
+                    ],
+                    "type": "CET4"
+                  }
+                ]
+              },
+              "trans": "（湖、海的）水面"
+            },
+            {
+              "content": {
+                "detailPos": "un.",
+                "sents": [
+                  {
+                    "sentOrig": "High <b>water</b> this morning at the port is at 11:00 a.m. ",
+                    "sourceType": "权威",
+                    "sentSpeech": "High water this morning at the port is at 11:00 a.m. ",
+                    "sentTrans": "港口今天的高水位出现在上午11点。",
+                    "source": "《精选例句》",
+                    "usages": [
+                      {
+                        "phrase": "high/low water",
+                        "phraseTrans": "（海和一些河的）涨潮/退潮"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "trans": "水位"
+            },
+            {
+              "content": {
+                "detailPos": "un.",
+                "sents": [
+                  {
+                    "sentOrig": "We arrived here by <b>water</b>.",
+                    "sourceType": "权威",
+                    "sentSpeech": "We arrived here by water.",
+                    "sentTrans": "我们是乘船到这里的。",
+                    "source": "《精选例句》",
+                    "usages": [
+                      {
+                        "phrase": "by water",
+                        "phraseTrans": "坐船"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "trans": "乘船，走水路"
+            }
+          ],
+          "pos": "n.",
+          "wfs": [
+            {
+              "name": "复数",
+              "value": "waters"
+            }
+          ]
+        },
+        {
+          "transList": [
+            {
+              "content": {
+                "detailPos": "vt.",
+                "examType": [
+                  {
+                    "en": "CET4",
+                    "zh": "四级"
+                  }
+                ],
+                "sents": [
+                  {
+                    "sentOrig": "He went out to <b>water</b> the plants.",
+                    "sourceType": "权威",
+                    "sentSpeech": "He went out to water the plants.",
+                    "sentTrans": "他出去给植物浇水。",
+                    "source": "《柯林斯英汉双解大词典》"
+                  },
+                  {
+                    "sentOrig": "They also took turns in <b>watering</b>, weeding and maintaining the plot.",
+                    "sourceType": "真题",
+                    "sentSpeech": "They also took turns in watering, weeding and maintaining the plot.",
+                    "sentTrans": "他们还负责轮流浇水、除草和修整土地。",
+                    "source": "CET4·2013年6月·听力理解",
+                    "type": "CET4"
+                  }
+                ]
+              },
+              "trans": "给……浇水，灌溉"
+            },
+            {
+              "content": {
+                "detailPos": "vt.",
+                "sents": [
+                  {
+                    "sentOrig": "After a tour of the grounds, the guests were fed and <b>watered</b>.",
+                    "sourceType": "权威",
+                    "sentSpeech": "After a tour of the grounds, the guests were fed and watered.",
+                    "sentTrans": "客人们游览场地之后，给招待得酒足饭饱。",
+                    "source": "《牛津词典》",
+                    "usages": [
+                      {
+                        "phrase": "be fed and watered",
+                        "phraseTrans": "酒足饭饱"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "trans": "给…...水喝，饮（动物）"
+            },
+            {
+              "content": {
+                "detailPos": "vi.",
+                "sents": [
+                  {
+                    "sentOrig": "His eyes <b>watered</b> from cigarette smoke.",
+                    "sourceType": "权威",
+                    "sentSpeech": "His eyes watered from cigarette smoke.",
+                    "sentTrans": "他的眼睛被香烟烟雾呛出了泪水。",
+                    "source": "《柯林斯英汉双解大词典》"
+                  }
+                ]
+              },
+              "trans": "（风等使眼睛）流泪"
+            },
+            {
+              "content": {
+                "detailPos": "vi.",
+                "sents": [
+                  {
+                    "sentOrig": "The smells from the kitchen made our mouths <b>water</b>.",
+                    "sourceType": "权威",
+                    "sentSpeech": "The smells from the kitchen made our mouths water.",
+                    "sentTrans": "厨房里的香味馋得我们直流口水。",
+                    "source": "《牛津词典》"
+                  }
+                ]
+              },
+              "trans": "流口水"
+            },
+            {
+              "content": {
+                "detailPos": "vt.",
+                "sents": [
+                  {
+                    "sentOrig": "The valley is <b>watered</b> by a stream.",
+                    "sourceType": "权威",
+                    "sentSpeech": "The valley is watered by a stream.",
+                    "sentTrans": "这山谷有一条小溪流过。",
+                    "source": "《牛津词典》"
+                  }
+                ]
+              },
+              "trans": "（江河）流经并给（某地区）供水"
+            },
+            {
+              "content": {
+                "detailPos": "vt.",
+                "sents": [
+                  {
+                    "sentOrig": "The wine has been <b>watered</b>.",
+                    "sourceType": "权威",
+                    "sentSpeech": "The wine has been watered.",
+                    "sentTrans": "这酒是兑了水的。",
+                    "source": "《精选例句》"
+                  }
+                ]
+              },
+              "trans": "加水冲淡，稀释"
+            }
+          ],
+          "pos": "v.",
+          "wfs": [
+            {
+              "name": "第三人称单数",
+              "value": "waters"
+            },
+            {
+              "name": "现在分词",
+              "value": "watering"
+            },
+            {
+              "name": "过去式",
+              "value": "watered"
+            },
+            {
+              "name": "过去分词",
+              "value": "watered"
+            }
+          ]
+        },
+        {
+          "transList": [
+            {
+              "content": {},
+              "trans": "（Water）（英）沃特（人名）"
+            }
+          ],
+          "pos": "【名】"
+        }
+      ]
+    },
+    "etym": {
+      "etyms": {
+        "zh": [
+          {
+            "source": "童理民",
+            "word": "water",
+            "value": "water的词源可追溯至原始印欧语wodor，在希腊语中为hudor(水,--是英语otter以及词根-hydr-, -hydro-的词源)、在拉丁语中为unda(波,--英语词根-und-的词源)、在俄语中为voda(水,--英语vodka的词源)、苏格兰凯尔特语为uisge(水,--英语whisky的词源);原始印欧语wodor在日耳曼语族中的派生词有德语wasser(水,--英语vaseline的词源)、荷兰语和英语water、瑞典语vatten、丹麦语vand、英语wet。  \n 与词根-hydr-, -hydro-,-und-同源  \n 同源词：otter, vodka, whisky, vaseline, wet 词组/短语：mineral water 矿泉水",
+            "url": "",
+            "desc": "水，雨水，海水，域"
+          },
+          {
+            "source": "童理民",
+            "word": "water",
+            "value": "来自 PIE*wed,水，湿的，词源同 wet,undulate,otter.该词通常被语言学家认为是无生命的水， 而 PIE*ap 则是有生命的水，词源同 aquatic,Punjab.参照 fire,ignite.",
+            "url": "",
+            "desc": "水"
+          }
+        ]
+      },
+      "word": "water"
+    },
+    "special": {
+      "summary": {
+        "sources": {
+          "source": {
+            "site": "NoteExpress",
+            "url": "https://dict.youdao.com"
+          }
+        },
+        "text": "以上统计来源于2,447,534篇论文数据，部分数据来源于"
+      },
+      "co-add": "https://dict.youdao.com",
+      "total": "2,447,543",
+      "entries": [
+        {
+          "entry": {
+            "major": "经济学",
+            "trs": [
+              {
+                "tr": {
+                  "nat": "不增资产而增股额等",
+                  "cite": "0"
+                }
+              }
+            ],
+            "num": 1
+          }
+        },
+        {
+          "entry": {
+            "major": "地球科学",
+            "trs": [
+              {
+                "tr": {
+                  "nat": "水",
+                  "cite": "0"
+                }
+              }
+            ],
+            "num": 1
+          }
+        },
+        {
+          "entry": {
+            "major": "医药科学",
+            "trs": [
+              {
+                "tr": {
+                  "nat": "水",
+                  "cite": "0"
+                }
+              }
+            ],
+            "num": 1
+          }
+        },
+        {
+          "entry": {
+            "major": "水利工程",
+            "trs": [
+              {
+                "tr": {
+                  "nat": "水",
+                  "cite": "0"
+                }
+              }
+            ],
+            "num": 1
+          }
+        },
+        {
+          "entry": {
+            "major": "化学",
+            "trs": [
+              {
+                "tr": {
+                  "nat": "水",
+                  "cite": "0"
+                }
+              }
+            ],
+            "num": 1
+          }
+        },
+        {
+          "entry": {
+            "major": "生物学",
+            "trs": [
+              {
+                "tr": {
+                  "nat": "水",
+                  "cite": "0"
+                }
+              }
+            ],
+            "num": 1
+          }
+        }
+      ]
+    },
+    "senior": {
+      "encryptedData": "kGrPE-pCjVG8GYlxGzuhyDEigi5aqhXYIqC60CkHejA98bXT8YH7BaleO5Q7xcKggXbjTHLkj_PY6ybpjelxomnRnmpTsDHavAQYhKvDrrH1f8cVkAiso281QAvunH0Q5vzYbs4pt9Hq7pG0RCz_RGkSj0a0sXzgCngjQnBxAUSpU7OQgv0x5osN26gjMEU5MTODHAAWq1xZdUC2uYGkCIzPbGD3IMOjiuJdoCHhXUimcRalaxVzeI8IA_IHBR1-hNP5K1O2zw5dd0hZ2bAGlT75NGDlTGyXrqX4LwAugL7YdGpnV7OT9N6V8ILR7bJ37_jeh0zTiQI_PZWxOLzqdZcu3ecudvbNHrxuZdMmICcsCldp4EL7fdxEJlTWGtPKyMM11OuUMK4AoW8yCTutwPHPLrkJDD-oVcbOo1dUcsqhmRmiol_iEZjZhdJIKChUfR69VUSc6zpFhrqEq7ElnotLQ18li1WZ2t4RgYyvZi7ihvVm3g5KfI5eN-w4zWZWjWeY7wYfc3qJhxrVmsbmPh1CV9jJ86d3K2Yg1kICTGhOt1hFzU-e1KBwZ2c_LJ5ZBO494-m5uiXVZC9p03sbtVaNuuiRZXX3jWvHau88PXYxB9vLRN-U0sr0xMJQut5x4NVr8A39dIr-zOLB5cBFbASFkfwOkvszRShxAekiuRLS_vHnuY4dGwixP3ajz5Ee-9CORFJ3s9hZxruUrq2eZ0O3AW11IkNpgKpSjRSdYwbmF_N5J500qgRQW7f_539NHYhAXHp2qYOTgMdsAH1l7Tbw5w3ddt6iXkzsu3Vlro2I_pNoBL1kxuCQLitf-smB1n0Nuf7n16c2Gb60s2SugKZFTjK9U_v1I4pHHm-wicEVZ7wpNlvp5cTKj-Ejp30Phsf_foc-wiOq-dYOttOK4l9kz-aT_TQA-i-G7zMVePWSjdMGhQM8PAiOXUWDNevcfzgdwlIaOOcz-H5YnJCmBhzeqV9pppTU2-sC09_Emr7FzRW_ZT_A__ytCDxLMsA3rAROyBsSaNOyqLC27e-xTSBxfJZV2-6LrrmW6nLJA8mEJakq1pVzaARIlxVMapD3pchglhISkO3VCAWaa6SuViDHmMb8axm2mccIcDaJULO_WFN7eyTXYC0dGbEeOmeT0igPF7upgQGpoVag94qKJnwpQN7Ex3FHxddP_F5flInmYUeLog9OrWvjZtMl_jy_xjjzDbKfIn6ht2Sxojjmg0_QU16KfN2FthIGPIjrFqxflDdnEm-tOq6Ap3YPujaMCU0a4_ShFiC8NYk6UiMV3cS5vR_qVQ3vua-CizgjnLFxATD-m-sWwkCSsgjUx7AnE7RBZ8-J6BmQIeAS-vYhi07_1x9xnAoHazWestVz0qnGUoAPDr0CPPJdeRswQf7xVCq-kfqyywaeaLyX6-nHtkOVbG8aSCkaykhBwhle9YSlpH9yjTw6JNuP91ek2LxVq66Ly8Z0TIYcR90eSf6jvC_DMKO-6xq6txr7i3E0cnQxcFvBAjOZudDB1JghzbvrPoesNyIkPLMFzxsnVU1GhiWB5AfN-FkkiV6s0oOmJVvJ8JSnqyZ23AvZQsiInpf1XvQI4GUdP5-tAXqa8Jpg_2svtIU8hMKs8rj3TTXYrk4RORFiWeQJVnzqyOAExK5x9Nve0eVxqH576-h2Rqnl4GXHakfGK8zMegSPHBz394bGPIUp4cW1tNhkYBMVRMn4VA3HAw_Aj9QlUapqbyHljnF2Oi7jTjsKSvVBkAlWsKEqqJ3j-vkN_Hs0W2iYEoo08F_3bAegQRZu_1fM0sZvmSuKVWg48BgWqSgdUVSzQzZ0wk0T8WO150qIy9V9l_JGobihJaMSaQ7drtAAFiCkjLqfRw9DNx-2BdPLex_qUbbY1r2Q2w96l_qS_8uQ1Kx203BaEahFylb7lh2WuV3jMGqPeEiveb3mprPLIWmThw44LeGn5_0sAAceEqB2IH44wcKAMmrDhIbLEn2Xem0CMvHoSLm2Or7qgjSW4mWURUtn-Wk_pHXavRbJS1VwK9geCQOb9URrTygmxSOwaHrGKLM9jBV6IoEn00IXeam4GfeBrGZf6Ewp3HvQ2uywsLJUorBc-Ms7JfTerVmfCJPMH7nWGOlFlwxjVLDWvqy17NIinet6Y5Fj7mXckFDzibkDQhuR3zcjGC57_0x6PIGRGRTGH-R4NY-mOxHy2oqDV0NTUT_SixocbIRkm_-Gls4OQhzWbCekxkYst7ir5AnCCflaB5Wd04IMhIrjQuJWefB0bfXavHzQusUXUgMONsr1EnwwWtWomvWY2XM9NXUd_Wr8MSMxLa8AbHfBXrycAunyLWr1_p2LJ1eM6LSjtLgtVJ22x_9QNECkPwCqyrQq23joTkXQsmlzwQdYjHHHsBE=",
+      "source": {
+        "name": "《有道高中词典》"
+      }
+    },
+    "input": "water",
+    "music_sents": {
+      "sents_data": [
+        {
+          "songName": "Gasoline",
+          "lyricTranslation": "你会像我一样 用水费单擦净污垢？",
+          "singer": "Halsey",
+          "coverImg": "https://ydlunacommon-cdn.nosdn.127.net/440a34363dc966c4daa553b9cf547c01.jpg?imageView=&type=webp",
+          "supportCount": 169,
+          "lyric": "Would you use your <b>water</b> bill to dry the stain like me?",
+          "link": "https://music.163.com/#/song?id=34144942",
+          "lyricList": [
+            {
+              "duration": 3940,
+              "lyricTranslation": "你会像我一样 用水费单擦净污垢？",
+              "lyric": "Would you use your <b>water</b> bill to dry the stain like me?",
+              "start": 0
+            },
+            {
+              "duration": 4120,
+              "lyricTranslation": "你会像我一样不靠大麻也能精神恍惚吗？",
+              "lyric": "Are you high enough without the Mary Jane like me?",
+              "start": 3940
+            }
+          ],
+          "id": "7d06f32ac1",
+          "songId": "D45710F6906816773FC2635A443077B8",
+          "decryptedSongId": "34144942",
+          "playUrl": "https://dict.youdao.com/dictserver/sentencemusic/playUrl?redirectUrl=https%3A%2F%2Fydlunacommon-cdn.nosdn.127.net%2F9e966d1b42e0f72a0cd8829c37fd471f.mp3"
+        },
+        {
+          "songName": "Numb Little Bug",
+          "lyricTranslation": "我的船里注满了水，不愿再下沉",
+          "singer": "Em Beihold",
+          "coverImg": "https://ydlunacommon-cdn.nosdn.127.net/8ab1da53bf46111c02560d2cf1c49cae.jpg?imageView=&type=webp",
+          "supportCount": 136,
+          "lyric": "A little bit tired of sinking, there's <b>water</b> in my boat",
+          "link": "https://music.163.com/#/song?id=1915796767",
+          "lyricList": [
+            {
+              "duration": 4000,
+              "lyricTranslation": "我的船里注满了水，不愿再下沉",
+              "lyric": "A little bit tired of sinking, there's <b>water</b> in my boat",
+              "start": 0
+            },
+            {
+              "duration": 2740,
+              "lyricTranslation": "我无法呼吸，试着浮住身体",
+              "lyric": "I'm barely breathing, tryna stay afloat",
+              "start": 4000
+            }
+          ],
+          "id": "125ae92633",
+          "songId": "A39B0C8C2B5F29D9D0E69E5E55D6C3B8",
+          "decryptedSongId": "1915796767",
+          "playUrl": "https://dict.youdao.com/dictserver/sentencemusic/playUrl?redirectUrl=https%3A%2F%2Fydlunacommon-cdn.nosdn.127.net%2F9f78bae7b717c2d4f70cbdaf3f444def.mp3"
+        },
+        {
+          "songName": "Take Me Home Country Roads",
+          "lyricTranslation": "矿工的妻子，从未见过深邃的大海",
+          "singer": "John Denver",
+          "coverImg": "http://p1.music.126.net/AE0wCDxusSZj3MAGn0upZw==/870813209249684.jpg?imageView=&type=webp",
+          "supportCount": 55,
+          "lyric": "Miner's lady stranger to blue <b>water</b>",
+          "link": "https://music.163.com/#/song?id=1477670",
+          "lyricList": [
+            {
+              "duration": 5710,
+              "lyricTranslation": "我所有的记忆都围绕着她",
+              "lyric": "All my memories gather round her",
+              "start": 0
+            },
+            {
+              "duration": 7120,
+              "lyricTranslation": "矿工的妻子，从未见过深邃的大海",
+              "lyric": "Miner's lady stranger to blue <b>water</b>",
+              "start": 5710
+            }
+          ],
+          "id": "a5034f84da",
+          "songId": "F8F80703EB8924CDADE70243B2DE78CD",
+          "decryptedSongId": "1477670",
+          "playUrl": "https://dict.youdao.com/dictserver/sentencemusic/playUrl?redirectUrl=https%3A%2F%2Fydlunacommon-cdn.nosdn.127.net%2F3b3dc5c0048ded8768153986dae38edb.mp3"
+        }
+      ],
+      "more": true,
+      "word": "water"
+    },
+    "meta": {
+      "input": "water",
+      "guessLanguage": "eng",
+      "isHasSimpleDict": "1",
+      "le": "en",
+      "lang": "eng",
+      "dicts": [
+        "web_trans",
+        "oxfordAdvanceHtml",
+        "video_sents",
+        "simple",
+        "phrs",
+        "oxford",
+        "wordElaboration",
+        "syno",
+        "collins",
+        "word_video",
+        "webster",
+        "wikipedia_digest",
+        "ec",
+        "ee",
+        "blng_sents_part",
+        "individual",
+        "collins_primary",
+        "rel_word",
+        "auth_sents_part",
+        "media_sents_part",
+        "expand_ec",
+        "etym",
+        "special",
+        "senior",
+        "music_sents",
+        "meta",
+        "oxfordAdvance"
+      ]
+    },
+    "le": "en",
+    "oxfordAdvance": {
+      "encryptedData": "oGaanzGEv4TFGNkgbPQfjud8s3YxqQChkIEIrFbM1cBTZVTOYTNTITEN80WaI5wWdgH5pqSIioMNYDk4PAOfIX5OYFvUF1W8kI2A2ITs7o2k7S6O1QQ-eOqqynQSEq-4xgWwAK0CyMH_khCE6io_fit-9CRCLcUKGdB2B-cWeDh9vmmi78hp8rTenJau5bPxq6YtXZU5MnC8mXaqcvUSnHx737ANCWHFM-r7e0vMrZtzc2Pv5nfH3vdl8yyTG_GA9VJPJlLTky5rWZ43xeevyvrQKse7wklukobKwgTT7AH9R65kdLhOUKCT5Ej52DC3x4nZYw8l93yBQIt5uSBOCVwAfbKD3ZxLLe46lVOdyFHJWaErm7ph8eAhn12Q-98C-I2DXF8z33ZlYfNssE3Hdw3gZ3Q_Y9ldolJmI0jUo9qugDWUmBFbw0J4JNozZzWN3OZG_DS9CdePPuZtOC-SWa2bipNSsuFFq6Sg_50J5ji4dkkmJWnMcdttF_tLugNbsUq2U6sKWmhzWdl58ohS0w2x7NCNusZ-dfeyPuTiWDhulqwQ2bljyMZxtCCiTa8JdZUB1eYqEVJajACRpV7nzfRBGsEICYkC-PLAGxmB5qbLDceVrsdaEzs10CPEfMH1c6EpSYUkKSpSz2sKLiGZPddkoQ8k98vUn1eCmWuXvMODtkSOYmfZ-bxDpNOQ90gzzpqe1-ZCkXj7Z5JYTi-xQyVo2rQO1lwUlzNwuk0Th3hyQU3eDQ24bkfiMl-ufyg174qct1582VRvgPeI_gK4SbMQWHlT2zqw7vwgynddUDsfSMNXH2KBwqXKQHV5iBJ0YQxyAL3jA5UqiWpMq-LIK1sVSU4-iNXkNXaGm1B4rHgvn9_hK7NBD5kndu1KaMJSoAy0T6EJDbtl3X96rkW735g3BaYyjLW_qK_Y4ENd_GoCDPrA5o8r1bO9CnA2jhUiDPECLnWXy2QygfVrw0k1JY_Kb-nZ85aIM1_RVhKG1PIX4slSw81WdHQnJFH1Q3w05EnuGtyRqiIX9N5aNW0pzcsgeUyYfVhN5pxQmzYJUZlVW8Xu5ZQsrcapu6vc060o9Lo9O95C6DOwlSHjTFQxRIQhXrnSqGRPvpRa26xDKPMgOjvmrCPsQeTLrcolMJxHz_maVMOavwjS1HFpVbsQc4dAl9fyD7BfLu1nJXyXReUv9BoQuy_oWWcp2VdTxS6o-B8xXFIkviG527cxfBc8VIkSKO__hwkZbfrNvp9hhT_E4moX7v4rG_2W5seUdPWs5hn7HO8s7447iBhI8iaD_4SPxEqpJZO4ENM1GIRsTkZnC2A-LKqFamnwABJ84ovtwCkhtOHYrg4-o6SPeb7uVomwuKcexNvRYqf1Qzp2iXpxIzWMkvydRk68eQbyQ81ZCe7-jjgnlL-v-nX_VpyQNt3tgkuQGYK4sWYs5BEsLzAgbzOMBUfxAJEa5fvS0it6rrTaPbhu9py-onodk4bR3EvxcErrjXH_tUuQTttDRaWHpv_2OaUGFP05bibu4WV2q1TFPAU5JBEXjDPzR9_pDYkxTYLfnqizi62KlT0ZfUj4nJeglCX1qA1bkCvfAVcgi8a9Wzh33XlvtQp19rtlm5IkcFjb7DSbwnOcuIvsiRCUREDCoT7xP9T9ztieyovNeIY-q3xa78j2Ge49eHSNAPnDXDhbpFMKYvMGmqcrz40Dp0RmkTDYbaiTRRWlgs4RE5yCGtL71QX9oHTRdMx6en2nTSWa0qIPza315pPrABOGxBVe-TloSzeTSLGHOGtyUJ0LUY9kNxxLY3VEYt03lDIIAwB6YUYIivCS4Uho8iYPZKq0QFQ30txPjRgVaoC0jXVlo5XTTOCSUv50XwF401KsM7oYBMV33YQwgMIpLYqnefX6w9VBIcZE12h44gcTU0svLY6tS04sX-_gidXof6lJxJOZFkccpChwP8BWOIwksF0Xe_fkHGdDdB61cUnBG3QCmG36Yhuv7WwhBK2Zxc0QE6jhk9iNkOyd9CzQU0hjhJ9LWPcVeOZ7Uf-0DpxXWu9uN5296L0bGgYmKtJqQmBfHfYVYdEwPSMYWj-Wl26noTxBa5woU3WvFQ6adsRniG-FgEOJmoKN3tcgdGO0kMhrKhV-ouoyOLh3aD9gJf4H31nJRuee3gaCg2IDejvbE1uk2vFkg06wL0EcTYrrarnLJN4sg2Ww5-G7N7MrdKJ5j7vdqpjOqr-lS0WJ60r_JK1iRCc1Gotxl6Ofd-sn30KpxJ5uNu54oHrpOgDgW-md7PvED410KfVx9w3cP_eBtgppptVhP-zu18GOlPo7vVR_GHRZuTgHDwmZZyAJyC2HOA0OZMGKuRN0jMZ3wgl4KLnp3C8dK6FyK26lG6erDs1XZtX6jsoX26-WOlWB943Lzeziafws1wagr7d8zPO0sUBDpIzp6_oU5qufHuNXAoSlbjQlMxFtX_fQYQRoNB3XmhYKseqVIwUYiBtY-PeoZUWL1cquYwyspmRXc3gEj7UGAgjBbOIHCI4Yt8_ScYWJoNTk_i0AykLWDpNAbKAVrdNlP7OBHlxbm4KwBt4xViNjc29C2Zt5cITbIpPima1-bgh8sVvvQsBFhKZSqt9dwGKH_tY7J-TscE0TcGq96gbzCJK_owTe8EwM4c2KybHe4pcQ3v5Hn2xfhctRgaluZ_qmcSdsV2DzkXV5LZWRMDC6kcM9M0M-kVi54Rpl7qV1CJz7J4jeIIQsaEL-tdZjXztrdGyN9F_Gs37kf4g85LIVPFK7xCc57Imf0VuecLr-ApwT50tHopLw-oI7tC8vDJI4OK5Ol3yo32HZji6c76jL6RyQrFnj0H_1If1bYbP8MbBivKqcm0AehRXsnaRkfvaCadlksnLNRwx4YXnCYTxzYXryge2C_5yEQ0InLUVCvXNWboTN9VvbK7mo5oAYWwdNKmAcRHf_zLh586CdYkNOPQpN4D-Eckq_0E_F8BRVZEAywzg4rcTrhvugYofn-HfINq61PNEeoFKZtL96uSamvYHibsMlIXGybzs1taOQTLgDgxQlrmXqVSZU9CHueNlDuCF8P3QDa9I4Om8hefAkQcmct-E57lR_SsnRkwJ-8946ryY3XVmEbLRmzx9-WnolHH0xnWVKzLhBkf27LQ6J2I1MTXb0_UNSIkeqb7HkhM9ye11f3EEcWA8YwZ_CHBjXZ-SdL-MgIxSequ0DuHAzjr2F2zfHTk_ri-2TseU9v3f5oz9iU3RO1tHKYfkQ0T5RMczxZmHAouMy-3t_BfiX56X6FxB0l_U51wN4kCsqVZSDB5j0cS2Cs_0z1bQqmhieI6gWj15DM5CmX71RQCzcU3S_PxQZzyB_BjZBwfS-n76H7sbLxGtEss5iU0hzzytUsEPtPaYJZAyimNDEogo21WZELf25PYLSY51_ksWoupl70HvJA4LsdfVYdnIfIWaJg8bv1QyAcDE5737aHifv1STyeZ3t_eUAWxZhsww2ZMaNyJfigxmKm1LQFelgo8W4QdOb3KjPoyBrFMD_VMFvPl4ePO2ed59xNrmazQqjL6fjUGpAYGQNrpodd-Mrd0i5Kve7sxxiBniEC-WBowET2MU1h0eWmXPiiArR_WzRMJ3ZGA8CGqXqqJOSCbGoI8yYLYXJj9bG05j3b11JrOuOeROlhFm9-bDRP_HGwmpMVfnWbWPtHSlYAIhSCq3joDWmomwd7n-cQ_B0y9c9d-t0x1nEyvUwB537QrQ1F-Tf9QUvSOTLI1e9yJiei0VL9gqMGaBzqPRWlEpDRnXX8H6kC_rKMpySpCitUzbStdqtxvfFalCNe47ldK2AJJMcb9gH9j69MwK8_vBedkjwv_8qOUcrdBOn-FBSV2X9UFrj3QB0AT6td7WEXHR-6ADyzTNAlQtq7bJFn8sT_ZbtjF4pUHwzD23c2vIhNmunMDAJe2_fL98klbrBZfC8LAWZoOT5seYPf21oN71Z7GdHIi0MBdu_90B-JfDZzHuya-mp-qM-e2wdC4GdPbUIc2r-ud6cjFiEbDRqxuQTXLgJj3gxnxwAW0XqmfG3nibVt89YRNJmMwtJFLMysbdn9wQa8xaj7CxIzWC-OhD4xn7VFqOUbOjaiS0JJj14BtgZRGUZAO8LlZPmoNy1VlzLzO1FYwPBwixo7fKmzeS18NcZuIwbF6bg9h2GewFq7nt1rK_jbbtQeZ62gGmKHoAbYzY_r4MVu58QJJdbo5zwoySvrtSpV4BzHnrN7ajS2KNrTJ__TdSGMiYnBLEBFY_v1WjqIjt9MoDKrko1EX8p0GWn3F4imPQ1WLTchL-FKc8O46c8_lENnGerxNSnNo8_LLnbF5fML_bGeRX3ovh66bHTYAo_4g1Umr9CqJxNdpR7eH7kn30yAj13hVK-AK1hqJ6ZWdGuapFPJpyA-G3BtZryI7O_sf_eDCHxIzonK6wzddSewFifQEvcfkbnev876OgKaONVlJYJeX-OB73uVWj4Tz3bjiJ36yosdyUcn8kM_hsrpcd48czGg7kXHnGlc-208uj-s5LazMmGFEmAlH_gMK6G6zEl_GzaLq32zOAaHORY3hteEORwF636KMYwZHxYycjSJmm2ls9w9uM8s2K9TvMVLVLTu9wcdvZfP3tMvBmjU6ZP1xJxamfPh5gFgQSYYd0aF3V9P89IaQGt21dlD3iZs-FLXHjec8dfDRhL4O-C5qlFLBlvg7tvqEVDvmQKRZBDaKK-1y38ptQVlHwoXZdZbkxsGxkJF-yRNUclavlZ-iAiCydSn7Ezen8NlPGRBQxMajJ2uyw3K3mVg2dHoCid_uM1UrFaZklXmQTJbK_3XP1wuqzRQkFz3o93n4-uY53Kf3fLxmNskan0_CPHwRjWoLqQXC_MoWBm65DPzpKsUkkVbbFTPVhCb_9FMUL-sl8St9seW0engu8B67jglK4kTKhipwFmHLxAOknqbwmgS37lJStWeBn7wuUM_CGTgRq7xDl9VJKYoId-H7NFnqhot1dmtFW2ZU0OKEoQt0ZRaRyXXFE2_D57C0rq8znAXH91Pj4BUSrETKI5EWRClywojEsyTlQgxJ7pMPlq6JA-8ruC0RtsVyAOqM0O_bqtwFzp0hwycjqoPZMgP69CBBBaoDYCey4fKhJoHyoKcM3GZGlPCrzlLEamUyPmrUIBvRQnBV1D-oxT4ZUfATO1nCAydeSOhwQe4xPSsT_31bqB2PWsdJ1OyybTlxTFfSar6pRjCrsqH0PfHQGAMjI21AqT_l6nU9ulxCNGcqJywBveO1PmHBjM56-NyakD2AxUbrduyT6eNVsG518avKQKETkrKXJPo0ZMitd23NnQ49e8ATJE_VsK8TVExhKoIelxBnkTKunOvT-nrUaP3cUJlqWoVuuaAyZINBXXKTQu2uKIVOQ7jSFiAV2G1OKuXkQtLHjHtlKRO344ijwJe8AD1rxZgBl44dqVHt35VjNwWY_i4txE2k0uaP1W1V_4yr_iEzoAZhKZXSF7llPG44LlOL7-kBh5HBQ3bKS28ZznjENM03oiqEVkxBNJp42sIQ8_fAuzsvO2ckQhPfjTg-lVC5OWttqcjOlxB15gyWVltiRro3MSBizuO-QkeZlDEfKbEbiizJyqmbjA9hoGS5NWWmThAMadnt5HBr1Olwvtn9FE5iTzIz2B2NjkSL91hGHr081qlFllMJBgxrF3SMgYK1p8nfXXZ3_znb8Kk4OgAqhoUd5uAQxvyWrU_ojoTgXzGiIZ300OqMeSEnFlC8L6H7--7q1kVtVaiDC91uj9SYkIycU73MQI9YdkMv104n70B9_suES21EaI0zfxfC96caifqhhRLLuA5wquKIMWeu_MjtnLuLW7_zfdD9NiNG0KPwvs4b2NfL-0HZw1V2bHsY61vR30L0xIupdJGqvMVMooQDzLH7epqTFGX0QvMJKqqcfH0C-anPHbeu7MCbHZHzB0FqV0m09QHmvExSg5OIGoZX41wqpw1R5daR-O23OOPm4FwKbhkP8x7fBhmBJAgv6P1coBXmwxdIW1BhbbYSNFpxBZEKQGqI-JB8oTImnXmMd2SxhVr_0hMMsJeVZfLsnKvJi-IbqQC9Tep3tr_JKu3DxWlCGUavXrSb2g3M0dPcCjcpPMNfstudqfKQZ_QWzjhZWA3KKzcPpHHS2FBY6BVGF1LuyjNU-fSYTk3HhmZvKWGlOWDW6rW111Lyq5hUPO-O5pSpFBj7GpaWlCJYY4jeY8WlsUqagLNy5dKkMsW4WWxJf4VYNQeNTnlTqol9J1R0nRYp09enuat6D_Nc3y2R0L2GSsoUgDJq0M31OAHKnpD7m1AhugEMtZlj9-t1N9M6A7d1gw_RIjkaAnAdTxoXgGDruCgUbGGcx-WseTEiREj1p8RKOK7wUfCwpaMZbAOiI1TF5Ex8L9DCj086fZauRWYNA_6CgJ7t5RGA9HZlCOF2-UTau0eFx4HGnEmla7o5MKmhaQv90Lv3Il1_EZMFVuQJ_mTHP-KsxC_KHrPmAC5EDaviZSKmAvCUOnkYooVfXAOSWnI6ILJVy4McvprUl3GF6a_FbuSgINymk5JcHn6TdzEVc6U7hnlrV24Bt6cSvgEaXDd9iJZwe2Su0kAOYiMol8DewEopzwdLxh3ysqcFwlhCjmwMexwuhQhIV0-IEVZFuFuotn5pCflWk1SepFDgm3M5BxQXRWt-7Hm12YuskXL5j6rGT_Yg-FThh8HILD7535bQx7tOjqjTaHiXKmapIiOeXqiRczUWJ8yApv_AxIEr1Zz1Oy3QWJkYyORGISFnFKSYkVmhlBg-HJ8R4n66LiZ5dlkxiOMC9fxAS_9AZf8mfSpKubEJR3Jmyx7CwVVQ0TekBW-VgSPwzEGX4c264gDNbnCFfH3gjiOesfIErhe9mKT92TomEeqs9CNs1tx8INywEChgsqadWk1onfggUStdoawCbmMeXXZE4OhcwSPhzMvgaQSO68_jIStsxIAR03gygE5qlY6FbUhycRhIDnUZY5fZcAlYsPg9m2JPdVMrRsouWFE7i70u9WiH8CFBXsjl4CYcyWuqgbcMAm3yrPRK-5t-cIOqwtDhn5euhsruM4SIO8Z4kGEnqIj0AulaFkvjqvgorFux5pxgtrojC95I6OXhbsUy--I1jGW8obsgKcZsBQAWp7fVv86sK0kQQMrY4kjt7UelmoYOu-l6vyrtaOtjZYdT8TKiM1v31kcTomsM46Otg3JX_0aWwLGIspnxoEtwlBlNPBZA663pDSmo5SuK2drCyUAlc4NBvQnfP0mAshw8niezQW4yHrweKeKMrHa6lotwcZoRSvib1laaleH16IP1KAYuG7rGEhkKHFP6owQKOjzaRomMPIX1Nayg9rT7NkSHSVaRehQl8vvONZuvlFdyWPwc1nViO3eQrtGGtOPG5GNJJEJpQZBaLN7RqTV_HUV5XFBZMMcUQz6OjQYLe7jXsPqtLXcuDGA1WTLknw891nL4Ho7p7vELhuO0hRXS5tyrtMG6n4vfhbTf7J5TxUaPxK2y2Eoi1Bg12fn85HR9IaeIi0QOLGqx2iwydGa_haBn24UhFhG831e-zWegBeYxJaLVuyRhN03aYx33b615xLiaG8H89i752GK4lkR5d2iHjt0BK5sHoMqx7-A2mz2rrc-lLhfLc-WkvN28IQpIr24gJX1SByRDotxz5Sid0iLVyvAHzNvq2hohaVZy4zD-7-W_QqDyTHqzrE79rOz6eoAvwGX66joRvqlTeIoqggRA1wL83v9VYsfEFpdOZaboPfidDCVxWimweNbM4l-QWLV02C5etiTQKAH9FhDjAZszoWTXdK6kUK4RZ2r234GYIsTWPMOG8NHt1nCqduYx5RJ818k8EpZaM_xd1vE0jpcBvDiTiehs3AH9c-wHLelusvTdwdmTrLr07xACa6EtX7dTt3VdZZxFjXJIHgBafyfora6dDs4N7qV8VJ7mSfpzdKhFhkeZf3J72fucTTlRbz9ZRXf_9pU5l9_bDJ1-kYkSRLR8RcvQ-vnvQbUcnMcprZi4rh7jdHwv4sy6YYS0ZoIs2ydepyWaTjW-3PwC45BbOIMuus2MBYBrVwLSuaUDRlB9UCWVXcxo5yrBzBc-_trW9cN6kC4tg0qMTc7os29C7b0NtLj__yZcqIYJURTux4LNzRYXlHJU0z_tR3g3LIK4q9nVMZZHd_IVePrZrexnbE6HH6ZvZ-8LqrzgvE-2QDkDN4yQMkrHouzEfsaQZm5eZtcnwGS3w-UfwbnenZJfhrK7bPlH92l1V4FQkn0s9mFTKcHk9Fs9vc5-f6PyEFb1dOd4Xp2BBjMi3a962Y8jJAlkv1tc2unfmUxHChRokQ_2f0kvl1KrN5m1q9BWdjCcImp072tubAtUqI2dTwkmKBVwRdTtOpoU4CLYytKDhlWsrkftsbEzwEK2Wa1vVI2X0Non2R4ayqi-Yq6GgZ9cosWgobQzDrvUg9IqjzBtgs6XNqUOz8-Fc-Wro7Ltlr0zosAyWf7F1u4W7gAeTJfA_KYiZaYsgWhJ7bQTPwMIETVmv9U0hDahwYzkACrQfgmF30RG1ZUxjC4FIOvCCG6t5Tp_S4Le4xnjvZ83kymuVY5WMZeZsWQQolo-h6rQi3gwb3a2bQiIZZKFwr3Bdfqihq_lcnsJkPskxDuvWc3XBQ3RSh87HK0xGu2wGe-ItSii_5WOxP3DZ-sXieQKJZzF3SNXRAmVSiQgJHANOM1YY9XX9uYFHDedSBbtf0Exv6KsOItFmh1X1WC2wtPgHUztyj1ViSRmteT10_LueYN0Yn1c12-r0ZMvdx80AVM80JkwVOE89zmHyED5CxMZMFQ9lCGaxfeBebCUeP1p6fcrt2XHJEvnoqNvBpuXAhN5D8pQnO_wuvFmI5HoVgQ55_Eyzl2Q7s6lgPfiQMALlCldTmBsjxhK9JC6FkW6-QeYvvxwoyzsL-wqhvB7Y34XKd2TdF0AGHCKeCC1yLMbi7hFGdA7TdOWh15U-Drc-TkP7sBvBmE3Y2qJpt__o9XQny0Jle6jVJkMBc9Z34bvvCb4w9itYYWlYhY6Tw_kqYvJzfa3CSNxe7HNbuZ0zDQeZPHDDsilCkfHYIpC6csVsHGu19vmmFj6F3YPDKfRKjq893BDEIavCzmHVcDh7DCtO5oxCs4zLYNrtF_bku2zAt8Y0zHsuxCF2SEZoGGeVBSvU3ByAarLydwV31vqnAxywQpOfnCeJrN_LdOF4iisoQU--bjlBWio3HY4wpLLDTi3qGyg0rWtkts71XJ6SRNaM1n8Bej3CE7HhukQRgdnWi0rRiW6S6_BjUKd66AjT8YedNOSNtsaO_WJ6z08XHW8_qySY2U77QSjcYfu26qko4WcB6xsWmZRsx-OomIi2aCvztdFWDgeP7dhnXMrtjd2tH5IJxpvg0Y8hacO8Zfdiwo9UoGUqI5atwFxiKbrN4UviHMJy2CXJNpO7ZzSzvmz1wA0MGfup4pCP-Ia4TnoSeI6ZK70ADhVdgpa9N1gKNnu-BAIzMyWAl_yTwp_q3mRTzxpEoF-60fMG7jmKHX-mrllSsEb9kqXky7-PKOvrESzLdZwDdxWLcWURfyzJZkY-zHJf5U99vFdSMpAxdkIUPRYgcMqPavV0CsZ3y8Z-iLalcZJWpRsA0VxV9jSSRBY0mN5_BmVpPSeDt_zvH-nVm9QkBp5DpgLiG_W4hHbHSXEOrBtbu4yB0OFajrYznBkPPgjBMM0CGAKWgzFdskBrCTGnzKuiwxd0oTzlakBp70_OU3vg9lttGY6BtM6I56n1oF6oAAyt8J6NuPw23ltiXHGVqvLpBesUxgGqUPjYAyCOL42xy8BDYC3y38vjO3nSmfx458GDgDs0qhmd4odKLEpc0WpfY3MpoIjaNU_NZqjbWPyEAvnuj1EPjzGEjrb-XWD0IRpSD5nfe4NO_gaebvwCcgpDEj0oOsP_KK5MMp_JDqJs1qnVHyld94jtx6i2GKWJKSsG6UR5P-KRVZiqhK-gtqYzs7yALA9pgEPR5L_ldxWrfLL21Pqf6-pz_PfGrAMQkoNNQ0Oat_1XNKnd4hDy-l7mVaNUJQo6zJEK6FrfD6epwv0q7yE90mP48SatwwRKAoqGOWJMHswfzBejURhjsLHbaQw3mZITSxVVpUo8pJXd1qr1qpTxHgkkYt1v7YqIvH7UZkU_PC6qFe63CQE4xH6Ln9QWq63WYYgKCGNd5kKiVFC7fUU3fOgriDt9HXS0Er6vIShvN-OaTOfJGyj_1FJdBDf4aQQwFWxmjRfCP2wyq6dHH0pYPPIfJLbc97LEDhIqxlUvn0oxkBZ4-QFoJ_ar27NATLQtvY5o6IwftBE7g9pjjD4GnPTm6_GAbVAa3j9OFHTakPHNG2uPhCjm0rkoFudGXBoqXIR043uxaNUGWFrIlc0ywqUHGCAMedElphFaOVa_nEFbeEk95o3wNk2_FK1ihrjJ1_lnewZCzBcTY-YNE3Mu7CcU5ffNWE2ZWak08I3yQURng_FiF5bgtH5XFoQJVJWPw1TLGK_-qZFXXF07MFThJnWcW9znBxIIv6v7gmk0rPtO-lgm619JaThZk0euJZNJelaxfBaf-CO3u7qfwuB0FU58GgGYOcTbZyXNtbHgiE2aprzW4TwLWS9Ty7gwkwnOXcejlv3ugIMLgiXc0Dv-2DJZBdTME-XWW1iJEvETV_APgnd3V_Ne-942osvXytxR1BlattKipebSca_n_aRoyddv24RWVku0dXe5ROs9gjaLj-RK27nmQ65Po-tXhG-Eeory5BvXeE922XefmQ_2eMeZ9G1mFsOGT8rNHnN9KWQH16ce7ZQ79i4olrkQVhyWeYJPShHi0aWr2uYxsj31up5wn8Kk3Zy50Noz3esPPBZzxeUEQO4Rf0KoEXDKhyVZXTNawDTaE5e5ObDzpxcZtvTYwjeJFvRB5T1ly7n-pPUXH83JGU2hV1fA4czP-ASpU_9g9UZMZODWxPdYaGFoLe8Mz-uvLU42_qYyP2YHT8-7oshaGq1p4r_Ax4h8lWU22RYPjr7kiGhAVxSlFpnkl7eschQdm1lqbnkphQ0iVqyMK7WYPr9d6Y2dRXnFBGq2YBog_iS187FjhUHjKicN3NvN9EUnH4uVf0WwPn8Rg6rOszw2pHjnCLAVILFd7VGj8kc9smWGCkzG69lZhKVCKJmzoVWuYV-TkI37cEI6eLPciTYSM7sbll8-Ig6cQWevSx2ySIoCiIbGsslxTX-xynz9t-JnCaas9h5wLDQNFRFlz4s9ejDhiKXpr4YxGH8QxVHI0vWI8B35viOJPwEiTSO7dHQ5YEWS8ucUJnkPexM4i_JTp0EQ3VOfbG5eBLWH4awgzJlKb-3Fl4YB_UdR2Tq_raJIqEyy4g7laPSKhu2AyaeK-ZOAqJ4-WCjncl-VlqgsakpOm7PXOKYxnhksxFqpEqIWu4NFfYKYJMNHxkFAqzczRjdyTMZX2xKYWW5InqTUyHXNgpfjHMhrlCJpc8pYDSiYOpQNmX8-2HxWifp8GFfs-DIrqAkEKWBIcTvrS8pDGLPVR2OqrHJHeduOvYIVIVWZmgVJvyd310U96Ul1MlyOW8Bpa7SrxawWqN1FuthJMnTRNBKJBiLck9gTHMMLxHwPdelCcCwRwZMplzk3sBlTICGQ9n-YlYTi8h3oX9quP5Bl7s6qXW-yA2nTdNWy1hPKBAZKdxhUS82nnsuSg03Sr3WfVrbRjYVoC73QnhbkJkSqiRii7Y0JEXG5m7Iu94kG4y9ccVCvrQLNJsXRHDkx45rjOVRGagCBtwuFMMdLYOwX2EISvena41sCskJ0Fw4B9qXtELqi1SRzJJ8-7c1fELfokSh0vGumcG3VFyxU6nxJD1utWWIVBREoyE4yoc1mFHg3XDf5Ig6ZMtbT_7vDvzSVT7MwpcMB6X0HuPUEnWIcJcm_LiQByXbh9jnrSwPp5ZZunYSuM9-xaGhyq7P17bGncaJ-8zq3khJOwpJD8TgbCNJPelB65mQjyiKfNq28NGrDFN1zZbHkdcgiHsDLtyXDWaY5Z2zOrkwRez9pDODXa8c0_3ylnnVxvY82ta2UO-n0fwwhoKz0Tg7p5HDCxGmWVQzeNMQye0N839nDM1kotLCjHwzc2GqevLRHYJmn3-UQGpjBhyjt65qYryFZren71MwmtKBEgF4E7mUzJbaaLZXfZz7sAdVh0C6T0PzRfgNsRtA6hKTfT5w8ooLnO3Tw12J227tHFNQk3eOmpYsXy1umildXz0A9Fojet-rPMKAUmTxYmumvTpceZJxuIMWOR2aGhgx5rDf_0IPbvge9vNFdUNll_R0yFb3WlG6o1atV4eIvbp0t4ixzkUvF2k64AUfpOcm1kXDJpWUwO3vTYvcW1Pr_Y4AQ9RiXM3FLn4vhyjcdJrMcgjQFWG76jD3Jc1R7QCvFp4fm21jgT39rdFKYBkSpNGFE3PqR1fmKjU_Ietw0LOZqoapZKDD6wEjNWXzVbbzWcN0aOVtYv2bdlptKOaa6X_kDnwG_jJnAnwPeKtbffs_HVxB0dL8kpwASgzZgHd2pvWttSnsToY-JT5esAFnep6NI12ZvsoGyk2SOXIL5stRrowyBtrPZNEWfGpjzqcxp75vdtdsgci3Q6Mxrg9JD9q7WlaYcOQXiT_yXMFiB63rWB-nQaeDUrMuH6orzSao8WNhYxxigMvD6DphBeATUse1v-BEncmTrtEEzEQRH-lisL16ixSreLxm5oDOy3WiMQedOr4OylgXi4AeCL0MzvcNrCWs3OBodbFqBx9TM-Xrx9zKAlvE6mSptDdUqSqSrNc87Q3fUJP3M4SyiUNvnIEcgweJ-tYq1mvt0tl6m2XKaRlAWswcyvhK6HzDwvy9IH7UMZ9A2MNFDwq6YIfLmCEBGUpMbr56f6ercnXe12YCGgxD0gxotKi8pcUkQTq8VaFk98EB-Aor6Q05qLe8Qk_h5BNnVqXZ7oNyjDsrWrEYJ950_y1JJgbJPLDld5_K0imhOAPjBkA6aZqvnOA-Iy_aRvfSpR-bXwFp83wP_mfKFW1NQAAu9pOZ4WyNCJ4uRDm_cwEgFED32ftGwUl13Cngew9xQmmzY9joNqHYc4P0R_UhxZNDb1PZN8bUeCN11RbPoWszU02_kIw2ljyVzVX2OigXNecxvHo1-CP2PwLbFzpHftp05Qjx8uYgwYpwoZdmK72y434U4bnT2SMFh7927CkvVZ4H_3NN8fWMy8EXIcExmCBtcvnrBx8hmotwIrKDLI6PWdEetu3Hu9Jwoh8xQYIkKfRChtpXRb7TTvwYk3bUTiF7jF9cBqc_mBQmAuadGf1wIbWAsywwBDUxgmsL7WlUFScLnWGC_ljZw13dFG_S5xIUBAXp7FBvXbTf9TalC8Kxg81e2pLMI8nWIDVhwv__NudZiev7cJNSzCso_ofB2qFhFb_Kpg3Wwacs9QbIDwpJVQpSUePAxVPvkapApJBjuL4McpwQ7wnbXexBMQNQTm08mzUgIA5UiTOS7ouW1ftqbos5JF9arMOg3a4DhWrMXit6rUCXDi67Y4zVI2sIJm_rMcEakKJ5n4Ra8ed8WcIe46HRxr5ANC-gr9n_OM6XNzA-0YqhwJ4FvZMPmtJC_Y6usNpeA2WdMR1Anrd_2wx5Qwed3Rcj1UGNzYu8tKXlDIqEiSOdiDIUvoyqus2oTwuNeoZhKwAVn_Daqrl27Mlv1RfMefnxItlTbrUPpndKl3tVui7hvWO17sa456T_zZfoIy5pNOSbC2G52liRmlGinuZn0NpXCTRzuQlwhqx4tx7C1lAZTGDpEzVl9djlG2zcANYuw0C0hK95-5SnSTlLyae_q7eMgf1WLJhuds6zbTGbcN0Hf-qEgliop37pj1lviQiGYDte8VQPE319zNob83jxcqNyK-Xv15PKqhYaed0xw-K-O0adHcDjs3ABTCPiSOxxGqxB2PkVknpjbzgAq5_KCuLiL8p7d4TyHDx2GJxroQAzmH1XLtQmFdbV9nkYNepEHET19o-ALV_TUIY1tTVBEEn8kg5J16hmrOH6392mVK5S0="
+    }
+  },
+  "currentLe": {
+    "language": "en",
+    "name": "中英"
+  },
+  "le": "en"
+}

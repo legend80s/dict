@@ -166,9 +166,9 @@ interface Entry3 {
 }
 
 interface Tranentry {
-  pos_entry: Posentry;
-  exam_sents: Examsents;
-  tran: string;
+  pos_entry?: Posentry;
+  exam_sents?: Examsents;
+  tran?: string;
 }
 
 interface Examsents {

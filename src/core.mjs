@@ -357,11 +357,11 @@ async function byHtml(word, { example = false, collins = false } = {}) {
 
   // const htmlUrl = `https://dict.youdao.com/w/${encodeURIComponent(word)}/#keyfrom=dict2.top`;
   const htmlUrl = makeHTMLUrl(word);
-  const html = htmlUrl;
+  // const html = htmlUrl;
   // const html = execSync(`curl --silent ${htmlUrl}`).toString("utf-8"); // 367.983ms
-  // const [html, method] = await fetchIt(htmlUrl, { type: 'text' }); // 241.996ms
+  const [html, method] = await fetchIt(htmlUrl, { type: 'text' }); // 241.996ms
 
-  // debugC('byHtml', { method });
+  debugC('byHtml', { method });
 
   const nuxt = evaluateNuxtInScriptTagUseVM(html);
 
@@ -437,16 +437,21 @@ function extractCollins(data) {
   debugC('size:', size);
   // console.log('list:', list);
 
-  const collins = list.slice(0, size).map((item) => {
-    const entry = item.tran_entry[0];
-    /** @type {ICollinsItem} */
-    const tuple = [
-      entry.tran,
-      [entry.exam_sents.sent[0].eng_sent, entry.exam_sents.sent[0].chn_sent],
-    ];
+  const collins = list
+    .slice(0, size)
+    .filter((item) => item.tran_entry[0].tran)
+    .map((item) => {
+      const entry = item.tran_entry[0];
+      /** @type {ICollinsItem} */
+      const tuple = [
+        // @ts-expect-error
+        entry.tran,
+        // @ts-expect-error
+        [entry.exam_sents.sent[0].eng_sent, entry.exam_sents.sent[0].chn_sent],
+      ];
 
-    return tuple;
-  });
+      return tuple;
+    });
 
   return [collins, list.length];
 }
@@ -469,7 +474,7 @@ function removeTags(html) {
 async function byJSON(word) {
   // https://fanyi.youdao.com/ not available
   return {
-    errorMsg: text.error.notFound,
+    errorMsg: text.error.notFound(word),
   };
 
   const label = '? by fetch JSON';
