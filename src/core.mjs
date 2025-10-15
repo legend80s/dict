@@ -220,13 +220,13 @@ function print(word, result) {
 
   verbose && log(h2('Word:', `"${word}"`));
   console.log();
-  hasExample && log(h2('💡 Explanations'));
+  hasExample && log(h2('Explanations 💡'));
 
   explanations.forEach((exp) => {
     console.log(config.listItemIcon, white(exp));
   });
 
-  const suggestedWord = suggestions && suggestions[0];
+  const suggestedWord = suggestions?.[0];
   suggestedWord && console.log('\n你要找的是不是:', white(suggestedWord));
 
   if (englishExplanation?.[0]) {
@@ -245,7 +245,7 @@ function print(word, result) {
       sub = `. Add ${tips} to show more examples.`;
     }
 
-    const header = `📖 柯林斯英汉双解大词典 [#${englishExplanationTotalCount}]`;
+    const header = `柯林斯英汉双解大词典 [#${englishExplanationTotalCount}] 📖`;
     log(h2(header) + sub);
 
     const str = englishExplanation
@@ -316,7 +316,7 @@ function introduceFeatures(word, suggestedWord) {
  */
 function printExamples(examples) {
   console.log();
-  log(h2('⭐ Examples'));
+  log(h2('Examples ⭐'));
 
   examples.forEach(([sentence, translation, via], idx) => {
     log(white(highlightWord(sentence)));

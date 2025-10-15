@@ -14,7 +14,7 @@ export const CYAN = '\x1b[36m';
 // FIXME: not see how to reset cyan only
 // export const RESET_CYAN = '\x1b[29m'
 
-export const h2 = (...text) => bold('## ' + text.join(' '));
+export const h2 = (...text) => bold(`## ${text.join(' ')}`);
 
 /**
  * @type {(val: any) => val is string}
@@ -39,7 +39,7 @@ export function bold(str, { white = true } = {}) {
 
 /**
  *
- * @param  {...string} args
+ * @param  {...any} args
  * @returns
  */
 export function debug(...args) {
