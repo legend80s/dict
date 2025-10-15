@@ -6,14 +6,15 @@ const UNDERLINED = '\x1b[4m';
 const ITALIC = '\x1b[3m';
 
 const RESET = '\x1b[0m';
-const RESET_BOLD = '\x1b[22m';
-const RESET_UNDERLINED = '\x1b[24m';
+// const RESET_BOLD = '\x1b[22m';
+// const RESET_UNDERLINED = '\x1b[24m';
 
 export const WHITE = '\x1b[97m';
 export const CYAN = '\x1b[36m';
 // FIXME: not see how to reset cyan only
 // export const RESET_CYAN = '\x1b[29m'
 
+/** @param {string[]} text */
 export const h2 = (...text) => bold(`## ${text.join(' ')}`);
 
 /**
@@ -21,9 +22,11 @@ export const h2 = (...text) => bold(`## ${text.join(' ')}`);
  */
 export const isString = (val) => typeof val === 'string';
 
+/** @param {string} str */
 export function italic(str) {
   return `${ITALIC}${str}${RESET}`;
 }
+/** @param {string} str */
 export function white(str) {
   return `${WHITE}${str}${RESET}`;
 }
