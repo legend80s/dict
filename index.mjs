@@ -9,11 +9,23 @@ import {
 } from './src/core.mjs';
 import { translate } from './src/translator/index.mjs';
 import { help, parser, showHelp } from './src/utils/arg-parser.mjs';
+import { italic } from './src/utils/lite-lodash.mjs';
 import { debugC as debug } from './src/utils/logger.mjs';
 
 main();
 
 async function main() {
+  const label = italic('查询耗时 🕑');
+  console.time(label);
+
+  try {
+    await init();
+  } finally {
+    console.timeEnd(label);
+  }
+}
+
+async function init() {
   debug('args:', parser.args);
 
   if (showHelp()) {

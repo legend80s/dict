@@ -1,3 +1,4 @@
+// oxlint-disable no-unused-expressions
 // @ts-check
 import * as vm from 'node:vm';
 
@@ -290,4 +291,38 @@ export function evaluateNuxtInScriptTagUseVM(html) {
   }
 
   return { data: [] };
+}
+
+/**
+ * 给函数添加一个计时器。支持同步/异步函数。
+ *
+ * @template {(...args: any[]) => any} T
+ * @param {string} label
+ * @param {T} asyncFunc
+ * @returns {(...args: Parameters<T>) => ReturnType<T>}
+ */
+export function timeit(label, asyncFunc) {
+  return (...args) => {
+    console.time(label);
+    let isPromise = false;
+
+    try {
+      const result = asyncFunc(...args);
+
+      // For async function.
+      if (typeof result.then === 'function') {
+        isPromise = true;
+
+        return result.finally(() => {
+          console.timeEnd(label);
+        });
+      } else {
+        return result;
+      }
+    } finally {
+      // For async function `timeEnd` has been trigged in finally.
+      // Below is for sync function.
+      !isPromise && console.timeEnd(label);
+    }
+  };
 }

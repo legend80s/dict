@@ -2,7 +2,7 @@
 // oxlint-disable no-unused-expressions
 import { parser, verbose } from '../utils/arg-parser.mjs';
 import { fetchIt } from '../utils/fetch.mjs';
-import { evaluateNuxtInScriptTagUseVM } from '../utils/lite-lodash.mjs';
+import { evaluateNuxtInScriptTagUseVM, timeit } from '../utils/lite-lodash.mjs';
 import { debugC } from '../utils/logger.mjs';
 import { text } from './constants.mjs';
 
@@ -11,7 +11,9 @@ import { text } from './constants.mjs';
 
 /** @type {import('../../typings').IDictionary} */
 export const dictionaryByNuxt = {
-  lookup: lookupByNuxtInHTML,
+  lookup: verbose
+    ? timeit('? by nuxt fetch', lookupByNuxtInHTML)
+    : lookupByNuxtInHTML,
 };
 
 /**

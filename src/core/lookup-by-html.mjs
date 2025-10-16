@@ -1,7 +1,7 @@
 // oxlint-disable no-unused-expressions
 import { parser } from '../utils/arg-parser.mjs';
 import { fetchIt } from '../utils/fetch.mjs';
-import { chunk } from '../utils/lite-lodash.mjs';
+import { chunk, timeit } from '../utils/lite-lodash.mjs';
 import { debugC } from '../utils/logger.mjs';
 import { text } from './constants.mjs';
 
@@ -15,17 +15,9 @@ const verbose = parser.get('verbose');
 
 /** @type {import('../../typings').IDictionary} */
 export const dictionaryByHTML = {
-  lookup: async (...args) => {
-    const label = '? [lookup-by-html] fetch';
-
-    verbose && console.time(label);
-
-    try {
-      return await lookUpByMatchHtml(...args);
-    } finally {
-      verbose && console.timeEnd(label);
-    }
-  },
+  lookup: verbose
+    ? timeit('? [lookup-by-html] fetch', lookUpByMatchHtml)
+    : lookUpByMatchHtml,
 };
 
 /**
