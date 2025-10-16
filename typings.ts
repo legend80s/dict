@@ -3,8 +3,30 @@ type IJSON = Record<string, any>;
 type IQuerierSync = (word: string) => string[] | string;
 type IQuerierAsync = (word: string) => Promise<string[] | string>;
 
+export type IErrorResult = { errorMsg: string; error?: Error };
+
+export type ICollinsItem = [
+  english: string,
+  [eng_sent?: string, chn_sent?: string],
+];
+
+export type IExample = [sentence: string, translation: string, via: string];
+
+export type IParsedResult =
+  | {
+      explanations: string[];
+      englishExplanation?: ICollinsItem[];
+      englishExplanationTotalCount?: number;
+      suggestions?: string[];
+      examples?: IExample[];
+    }
+  | { errorMsg: string };
+
 /**
- * All HTML tags as a union type
+ * All HTML tags as a union type.
+ *
+ * NOTE tsconfig.json should exists otherwise
+ * > Cannot find name 'HTMLElementTagNameMap'.ts(2304)
  * @example
  * const tag: AllHTMLTags = 'div'; // 自动补全会显示所有可用的标签
  */
@@ -503,3 +525,32 @@ interface Tran {
 interface Summary {
   line: string[];
 }
+
+/**
+ * This is a **abstract** dictionary class.
+ * It is used to define the interface for all dictionary classes.
+ */
+export interface IDictionary {
+  lookup(word: string): Promise<
+    | IErrorResult
+    | {
+        englishExplanation?: ICollinsItem[];
+        englishExplanationTotalCount?: number;
+        explanations: string[];
+        examples?: IExample[];
+      }
+  >;
+}
+
+export type lookup = (
+  word: string,
+  options: { example: boolean; collins: boolean },
+) => Promise<
+  | IErrorResult
+  | {
+      englishExplanation?: ICollinsItem[];
+      englishExplanationTotalCount?: number;
+      explanations: string[];
+      examples?: IExample[];
+    }
+>;

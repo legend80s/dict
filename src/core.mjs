@@ -2,98 +2,37 @@
 // @ts-check
 import { exec } from 'node:child_process';
 import { log } from 'node:console';
-import { createRequire } from 'node:module';
 
-import { ArgParser } from './args.mjs';
+import { config, i18n } from './core/constants.mjs';
+
 import { Fatigue } from './utils/fatigue.mjs';
 import { fetchIt } from './utils/fetch.mjs';
 import {
   bold,
-  debug,
   evaluateNuxtInScriptTagUseVM,
   h2,
   highlight,
   italic,
   white,
 } from './utils/lite-lodash.mjs';
+import { debugC, help, parser } from './utils/parser.mjs';
 
-const require = createRequire(import.meta.url);
-
-const flags = {
-  help: ['-h', '--help'],
-  version: ['-v', '--version'],
-  verbose: '--verbose',
-
-  speak: ['-s', '--speak', false],
-  example: ['-e', '--example', false],
-  collins: ['-c', '--collins', 1],
-};
-
-/**
- * @typedef {{ errorMsg: string, error?: Error }} IErrorResult
- */
-
-/**
- * @typedef {{
- *  explanations: string[];
- *  englishExplanation?: ICollinsItem[];
- *  englishExplanationTotalCount?: number;
- *  suggestions?: string[];
- *  examples?: IExample[];
- * } | IErrorResult} IParsedResult
- */
-
-export const parser = new ArgParser(flags);
-
-const verbose = !!parser.get('verbose');
-
-export function debugC(...args) {
-  if (!verbose) {
-    return false;
-  }
-
-  debug('[core]', ...args);
-
-  return true;
-}
-
-// const args = process.argv.slice(2);
-
-const config = {
-  // listItemIcon: '📖',
-  listItemIcon: '🟢',
-  // listItemIcon: "⭕️",
-  // listItemIcon: "✅",
-  // listItemIcon: '💬',
-};
-
-/**
- * @type {import('../typings').I18n}
- */
-const i18n = {
-  'en-US': {
-    error: {
-      noWord: 'Please input word to query.',
-      // englishWordOnly: 'Please input an valid English word.',
-      notFound: (word) => `Word "${word}" Not found in dictionary.`,
-    },
-  },
-  'zh-CN': {
-    error: {
-      noWord: '请输入需要查询的单词',
-      // englishWordOnly: '目前仅支持英文单词查询',
-      notFound: (word) => `抱歉没有找到“${word}”相关的词`,
-    },
-  },
-};
+/** @typedef {import('../typings').ICollinsItem} ICollinsItem  */
+/** @typedef {import('../typings').IParsedResult} IParsedResult */
+/** @typedef {import('../typings').IErrorResult} IErrorResult */
 
 const text = i18n[getLanguage()];
+
+const verbose = parser.get('verbose');
 
 /** @type {(sentence: string) => string} */
 let highlightWord;
 
 /**
- *
+ * 主入口。获取单词，查询，输出结果。
+ * 编排逻辑：
+ * 1. 如果某个渠道获取失败，则尝试下一个渠道。
+ * 2. 参数增加疲劳度控制
  * @param {string} word
  * @returns {Promise<boolean>}
  */
@@ -122,7 +61,10 @@ export const query = async (word) => {
 
     // failed
     if ('errorMsg' in json) {
-      result = await byHtml(word, { example: false, collins: false });
+      result = await lookupByNuxtInHTML(word, {
+        example: false,
+        collins: false,
+      });
     } else {
       result = json;
     }
@@ -132,12 +74,10 @@ export const query = async (word) => {
 };
 
 /**
- *
- * @param {string} word
- * @returns {Promise<IParsedResult>}
+ * @type {import('../typings').lookup}
  */
 async function translateWithExamples(word, { example, collins }) {
-  const htmlResult = await byHtml(word, { example, collins });
+  const htmlResult = await lookupByNuxtInHTML(word, { example, collins });
 
   if ('errorMsg' in htmlResult) {
     debugC('Fallback to JSON when HTML fetch failed');
@@ -166,10 +106,6 @@ function exitWithErrorMsg(word, { errorMsg, error }) {
 
   help();
 }
-
-/**
- * @typedef {[sentence: string, translation: string, via: string]} IExample
- */
 
 /**
  * @param {string} word
@@ -239,7 +175,8 @@ function print(word, result) {
     const isDefaultValue = parser.get('collins') === 1;
 
     if (englishExplanationTotalCount > 1 && isDefaultValue) {
-      const surround = (str) => '`' + italic(white(str)) + '`';
+      /** @param {string} str */
+      const surround = (str) => `\`${italic(white(str))}\``;
       const tips = ['-c=2', '-c=all'].map(surround).join(' or ');
 
       sub = `. Add ${tips} to show more examples.`;
@@ -347,11 +284,9 @@ function makeHTMLUrl(word) {
 }
 
 /**
- * cost: 367.983ms
- * @param {string} word
- * @returns {Promise<IErrorResult | { englishExplanation?: ICollinsItem[]; englishExplanationTotalCount?: number; explanations: string[]; examples?: IExample[] } >}
+ * @type {import('../typings').lookup}
  */
-async function byHtml(word, { example = false, collins = false } = {}) {
+async function lookupByNuxtInHTML(word, { example = false, collins = false }) {
   const label = '? [core] by html fetch';
   verbose && console.time(label);
 
@@ -361,7 +296,7 @@ async function byHtml(word, { example = false, collins = false } = {}) {
   // const html = execSync(`curl --silent ${htmlUrl}`).toString("utf-8"); // 367.983ms
   const [html, method] = await fetchIt(htmlUrl, { type: 'text' }); // 241.996ms
 
-  debugC('byHtml', { method });
+  debugC('lookupByNuxtInHTML', { method });
 
   const nuxt = evaluateNuxtInScriptTagUseVM(html);
 
@@ -390,7 +325,7 @@ async function byHtml(word, { example = false, collins = false } = {}) {
 
   const examples = data.wordData.blng_sents_part['sentence-pair'].map(
     (item) => {
-      /** @type {IExample} */
+      /** @type {import('../typings').IExample} */
       const example = [
         item['sentence-eng'],
         item['sentence-translation'],
@@ -414,8 +349,6 @@ async function byHtml(word, { example = false, collins = false } = {}) {
     englishExplanationTotalCount,
   };
 }
-
-/** @typedef {[english: string, [eng_sent?: string, chn_sent?: string]]} ICollinsItem */
 
 /**
  * @param {import('../typings').IData} data
@@ -456,15 +389,6 @@ function extractCollins(data) {
     });
 
   return [collins, list.length];
-}
-
-/**
- *
- * @param {string} html
- * @returns {string}
- */
-function removeTags(html) {
-  return html.replace(/<\/?.+?>/g, '').trim();
 }
 
 /**
@@ -526,7 +450,7 @@ async function byJSON(word) {
  */
 async function fetchSuggestions(word) {
   const url = `https://dsuggest.ydstatic.com/suggest.s?query=${word}&keyfrom=dict2.top.suggest&o=form&rn=10&h=19&le=eng`;
-
+  // curl 'https://dict.youdao.com/suggest?num=5&ver=3.0&doctype=json&cache=false&le=en&q=silhouette' \ -H 'Accept: application/json, text/plain, */*'
   const [str] = await fetchIt(url, { type: 'text' });
 
   let first = '';
@@ -547,22 +471,7 @@ async function fetchSuggestions(word) {
   return first ? [first] : [];
 }
 
-export function showHelp() {
-  return parser.get('help', 'version');
-}
-
-export function help() {
-  const { name, description, version } = require('../package.json');
-
-  console.log();
-  console.log([name, version].join('@'));
-  console.log();
-  console.log('>', description);
-  console.log();
-  console.log('> Example:');
-  console.log(`> $ npx dict <word> [${Object.values(flags).flat().join(' ')}]`);
-}
-
+/** @param {string} word */
 export function speak(word) {
   if (!parser.get('speak')) {
     debugC('Not speak because "speak" flag', parser.flags.speak, 'is off.');

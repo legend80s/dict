@@ -1,5 +1,4 @@
-import { join } from 'node:path'
-import fs from 'node:fs'
+import fs from 'node:fs';
 import { homedir } from 'node:os';
 
 // cannot be .mjs because it's generated dynamically so must be `required`.
@@ -11,13 +10,10 @@ const header = `
 `.trim();
 
 /**
-* @param {Record<string, any>} config
-*/
+ * @param {Record<string, any>} config
+ */
 export function writeFullConfig(config) {
   const content = `module.exports = ${JSON.stringify(config, null, 2)}`;
 
-  fs.writeFileSync(
-    rcFilepath,
-    `${header}\n${content}\n`
-  )
+  fs.writeFileSync(rcFilepath, `${header}\n${content}\n`);
 }

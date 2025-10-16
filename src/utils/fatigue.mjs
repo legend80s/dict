@@ -1,3 +1,4 @@
+// @ts-check
 import fs from 'node:fs';
 import { createRequire } from 'node:module';
 
@@ -20,7 +21,7 @@ export class Fatigue {
     if (!fs.existsSync(rcFilepath)) {
       // console.log('not found');
 
-      writeFullConfig({})
+      writeFullConfig({});
     }
   }
 
@@ -39,13 +40,16 @@ export class Fatigue {
     return hit;
   }
 
+  /**
+   * @param {K} key
+   */
   setTired(key) {
-    this.increment(key, limit)
+    this.increment(key, limit);
   }
 
   /**
    * @param {K} key
-   * @param {number} count
+   * @param {number} [count]
    */
   increment(key, count) {
     const config = require(rcFilepath);
@@ -56,7 +60,7 @@ export class Fatigue {
 
     this.debugF('increment after key=%s, config=%j', key, config);
 
-    writeFullConfig(config)
+    writeFullConfig(config);
   }
 
   /**
@@ -65,7 +69,7 @@ export class Fatigue {
    */
   debugF(...args) {
     if (this.verbose) {
-      debug('[fatigue]', ...args)
+      debug('[fatigue]', ...args);
     }
   }
 }

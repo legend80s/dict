@@ -14,6 +14,12 @@ export async function fetchIt(
   url,
   { type = 'json', method = 'GET', body, headers = {} } = {},
 ) {
+  const defaultHeaders = {
+    'User-Agent':
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36',
+  };
+  headers = { ...defaultHeaders, ...headers };
+
   const asJSON = type === 'json';
 
   if (typeof fetch === 'function') {

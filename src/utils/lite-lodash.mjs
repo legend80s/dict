@@ -41,6 +41,25 @@ export function bold(str, { white = true } = {}) {
 }
 
 /**
+ * @template T
+ * @param {T[]} arr
+ * @param {number} count
+ * @returns {T[][]}
+ */
+export function chunk(arr, count) {
+  const copy = [...arr];
+  const result = [];
+  let temp;
+
+  // biome-ignore lint/suspicious/noAssignInExpressions: false positive
+  while (((temp = copy.splice(0, count)), temp.length)) {
+    result.push(temp);
+  }
+
+  return result;
+}
+
+/**
  *
  * @param  {...any} args
  * @returns
