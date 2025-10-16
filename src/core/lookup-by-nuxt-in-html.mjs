@@ -1,13 +1,13 @@
 // @ts-check
 // oxlint-disable no-unused-expressions
-import { debugC, parser, verbose } from '../utils/arg-parser.mjs';
+import { parser, verbose } from '../utils/arg-parser.mjs';
 import { fetchIt } from '../utils/fetch.mjs';
 import { evaluateNuxtInScriptTagUseVM } from '../utils/lite-lodash.mjs';
+import { debugC } from '../utils/logger.mjs';
 import { text } from './constants.mjs';
 
 /** @typedef {import('../../typings').ICollinsItem} ICollinsItem  */
 /** @typedef {import('../../typings').IParsedResult} IParsedResult */
-/** @typedef {import('../../typings').IErrorResult} IErrorResult */
 
 /** @type {import('../../typings').IDictionary} */
 export const dictionaryByNuxt = {
@@ -18,16 +18,21 @@ export const dictionaryByNuxt = {
  * @type {import('../../typings').IDictionary['lookup']}
  */
 async function lookupByNuxtInHTML(word, { example = false, collins = false }) {
-  const label = '? [core] by html fetch';
+  const label = '? [core] by nuxt fetch';
   verbose && console.time(label);
 
   // const htmlUrl = `https://dict.youdao.com/w/${encodeURIComponent(word)}/#keyfrom=dict2.top`;
   const htmlUrl = makeHTMLUrl(word);
   // const html = htmlUrl;
   // const html = execSync(`curl --silent ${htmlUrl}`).toString("utf-8"); // 367.983ms
-  const [html, method] = await fetchIt(htmlUrl, { type: 'text' }); // 241.996ms
+  let html = '';
+  try {
+    [html] = await fetchIt(htmlUrl, { type: 'text' }); // 241.996ms
+  } catch (/** @type {Error} */ error) {
+    return { errorMsg: `fetch "${htmlUrl}" FAILED.`, error };
+  }
 
-  debugC('lookupByNuxtInHTML', { method });
+  // debugC('lookupByNuxtInHTML', { method });
 
   const nuxt = evaluateNuxtInScriptTagUseVM(html);
 

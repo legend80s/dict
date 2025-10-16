@@ -1,3 +1,4 @@
+// @ts-check
 import { createRequire } from 'node:module';
 
 import { ArgParser } from '../args.mjs';
@@ -18,21 +19,12 @@ export const parser = new ArgParser(flags);
 
 export const verbose = !!parser.get('verbose');
 
-export function debugC(...args) {
-  if (!verbose) {
-    return false;
-  }
-
-  debug('[core]', ...args);
-
-  return true;
-}
-
 export function showHelp() {
   return parser.get('help', 'version');
 }
 
 export function help() {
+  // @ts-expect-error
   const { name, description, version } = require('../package.json');
 
   console.log();

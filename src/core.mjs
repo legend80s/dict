@@ -4,14 +4,13 @@ import { exec } from 'node:child_process';
 import { log } from 'node:console';
 
 import { config, text } from './core/constants.mjs';
-import {
-  dictionaryByNuxt,
-  makeHTMLUrl,
-} from './core/lookup-by-nuxt-in-html.mjs';
-import { debugC, help, parser, verbose } from './utils/arg-parser.mjs';
+import { dictionary } from './core/dictionary.mjs';
+import { makeHTMLUrl } from './core/lookup-by-nuxt-in-html.mjs';
+import { help, parser, verbose } from './utils/arg-parser.mjs';
 import { Fatigue } from './utils/fatigue.mjs';
 import { fetchIt } from './utils/fetch.mjs';
 import { bold, h2, highlight, italic, white } from './utils/lite-lodash.mjs';
+import { debugC } from './utils/logger.mjs';
 
 /** @typedef {import('../typings').ICollinsItem} ICollinsItem  */
 /** @typedef {import('../typings').IParsedResult} IParsedResult */
@@ -53,7 +52,7 @@ export const query = async (word) => {
 
     // failed
     if ('errorMsg' in json) {
-      result = await dictionaryByNuxt.lookup(word, {
+      result = await dictionary.lookup(word, {
         example: false,
         collins: false,
       });
@@ -66,10 +65,10 @@ export const query = async (word) => {
 };
 
 /**
- * @type {import('../typings').lookup}
+ * @type {import('../typings').IDictionary['lookup']}
  */
 async function translateWithExamples(word, { example, collins }) {
-  const htmlResult = await dictionaryByNuxt.lookup(word, { example, collins });
+  const htmlResult = await dictionary.lookup(word, { example, collins });
 
   if ('errorMsg' in htmlResult) {
     debugC('Fallback to JSON when HTML fetch failed');
@@ -178,8 +177,21 @@ function print(word, result) {
     log(h2(header) + sub);
 
     const str = englishExplanation
-      .map(([english, [eng_sent, chn_sent]]) => {
-        return highlightWord(`${english}\n  | ${eng_sent}\n  | ${chn_sent}`);
+      .map(([english, sentences]) => {
+        // console.log('english:', english);
+        // console.log('sentences:', sentences);
+        const rendered =
+          typeof sentences === 'string'
+            ? `  ${sentences.replace('例： ', '例：')}`
+            : sentences
+                ?.map(
+                  (s, i) =>
+                    `  ${i !== sentences.length - 1 ? '├──' : '└──'} ${s}`,
+                )
+                .join('\n');
+
+        return highlightWord([`${english}`, rendered].join('\n'));
+        // return highlightWord(`${english}\n  | ${eng_sent}\n  | ${chn_sent}`);
       })
       .join('\n\n');
 

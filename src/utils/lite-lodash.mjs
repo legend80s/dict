@@ -1,11 +1,12 @@
 // @ts-check
-import vm from 'node:vm';
+import * as vm from 'node:vm';
 
 const BOLD = '\x1b[1m';
 const UNDERLINED = '\x1b[4m';
 const ITALIC = '\x1b[3m';
+const RED = '\x1b[31m';
 
-const RESET = '\x1b[0m';
+export const RESET = '\x1b[0m';
 // const RESET_BOLD = '\x1b[22m';
 // const RESET_UNDERLINED = '\x1b[24m';
 
@@ -16,6 +17,9 @@ export const CYAN = '\x1b[36m';
 
 /** @param {string[]} text */
 export const h2 = (...text) => bold(`## ${text.join(' ')}`);
+
+/** @param {string} text */
+export const red = (text) => `${RED}${text}${RESET}`;
 
 /**
  * @type {(val: any) => val is string}

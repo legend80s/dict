@@ -12,14 +12,27 @@ export type ICollinsItem =
 export type IExample = [sentence: string, translation: string, via: string];
 
 export type IParsedResult =
+  | IErrorResult
   | {
       explanations: string[];
       englishExplanation?: ICollinsItem[];
       englishExplanationTotalCount?: number;
       suggestions?: string[];
       examples?: IExample[];
-    }
-  | { errorMsg: string };
+    };
+
+/**
+ * This is a **abstract** dictionary class.
+ * It is used to define the interface for all dictionary classes.
+ */
+export interface IDictionary {
+  lookup: lookup;
+}
+
+type lookup = (
+  word: string,
+  options: { example: boolean; collins: boolean },
+) => Promise<IParsedResult>;
 
 /**
  * All HTML tags as a union type.
@@ -524,24 +537,3 @@ interface Tran {
 interface Summary {
   line: string[];
 }
-
-/**
- * This is a **abstract** dictionary class.
- * It is used to define the interface for all dictionary classes.
- */
-export interface IDictionary {
-  lookup: lookup;
-}
-
-type lookup = (
-  word: string,
-  options: { example: boolean; collins: boolean },
-) => Promise<
-  | IErrorResult
-  | {
-      englishExplanation?: ICollinsItem[];
-      englishExplanationTotalCount?: number;
-      explanations: string[];
-      examples?: IExample[];
-    }
->;
