@@ -16,8 +16,17 @@ export const CYAN = '\x1b[36m';
 // FIXME: not see how to reset cyan only
 // export const RESET_CYAN = '\x1b[29m'
 
-/** @param {string[]} text */
-export const h2 = (...text) => bold(`## ${text.join(' ')}`);
+/**
+ * @param {1 | 2 | 3 | 4} level
+ * @returns {(...text: string[]) => string}
+ */
+export const headerFactory =
+  (level) =>
+  (...text) =>
+    bold(`${'#'.repeat(level)} ${text.join(' ')}`);
+
+export const h1 = headerFactory(1);
+export const h2 = headerFactory(2);
 
 /** @param {string} text */
 export const red = (text) => `${RED}${text}${RESET}`;

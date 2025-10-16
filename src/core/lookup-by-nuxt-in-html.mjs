@@ -17,6 +17,14 @@ export const dictionaryByNuxt = {
 };
 
 /**
+ * @param {string} word
+ * @returns {string}
+ */
+export function makeHTMLUrl(word) {
+  return `https://dict.youdao.com/result?word=${encodeURIComponent(word)}&lang=en`;
+}
+
+/**
  * @type {import('../../typings').IDictionary['lookup']}
  */
 async function lookupByNuxtInHTML(word, { example = false, collins = false }) {
@@ -59,18 +67,7 @@ async function lookupByNuxtInHTML(word, { example = false, collins = false }) {
     return { explanations };
   }
 
-  const examples = data.wordData.blng_sents_part['sentence-pair'].map(
-    (item) => {
-      /** @type {import('../../typings').IExample} */
-      const example = [
-        item['sentence-eng'],
-        item['sentence-translation'],
-        item.source || '',
-      ];
-
-      return example;
-    },
-  );
+  const examples = !example ? [] : extractExamples(data);
 
   const [englishExplanation, englishExplanationTotalCount] = collins
     ? extractCollins(data)
@@ -84,6 +81,23 @@ async function lookupByNuxtInHTML(word, { example = false, collins = false }) {
     englishExplanation,
     englishExplanationTotalCount,
   };
+}
+
+/**
+ * @param {import('../../typings').IData} data
+ * @returns {import('../../typings').IExample[]}
+ */
+function extractExamples(data) {
+  return data.wordData.blng_sents_part['sentence-pair'].map((item) => {
+    /** @type {import('../../typings').IExample} */
+    const example = [
+      item['sentence-eng'],
+      item['sentence-translation'],
+      item.source || '',
+    ];
+
+    return example;
+  });
 }
 
 /**
@@ -125,13 +139,4 @@ function extractCollins(data) {
     });
 
   return [collins, list.length];
-}
-
-/**
- *
- * @param {string} word
- * @returns {string}
- */
-export function makeHTMLUrl(word) {
-  return `https://dict.youdao.com/result?word=${encodeURIComponent(word)}&lang=en`;
 }

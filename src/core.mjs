@@ -9,7 +9,14 @@ import { makeHTMLUrl } from './core/lookup-by-nuxt-in-html.mjs';
 import { help, parser, verbose } from './utils/arg-parser.mjs';
 import { Fatigue } from './utils/fatigue.mjs';
 import { fetchIt } from './utils/fetch.mjs';
-import { bold, h2, highlight, italic, white } from './utils/lite-lodash.mjs';
+import {
+  bold,
+  h1,
+  h2,
+  highlight,
+  italic,
+  white,
+} from './utils/lite-lodash.mjs';
 import { debugC } from './utils/logger.mjs';
 
 /** @typedef {import('../typings').ICollinsItem} ICollinsItem  */
@@ -145,7 +152,7 @@ function print(word, result) {
 
   const hasExample = !!examples?.length;
 
-  verbose && log(h2('Word:', `"${word}"`));
+  verbose && log(h1(`"${word}"`));
   console.log();
   hasExample && log(h2('Explanations 💡'));
 
@@ -201,6 +208,8 @@ function print(word, result) {
       console.log('...');
     }
   }
+
+  // console.log('hasExample:', hasExample);
 
   if (hasExample) {
     printExamples(examples);

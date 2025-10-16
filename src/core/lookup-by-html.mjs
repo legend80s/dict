@@ -74,6 +74,7 @@ async function lookUpByMatchHtml(word, { example = false, collins = false }) {
     ? extractCollins(html)
     : [];
 
+  // console.log('examples 2:', examples);
   return {
     explanations,
     // @ts-expect-error
