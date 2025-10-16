@@ -1,8 +1,9 @@
+// oxlint-disable no-unused-expressions
 // @ts-check
 import { exec } from 'node:child_process';
 import { log } from 'node:console';
 import { createRequire } from 'node:module';
-import { parser } from '../utils/arg-parser.mjs';
+import { debugC, parser } from '../utils/arg-parser.mjs';
 import { Fatigue } from '../utils/fatigue.mjs';
 import { fetchIt } from '../utils/fetch.mjs';
 import {
@@ -72,7 +73,7 @@ function getLanguage(configLang) {
 /**
  * @type {import('../../typings').lookup}
  */
-export async function byHtml(word, { example = false, collins = false }) {
+export async function lookUpByHtml(word, { example = false, collins = false }) {
   const label = '? [core] by html fetch';
   verbose && console.time(label);
 
@@ -130,6 +131,7 @@ export async function byHtml(word, { example = false, collins = false }) {
 
   return {
     explanations,
+    // @ts-expect-error
     examples: chunk(examples, 3),
     englishExplanation,
     englishExplanationTotalCount,
@@ -178,6 +180,7 @@ function extractCollins(html) {
     ),
   );
 
+  // @ts-expect-error
   return [collins, list.length];
 }
 

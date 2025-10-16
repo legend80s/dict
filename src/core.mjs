@@ -5,7 +5,7 @@ import { log } from 'node:console';
 
 import { config, text } from './core/constants.mjs';
 import {
-  lookupByNuxtInHTML,
+  dictionaryByNuxt,
   makeHTMLUrl,
 } from './core/lookup-by-nuxt-in-html.mjs';
 import { debugC, help, parser, verbose } from './utils/arg-parser.mjs';
@@ -53,7 +53,7 @@ export const query = async (word) => {
 
     // failed
     if ('errorMsg' in json) {
-      result = await lookupByNuxtInHTML(word, {
+      result = await dictionaryByNuxt.lookup(word, {
         example: false,
         collins: false,
       });
@@ -69,7 +69,7 @@ export const query = async (word) => {
  * @type {import('../typings').lookup}
  */
 async function translateWithExamples(word, { example, collins }) {
-  const htmlResult = await lookupByNuxtInHTML(word, { example, collins });
+  const htmlResult = await dictionaryByNuxt.lookup(word, { example, collins });
 
   if ('errorMsg' in htmlResult) {
     debugC('Fallback to JSON when HTML fetch failed');

@@ -5,10 +5,9 @@ type IQuerierAsync = (word: string) => Promise<string[] | string>;
 
 export type IErrorResult = { errorMsg: string; error?: Error };
 
-export type ICollinsItem = [
-  english: string,
-  [eng_sent?: string, chn_sent?: string],
-];
+export type ICollinsItem =
+  | [english: string, [eng_sent?: string, chn_sent?: string]]
+  | [english: string, eng_and_chn_sent?: string];
 
 export type IExample = [sentence: string, translation: string, via: string];
 
@@ -531,18 +530,10 @@ interface Summary {
  * It is used to define the interface for all dictionary classes.
  */
 export interface IDictionary {
-  lookup(word: string): Promise<
-    | IErrorResult
-    | {
-        englishExplanation?: ICollinsItem[];
-        englishExplanationTotalCount?: number;
-        explanations: string[];
-        examples?: IExample[];
-      }
-  >;
+  lookup: lookup;
 }
 
-export type lookup = (
+type lookup = (
   word: string,
   options: { example: boolean; collins: boolean },
 ) => Promise<

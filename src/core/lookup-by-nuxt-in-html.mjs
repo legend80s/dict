@@ -9,13 +9,15 @@ import { text } from './constants.mjs';
 /** @typedef {import('../../typings').IParsedResult} IParsedResult */
 /** @typedef {import('../../typings').IErrorResult} IErrorResult */
 
+/** @type {import('../../typings').IDictionary} */
+export const dictionaryByNuxt = {
+  lookup: lookupByNuxtInHTML,
+};
+
 /**
- * @type {import('../../typings').lookup}
+ * @type {import('../../typings').IDictionary['lookup']}
  */
-export async function lookupByNuxtInHTML(
-  word,
-  { example = false, collins = false },
-) {
+async function lookupByNuxtInHTML(word, { example = false, collins = false }) {
   const label = '? [core] by html fetch';
   verbose && console.time(label);
 
