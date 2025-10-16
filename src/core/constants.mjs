@@ -1,3 +1,4 @@
+// @ts-check
 export const config = {
   // listItemIcon: '📖',
   listItemIcon: '🟢',
@@ -7,7 +8,7 @@ export const config = {
 };
 
 /**
- * @type {import('../typings').I18n}
+ * @type {import('../../typings').I18n}
  */
 export const i18n = {
   'en-US': {
@@ -25,3 +26,15 @@ export const i18n = {
     },
   },
 };
+
+export const text = i18n[getLanguage()];
+
+/**
+ * @returns {import('../../typings').ILang}
+ */
+function getLanguage() {
+  const lang = Intl.DateTimeFormat().resolvedOptions().locale;
+
+  // @ts-expect-error
+  return lang || 'zh-CN';
+}

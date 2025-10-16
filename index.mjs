@@ -13,7 +13,7 @@ import {
   help,
   parser,
   showHelp,
-} from './src/utils/parser.mjs';
+} from './src/utils/arg-parser.mjs';
 
 main();
 

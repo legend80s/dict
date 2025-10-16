@@ -1,23 +1,20 @@
 // @ts-check
 import { exec } from 'node:child_process';
-import { createRequire } from 'node:module';
 import { log } from 'node:console';
-
-import { ArgParser } from './args.mjs';
-
-import {
-  italic,
-  chunk,
-  bold,
-  h2,
-  white,
-  debug,
-  highlight,
-} from '../utils/lite-lodash.mjs';
-
+import { createRequire } from 'node:module';
+import { parser } from '../utils/arg-parser.mjs';
 import { Fatigue } from '../utils/fatigue.mjs';
 import { fetchIt } from '../utils/fetch.mjs';
-import { parser } from '../utils/parser.mjs';
+import {
+  bold,
+  chunk,
+  debug,
+  h2,
+  highlight,
+  italic,
+  white,
+} from '../utils/lite-lodash.mjs';
+import { ArgParser } from './args.mjs';
 
 /** @typedef {import('../../typings').IParsedResult} IParsedResult */
 

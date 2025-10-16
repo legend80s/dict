@@ -16,7 +16,7 @@ const flags = {
 
 export const parser = new ArgParser(flags);
 
-const verbose = !!parser.get('verbose');
+export const verbose = !!parser.get('verbose');
 
 export function debugC(...args) {
   if (!verbose) {
