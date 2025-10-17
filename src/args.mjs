@@ -1,6 +1,10 @@
 /**
  * @typedef {string | string[] | Array<string|number|boolean>} IFlagItem
  */
+
+import { isNumberStr } from './utils/lite-lodash.mjs';
+import { debugC } from './utils/logger.mjs';
+
 /**
  * @template {Record<string, IFlagItem>} Flags
  *
@@ -26,56 +30,69 @@ export class ArgParser {
   }
 
   /**
-   *
-   * @param {Array<keyof Flags>} keys
-   * @returns {boolean | number}
+   * @template {keyof Flags} K
+   * @param {K} key
+   * @returns {import('../typings').GeneralizedLast<Flags[K]>}
    */
-  get(...keys) {
+  get(key) {
     // console.log('keys:', keys);
 
-    const fallback = this.getFallback(keys[0]);
+    const fallback = this.getFallback(key);
 
     // console.log('fallback:', fallback);
 
+    const flagsAndDefaultValue = this.flags[key];
     /** @type {string[]} */
-    const flags = keys.reduce((acc, key) => acc.concat(this.flags[key] || []), []);
+    const flags = (Array.isArray(flagsAndDefaultValue) ? flagsAndDefaultValue : [flagsAndDefaultValue]).filter(item => String(item).startsWith('-'));
 
-    // console.log('this.args:', this.args);
-    // console.log('flags:', flags);
+    // console.log('get:', key, { flags, args: this.args });
 
     for (const arg of this.args) {
       // flags [-s, --silent]
       // arg --silent=false
       for (const flag of flags) {
         if (arg === flag) {
+          // @ts-expect-error
           return true;
         }
 
         const value = arg.match(new RegExp(`${flag}=(.+)`))?.[1];
 
+          // @ts-expect-error
         if (value === `true`) { return true }
+          // @ts-expect-error
         if (value === `false`) { return false }
 
         if (value) {
-          return value;
+          // @ts-expect-error
+          return isNumberStr(value) ? Number(value) : value;
         }
       }
     }
 
+    // @ts-expect-error
     return fallback;
   }
 
+  /**
+   * @param {keyof Flags} key
+   */
   getFallback(key) {
     const DEFAULT_FALLBACK = false;
-    const first = this.flags[key];
+    const theFlags = this.flags[key];
 
-    if (!Array.isArray(first)) {
+    if (!Array.isArray(theFlags)) {
       return DEFAULT_FALLBACK;
     }
 
-    const fallback = first.at(-1);
+    const last = theFlags.at(-1);
 
-    return ['boolean', 'number'].includes(typeof fallback) ? fallback : DEFAULT_FALLBACK;
+    if (!last) {
+      debugC('LAST SHOULD NOT BE EMPTY', { theFlags: theFlags, last });
+      return DEFAULT_FALLBACK;
+    }
+
+    return !String(last).startsWith('-') ? last : DEFAULT_FALLBACK;
   }
 
   /**

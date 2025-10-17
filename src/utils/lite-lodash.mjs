@@ -343,3 +343,11 @@ export function timeit(label, asyncFunc) {
     }
   };
 }
+
+/**
+ * @param {string} str
+ * @returns {boolean}
+ */
+export function isNumberStr(str) {
+  return Number.isFinite(Number(str));
+}

@@ -398,19 +398,14 @@ export function speak(word) {
 }
 
 /**
- *
- * @param {string | 1} val
- * @returns
+ * @param {number | string} val - 1,2,3 or 'a' or 'all'
+ * @returns {boolean}
  */
 function shouldShowCollins(val) {
-  const isDefaultValue = val === 1;
+  debugC('shouldShowCollins:', val, typeof val);
 
-  if (isDefaultValue) {
+  if (val === 0) {
     return false;
-  }
-
-  if (Number(val) || val.startsWith('a')) {
-    return true;
   }
 
   return true;

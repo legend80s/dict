@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
-    "lib": ["ES2021", "DOM"],
-    "target": "es2018",
+    // The 'import.meta' meta-property is only allowed when the '--module' option is 'es2020', 'es2022', 'esnext', 'system', 'node16', 'node18', 'node20', or 'nodenext'.ts(1343)
+    "module": "ES2022",
+    "lib": ["ES2022", "DOM"],
+    "target": "ES2022",
     "checkJs": true,
     "strict": true
   }

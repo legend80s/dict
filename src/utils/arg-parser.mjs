@@ -5,6 +5,7 @@ import { ArgParser } from '../args.mjs';
 
 const require = createRequire(import.meta.url);
 
+/** @type {import('../../typings').IFlags} */
 const flags = {
   help: ['-h', '--help'],
   version: ['-v', '--version'],
@@ -12,15 +13,25 @@ const flags = {
 
   speak: ['-s', '--speak', false],
   example: ['-e', '--example', false],
-  collins: ['-c', '--collins', 1],
+  collins: ['-c', '--collins', 0],
 };
 
 export const parser = new ArgParser(flags);
 
-export const verbose = !!parser.get('verbose');
+/** @type {boolean} */
+export const verbose = parser.get('verbose');
 
+// /** @type {boolean} */
+// export const example = parser.get('example'); // boolean
+// /** @type {number} */
+// export const collins = parser.get('collins'); // number
+
+// /** @type {boolean} */
+// export const helpInArg = parser.get('help'); // boolean
+
+/** @returns {boolean} */
 export function showHelp() {
-  return parser.get('help', 'version');
+  return parser.get('help') || parser.get('version');
 }
 
 export function help() {

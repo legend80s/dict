@@ -538,3 +538,32 @@ interface Tran {
 interface Summary {
   line: string[];
 }
+
+export type IFlags = {
+  help: ['-h', '--help'],
+  version: ['-v', '--version'],
+  verbose: '--verbose',
+
+  speak: ['-s', '--speak', false],
+  example: ['-e', '--example', false],
+  collins: ['-c', '--collins', number],
+}
+
+type GetLast<T extends any[]> = T extends [...any, infer Last] ? Last : never;
+type Test11 = GetLast<[1, 2, 3]>; // 3
+type Test12 = GetLast<[1, 2, 3, '4']>; // '4'
+
+export type GeneralizedLast<T> = T extends any[] ? GetLast<T> extends infer Last
+  ? Last extends `-${string}` ? boolean
+  : Last extends boolean ? boolean
+  : Last extends number ? number
+  : string
+  : never
+  : boolean
+;
+
+type Test21 = GeneralizedLast<['-s', '--speak', false]>; // boolean
+type Test22 = GeneralizedLast<['-c', '--collins', 1]>; // number
+// version: ['-v', '--version'],
+type Test23 = GeneralizedLast<['-v', '--version']>; // boolean
+type Test24 = GeneralizedLast<'--verbose'>; // boolean
