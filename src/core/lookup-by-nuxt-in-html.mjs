@@ -9,20 +9,20 @@ import { text } from './constants.mjs';
 /** @typedef {import('../../typings').ICollinsItem} ICollinsItem  */
 /** @typedef {import('../../typings').IParsedResult} IParsedResult */
 
-/** @type {import('../../typings').IDictionary} */
-export const dictionaryByNuxt = {
-  lookup: verbose
-    ? timeit('? by nuxt fetch', lookupByNuxtInHTML)
-    : lookupByNuxtInHTML,
-};
+const lookup = verbose
+  ? timeit('? by nuxt fetch', lookupByNuxtInHTML)
+  : lookupByNuxtInHTML;
 
 /**
  * @param {string} word
  * @returns {string}
  */
-export function makeHTMLUrl(word) {
+function makeHTMLUrl(word) {
   return `https://dict.youdao.com/result?word=${encodeURIComponent(word)}&lang=en`;
 }
+
+/** @type {import('../../typings').IDictionary} */
+export const dictionaryByNuxt = { makeHTMLUrl, lookup };
 
 /**
  * @type {import('../../typings').IDictionary['lookup']}

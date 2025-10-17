@@ -27,6 +27,7 @@ export type IParsedResult =
  */
 export interface IDictionary {
   lookup: lookup;
+  makeHTMLUrl: (word: string) => string;
 }
 
 type lookup = (

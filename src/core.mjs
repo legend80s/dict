@@ -5,7 +5,6 @@ import { log } from 'node:console';
 
 import { config, text } from './core/constants.mjs';
 import { dictionary } from './core/dictionary.mjs';
-import { makeHTMLUrl } from './core/lookup-by-nuxt-in-html.mjs';
 import { help, parser, verbose } from './utils/arg-parser.mjs';
 import { Fatigue } from './utils/fatigue.mjs';
 import { fetchIt } from './utils/fetch.mjs';
@@ -100,7 +99,7 @@ function exitWithErrorMsg(word, { errorMsg, error }) {
     // console.info('\n> Example: $ npx dict water');
   }
 
-  console.error(`> ${makeHTMLUrl(word)}`);
+  console.error(`> ${dictionary.makeHTMLUrl(word)}`);
 
   help();
 }
@@ -218,7 +217,7 @@ function print(word, result) {
   introduceFeatures(word, suggestedWord);
 
   console.log();
-  console.log(italic(`See more at ${makeHTMLUrl(word)}`));
+  console.log(italic(`See more at ${dictionary.makeHTMLUrl(word)}`));
 
   return true;
 }

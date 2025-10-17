@@ -15,11 +15,16 @@ const verbose = parser.get('verbose');
 
 /** @type {import('../../typings').IDictionary} */
 export const dictionaryByHTML = {
+  makeHTMLUrl,
   lookup: verbose
     ? timeit('? [lookup-by-html] fetch', lookUpByMatchHtml)
     : lookUpByMatchHtml,
 };
 
+/** @type {import('../../typings').IDictionary['makeHTMLUrl']} */
+function makeHTMLUrl(word) {
+  return `https://dict.youdao.com/w/${encodeURIComponent(word)}/#keyfrom=dict2.top`;
+}
 /**
  * @type {import('../../typings').IDictionary['lookup']}
  */
