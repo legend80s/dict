@@ -148,7 +148,7 @@ function getBreakpoint(args) {
  */
 export function highlight(sentence, words) {
   // console.log('sentence:', sentence);
-  const queryWord = words[0];
+  // const queryWord = words[0];
   const uniqWords = uniq(words);
   // console.log('words:', { uniqWords });
 
@@ -157,13 +157,13 @@ export function highlight(sentence, words) {
   const pattern = uniqWords
     .map((w) => w.replace(/([()])/g, '\\$1'))
     .map((w) => (isEnglish(w) ? `\\b${genWordVariants(w)}\\b` : w))
-    .concat(`<b>${queryWord}</b>`)
+    // .concat(`<b>${queryWord}</b>`)
     .join('|');
 
   // console.log('pattern:', pattern);
 
   return sentence.replace(new RegExp(pattern, 'gi'), (m) =>
-    bold(m.replace(`<b>`, '').replace('</b>', '')),
+    bold(m),
   );
 }
 

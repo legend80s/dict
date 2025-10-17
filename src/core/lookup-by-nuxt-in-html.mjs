@@ -31,9 +31,7 @@ async function lookupByNuxtInHTML(word, { example = false, collins = false }) {
   const label = '? [core] by nuxt fetch';
   verbose && console.time(label);
 
-  // const htmlUrl = `https://dict.youdao.com/w/${encodeURIComponent(word)}/#keyfrom=dict2.top`;
   const htmlUrl = makeHTMLUrl(word);
-  // const html = htmlUrl;
   // const html = execSync(`curl --silent ${htmlUrl}`).toString("utf-8"); // 367.983ms
   let html = '';
   try {

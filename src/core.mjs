@@ -15,6 +15,7 @@ import {
   h2,
   highlight,
   italic,
+  WHITE,
   white,
 } from './utils/lite-lodash.mjs';
 import { debugC } from './utils/logger.mjs';
@@ -147,8 +148,19 @@ function print(word, result) {
 
   // console.log('explanationWords:', explanationWords);
 
-  highlightWord = (sentence) =>
-    highlight(sentence, [word, ...explanationWords]);
+  highlightWord = (sentence) => {
+    // 如果句子包含<b>，则直接对其内容高亮
+    if (sentence.includes('<b>')) {
+      return sentence.replaceAll(/<b>(.+?)<\/b>/g, (match, p1) => {
+        // console.log('match:', {match, p1});
+        return bold(p1)
+      })
+    }
+
+    // 否则自定义高亮规则
+    // 如果句子包含explanationWords中的词，则高亮
+    return highlight(sentence, [word, ...explanationWords])
+  };
 
   const hasExample = !!examples?.length;
 
@@ -203,11 +215,11 @@ function print(word, result) {
                 .join('\n');
 
         const prefix = `${index + 1}. `;
-        return green(prefix) + highlightWord([
+        return green(prefix) + [
           // remove prefix index
           `${english.replace(/^\d+\.\s/, '')}`,
-          rendered,
-        ].join('\n'));
+          rendered || '',
+        ].map(highlightWord).join('\n');
       })
       .join('\n\n');
 
@@ -402,4 +414,15 @@ function shouldShowCollins(val) {
   }
 
   return true;
+}
+
+/**
+ * @param {import('../typings').AllHTMLTags} tag
+ * @param {string} html
+ * @returns {string}
+ * @example
+ * removeTag('div', '<div class="collins">Hello World</div>') // => 'Hello World'
+ */
+function removeTag(tag, html) {
+  return html.replace(new RegExp(`<${tag}[^>]*>`, 'g'), '').replace(new RegExp(`</${tag}>`, 'g'), '');
 }
