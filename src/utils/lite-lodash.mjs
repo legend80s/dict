@@ -6,6 +6,7 @@ const BOLD = '\x1b[1m';
 const UNDERLINED = '\x1b[4m';
 const ITALIC = '\x1b[3m';
 const RED = '\x1b[31m';
+const GREEN = '\x1b[32m';
 
 export const RESET = '\x1b[0m';
 // const RESET_BOLD = '\x1b[22m';
@@ -28,8 +29,15 @@ export const headerFactory =
 export const h1 = headerFactory(1);
 export const h2 = headerFactory(2);
 
-/** @param {string} text */
-export const red = (text) => `${RED}${text}${RESET}`;
+/**
+ *
+ * @param {string} color
+ * @returns {(text: string) => string}
+ */
+const colorFactory = (color) => (text) => `${color}${text}${RESET}`;
+
+export const red = colorFactory(RED);
+export const green = colorFactory(GREEN);
 
 /**
  * @type {(val: any) => val is string}

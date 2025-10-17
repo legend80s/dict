@@ -10,6 +10,7 @@ import { Fatigue } from './utils/fatigue.mjs';
 import { fetchIt } from './utils/fetch.mjs';
 import {
   bold,
+  green,
   h1,
   h2,
   highlight,
@@ -182,8 +183,10 @@ function print(word, result) {
     const header = `柯林斯英汉双解大词典 [#${englishExplanationTotalCount}] 📖`;
     log(h2(header) + sub);
 
+    const len = englishExplanation.length;
+
     const str = englishExplanation
-      .map(([english, sentences]) => {
+      .map(([english, sentences], index) => {
         // console.log('english:', english);
         // console.log('sentences:', sentences);
         const rendered =
@@ -191,13 +194,20 @@ function print(word, result) {
             ? `  ${sentences.replace('例： ', '例：')}`
             : sentences
                 ?.map(
-                  (s, i) =>
-                    `  ${i !== sentences.length - 1 ? '├──' : '└──'} ${s}`,
+                  (s, i) => {
+                    const THREE_SPACES = '   '
+                    const spaces = len < 10 ? THREE_SPACES : THREE_SPACES + (index + 1 >= 10 ? ' ' : '');
+                    return `${spaces}${i !== sentences.length - 1 ? '├──' : '└──'} ${s}`
+                  }
                 )
                 .join('\n');
 
-        return highlightWord([`${english}`, rendered].join('\n'));
-        // return highlightWord(`${english}\n  | ${eng_sent}\n  | ${chn_sent}`);
+        const prefix = `${index + 1}. `;
+        return green(prefix) + highlightWord([
+          // remove prefix index
+          `${english.replace(/^\d+\.\s/, '')}`,
+          rendered,
+        ].join('\n'));
       })
       .join('\n\n');
 
