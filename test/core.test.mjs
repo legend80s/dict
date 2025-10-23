@@ -1,17 +1,32 @@
-import test from 'node:test'
 import assert from 'node:assert'
 import { execSync } from 'node:child_process'
+import test from 'node:test'
+import { stripVTControlCharacters } from 'node:util'
 
 test('Should show help', () => {
-  const stdout = execSync(`node ./ -v`).toString('utf-8')
+  const stdout = stripVTControlCharacters(execSync(`node ./ -v`).toString('utf-8'))
 
   assert.match(stdout, /ydd@\d/)
   assert.match(stdout, /> Explain English word in Chinese. 查询英文单词的中文释义。/)
-  assert.match(stdout, /> Example:/)
-  assert.match(
-    stdout,
-    /> \$ npx dict <word> \[-h --help -v --version --verbose -s --speak false -e --example false -c --collins 1\]/,
-  )
+  assert.match(stdout, /> Usage:/)
+  assert.match(stdout, /\$ npx ydd <word>/)
+  ;[
+    '-h',
+    '--help',
+    '-v',
+    '--version',
+    '--verbose',
+    '-s',
+    '--speak',
+    'false',
+    '-e',
+    '--example',
+    '-c',
+    '--collins',
+    '0',
+  ].forEach(flag => {
+    assert.equal(stdout.includes(flag), true)
+  })
 })
 
 test('Should show explanations and without examples by default', () => {
@@ -42,11 +57,13 @@ test('Should show explanations and examples and collins', () => {
 })
 
 test('Should show 2 collins', () => {
-  const stdout = execSync(`node ./ wonderful -c=2 --example`).toString('utf-8')
+  const stdout = stripVTControlCharacters(
+    execSync(`node ./ wonderful -c=2 --example`).toString('utf-8'),
+  )
 
   assert.match(stdout, /柯林斯英汉双解大词典/)
-  assert.match(stdout, /1\. ADJ/)
-  assert.match(stdout, /2\./)
+  assert.match(stdout, /1\..+ADJ/)
+  assert.match(stdout, /2\..+ADV/)
 })
 
 test('Should show word on verbose', () => {
@@ -63,7 +80,10 @@ test('Should show Explanations only', () => {
   assert.match(stdout, /美妙的女孩/)
   assert.match(
     stdout,
-    /See more at https:\/\/dict.youdao.com\/w\/wonderful%20girl\/#keyfrom=dict2.top/,
+    // biome-ignore lint/complexity/useRegexLiterals: String.raw is used for escape thus more readable
+    new RegExp(
+      String.raw`See more at https://dict.youdao.com/result\?word=wonderful%20girl&lang=en`,
+    ),
   )
 })
 
@@ -76,7 +96,7 @@ test.skip('Should show suggested word when no explanations found', () => {
 })
 
 test('Should show Examples and collins', () => {
-  const stdout = execSync(`node ./ router -e -c`).toString('utf-8')
+  const stdout = stripVTControlCharacters(execSync(`node ./ router -e -c`).toString('utf-8'))
 
   assert.match(stdout, /Explanations/)
   assert.match(stdout, /柯林斯英汉双解大词典/)
