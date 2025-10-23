@@ -1,6 +1,6 @@
 {
   "rules": {
-    "no-console": "error",
+    "no-console": ["error", { "allow": ["info", "warn", "error", "time", "timeEnd", "table"] }],
     "no-unused-expressions": ["error", { "allowShortCircuit": true }]
   }
 }

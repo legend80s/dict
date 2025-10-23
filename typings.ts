@@ -5,7 +5,7 @@ export type IJSON = Record<string, unknown>
 export type IErrorResult = { errorMsg: string; error?: Error }
 
 export type ICollinsItem =
-  | [english: string, [eng_sent?: string, chn_sent?: string]]
+  | { partOfSpeech?: string; english: string; eng_sent?: string; chn_sent?: string }
   | [english: string, eng_and_chn_sent?: string]
 
 export type IExample = [sentence: string, translation: string, via: string]
@@ -57,7 +57,7 @@ export type I18n = Record<
   }
 >
 
-interface IDictResult {
+export interface IDictResult {
   translation: string[]
   basic: IBasic
   query: string
@@ -541,7 +541,7 @@ interface Summary {
 export type IFlags = {
   help: ['-h', '--help']
   version: ['-v', '--version']
-  verbose: '--verbose'
+  verbose: ['--verbose']
 
   speak: ['-s', '--speak', false]
   example: ['-e', '--example', false]
