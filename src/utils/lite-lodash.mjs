@@ -1,6 +1,5 @@
-// oxlint-disable no-unused-expressions
 // @ts-check
-import * as vm from 'node:vm';
+import vm from 'node:vm';
 
 const BOLD = '\x1b[1m';
 const UNDERLINED = '\x1b[4m';
@@ -55,11 +54,18 @@ export function white(str) {
 
 /**
  * @param {string} str
- * @param {{ white?: boolean }} options
  * @returns {string}
  */
-export function bold(str, { white = true } = {}) {
-  return CYAN + BOLD + UNDERLINED + str + RESET + (white ? WHITE : '');
+export function bold(str, { underlined = true } = {}) {
+  const white = str.includes(WHITE);
+  return (
+    CYAN +
+    BOLD +
+    (underlined ? UNDERLINED : '') +
+    str +
+    RESET +
+    (white ? WHITE : '')
+  );
 }
 
 /**
@@ -130,6 +136,7 @@ function getBreakpoint(args) {
       return index - 1;
     }
 
+    /** @param {string} item */
     const isPlaceholder = (item) => /%[fidjsoO]/.test(item);
 
     if (isPlaceholder(arg) && !isPlaceholder(args[index + 1])) {
@@ -162,9 +169,7 @@ export function highlight(sentence, words) {
 
   // console.log('pattern:', pattern);
 
-  return sentence.replace(new RegExp(pattern, 'gi'), (m) =>
-    bold(m),
-  );
+  return sentence.replace(new RegExp(pattern, 'gi'), (m) => bold(m));
 }
 
 /**

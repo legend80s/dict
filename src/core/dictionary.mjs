@@ -1,4 +1,3 @@
-// oxlint-disable no-unused-expressions
 import { verbose } from '../utils/arg-parser.mjs';
 import { red } from '../utils/lite-lodash.mjs';
 import { debugDictionary as debug } from '../utils/logger.mjs';

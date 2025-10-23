@@ -1,4 +1,3 @@
-// oxlint-disable no-unused-expressions
 // @ts-check
 import { exec } from 'node:child_process';
 import { log } from 'node:console';
@@ -15,7 +14,6 @@ import {
   h2,
   highlight,
   italic,
-  WHITE,
   white,
 } from './utils/lite-lodash.mjs';
 import { debugC } from './utils/logger.mjs';
@@ -411,13 +409,13 @@ function shouldShowCollins(val) {
   return true;
 }
 
-/**
- * @param {import('../typings').AllHTMLTags} tag
- * @param {string} html
- * @returns {string}
- * @example
- * removeTag('div', '<div class="collins">Hello World</div>') // => 'Hello World'
- */
-function removeTag(tag, html) {
-  return html.replace(new RegExp(`<${tag}[^>]*>`, 'g'), '').replace(new RegExp(`</${tag}>`, 'g'), '');
-}
+// /**
+//  * @param {import('../typings').AllHTMLTags} tag
+//  * @param {string} html
+//  * @returns {string}
+//  * @example
+//  * removeTag('div', '<div class="collins">Hello World</div>') // => 'Hello World'
+//  */
+// function removeTag(tag, html) {
+//   return html.replace(new RegExp(`<${tag}[^>]*>`, 'g'), '').replace(new RegExp(`</${tag}>`, 'g'), '');
+// }

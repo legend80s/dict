@@ -1,4 +1,3 @@
-// oxlint-disable no-unused-expressions
 import { parser } from '../utils/arg-parser.mjs';
 import { fetchIt } from '../utils/fetch.mjs';
 import { chunk, timeit } from '../utils/lite-lodash.mjs';

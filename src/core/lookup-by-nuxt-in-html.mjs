@@ -1,5 +1,4 @@
 // @ts-check
-// oxlint-disable no-unused-expressions
 import { parser, verbose } from '../utils/arg-parser.mjs';
 import { fetchIt } from '../utils/fetch.mjs';
 import { evaluateNuxtInScriptTagUseVM, timeit } from '../utils/lite-lodash.mjs';
