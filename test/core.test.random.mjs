@@ -1,6 +1,6 @@
-import test from 'node:test'
 import assert from 'node:assert'
 import { execSync } from 'node:child_process'
+import test from 'node:test'
 import { pickRandomWords } from './asset.mjs'
 
 test('should not throw error on random word', () => {

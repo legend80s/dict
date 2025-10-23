@@ -94,14 +94,16 @@ function extractExamples(data) {
  * @returns {[ICollinsItem[]?, number?]}
  */
 function extractCollins(data) {
-  debugC('data:', JSON.stringify(data))
+  // console.log('data:', JSON.stringify(data))
   const collinsInData = data.wordData.collins
 
   if (!collinsInData) {
     return []
   }
 
-  const list = collinsInData.collins_entries[0].entries.entry
+  const list = collinsInData.collins_entries[0].entries.entry.filter(
+    item => item.tran_entry[0].tran,
+  )
 
   const num = parser.get('collins')
   // `--collins=all` to show all collins

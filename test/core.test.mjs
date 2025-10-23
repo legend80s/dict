@@ -131,3 +131,10 @@ test('Should match as longer as possible', () => {
 
   assert.doesNotMatch(stdout, /柯林斯英汉双解大词典 \[#\d\]/)
 })
+
+test('Should show all collins when -c=a is specified', () => {
+  const stdout = execSync(`node ./ than -c=a`).toString('utf-8')
+
+  assert.match(stdout, /柯林斯英汉双解大词典 \[#\d\]/)
+  assert.doesNotMatch(stdout, /\.\.\./)
+})
