@@ -1,39 +1,38 @@
-type IJSON = Record<string, any>;
+export type int = number
 
-type IQuerierSync = (word: string) => string[] | string;
-type IQuerierAsync = (word: string) => Promise<string[] | string>;
+export type IJSON = Record<string, unknown>
 
-export type IErrorResult = { errorMsg: string; error?: Error };
+export type IErrorResult = { errorMsg: string; error?: Error }
 
 export type ICollinsItem =
   | [english: string, [eng_sent?: string, chn_sent?: string]]
-  | [english: string, eng_and_chn_sent?: string];
+  | [english: string, eng_and_chn_sent?: string]
 
-export type IExample = [sentence: string, translation: string, via: string];
+export type IExample = [sentence: string, translation: string, via: string]
 
 export type IParsedResult =
   | IErrorResult
   | {
-      explanations: string[];
-      englishExplanation?: ICollinsItem[];
-      englishExplanationTotalCount?: number;
-      suggestions?: string[];
-      examples?: IExample[];
-    };
+      explanations: string[]
+      englishExplanation?: ICollinsItem[]
+      englishExplanationTotalCount?: number
+      suggestions?: string[]
+      examples?: IExample[]
+    }
 
 /**
  * This is a **abstract** dictionary class.
  * It is used to define the interface for all dictionary classes.
  */
 export interface IDictionary {
-  lookup: lookup;
-  makeHTMLUrl: (word: string) => string;
+  lookup: lookup
+  makeHTMLUrl: (word: string) => string
 }
 
 type lookup = (
   word: string,
   options: { example: boolean; collins: boolean },
-) => Promise<IParsedResult>;
+) => Promise<IParsedResult>
 
 /**
  * All HTML tags as a union type.
@@ -43,527 +42,530 @@ type lookup = (
  * @example
  * const tag: AllHTMLTags = 'div'; // 自动补全会显示所有可用的标签
  */
-export type AllHTMLTags = keyof HTMLElementTagNameMap;
+export type AllHTMLTags = keyof HTMLElementTagNameMap
 
-export type ILang = 'en-US' | 'zh-CN';
+export type ILang = 'en-US' | 'zh-CN'
 
 export type I18n = Record<
   ILang,
   {
     error: {
-      noWord: string;
+      noWord: string
       // englishWordOnly: string;
-      notFound: (word: string) => string;
-    };
+      notFound: (word: string) => string
+    }
   }
->;
+>
 
 interface IDictResult {
-  translation: string[];
-  basic: IBasic;
-  query: string;
-  errorCode: number;
-  web: IWeb[];
+  translation: string[]
+  basic: IBasic
+  query: string
+  errorCode: number
+  web: IWeb[]
 }
 
 interface IWeb {
-  value: string[];
-  key: string;
+  value: string[]
+  key: string
 }
 
 interface IBasic {
-  'us-phonetic': string;
-  phonetic: string;
-  'uk-phonetic': string;
-  explains: string[];
+  'us-phonetic': string
+  phonetic: string
+  'uk-phonetic': string
+  explains: string[]
 }
 
 /** Extracted from `window.__NUXT__` in page https://dict.youdao.com/result?word=silhouette&lang=en */
 export type __NUXT__ = {
-  data: IData[];
-};
+  data: IData[]
+}
 
 export interface IData {
-  q: string;
-  wordData: WordData;
-  currentLe: CurrentLe;
-  le: string;
+  q: string
+  wordData: WordData
+  currentLe: CurrentLe
+  le: string
 }
 
 interface CurrentLe {
-  language: string;
-  name: string;
+  language: string
+  name: string
 }
 
 interface WordData {
-  web_trans: Webtrans;
-  oxfordAdvanceHtml: OxfordAdvanceHtml;
-  ee: Ee;
-  blng_sents_part: Blngsentspart;
-  collins_primary: Collinsprimary;
-  auth_sents_part: Authsentspart;
-  simple: Simple;
-  expand_ec: Expandec;
-  etym: Etym;
-  phrs: Phrs;
-  oxford: OxfordAdvanceHtml;
-  special: Special;
-  syno: Syno2;
-  input: string;
-  music_sents: Musicsents;
-  collins?: Collins;
-  meta: Meta;
-  webster: OxfordAdvanceHtml;
-  le: string;
-  wikipedia_digest: Wikipediadigest;
-  lang: string;
-  ec: Ec;
-  oxfordAdvance: OxfordAdvanceHtml;
+  web_trans: Webtrans
+  oxfordAdvanceHtml: OxfordAdvanceHtml
+  ee: Ee
+  blng_sents_part: Blngsentspart
+  collins_primary: Collinsprimary
+  auth_sents_part: Authsentspart
+  simple: Simple
+  expand_ec: Expandec
+  etym: Etym
+  phrs: Phrs
+  oxford: OxfordAdvanceHtml
+  special: Special
+  syno: Syno2
+  input: string
+  music_sents: Musicsents
+  collins?: Collins
+  meta: Meta
+  webster: OxfordAdvanceHtml
+  le: string
+  wikipedia_digest: Wikipediadigest
+  lang: string
+  ec: Ec
+  oxfordAdvance: OxfordAdvanceHtml
 }
 
 interface Ec {
-  web_trans: string[];
-  special: Special2[];
-  source: Source;
-  word: Word4;
+  web_trans: string[]
+  special: Special2[]
+  source: Source
+  word: Word4
 }
 
 interface Word4 {
-  usphone: string;
-  ukphone: string;
-  ukspeech: string;
-  trs: Tr5[];
-  wfs: Wf2[];
-  'return-phrase': string;
-  usspeech: string;
+  usphone: string
+  ukphone: string
+  ukspeech: string
+  trs: Tr5[]
+  wfs: Wf2[]
+  'return-phrase': string
+  usspeech: string
 }
 
 interface Wf2 {
-  wf: Wf;
+  wf: Wf
 }
 
 interface Tr5 {
-  pos?: string;
-  tran: string;
+  pos?: string
+  tran: string
 }
 
 interface Special2 {
-  nat: string;
-  major: string;
+  nat: string
+  major: string
 }
 
 interface Wikipediadigest {
-  summarys: Summary3[];
-  source: Source;
+  summarys: Summary3[]
+  source: Source
 }
 
 interface Summary3 {
-  summary: string;
-  key: string;
+  summary: string
+  key: string
 }
 
 interface Meta {
-  input: string;
-  guessLanguage: string;
-  isHasSimpleDict: string;
-  le: string;
-  lang: string;
-  dicts: string[];
+  input: string
+  guessLanguage: string
+  isHasSimpleDict: string
+  le: string
+  lang: string
+  dicts: string[]
 }
 
 interface Collins {
-  collins_entries: Collinsentry[];
+  collins_entries: Collinsentry[]
 }
 
 interface Collinsentry {
-  entries: Entries;
-  phonetic: string;
-  basic_entries: Basicentries;
-  headword: string;
-  star: string;
+  entries: Entries
+  phonetic: string
+  basic_entries: Basicentries
+  headword: string
+  star: string
 }
 
 interface Basicentries {
-  basic_entry: Basicentry[];
+  basic_entry: Basicentry[]
 }
 
 interface Basicentry {
-  cet: string;
-  headword: string;
+  cet: string
+  headword: string
 }
 
 interface Entries {
-  entry: Entry3[];
+  entry: Entry3[]
 }
 
 interface Entry3 {
-  tran_entry: Tranentry[];
+  tran_entry: Tranentry[]
 }
 
 interface Tranentry {
-  pos_entry?: Posentry;
-  exam_sents?: Examsents;
-  tran?: string;
+  pos_entry?: Posentry
+  exam_sents?: Examsents
+  tran?: string
 }
 
 interface Examsents {
-  sent: Sent3[];
+  sent: Sent3[]
 }
 
 interface Sent3 {
-  chn_sent: string;
-  eng_sent: string;
+  chn_sent: string
+  eng_sent: string
 }
 
 interface Posentry {
-  pos: string;
-  pos_tips: string;
+  pos: string
+  pos_tips: string
 }
 
 interface Musicsents {
-  sents_data: Sentsdatum[];
-  more: boolean;
-  word: string;
+  sents_data: Sentsdatum[]
+  more: boolean
+  word: string
 }
 
 interface Sentsdatum {
-  songName: string;
-  lyricTranslation: string;
-  singer: string;
-  coverImg: string;
-  supportCount: number;
-  lyric: string;
-  link: string;
-  lyricList: LyricList[];
-  id: string;
-  songId: string;
-  decryptedSongId: string;
-  playUrl: string;
+  songName: string
+  lyricTranslation: string
+  singer: string
+  coverImg: string
+  supportCount: number
+  lyric: string
+  link: string
+  lyricList: LyricList[]
+  id: string
+  songId: string
+  decryptedSongId: string
+  playUrl: string
 }
 
 interface LyricList {
-  duration: number;
-  lyricTranslation: string;
-  lyric: string;
-  start: number;
+  duration: number
+  lyricTranslation: string
+  lyric: string
+  start: number
 }
 
 interface Syno2 {
-  synos: Syno[];
-  word: string;
+  synos: Syno[]
+  word: string
 }
 
 interface Syno {
-  pos: string;
-  ws: string[];
-  tran: string;
+  pos: string
+  ws: string[]
+  tran: string
 }
 
 interface Special {
-  summary: Summary2;
-  'co-add': string;
-  total: string;
-  entries: Entry2[];
+  summary: Summary2
+  'co-add': string
+  total: string
+  entries: Entry2[]
 }
 
 interface Entry2 {
-  entry: Entry;
+  entry: Entry
 }
 
 interface Entry {
-  major: string;
-  trs: Tr4[];
-  num: number;
+  major: string
+  trs: Tr4[]
+  num: number
 }
 
 interface Tr4 {
-  tr: Tr3;
+  tr: Tr3
 }
 
 interface Tr3 {
-  nat: string;
-  chnSent?: string;
-  cite: string;
-  docTitle?: string;
-  engSent?: string;
-  url?: string;
+  nat: string
+  chnSent?: string
+  cite: string
+  docTitle?: string
+  engSent?: string
+  url?: string
 }
 
 interface Summary2 {
-  sources: Sources;
-  text: string;
+  sources: Sources
+  text: string
 }
 
 interface Sources {
-  source: Source2;
+  source: Source2
 }
 
 interface Source2 {
-  site: string;
-  url: string;
+  site: string
+  url: string
 }
 
 interface Phrs {
-  word: string;
-  phrs: Phr[];
+  word: string
+  phrs: Phr[]
 }
 
 interface Phr {
-  headword: string;
-  translation: string;
+  headword: string
+  translation: string
 }
 
 interface Etym {
-  etyms: Etyms;
-  word: string;
+  etyms: Etyms
+  word: string
 }
 
 interface Etyms {
-  zh: Zh[];
+  zh: Zh[]
 }
 
 interface Zh {
-  source: string;
-  word: string;
-  value: string;
-  url: string;
-  desc: string;
+  source: string
+  word: string
+  value: string
+  url: string
+  desc: string
 }
 
 interface Expandec {
-  'return-phrase': string;
-  source: Source;
-  word: Word3[];
+  'return-phrase': string
+  source: Source
+  word: Word3[]
 }
 
 interface Word3 {
-  transList: TransList[];
-  pos: string;
-  wfs?: Wf[];
+  transList: TransList[]
+  pos: string
+  wfs?: Wf[]
 }
 
 interface Wf {
-  name: string;
-  value: string;
+  name: string
+  value: string
 }
 
 interface TransList {
-  content: Content;
-  trans: string;
+  content: Content
+  trans: string
 }
 
 interface Content {
-  detailPos: string;
-  sents?: Sent2[];
+  detailPos: string
+  sents?: Sent2[]
 }
 
 interface Sent2 {
-  sentOrig: string;
-  sourceType: string;
-  sentSpeech: string;
-  sentTrans: string;
-  source: string;
-  usages?: Usage[];
+  sentOrig: string
+  sourceType: string
+  sentSpeech: string
+  sentTrans: string
+  source: string
+  usages?: Usage[]
 }
 
 interface Usage {
-  phrase: string;
-  phraseTrans: string;
+  phrase: string
+  phraseTrans: string
 }
 
 interface Simple {
-  query: string;
-  word: Word2[];
+  query: string
+  word: Word2[]
 }
 
 interface Word2 {
-  usphone: string;
-  ukphone: string;
-  ukspeech: string;
-  'return-phrase': string;
-  usspeech: string;
+  usphone: string
+  ukphone: string
+  ukspeech: string
+  'return-phrase': string
+  usspeech: string
 }
 
 interface Authsentspart {
-  'sentence-count': number;
-  more: string;
-  sent: Sent[];
+  'sentence-count': number
+  more: string
+  sent: Sent[]
 }
 
 interface Sent {
-  score: number;
-  speech: string;
-  'speech-size': string;
-  source: string;
-  url: string;
-  foreign: string;
+  score: number
+  speech: string
+  'speech-size': string
+  source: string
+  url: string
+  foreign: string
 }
 
 interface Collinsprimary {
-  words: Words;
-  gramcat: Gramcat[];
+  words: Words
+  gramcat: Gramcat[]
 }
 
 interface Gramcat {
-  audiourl: string;
-  pronunciation: string;
-  senses: Sense2[];
-  partofspeech: string;
-  audio: string;
-  forms: Form[];
+  audiourl: string
+  pronunciation: string
+  senses: Sense2[]
+  partofspeech: string
+  audio: string
+  forms: Form[]
 }
 
 interface Form {
-  form: string;
+  form: string
 }
 
 interface Sense2 {
-  examples: Example[];
-  definition: string;
-  lang: string;
-  word: string;
+  examples: Example[]
+  definition: string
+  lang: string
+  word: string
 }
 
 interface Example {
-  sense: Sense;
-  example: string;
+  sense: Sense
+  example: string
 }
 
 interface Sense {
-  lang: string;
-  word: string;
+  lang: string
+  word: string
 }
 
 interface Words {
-  indexforms: string[];
-  word: string;
+  indexforms: string[]
+  word: string
 }
 
 interface Blngsentspart {
-  'sentence-count': number;
-  'sentence-pair': Sentencepair[];
-  more: string;
-  'trs-classify': Trsclassify[];
+  'sentence-count': number
+  'sentence-pair': Sentencepair[]
+  more: string
+  'trs-classify': Trsclassify[]
 }
 
 interface Trsclassify {
-  proportion: string;
-  tr: string;
+  proportion: string
+  tr: string
 }
 
 interface Sentencepair {
-  sentence: string;
-  'sentence-eng': string;
-  'sentence-translation': string;
-  'speech-size': string;
-  'aligned-words': Alignedwords;
-  source?: string;
-  url: string;
-  'sentence-speech': string;
+  sentence: string
+  'sentence-eng': string
+  'sentence-translation': string
+  'speech-size': string
+  'aligned-words': Alignedwords
+  source?: string
+  url: string
+  'sentence-speech': string
 }
 
 interface Alignedwords {
-  src: Src;
-  tran: Src;
+  src: Src
+  tran: Src
 }
 
 interface Src {
-  chars: Char[];
+  chars: Char[]
 }
 
 interface Char {
-  '@s': string;
-  '@e': string;
-  aligns: Aligns;
-  '@id': string;
+  '@s': string
+  '@e': string
+  aligns: Aligns
+  '@id': string
 }
 
 interface Aligns {
-  sc: Sc[];
-  tc: Sc[];
+  sc: Sc[]
+  tc: Sc[]
 }
 
 interface Sc {
-  '@id': string;
+  '@id': string
 }
 
 interface Ee {
-  source: Source;
-  word: Word;
+  source: Source
+  word: Word
 }
 
 interface Word {
-  trs: Tr2[];
-  phone: string;
-  speech: string;
-  'return-phrase': string;
+  trs: Tr2[]
+  phone: string
+  speech: string
+  'return-phrase': string
 }
 
 interface Tr2 {
-  pos: string;
-  tr: Tr[];
+  pos: string
+  tr: Tr[]
 }
 
 interface Tr {
-  tran: string;
+  tran: string
 }
 
 interface Source {
-  name: string;
-  url: string;
+  name: string
+  url: string
 }
 
 interface OxfordAdvanceHtml {
-  encryptedData: string;
+  encryptedData: string
 }
 
 interface Webtrans {
-  'web-translation': Webtranslation[];
+  'web-translation': Webtranslation[]
 }
 
 interface Webtranslation {
-  '@same'?: string;
-  key: string;
-  'key-speech': string;
-  trans: Tran[];
+  '@same'?: string
+  key: string
+  'key-speech': string
+  trans: Tran[]
 }
 
 interface Tran {
-  summary?: Summary;
-  value: string;
-  support?: number;
-  url?: string;
+  summary?: Summary
+  value: string
+  support?: number
+  url?: string
 }
 
 interface Summary {
-  line: string[];
+  line: string[]
 }
 
 export type IFlags = {
-  help: ['-h', '--help'],
-  version: ['-v', '--version'],
-  verbose: '--verbose',
+  help: ['-h', '--help']
+  version: ['-v', '--version']
+  verbose: '--verbose'
 
-  speak: ['-s', '--speak', false],
-  example: ['-e', '--example', false],
-  collins: ['-c', '--collins', number],
+  speak: ['-s', '--speak', false]
+  example: ['-e', '--example', false]
+  collins: ['-c', '--collins', number]
 }
 
-type GetLast<T extends any[]> = T extends [...any, infer Last] ? Last : never;
-type Test11 = GetLast<[1, 2, 3]>; // 3
-type Test12 = GetLast<[1, 2, 3, '4']>; // '4'
+type GetLast<T extends any[]> = T extends [...any, infer Last] ? Last : never
+type Test11 = GetLast<[1, 2, 3]> // 3
+type Test12 = GetLast<[1, 2, 3, '4']> // '4'
 
-export type GeneralizedLast<T> = T extends any[] ? GetLast<T> extends infer Last
-  ? Last extends `-${string}` ? boolean
-  : Last extends boolean ? boolean
-  : Last extends number ? number
-  : string
-  : never
+export type GeneralizedLast<T> = T extends any[]
+  ? GetLast<T> extends infer Last
+    ? Last extends `-${string}`
+      ? boolean
+      : Last extends boolean
+        ? boolean
+        : Last extends number
+          ? number
+          : string
+    : never
   : boolean
-;
 
-type Test21 = GeneralizedLast<['-s', '--speak', false]>; // boolean
-type Test22 = GeneralizedLast<['-c', '--collins', 1]>; // number
+type Test21 = GeneralizedLast<['-s', '--speak', false]> // boolean
+type Test22 = GeneralizedLast<['-c', '--collins', 1]> // number
 // version: ['-v', '--version'],
-type Test23 = GeneralizedLast<['-v', '--version']>; // boolean
-type Test24 = GeneralizedLast<'--verbose'>; // boolean
+type Test23 = GeneralizedLast<['-v', '--version']> // boolean
+type Test24 = GeneralizedLast<'--verbose'> // boolean

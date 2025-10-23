@@ -1,5 +1,5 @@
 /**
- * @typedef {Record<string, any>} IJSON
+ * @typedef {import('../../typings').IJSON} IJSON
  */
 
 /**
