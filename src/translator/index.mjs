@@ -1,37 +1,48 @@
-import { createRequire } from 'node:module';
+import { createRequire } from 'node:module'
 
-import { rcFilepath, writeFullConfig } from '../config.mjs';
-import { italic, white } from '../utils/lite-lodash.mjs';
-import { translate as trans } from './engines/baidu.mjs';
+import { rcFilepath, writeFullConfig } from '../config.mjs'
+import { bold, italic, white } from '../utils/lite-lodash.mjs'
+import { translate as trans } from './engines/baidu.mjs'
 
-const require = createRequire(import.meta.url);
+const require = createRequire(import.meta.url)
 
+/**
+ * Translate long text to Chinese.
+ * @param {string} text
+ * @param {{ verbose?: boolean }} param1
+ * @returns {Promise<void>}
+ */
 export async function translate(text, { verbose = false } = {}) {
-  const [lastTime, data] = estimate(verbose);
-  lastTime > 1 && console.log(`翻译中……，预计 ${lastTime || 6}s`);
+  const [lastTime, data] = estimate(verbose)
+  lastTime > 1 && console.log(`翻译中……，预计 ${lastTime || 6}s`)
 
-  const start = Date.now();
-  let end;
+  const start = Date.now()
+  let end
 
   try {
-    console.log(white(await trans(text)));
+    console.log()
+    console.log(bold(await trans(text), { underlined: false }))
   } catch (error) {
-    console.error('Translated failed');
-    verbose && console.error(error);
+    console.error('Translated failed')
+    verbose && console.error(error)
   } finally {
-    console.log();
-    console.log(italic(`Powered by "${white('Baidu 翻译')}".`));
-    console.log(italic(`See more at https://fanyi.baidu.com/?aldtype=23#en/zh/${encodeURIComponent(text)}`));
+    console.log()
+    console.log(italic(`Powered by "${white('Baidu 翻译')}".`))
+    console.log(
+      italic(
+        `See more at https://fanyi.baidu.com/?aldtype=23#en/zh/${encodeURIComponent(text)}`,
+      ),
+    )
 
     end = Date.now()
   }
 
-  saveTime(end - start, data);
+  saveTime(end - start, data)
 }
 
 function saveTime(time, data) {
-  const updated = data || {};
-  const sec = time / 1000;
+  const updated = data || {}
+  const sec = time / 1000
   // console.log('updated before:', updated);
 
   if (!updated.translate) {
@@ -39,7 +50,7 @@ function saveTime(time, data) {
       lastTimeCostsInSecondsRecord: [sec],
     }
   } else {
-    updated.translate.lastTimeCostsInSecondsRecord.push(sec);
+    updated.translate.lastTimeCostsInSecondsRecord.push(sec)
   }
 
   writeFullConfig(updated)
@@ -48,19 +59,19 @@ function saveTime(time, data) {
 
 function estimate(verbose) {
   try {
-    const data = require(rcFilepath);
-    const records = data.translate?.lastTimeCostsInSecondsRecord;
-    const meanTime = trimMean(records);
-    verbose && console.log('rcFilepath:', data);
-    verbose && console.log('records:', records);
-    verbose && console.log('meanTime:', meanTime);
+    const data = require(rcFilepath)
+    const records = data.translate?.lastTimeCostsInSecondsRecord
+    const meanTime = trimMean(records)
+    verbose && console.log('rcFilepath:', data)
+    verbose && console.log('records:', records)
+    verbose && console.log('meanTime:', meanTime)
 
-    return [meanTime, data];
+    return [meanTime, data]
   } catch (error) {
     verbose && console.error('estimate time failed:')
     verbose && console.error(error)
 
-    return [0];
+    return [0]
   }
 }
 
@@ -71,10 +82,10 @@ function estimate(verbose) {
 function trimMean(arr = []) {
   const clone = [...arr]
 
-  const trimmed = mid(clone.sort((a, b) => a - b));
-  const points = trimmed.length ? trimmed : arr;
+  const trimmed = mid(clone.sort((a, b) => a - b))
+  const points = trimmed.length ? trimmed : arr
 
-  return points ? mean(points).toFixed(2) : points;
+  return points ? mean(points).toFixed(2) : points
 }
 
 /**
@@ -82,7 +93,7 @@ function trimMean(arr = []) {
  * @returns {number}
  */
 function mean(arr) {
-  return arr.length ? sum(arr) / arr.length : 0;
+  return arr.length ? sum(arr) / arr.length : 0
 }
 
 /**
