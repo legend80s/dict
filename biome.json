@@ -15,11 +15,15 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
+      "suspicious": {
+        "noConsole": "error"
+      },
 			"recommended": true
 		}
 	},
 	"javascript": {
 		"formatter": {
+      "lineWidth": 100,
       "arrowParentheses": "asNeeded",
       "semicolons": "asNeeded",
 			"quoteStyle": "single"

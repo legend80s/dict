@@ -2,8 +2,8 @@
  * @typedef {string | string[] | Array<string|number|boolean>} IFlagItem
  */
 
-import { isNumberStr } from './utils/lite-lodash.mjs';
-import { debugC } from './utils/logger.mjs';
+import { isNumberStr, red } from './utils/lite-lodash.mjs'
+import { debugC } from './utils/logger.mjs'
 
 /**
  * @template {Record<string, IFlagItem>} Flags
@@ -25,7 +25,7 @@ export class ArgParser {
    * @param {Flags} flags
    */
   constructor(flags) {
-    this.flags = flags;
+    this.flags = flags
     this.args = process.argv.slice(2)
   }
 
@@ -37,15 +37,15 @@ export class ArgParser {
   get(key) {
     // console.log('keys:', keys);
 
-    const fallback = this.getFallback(key);
+    const fallback = this.getFallback(key)
 
-    // console.log('fallback:', fallback);
-
-    const flagsAndDefaultValue = this.flags[key];
+    const flagsAndDefaultValue = this.flags[key]
     /** @type {string[]} */
-    const flags = (Array.isArray(flagsAndDefaultValue) ? flagsAndDefaultValue : [flagsAndDefaultValue]).filter(item => String(item).startsWith('-'));
+    const flags = (
+      Array.isArray(flagsAndDefaultValue) ? flagsAndDefaultValue : [flagsAndDefaultValue]
+    ).filter(item => String(item).startsWith('-'))
 
-    // console.log('get:', key, { flags, args: this.args });
+    // console.log('get:', key, { flags, args: this.args, fallback })
 
     for (const arg of this.args) {
       // flags [-s, --silent]
@@ -53,46 +53,50 @@ export class ArgParser {
       for (const flag of flags) {
         if (arg === flag) {
           // @ts-expect-error
-          return true;
+          return true
         }
 
-        const value = arg.match(new RegExp(`${flag}=(.+)`))?.[1];
+        const value = arg.match(new RegExp(`${flag}=(.+)`))?.[1]
 
+        if (value === `true`) {
           // @ts-expect-error
-        if (value === `true`) { return true }
+          return true
+        }
+        if (value === `false`) {
           // @ts-expect-error
-        if (value === `false`) { return false }
+          return false
+        }
 
         if (value) {
           // @ts-expect-error
-          return isNumberStr(value) ? Number(value) : value;
+          return isNumberStr(value) ? Number(value) : value
         }
       }
     }
 
     // @ts-expect-error
-    return fallback;
+    return fallback
   }
 
   /**
    * @param {keyof Flags} key
    */
   getFallback(key) {
-    const DEFAULT_FALLBACK = false;
-    const theFlags = this.flags[key];
+    const DEFAULT_FALLBACK = false
+    const theFlags = this.flags[key]
 
     if (!Array.isArray(theFlags)) {
-      return DEFAULT_FALLBACK;
+      return DEFAULT_FALLBACK
     }
 
-    const last = theFlags.at(-1);
+    const last = theFlags.at(-1)
 
-    if (!last) {
-      debugC('LAST SHOULD NOT BE EMPTY', { theFlags: theFlags, last });
-      return DEFAULT_FALLBACK;
+    if (last === undefined) {
+      debugC(red(`"${String(key)}" LAST FLAG SHOULD NOT BE EMPTY`), { theFlags: theFlags, last })
+      return DEFAULT_FALLBACK
     }
 
-    return !String(last).startsWith('-') ? last : DEFAULT_FALLBACK;
+    return !String(last).startsWith('-') ? last : DEFAULT_FALLBACK
   }
 
   /**
@@ -100,7 +104,7 @@ export class ArgParser {
    */
   firstArg(flag = false) {
     if (flag) {
-      return this.args[0]?.trim() || '';
+      return this.args[0]?.trim() || ''
     }
 
     return this.args.find(arg => !arg.startsWith('-')) || ''
