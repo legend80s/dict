@@ -24,30 +24,37 @@ console.info('words.length:', words.length)
  * @returns {Set<string>}
  */
 export const pickRandomWords = limit => {
-  return pickRandoms(words, limit, { predicate: item => !/^\d/.test(item) })
+  return pickUniqueRandomItems(words, limit, { predicate: item => !/^\d/.test(item) })
 }
 
 /**
  * @template T
- * @param {T[]} arr
+ * @param {T[]} array
  * @param {number} limit
  * @param {{predicate?: (item: T) => boolean}} [options]
  * @returns {Set<T>}
  */
-function pickRandoms(arr, limit, { predicate = () => true } = {}) {
+function pickUniqueRandomItems(array, limit, { predicate = () => true } = {}) {
+  if (limit > array.length) {
+    throw new Error('limit 不能大于数组长度')
+  }
+
+  // 如果有条件函数，先过滤数组
+  const sourceArray = predicate ? array.filter(predicate) : array
+
+  if (limit > sourceArray.length) {
+    throw new Error(
+      `经过条件过滤后，limit 不能大于剩余数组长度：{ limit: ${limit}, array.length: ${sourceArray.length} }`,
+    )
+  }
+
   const set = new Set()
 
-  for (let index = 0; index < arr.length; index++) {
-    const idx = randomInteger(0, arr.length)
+  while (set.size < limit) {
+    const randomIdx = randomInteger(0, sourceArray.length)
+    const item = sourceArray[randomIdx]
 
-    const item = arr[idx]
-    if (!set.has(item) && predicate(item)) {
-      set.add(item)
-
-      if (set.size === limit) {
-        return set
-      }
-    }
+    set.add(item)
   }
 
   return set
