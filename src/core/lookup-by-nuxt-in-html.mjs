@@ -94,7 +94,7 @@ function extractExamples(data) {
  * @returns {[ICollinsItem[]?, number?]}
  */
 function extractCollins(data) {
-  console.log('data:', JSON.stringify(data))
+  debugC('data:', JSON.stringify(data))
   const collinsInData = data.wordData.collins
 
   if (!collinsInData) {
@@ -118,14 +118,17 @@ function extractCollins(data) {
     .map(item => {
       const entry = item.tran_entry[0]
       /** @type {ICollinsItem} */
-      const tuple = [
+      const parsed = {
+        partOfSpeech: [entry.pos_entry?.pos, entry.pos_entry?.pos_tips].filter(Boolean).join(' '),
         // @ts-expect-error
-        entry.tran,
+        english: entry.tran,
         // @ts-expect-error
-        [entry.exam_sents.sent[0].eng_sent, entry.exam_sents.sent[0].chn_sent],
-      ]
+        eng_sent: entry.exam_sents.sent[0].eng_sent,
+        // @ts-expect-error
+        chn_sent: entry.exam_sents.sent[0].chn_sent,
+      }
 
-      return tuple
+      return parsed
     })
 
   return [collins, list.length]

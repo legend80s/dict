@@ -1,3 +1,5 @@
+// oxlint-disable no-console
+/** biome-ignore-all lint/correctness/noUnreachable: <explanation> */
 // @ts-check
 import { exec } from 'node:child_process'
 import { log } from 'node:console'
@@ -7,7 +9,7 @@ import { dictionary } from './core/dictionary.mjs'
 import { help, parser, verbose } from './utils/arg-parser.mjs'
 import { Fatigue } from './utils/fatigue.mjs'
 import { fetchIt } from './utils/fetch.mjs'
-import { bold, green, h1, h2, highlight, italic, white } from './utils/lite-lodash.mjs'
+import { bold, green, h1, h2, highlight, italic, red, white } from './utils/lite-lodash.mjs'
 import { debugC } from './utils/logger.mjs'
 
 /** @typedef {import('../typings').ICollinsItem} ICollinsItem  */
@@ -88,7 +90,6 @@ function exitWithErrorMsg(word, { errorMsg, error }) {
     console.error(error)
   } else {
     console.error(`\n> ❌ ${errorMsg}`)
-    // console.info('\n> Example: $ npx dict water');
   }
 
   console.error(`> ${dictionary.makeHTMLUrl(word)}`)
@@ -120,7 +121,7 @@ function print(word, result) {
   const collinsChineseExplanation = !englishExplanation
     ? []
     : englishExplanation
-        .flatMap(([english]) => english.match(/[\u4e00-\u9fa5]+/g))
+        .flatMap(item => (Array.isArray(item) ? item[0] : item.english).match(/[\u4e00-\u9fa5]+/g))
         // filter out the `null`s
         .filter(Boolean)
 
@@ -141,7 +142,7 @@ function print(word, result) {
   highlightWord = sentence => {
     // 如果句子包含<b>，则直接对其内容高亮
     if (sentence.includes('<b>')) {
-      return sentence.replaceAll(/<b>(.+?)<\/b>/g, (match, p1) => {
+      return sentence.replaceAll(/<b>(.+?)<\/b>/g, (_match, p1) => {
         // console.log('match:', {match, p1});
         return bold(p1)
       })
@@ -188,7 +189,14 @@ function print(word, result) {
     const len = englishExplanation.length
 
     const str = englishExplanation
-      .map(([english, sentences], index) => {
+      .map((item, index) => {
+        const { english, sentences, partOfSpeech } = Array.isArray(item)
+          ? { english: item[0], sentences: item[1] }
+          : {
+              english: item.english,
+              sentences: [item.eng_sent, item.chn_sent],
+              partOfSpeech: item.partOfSpeech,
+            }
         // console.log('english:', english);
         // console.log('sentences:', sentences);
         const rendered =
@@ -199,7 +207,7 @@ function print(word, result) {
                   const THREE_SPACES = '   '
                   const spaces =
                     len < 10 ? THREE_SPACES : THREE_SPACES + (index + 1 >= 10 ? ' ' : '')
-                  return `${spaces}${i !== sentences.length - 1 ? '├──' : '└──'} ${s}`
+                  return `${spaces}${green(i !== sentences.length - 1 ? '├──' : '└──')} ${s}`
                 })
                 .join('\n')
 
@@ -211,11 +219,13 @@ function print(word, result) {
           .map(highlightWord)
           .join('\n')
 
-        return `${colorIndex(index)} ${highlighted}`
+        return [colorIndex(index), partOfSpeech && `[${partOfSpeech}]`, white(highlighted)]
+          .filter(Boolean)
+          .join(' ')
       })
       .join('\n\n')
 
-    console.log(str)
+    console.log(red(str))
 
     if (englishExplanation.length < englishExplanationTotalCount) {
       console.log('...')
@@ -304,7 +314,7 @@ async function byJSON(word) {
   const encoded = encodeURIComponent(word)
   const url = `https://fanyi.youdao.com/openapi.do?keyfrom=Nino-Tips&key=1127122345&type=data&doctype=json&version=1.1&q=${encoded}`
 
-  /** @type {IDictResult | null} */
+  /** @type {import('../typings').IDictResult | null} */
   const json = null
   let msg = ''
   const method = ''
@@ -333,6 +343,7 @@ async function byJSON(word) {
     }
   }
 
+  // @ts-expect-error
   return { explanations, suggestions }
 }
 
@@ -349,9 +360,10 @@ async function fetchSuggestions(word) {
   let first = ''
 
   try {
-    first = decodeURIComponent(str.match(/form.updateCall\((.+?)\)/)?.[1] || '').match(
-      />([^><]+?)<\/td>/,
-    )?.[1]
+    first =
+      decodeURIComponent(str.match(/form.updateCall\((.+?)\)/)?.[1] || '').match(
+        />([^><]+?)<\/td>/,
+      )?.[1] || ''
   } catch (error) {
     verbose && debugC(error)
   }

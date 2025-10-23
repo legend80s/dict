@@ -1,25 +1,26 @@
 // @ts-check
-import { createRequire } from 'node:module';
+import { createRequire } from 'node:module'
 
-import { ArgParser } from '../args.mjs';
+import { ArgParser } from '../args.mjs'
+import { bold, green } from './lite-lodash.mjs'
 
-const require = createRequire(import.meta.url);
+const require = createRequire(import.meta.url)
 
 /** @type {import('../../typings').IFlags} */
 const flags = {
   help: ['-h', '--help'],
   version: ['-v', '--version'],
-  verbose: '--verbose',
+  verbose: ['--verbose'],
 
   speak: ['-s', '--speak', false],
   example: ['-e', '--example', false],
   collins: ['-c', '--collins', 0],
-};
+}
 
-export const parser = new ArgParser(flags);
+export const parser = new ArgParser(flags)
 
 /** @type {boolean} */
-export const verbose = parser.get('verbose');
+export const verbose = parser.get('verbose')
 
 // /** @type {boolean} */
 // export const example = parser.get('example'); // boolean
@@ -31,18 +32,23 @@ export const verbose = parser.get('verbose');
 
 /** @returns {boolean} */
 export function showHelp() {
-  return parser.get('help') || parser.get('version');
+  return parser.get('help') || parser.get('version')
 }
 
 export function help() {
   // @ts-expect-error
-  const { name, description, version } = require('../package.json');
+  const { name, description, version } = require('../../package.json')
 
-  console.log();
-  console.log([name, version].join('@'));
-  console.log();
-  console.log('>', description);
-  console.log();
-  console.log('> Example:');
-  console.log(`> $ npx dict <word> [${Object.values(flags).flat().join(' ')}]`);
+  console.info()
+  console.info(' '.repeat(20) + bold([name, version].join('@')))
+  console.info()
+  console.info('>', description)
+
+  console.info()
+  console.info(`> ${bold('Usage')}:`)
+  console.info(`> $ ${green('npx ydd <word>')}`)
+
+  console.info()
+  console.info(`> ${bold('Options')}:`)
+  console.table(flags)
 }
