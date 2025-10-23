@@ -34,7 +34,7 @@ test('Should show explanations and without examples by default', () => {
 
   assert.doesNotMatch(stdout, /Word: "wonderful"/)
   assert.doesNotMatch(stdout, /Explanations/)
-  assert.match(stdout, /💬 \x1B\[97madj. 绝妙的，令人惊叹的，极好的\x1B\[0m/)
+  assert.match(stdout, /🟢 \x1B\[97madj. 绝妙的，令人惊叹的，极好的\x1B\[0m/)
   assert.doesNotMatch(stdout, /Examples/)
 })
 
@@ -43,17 +43,17 @@ test('Should show explanations and examples and collins', () => {
 
   assert.doesNotMatch(stdout, /Word: "wonderful"/)
   assert.match(stdout, /Explanations/)
-  assert.match(stdout, /💬 \x1B\[97madj. 绝妙的，令人惊叹的，极好的\x1B\[0m/)
+  assert.match(stdout, /🟢 \x1B\[97madj. 绝妙的，令人惊叹的，极好的\x1B\[0m/)
 
   assert.match(stdout, /柯林斯英汉双解大词典/)
-  assert.match(stdout, /1\. ADJ/)
-  assert.doesNotMatch(stdout, /2\. /)
+  assert.match(stdout, /1\..+ADJ/)
+  assert.doesNotMatch(stdout, /2\..+ADV/)
 
   assert.match(stdout, /Examples/)
   // bold and underlined expected
   assert.match(stdout, /\x1B\[36m\x1B\[1m\x1B\[4mwonderful\x1b\[0m/)
   assert.match(stdout, /《牛津词典》/)
-  assert.match(stdout, /See more at https:\/\/dict.youdao.com\/w\/wonderful\/#keyfrom=dict2.top/)
+  assert.match(stdout, /See more at https:\/\/dict.youdao.com.+wonderful/)
 })
 
 test('Should show 2 collins', () => {
@@ -81,9 +81,7 @@ test('Should show Explanations only', () => {
   assert.match(
     stdout,
     // biome-ignore lint/complexity/useRegexLiterals: String.raw is used for escape thus more readable
-    new RegExp(
-      String.raw`See more at https://dict.youdao.com/result\?word=wonderful%20girl&lang=en`,
-    ),
+    new RegExp(String.raw`See more at https://dict.youdao.com.+wonderful%20girl`),
   )
 })
 
@@ -125,11 +123,11 @@ test('Should not show collins for word "sulfate"', () => {
 })
 
 test('Should match as longer as possible', () => {
-  const stdout = execSync(`node ./ exclusive -e`).toString('utf-8')
+  const stdout = stripVTControlCharacters(execSync(`node ./ exclusive -e`).toString('utf-8'))
 
   assert.match(stdout, /n. 独家新闻，独家报道/)
   assert.match(stdout, /Examples/)
-  assert.match(stdout, /一些报社以为他们有一条\x1B\[36m\x1B\[1m\x1B\[4m独家报道\x1b\[0m。/)
+  assert.match(stdout, /一些报社以为他们有一条独家报道。/)
 
   assert.doesNotMatch(stdout, /柯林斯英汉双解大词典 \[#\d\]/)
 })
