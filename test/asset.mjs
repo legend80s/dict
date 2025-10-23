@@ -19,6 +19,10 @@ console.info('words.length:', words.length)
 // 825
 // 789 2024-03-22 after use Segmenter
 
+/**
+ * @param {number} limit
+ * @returns
+ */
 export const pickRandomWords = limit => {
   return pickRandoms(words, limit)
 }
