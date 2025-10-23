@@ -112,26 +112,22 @@ function extractCollins(data) {
   const size = /^a/.test(num) ? list.length : Number(num) || 1
 
   debugC('size:', size)
-  // console.log('list:', list);
+  debugC('list:', JSON.stringify(list))
 
-  const collins = list
-    .slice(0, size)
-    .filter(item => item.tran_entry[0].tran)
-    .map(item => {
-      const entry = item.tran_entry[0]
-      /** @type {ICollinsItem} */
-      const parsed = {
-        partOfSpeech: [entry.pos_entry?.pos, entry.pos_entry?.pos_tips].filter(Boolean).join(' '),
-        // @ts-expect-error
-        english: entry.tran,
-        // @ts-expect-error
-        eng_sent: entry.exam_sents.sent[0].eng_sent,
-        // @ts-expect-error
-        chn_sent: entry.exam_sents.sent[0].chn_sent,
-      }
+  const collins = list.slice(0, size).map(item => {
+    const entry = item.tran_entry[0]
+    /** @type {ICollinsItem} */
+    const parsed = {
+      partOfSpeech: [entry.pos_entry?.pos, entry.pos_entry?.pos_tips].filter(Boolean).join(' '),
+      // @ts-expect-error
+      english: entry.tran,
 
-      return parsed
-    })
+      eng_sent: entry.exam_sents?.sent[0].eng_sent,
+      chn_sent: entry.exam_sents?.sent[0].chn_sent,
+    }
+
+    return parsed
+  })
 
   return [collins, list.length]
 }

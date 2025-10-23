@@ -34,7 +34,7 @@ export const pickRandomWords = limit => {
  * @param {{predicate?: (item: T) => boolean}} [options]
  * @returns {Set<T>}
  */
-function pickUniqueRandomItems(array, limit, { predicate = () => true } = {}) {
+function pickUniqueRandomItems(array, limit, { predicate = _item => true } = {}) {
   if (limit > array.length) {
     throw new Error('limit 不能大于数组长度')
   }

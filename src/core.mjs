@@ -191,9 +191,9 @@ function print(word, result) {
         const { english, sentences, partOfSpeech } = Array.isArray(item)
           ? { english: item[0], sentences: item[1] }
           : {
-              english: item.english,
-              sentences: [item.eng_sent, item.chn_sent],
               partOfSpeech: item.partOfSpeech,
+              english: item.english,
+              sentences: [item.eng_sent, item.chn_sent].filter(Boolean),
             }
         // console.log('english:', english);
         // console.log('sentences:', sentences);
