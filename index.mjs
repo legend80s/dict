@@ -1,57 +1,60 @@
 #!/usr/bin/env node
 // @ts-check
-import {
-  // debugC as debug,
-  // help,
-  // parser,
-  query,
-  speak,
-} from './src/core.mjs';
-import { translate } from './src/translator/index.mjs';
-import { help, parser, showHelp } from './src/utils/arg-parser.mjs';
-import { italic } from './src/utils/lite-lodash.mjs';
-import { debugC as debug } from './src/utils/logger.mjs';
 
-main();
+import { query, speak } from './src/core.mjs'
+import { translate } from './src/translator/index.mjs'
+import { help, parser, showHelp } from './src/utils/arg-parser.mjs'
+import { italic } from './src/utils/lite-lodash.mjs'
+import { debugC as debug } from './src/utils/logger.mjs'
+
+main()
 
 async function main() {
-  const label = italic('查询耗时 🕑');
-  console.time(label);
-
-  try {
-    await init();
-  } finally {
-    console.timeEnd(label);
-  }
+  await init()
 }
 
+/**
+ *
+ * @returns {Promise<boolean>}
+ */
 async function init() {
-  debug('args:', parser.args);
+  debug('args:', parser.args)
 
   if (showHelp()) {
-    help();
-    return;
+    help()
+    return false
   }
 
-  const word = parser.firstArg();
+  const word = parser.firstArg()
 
-  speak(word);
+  speak(word)
 
-  const threshold = 50000;
+  const threshold = 3
   // const threshold = 5;
   const isEnglishSentence =
-    /\w+/.test(word) && word.split(' ').length > threshold;
-  const verbose = parser.get('verbose');
+    /\w+/.test(word) && word.split(' ').length > threshold
+  const verbose = parser.get('verbose')
 
   if (isEnglishSentence) {
-    translate(word, { verbose });
+    const label = italic('翻译长句耗时 🕑')
 
-    return;
+    console.time(label)
+    await translate(word, { verbose })
+    console.timeEnd(label)
+
+    return true
   }
+
+  const label = italic('查询单词耗时 🕑')
+  console.time(label)
 
   try {
-    await query(word);
+    await query(word)
+
+    console.timeEnd(label)
   } catch (err) {
-    verbose && console.error('query failed', err);
+    verbose && console.error('query failed', err)
   }
+
+  return true
 }
