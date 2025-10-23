@@ -93,8 +93,6 @@ function exitWithErrorMsg(word, { errorMsg, error }) {
   }
 
   console.error(`> ${dictionary.makeHTMLUrl(word)}`)
-
-  help()
 }
 
 /**
