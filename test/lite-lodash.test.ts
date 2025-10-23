@@ -15,6 +15,7 @@ describe('highlight', () => {
       'The businessman, Jee Ick-joo, was picked up by police and quickly killed, according to news reports in the Philippines.';
     const word = 'ick';
     const result = highlight(sentence, [word]);
+    // console.log('result:', result);
     const expected = /Jee \x1B\[36m\x1B\[1m\x1B\[4mIck\x1b\[0m-joo/;
 
     assert.match(result, expected);
