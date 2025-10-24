@@ -2,10 +2,13 @@
 // @ts-check
 
 import { query, speak } from './src/core.mjs'
+import { config } from './src/core/constants.mjs'
 import { translate } from './src/translator/index.mjs'
-import { help, parser, showHelp } from './src/utils/arg-parser.mjs'
+import { help, parsed, showHelp } from './src/utils/arg-parser.mjs'
 import { italic } from './src/utils/lite-lodash.mjs'
 import { debugC as debug } from './src/utils/logger.mjs'
+
+const verbose = parsed.verbose
 
 main()
 
@@ -18,24 +21,22 @@ async function main() {
  * @returns {Promise<boolean>}
  */
 async function init() {
-  debug('args:', parser.args)
+  debug('args:', parsed.args)
 
   if (showHelp()) {
     help()
     return false
   }
 
-  const word = parser.firstArg()
+  const word = parsed.word
 
   speak(word)
 
   const threshold = 3
   // const threshold = 5;
-  const isEnglishSentence =
-    /\w+/.test(word) && word.split(' ').length > threshold
-  const verbose = parser.get('verbose')
+  const isEnglishSentence = /\w+/.test(word) && word.split(' ').length > threshold
 
-  if (isEnglishSentence) {
+  if (isEnglishSentence && config.baiduTranslate.enabled) {
     const label = italic('翻译长句耗时 🕑')
 
     console.time(label)
@@ -49,9 +50,9 @@ async function init() {
   console.time(label)
 
   try {
-    await query(word)
+    const didQuery = await query(word)
 
-    console.timeEnd(label)
+    didQuery && console.timeEnd(label)
   } catch (err) {
     verbose && console.error('query failed', err)
   }
