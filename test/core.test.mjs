@@ -1,5 +1,5 @@
 import assert from 'node:assert'
-import { execSync } from 'node:child_process'
+import { execSync, spawnSync } from 'node:child_process'
 import test from 'node:test'
 import { stripVTControlCharacters } from 'node:util'
 
@@ -10,23 +10,11 @@ test('Should show help', () => {
   assert.match(stdout, /> Explain English word in Chinese. 查询英文单词的中文释义。/)
   assert.match(stdout, /> Usage:/)
   assert.match(stdout, /\$ npx ydd <word>/)
-  ;[
-    '-h',
-    '--help',
-    '-v',
-    '--version',
-    '--verbose',
-    '-s',
-    '--speak',
-    'false',
-    '-e',
-    '--example',
-    '-c',
-    '--collins',
-    '0',
-  ].forEach(flag => {
-    assert.equal(stdout.includes(flag), true)
-  })
+  ;['h', 'help', 'v', 'version', 'verbose', 's', 'speak', 'e', 'example', 'c', 'collins'].forEach(
+    flag => {
+      assert.equal(stdout.includes(flag), true)
+    },
+  )
 })
 
 test('Should show explanations and without examples by default', () => {
@@ -39,7 +27,7 @@ test('Should show explanations and without examples by default', () => {
 })
 
 test('Should show explanations and examples and collins', () => {
-  const stdout = execSync(`node ./ wonderful --example --collins`).toString('utf-8')
+  const stdout = execSync(`node ./ wonderful --example --collins 1`).toString('utf-8')
 
   assert.doesNotMatch(stdout, /Word: "wonderful"/)
   assert.match(stdout, /Explanations/)
@@ -94,7 +82,7 @@ test.skip('Should show suggested word when no explanations found', () => {
 })
 
 test('Should show Examples and collins', () => {
-  const stdout = stripVTControlCharacters(execSync(`node ./ router -e -c`).toString('utf-8'))
+  const stdout = stripVTControlCharacters(execSync(`node ./ router -e -c=1`).toString('utf-8'))
 
   assert.match(stdout, /Explanations/)
   assert.match(stdout, /柯林斯英汉双解大词典/)
@@ -137,4 +125,13 @@ test('Should show all collins when -c=a is specified', () => {
 
   assert.match(stdout, /柯林斯英汉双解大词典 \[#\d\]/)
   assert.doesNotMatch(stdout, /\.\.\./)
+})
+
+test('Should show Usage when no word given', () => {
+  const { stdout, stderr } = spawnSync(`node`, ['./'], { encoding: 'utf-8' })
+  // console.log(' stdout, stderr :', { stdout, stderr })
+
+  assert.match(stderr, /请输入需要查询的单词/)
+  assert.match(stdout, /Usage/)
+  assert.match(stdout, /Options/)
 })

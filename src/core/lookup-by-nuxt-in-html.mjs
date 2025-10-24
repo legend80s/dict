@@ -1,13 +1,14 @@
 // @ts-check
-import { parser, verbose } from '../utils/arg-parser.mjs'
+import { DEFAULTS, parsed } from '../utils/arg-parser.mjs'
 import { fetchIt } from '../utils/fetch.mjs'
-import { evaluateNuxtInScriptTagUseVM, timeit } from '../utils/lite-lodash.mjs'
-import { debugC } from '../utils/logger.mjs'
+import { evaluateNuxtInScriptTagUseVM, red, timeit } from '../utils/lite-lodash.mjs'
+import { debugNuxt } from '../utils/logger.mjs'
 import { text } from './constants.mjs'
 
 /** @typedef {import('../../typings').ICollinsItem} ICollinsItem  */
 /** @typedef {import('../../typings').IParsedResult} IParsedResult */
 
+const verbose = parsed.verbose
 const lookup = verbose ? timeit('? by nuxt fetch', lookupByNuxtInHTML) : lookupByNuxtInHTML
 
 /**
@@ -33,19 +34,22 @@ async function lookupByNuxtInHTML(word, { example = false, collins = false }) {
   let html = ''
   try {
     ;[html] = await fetchIt(htmlUrl, { type: 'text' }) // 241.996ms
-  } catch (/** @type {Error} */ error) {
+  } catch (
+    // @ts-expect-error
+    /** @type {Error} */ error
+  ) {
     return { errorMsg: `fetch "${htmlUrl}" FAILED.`, error }
   }
 
-  // debugC('lookupByNuxtInHTML', { method });
+  // debugNuxt('lookupByNuxtInHTML', { method });
 
   const nuxt = evaluateNuxtInScriptTagUseVM(html)
 
   const data = nuxt.data[0]
-  // console.log('data:', JSON.stringify(data, null, 2));
+  // console.log('data:', JSON.stringify(data))
   // 找不到单词或输入了非英语
   if (!data) {
-    debugC('No translate found:', { nuxt, html })
+    debugNuxt('No translate found:', { nuxt, html })
 
     return {
       errorMsg: text.error.notFound(word),
@@ -53,9 +57,9 @@ async function lookupByNuxtInHTML(word, { example = false, collins = false }) {
     }
   }
 
-  const explanations = data.wordData.ec.word.trs.map(item =>
-    [item.pos, item.tran].filter(Boolean).join(' '),
-  )
+  const explanations =
+    data.wordData.ec?.word.trs.map(item => [item.pos, item.tran].filter(Boolean).join(' ')) ||
+    (data.wordData.fanyi?.tran ? [data.wordData.fanyi?.tran] : [])
 
   // console.log('englishExplanation:', englishExplanation);
   if (!example && !collins) {
@@ -105,14 +109,25 @@ function extractCollins(data) {
     item => item.tran_entry[0].tran,
   )
 
-  const num = parser.get('collins')
+  const num = parsed.collins
+  if (!num) {
+    debugNuxt(
+      red(`in extractCollins num SHOULD NOT BE NIL! typeof num: ${typeof num}, num: ${num}`),
+    )
+  }
+  // console.log('num:', num)
   // `--collins=all` to show all collins
+  // oxlint-disable-next-line prefer-string-starts-ends-with
+  /** @type {import('../../typings').int} */
   // @ts-expect-error
   // oxlint-disable-next-line prefer-string-starts-ends-with
-  const size = /^a/.test(num) ? list.length : Number(num) || 1
+  // 如果 num 是 all 则展示全部
+  // 如果 num 是数字 则展示 num 个
+  // 如果 num 是其他 则展示默认的
+  const size = (/^a/.test(num) ? list.length : num && Number(num)) || DEFAULTS.collins
 
-  debugC('size:', size)
-  debugC('list:', JSON.stringify(list))
+  debugNuxt('size:', size)
+  debugNuxt('list:', JSON.stringify(list))
 
   const collins = list.slice(0, size).map(item => {
     const entry = item.tran_entry[0]

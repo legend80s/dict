@@ -24,7 +24,12 @@ console.info('words.length:', words.length)
  * @returns {Set<string>}
  */
 export const pickRandomWords = limit => {
-  return pickUniqueRandomItems(words, limit, { predicate: item => !/^\d/.test(item) })
+  return pickUniqueRandomItems(words, limit, {
+    predicate: item =>
+      !/^\d/.test(item) ||
+      // Node.js v24 Intl.Segmenter 有 bug 将 "React.createElement" **并未**分割为 "React" 和 "createElement"
+      !item.includes('.'),
+  })
 }
 
 /**

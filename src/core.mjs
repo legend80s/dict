@@ -4,9 +4,9 @@
 import { exec } from 'node:child_process'
 import { log } from 'node:console'
 
-import { config, text } from './core/constants.mjs'
+import { config, genErrorResult, text } from './core/constants.mjs'
 import { dictionary } from './core/dictionary.mjs'
-import { help, parser, verbose } from './utils/arg-parser.mjs'
+import { help, parsed } from './utils/arg-parser.mjs'
 import { Fatigue } from './utils/fatigue.mjs'
 import { fetchIt } from './utils/fetch.mjs'
 import { bold, green, h1, h2, highlight, italic, red, white } from './utils/lite-lodash.mjs'
@@ -19,25 +19,27 @@ import { debugC } from './utils/logger.mjs'
 /** @type {(sentence: string) => string} */
 let highlightWord
 
+const verbose = parsed.verbose
+
 /**
  * 主入口。获取单词，查询，输出结果。
  * 编排逻辑：
  * 1. 如果某个渠道获取失败，则尝试下一个渠道。
  * 2. 参数增加疲劳度控制
  * @param {string} word
- * @returns {Promise<boolean>}
+ * @returns {Promise<boolean>} false: 没有发起查询请求，true: 发起了查询请求
  */
 export const query = async word => {
   debugC('Word:', `"${word}"`)
 
   if (!word) {
-    exitWithErrorMsg(word, { errorMsg: text.error.noWord })
+    exitWithErrorMsg(word, genErrorResult(word, 'noWord'))
 
     return false
   }
 
-  const showExamples = parser.get('example')
-  const showCollins = shouldShowCollins(parser.get('collins'))
+  const showExamples = parsed.example
+  const showCollins = !!parsed.collins
 
   /** @type {IParsedResult} */
   let result = { explanations: [] }
@@ -85,14 +87,18 @@ async function translateWithExamples(word, { example, collins }) {
  * @param {string} word
  * @param {IErrorResult} param0
  */
-function exitWithErrorMsg(word, { errorMsg, error }) {
+function exitWithErrorMsg(word, { errorMsg, error, errorType }) {
   if (verbose) {
-    console.error(error)
+    error && console.error(error)
   } else {
     console.error(`\n> ❌ ${errorMsg}`)
   }
 
-  console.error(`> ${dictionary.makeHTMLUrl(word)}`)
+  if (errorType === 'notFound') {
+    console.info(`> ${dictionary.makeHTMLUrl(word)}`)
+  } else {
+    help({ showVersion: false, showDescription: false })
+  }
 }
 
 /**
@@ -171,7 +177,7 @@ function print(word, result) {
 
     // number 1 - is default value `npx ydd`
     // string 1 - is passed value `npx ydd -c=1`
-    const isDefaultValue = parser.get('collins') === 1
+    const isDefaultValue = parsed.collins === undefined
 
     if (englishExplanationTotalCount > 1 && isDefaultValue) {
       /** @param {string} str */
@@ -202,9 +208,11 @@ function print(word, result) {
             ? `  ${sentences.replace('例： ', '例：')}`
             : sentences
                 ?.map((s, i) => {
-                  const THREE_SPACES = '   '
-                  const spaces =
-                    len < 10 ? THREE_SPACES : THREE_SPACES + (index + 1 >= 10 ? ' ' : '')
+                  // const THREE_SPACES = '   '
+                  // const spaces =
+                  //   len < 10 ? THREE_SPACES : THREE_SPACES + (index + 1 >= 10 ? ' ' : '')
+                  const spaces = ''
+
                   return `${spaces}${green(i !== sentences.length - 1 ? '├──' : '└──')} ${s}`
                 })
                 .join('\n')
@@ -252,12 +260,12 @@ function print(word, result) {
 function introduceFeatures(word, suggestedWord) {
   const fatigue = new Fatigue(verbose)
 
-  const exampleFlagSet = parser.get('example')
+  const exampleFlagSet = parsed.example
   if (exampleFlagSet) {
     fatigue.setTired('example')
   }
 
-  const speakFlagSet = parser.get('speak')
+  const speakFlagSet = parsed.speak
   if (speakFlagSet) {
     fatigue.setTired('speak')
   }
@@ -302,9 +310,7 @@ function printExamples(examples) {
  */
 async function byJSON(word) {
   // https://fanyi.youdao.com/ not available
-  return {
-    errorMsg: text.error.notFound(word),
-  }
+  return genErrorResult(word, 'notFound')
 
   const label = '? by fetch JSON'
   verbose && console.time(label)
@@ -376,8 +382,8 @@ async function fetchSuggestions(word) {
 
 /** @param {string} word */
 export function speak(word) {
-  if (!parser.get('speak')) {
-    debugC('Not speak because "speak" flag', parser.flags.speak, 'is off.')
+  if (!parsed.speak) {
+    debugC('Not speak because "speak" flag', parsed.speak, 'is off.')
 
     return
   }
@@ -391,20 +397,6 @@ export function speak(word) {
       debugC(`Execute \`${cmd}\` failed:`, error)
     }
   })
-}
-
-/**
- * @param {number | string} val - 1,2,3 or 'a' or 'all'
- * @returns {boolean}
- */
-function shouldShowCollins(val) {
-  debugC('shouldShowCollins:', val, typeof val)
-
-  if (val === 0) {
-    return false
-  }
-
-  return true
 }
 
 // /**

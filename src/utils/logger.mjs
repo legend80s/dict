@@ -1,27 +1,29 @@
-import { verbose } from './arg-parser.mjs';
-import { debug } from './lite-lodash.mjs';
+import { parsed } from './arg-parser.mjs'
+import { debug } from './lite-lodash.mjs'
+
+const verbose = parsed.verbose
 
 /**
  * @param {string} label
  * @returns {(...args: any[]) => void}
  */
-const debugFactory = (label) => {
+const debugFactory = label => {
   return (...args) => {
     if (!verbose) {
-      return false;
+      return false
     }
 
-    debug(`[${label}]`, ...args);
+    debug(`[${label}]`, ...args)
 
-    return true;
-  };
-};
+    return true
+  }
+}
 
-const debugCore = debugFactory('core');
-export const debugDictionary = debugFactory('dictionary');
-export const debugNuxt = debugFactory('dictionary-nuxt');
+const debugCore = debugFactory('core')
+export const debugDictionary = debugFactory('dictionary')
+export const debugNuxt = debugFactory('dictionary-nuxt')
 
-export const debugC = debugCore;
+export const debugC = debugCore
 
 // /**
 //  *

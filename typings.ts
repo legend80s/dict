@@ -2,7 +2,13 @@ export type int = number
 
 export type IJSON = Record<string, unknown>
 
-export type IErrorResult = { errorMsg: string; error?: Error }
+export type IErrorType = keyof I18n['zh-CN']['error']
+
+export type IErrorResult = {
+  errorMsg: string
+  error?: Error
+  errorType?: IErrorType
+}
 
 export type ICollinsItem =
   | { partOfSpeech?: string; english: string; eng_sent?: string; chn_sent?: string }
@@ -116,7 +122,8 @@ interface WordData {
   le: string
   wikipedia_digest: Wikipediadigest
   lang: string
-  ec: Ec
+  ec?: Ec
+  fanyi?: { tran: string }
   oxfordAdvance: OxfordAdvanceHtml
 }
 
