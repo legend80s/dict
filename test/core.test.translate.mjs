@@ -36,12 +36,26 @@ test('should translate en to zh', async () => {
 test('should translate en to zh using youdao', async () => {
   const actual = execSync(`node ./ "${text}"`).toString('utf-8')
 
-  console.info('youdao fanyi:', { actual })
+  // console.info('youdao fanyi:', { actual })
 
   assert.equal(
     // 如果成功则必然包含关键词
     // 但因为翻译结果可能存在差异，所以这里使用关键词匹配
     ['FnMut', 'FnOnce', 'Fn', '闭包'].every(eng => actual.includes(eng)),
+
+    true,
+  )
+})
+
+test('should translate en to zh using youdao when examples nil', async () => {
+  const actual = execSync(`node ./ "I'm a developer of sorts"`).toString('utf-8')
+
+  // console.info('youdao fanyi:', { actual })
+
+  assert.equal(
+    // 如果成功则必然包含关键词
+    // 但因为翻译结果可能存在差异，所以这里使用关键词匹配
+    ['我', '开发'].every(eng => actual.includes(eng)),
 
     true,
   )

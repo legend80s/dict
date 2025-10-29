@@ -101,30 +101,30 @@ interface CurrentLe {
 }
 
 interface WordData {
-  web_trans: Webtrans
-  oxfordAdvanceHtml: OxfordAdvanceHtml
-  ee: Ee
-  blng_sents_part: Blngsentspart
-  collins_primary: Collinsprimary
-  auth_sents_part: Authsentspart
-  simple: Simple
-  expand_ec: Expandec
-  etym: Etym
-  phrs: Phrs
-  oxford: OxfordAdvanceHtml
-  special: Special
-  syno: Syno2
-  input: string
-  music_sents: Musicsents
+  auth_sents_part?: Authsentspart
+  blng_sents_part?: Blngsentspart
+  collins_primary?: Collinsprimary
   collins?: Collins
-  meta: Meta
-  webster: OxfordAdvanceHtml
-  le: string
-  wikipedia_digest: Wikipediadigest
-  lang: string
   ec?: Ec
-  fanyi?: { tran: string }
-  oxfordAdvance: OxfordAdvanceHtml
+  ee?: Ee
+  etym?: Etym
+  expand_ec?: Expandec
+  fanyi: { tran: string }
+  input: string
+  meta: Meta
+  lang: string
+  le: string
+  music_sents?: Musicsents
+  oxford?: OxfordAdvanceHtml
+  oxfordAdvance?: OxfordAdvanceHtml
+  oxfordAdvanceHtml?: OxfordAdvanceHtml
+  phrs?: Phrs
+  simple?: Simple
+  special?: Special
+  syno?: Syno2
+  web_trans?: Webtrans
+  webster?: OxfordAdvanceHtml
+  wikipedia_digest?: Wikipediadigest
 }
 
 interface Ec {

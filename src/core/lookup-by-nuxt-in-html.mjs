@@ -85,12 +85,16 @@ async function lookupByNuxtInHTML(word, { example = false, collins = false }) {
  * @returns {import('../../typings').IExample[]}
  */
 function extractExamples(data) {
-  return data.wordData.blng_sents_part['sentence-pair'].map(item => {
-    /** @type {import('../../typings').IExample} */
-    const example = [item['sentence-eng'], item['sentence-translation'], item.source || '']
+  // console.log('🚀 ~ extractExamples ~ data:', data)
 
-    return example
-  })
+  return (
+    data.wordData.blng_sents_part?.['sentence-pair'].map(item => {
+      /** @type {import('../../typings').IExample} */
+      const example = [item['sentence-eng'], item['sentence-translation'], item.source || '']
+
+      return example
+    }) || []
+  )
 }
 
 /**

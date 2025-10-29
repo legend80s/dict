@@ -30,11 +30,11 @@ pnpx ydd vite -e -s
 
 - **Light weight**: Zero dependencies.
 - **Built with speed in mind**:
-  - It's a CLI but not use commander or inquirer or yargs and chalk!
-  - No cheerio, node-html-parser or request library just use Robust regular expressions to parse and native  `fetch`.
+  - It's a CLI but not use commander or inquirer or yargs and chalk! Just native Node.js [`parseArgs`](https://nodejs.org/docs/latest/api/util.html#utilparseargsconfig).
+  - No cheerio, node-html-parser or request library. Use Node.js `fetch` to request. And [vm](https://nodejs.org/docs/latest/api/vm.html) to evaluate script and use Robust regular expressions as fallback to parse when failed.
   - Instead of heavy renderer charmbracelet/glow, we use our own lightweight markdown render—yet the output still looks gorgeous.
-- **Robust**: Use double source: openapi and html. Downgrade to `https.request` when `fetch` not supported.
-- Speak 👄: `pnpx ydd vite --speak`.
+- **Robust**: Use double source: script, HTML or openapi. Downgrade to `https.request` when `fetch` not supported.
+- Speak 👄: `pnpx ydd vite --speak` (Macos only).
 
 ## TODO
 
