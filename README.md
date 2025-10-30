@@ -21,7 +21,7 @@ pnpx ydd silhouette
 bunx ydd silhouette
 ```
 
-### 用法一：仅查询释义**
+### 用法一：仅查询释义
 
 ```markdown
 ❯ pnpx ydd silhouette
@@ -35,7 +35,7 @@ bunx ydd silhouette
 *查询单词耗时 🕑: 322.812ms*
 ```
 
-### 用法二：查询释义加 Collins 和双语例句**
+### 用法二：查询释义加 Collins 和双语例句
 
 ```markdown
 ❯ pnpx ydd silhouette -collins=all --example
