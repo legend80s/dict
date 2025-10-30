@@ -131,7 +131,7 @@ test('Should show Usage when no word given', () => {
   const { stdout, stderr } = spawnSync(`node`, ['./bin.mjs'], { encoding: 'utf-8' })
   // console.log(' stdout, stderr :', { stdout, stderr })
 
-  assert.match(stderr, /请输入需要查询的单词/)
+  assert.match(stderr, /请输入需要查询的单词|Please input word to query/)
   assert.match(stdout, /Usage/)
   assert.match(stdout, /Options/)
 })
