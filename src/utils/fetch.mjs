@@ -1,5 +1,5 @@
 /**
- * @typedef {import('../../typings').IJSON} IJSON
+ * @import { IJSON } from '../../typings'
  */
 
 /**

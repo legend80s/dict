@@ -5,8 +5,7 @@ import { evaluateNuxtInScriptTagUseVM, red, timeit } from '../utils/lite-lodash.
 import { debugNuxt } from '../utils/logger.mjs'
 import { text } from './constants.mjs'
 
-/** @typedef {import('../../typings').ICollinsItem} ICollinsItem  */
-/** @typedef {import('../../typings').IParsedResult} IParsedResult */
+/** @import { ICollinsItem } from '../../typings' */
 
 const verbose = parsed.verbose
 const lookup = verbose ? timeit('? by nuxt fetch', lookupByNuxtInHTML) : lookupByNuxtInHTML

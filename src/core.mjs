@@ -12,9 +12,7 @@ import { fetchIt } from './utils/fetch.mjs'
 import { bold, green, h1, h2, highlight, italic, red, white } from './utils/lite-lodash.mjs'
 import { debugC } from './utils/logger.mjs'
 
-/** @typedef {import('../typings').ICollinsItem} ICollinsItem  */
-/** @typedef {import('../typings').IParsedResult} IParsedResult */
-/** @typedef {import('../typings').IErrorResult} IErrorResult */
+/** @import { IParsedResult, IErrorResult } from '../typings' */
 
 /** @type {(sentence: string) => string} */
 let highlightWord
