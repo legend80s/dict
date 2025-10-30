@@ -5,7 +5,7 @@
   "main": "index.mjs",
   "type": "module",
   "bin": {
-    "ydd": "./index.mjs"
+    "ydd": "./bin.mjs"
   },
   "scripts": {
     "pub:patch": "npm version patch",

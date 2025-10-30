@@ -21,7 +21,7 @@ pnpx ydd silhouette
 bunx ydd silhouette
 ```
 
-**用法一、仅查询释义：**
+### 用法一：仅查询释义**
 
 ```markdown
 ❯ pnpx ydd silhouette
@@ -31,11 +31,11 @@ bunx ydd silhouette
 🟢  v. 把……画成黑色轮廓像，使现出影像（或轮廓）
 🟢  【名】 （Silhouette）（法）西卢埃特（人名）
 
-See more at https://dict.youdao.com/result?word=silhouette&lang=en
-查询单词耗时 🕑: 322.812ms
+*See more at https://dict.youdao.com/result?word=silhouette&lang=en*
+*查询单词耗时 🕑: 322.812ms*
 ```
 
-**用法二、查询释义加 Collins 和双语例句：**
+### 用法二：查询释义加 Collins 和双语例句**
 
 ```markdown
 ❯ pnpx ydd silhouette -collins=all --example
@@ -96,7 +96,7 @@ pnpx ydd silhouette --speak
 - **高可用**：
   - 双路数据源（HTML 源 1 / HTML 源 2 / OpenAPI）。
   - `fetch` 不可用时自动降级到 `https.request`。
-  - 优先用 `vm` 执行脚本，失败则回退至健壮的正则解析。
+  - 优先用经过安全处理的 `node:vm` 执行脚本，失败则回退至健壮的正则解析。
 - **久经考验**：单元测试、端到端测试，外加随机测试（每次发布前从 789 个单词池中随机抽取若干进行全链路测试验证）。
 
 ## 待办
@@ -112,7 +112,19 @@ pnpx ydd silhouette --speak
 
 ```shell
 pnpm i
-node ./ -e -c=a "word"
+node ./bin.mjs -e -c=a "word"
+```
+
+## 自动化测试
+
+```shell
+node --test
+
+# 测试某一个文件
+node --test test/core.test.translate.mjs
+
+# 测试某一个 case：先将 `test(...)` 改成 `test.only(...)` 然后执行
+node --test-only test/core.test.translate.mjs
 ```
 
 ---
@@ -178,5 +190,5 @@ If YDD saved you a second, please [star ⭐️](https://github.com/legend80s/dic
 
 ```shell
 pnpm i
-node index.mjs "word"
+node ./bin.mjs -e -c=a "word"
 ```
