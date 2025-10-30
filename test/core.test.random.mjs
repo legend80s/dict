@@ -14,7 +14,7 @@ test('should not throw error on random word', () => {
     console.info('word:', `[${word}]`)
 
     assert.doesNotThrow(() => {
-      const cmd = `node ./ ${word} -e`
+      const cmd = `node ./bin.mjs ${word} -e`
       // console.log('cmd:', { cmd })
 
       const stdout = execSync(cmd).toString('utf-8')

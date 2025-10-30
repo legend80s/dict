@@ -34,7 +34,7 @@ test('should translate en to zh', async () => {
 })
 
 test('should translate en to zh using youdao', async () => {
-  const actual = execSync(`node ./ "${text}"`).toString('utf-8')
+  const actual = execSync(`node ./bin.mjs "${text}"`).toString('utf-8')
 
   // console.info('youdao fanyi:', { actual })
 
@@ -48,7 +48,7 @@ test('should translate en to zh using youdao', async () => {
 })
 
 test('should translate en to zh using youdao when examples nil', async () => {
-  const actual = execSync(`node ./ "I'm a developer of sorts"`).toString('utf-8')
+  const actual = execSync(`node ./bin.mjs "I'm a developer of sorts"`).toString('utf-8')
 
   // console.info('youdao fanyi:', { actual })
 

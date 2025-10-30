@@ -4,7 +4,7 @@ import test from 'node:test'
 import { stripVTControlCharacters } from 'node:util'
 
 test('Should show help', () => {
-  const stdout = stripVTControlCharacters(execSync(`node ./ -v`).toString('utf-8'))
+  const stdout = stripVTControlCharacters(execSync(`node ./bin.mjs -v`).toString('utf-8'))
 
   assert.match(stdout, /ydd@\d/)
   assert.match(stdout, /> Explain English word in Chinese. 查询英文单词的中文释义。/)
@@ -18,7 +18,7 @@ test('Should show help', () => {
 })
 
 test('Should show explanations and without examples by default', () => {
-  const stdout = execSync(`node ./ wonderful`).toString('utf-8')
+  const stdout = execSync(`node ./bin.mjs wonderful`).toString('utf-8')
 
   assert.doesNotMatch(stdout, /Word: "wonderful"/)
   assert.doesNotMatch(stdout, /Explanations/)
@@ -27,7 +27,7 @@ test('Should show explanations and without examples by default', () => {
 })
 
 test('Should show explanations and examples and collins', () => {
-  const stdout = execSync(`node ./ wonderful --example --collins 1`).toString('utf-8')
+  const stdout = execSync(`node ./bin.mjs wonderful --example --collins 1`).toString('utf-8')
 
   assert.doesNotMatch(stdout, /Word: "wonderful"/)
   assert.match(stdout, /Explanations/)
@@ -46,7 +46,7 @@ test('Should show explanations and examples and collins', () => {
 
 test('Should show 2 collins', () => {
   const stdout = stripVTControlCharacters(
-    execSync(`node ./ wonderful -c=2 --example`).toString('utf-8'),
+    execSync(`node ./bin.mjs wonderful -c=2 --example`).toString('utf-8'),
   )
 
   assert.match(stdout, /柯林斯英汉双解大词典/)
@@ -55,13 +55,13 @@ test('Should show 2 collins', () => {
 })
 
 test('Should show word on verbose', () => {
-  const stdout = execSync(`node ./ wonderful --verbose`).toString('utf-8')
+  const stdout = execSync(`node ./bin.mjs wonderful --verbose`).toString('utf-8')
 
   assert.match(stdout, /Word: "wonderful"/)
 })
 
 test('Should show Explanations only', () => {
-  const stdout = execSync(`node ./ "wonderful girl"`).toString('utf-8')
+  const stdout = execSync(`node ./bin.mjs "wonderful girl"`).toString('utf-8')
 
   assert.doesNotMatch(stdout, /Word: "wonderful girl"/)
   assert.doesNotMatch(stdout, /Explanations/)
@@ -75,14 +75,14 @@ test('Should show Explanations only', () => {
 
 // skip because fanyi.youdao.com/openapi.do is down
 test.skip('Should show suggested word when no explanations found', () => {
-  const stdout = execSync(`node ./ dogfood`).toString('utf-8')
+  const stdout = execSync(`node ./bin.mjs dogfood`).toString('utf-8')
 
   assert.match(stdout, /你要找的是不是/)
   assert.match(stdout, /dogfooding/)
 })
 
 test('Should show Examples and collins', () => {
-  const stdout = stripVTControlCharacters(execSync(`node ./ router -e -c=1`).toString('utf-8'))
+  const stdout = stripVTControlCharacters(execSync(`node ./bin.mjs router -e -c=1`).toString('utf-8'))
 
   assert.match(stdout, /Explanations/)
   assert.match(stdout, /柯林斯英汉双解大词典/)
@@ -92,7 +92,7 @@ test('Should show Examples and collins', () => {
 })
 
 test('Should show Examples without collins', () => {
-  const stdout = execSync(`node ./ router -e`).toString('utf-8')
+  const stdout = execSync(`node ./bin.mjs router -e`).toString('utf-8')
 
   assert.match(stdout, /Explanations/)
   assert.doesNotMatch(stdout, /柯林斯英汉双解大词典/)
@@ -102,7 +102,7 @@ test('Should show Examples without collins', () => {
 })
 
 test('Should not show collins for word "sulfate"', () => {
-  const stdout = execSync(`node ./ sulfate -e`).toString('utf-8')
+  const stdout = execSync(`node ./bin.mjs sulfate -e`).toString('utf-8')
 
   assert.match(stdout, /Explanations/)
   assert.doesNotMatch(stdout, /柯林斯英汉双解大词典/)
@@ -111,7 +111,7 @@ test('Should not show collins for word "sulfate"', () => {
 })
 
 test('Should match as longer as possible', () => {
-  const stdout = stripVTControlCharacters(execSync(`node ./ exclusive -e`).toString('utf-8'))
+  const stdout = stripVTControlCharacters(execSync(`node ./bin.mjs exclusive -e`).toString('utf-8'))
 
   assert.match(stdout, /n. 独家新闻，独家报道/)
   assert.match(stdout, /Examples/)
@@ -121,14 +121,14 @@ test('Should match as longer as possible', () => {
 })
 
 test('Should show all collins when -c=a is specified', () => {
-  const stdout = execSync(`node ./ than -c=a`).toString('utf-8')
+  const stdout = execSync(`node ./bin.mjs than -c=a`).toString('utf-8')
 
   assert.match(stdout, /柯林斯英汉双解大词典 \[#\d\]/)
   assert.doesNotMatch(stdout, /\.\.\./)
 })
 
 test('Should show Usage when no word given', () => {
-  const { stdout, stderr } = spawnSync(`node`, ['./'], { encoding: 'utf-8' })
+  const { stdout, stderr } = spawnSync(`node`, ['./bin.mjs'], { encoding: 'utf-8' })
   // console.log(' stdout, stderr :', { stdout, stderr })
 
   assert.match(stderr, /请输入需要查询的单词/)
