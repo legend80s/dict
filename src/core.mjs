@@ -10,6 +10,7 @@ import { help, parsed } from './utils/arg-parser.mjs'
 import { Fatigue } from './utils/fatigue.mjs'
 import { fetchIt } from './utils/fetch.mjs'
 import { bold, green, h1, h2, highlight, italic, red, white } from './utils/lite-lodash.mjs'
+import { streamToStdout } from './utils/stream.mjs'
 import { debugC } from './utils/logger.mjs'
 
 /** @import { IParsedResult, IErrorResult } from '../typings' */
@@ -103,7 +104,7 @@ function exitWithErrorMsg(word, { errorMsg, error, errorType }) {
  * @param {string} word
  * @param {IParsedResult} result
  */
-function print(word, result) {
+async function print(word, result) {
   if ('errorMsg' in result) {
     exitWithErrorMsg(word, result)
 
@@ -158,23 +159,68 @@ function print(word, result) {
   const hasExample = !!examples?.length
 
   verbose && log(h1(`"${word}"`))
-  console.log()
-  hasExample && log(h2('Explanations 💡'))
 
-  explanations.forEach(exp => {
-    console.log(config.listItemIcon, white(exp))
+  const output = buildOutputString({
+    word,
+    explanations,
+    englishExplanation,
+    englishExplanationTotalCount,
+    examples,
+    suggestions,
+    hasExample,
+    highlightWord,
   })
 
+  if (parsed.stream) {
+    await streamToStdout(output)
+  } else {
+    console.log(output)
+  }
+
+  return true
+}
+
+/**
+ * @param {{
+ *   word: string
+ *   explanations: string[]
+ *   englishExplanation: import('../typings').ICollinsItem[] | undefined
+ *   englishExplanationTotalCount: number
+ *   examples: import('../typings').IExample[] | undefined
+ *   suggestions: string[] | undefined
+ *   hasExample: boolean
+ *   highlightWord: (sentence: string) => string
+ * }} _
+ */
+function buildOutputString({
+  word,
+  explanations,
+  englishExplanation,
+  englishExplanationTotalCount,
+  examples,
+  suggestions,
+  hasExample,
+  highlightWord,
+}) {
+  let output = ''
+
+  output += '\n'
+  if (hasExample) {
+    output += h2('Explanations 💡') + '\n'
+  }
+
+  output += explanations.map(exp => config.listItemIcon + ' ' + white(exp)).join('\n') + '\n'
+
   const suggestedWord = suggestions?.[0]
-  suggestedWord && console.log('\n你要找的是不是:', white(suggestedWord))
+  if (suggestedWord) {
+    output += '\n你要找的是不是: ' + white(suggestedWord) + '\n'
+  }
 
   if (englishExplanation?.[0]) {
-    console.log()
+    output += '\n'
 
     let sub = ''
 
-    // number 1 - is default value `npx ydd`
-    // string 1 - is passed value `npx ydd -c=1`
     const isDefaultValue = parsed.collins === undefined
 
     if (englishExplanationTotalCount > 1 && isDefaultValue) {
@@ -186,9 +232,7 @@ function print(word, result) {
     }
 
     const header = `柯林斯英汉双解大词典 [#${englishExplanationTotalCount}] 📖`
-    log(h2(header) + sub)
-
-    const len = englishExplanation.length
+    output += h2(header) + sub + '\n'
 
     const str = englishExplanation
       .map((item, index) => {
@@ -229,25 +273,24 @@ function print(word, result) {
       })
       .join('\n\n')
 
-    console.log(red(str))
+    output += red(str) + '\n'
 
     if (englishExplanation.length < englishExplanationTotalCount) {
-      console.log('...')
+      output += '...\n'
     }
   }
 
   // console.log('hasExample:', hasExample);
 
   if (hasExample) {
-    printExamples(examples)
+    output += buildExamplesString(examples, highlightWord)
   }
 
-  introduceFeatures(word, suggestedWord)
+  output += buildFeaturesString(word, suggestedWord)
 
-  console.log()
-  console.log(italic(`See more at ${dictionary.makeHTMLUrl(word)}`))
+  output += '\n' + italic(`See more at ${dictionary.makeHTMLUrl(word)}`)
 
-  return true
+  return output
 }
 
 /**
@@ -255,7 +298,8 @@ function print(word, result) {
  * @param {string} word
  * @param {string | undefined} suggestedWord
  */
-function introduceFeatures(word, suggestedWord) {
+function buildFeaturesString(word, suggestedWord) {
+  let output = ''
   const fatigue = new Fatigue(verbose)
 
   const exampleFlagSet = parsed.example
@@ -269,35 +313,41 @@ function introduceFeatures(word, suggestedWord) {
   }
 
   if (!exampleFlagSet && !fatigue.hit('example')) {
-    console.log()
-    console.log(
+    output += '\n'
+    output +=
       white(
         `Try \`npx ydd ${suggestedWord || word} ${bold('-e -c=2|all')}\` to get some examples ✨.`,
-      ),
-    )
+      ) + '\n'
     fatigue.increment('example')
   } else if (!speakFlagSet && !fatigue.hit('speak')) {
-    console.log()
-    console.log(white(`Try \`npx ydd ${suggestedWord || word} ${bold('-s')}\` to speak it out 📣.`))
+    output += '\n'
+    output +=
+      white(`Try \`npx ydd ${suggestedWord || word} ${bold('-s')}\` to speak it out 📣.`) + '\n'
     fatigue.increment('speak')
   }
+
+  return output
 }
 
 /**
  *
  * @param {Array<[sentence: string, translation: string, via: string]>} examples
+ * @param {(sentence: string) => string} highlightWord
  */
-function printExamples(examples) {
-  console.log()
-  log(h2('Examples ⭐'))
+function buildExamplesString(examples, highlightWord) {
+  let output = ''
+
+  output += '\n' + h2('Examples ⭐') + '\n'
 
   examples.forEach(([sentence, translation, via], idx) => {
-    log(colorIndex(idx), white(highlightWord(sentence)))
-    log(white(highlightWord(translation)))
-    via && log(italic(via))
+    output += colorIndex(idx) + ' ' + white(highlightWord(sentence)) + '\n'
+    output += white(highlightWord(translation)) + '\n'
+    via && (output += italic(via) + '\n')
 
-    idx !== examples.length - 1 && console.log()
+    idx !== examples.length - 1 && (output += '\n')
   })
+
+  return output
 }
 
 /**

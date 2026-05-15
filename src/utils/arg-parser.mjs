@@ -43,6 +43,11 @@ const options = {
     // @ts-expect-error
     description: '展示几条柯林斯英汉双解词典解释：两条：`-c=2`，全部 `-c=all`',
   },
+  stream: {
+    type: 'boolean',
+    // @ts-expect-error
+    description: '逐字输出结果',
+  },
 }
 
 export const DEFAULTS = {
@@ -76,6 +81,8 @@ export const parsed = {
   /** @type {undefined | string} */
   // @ts-expect-error
   collins: values.collins?.replace(/^=/, ''),
+  /** @type {boolean} */
+  stream: !!values.stream,
 }
 
 /** @returns {boolean} */
