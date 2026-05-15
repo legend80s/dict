@@ -47,6 +47,7 @@ const options = {
     type: 'boolean',
     // @ts-expect-error
     description: '逐字输出结果',
+    default: true,
   },
 }
 
@@ -81,8 +82,8 @@ export const parsed = {
   /** @type {undefined | string} */
   // @ts-expect-error
   collins: values.collins?.replace(/^=/, ''),
-  /** @type {boolean} */
-  stream: !!values.stream,
+  /** @type {boolean} 默认 true */
+  stream: values.stream === undefined ? true : !!values.stream,
 }
 
 /** @returns {boolean} */

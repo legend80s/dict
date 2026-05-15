@@ -6,6 +6,9 @@
     "lib": ["ES2022", "DOM"],
     "target": "ES2022",
     "checkJs": true,
+    "types": [
+      "node"
+    ],
     "strict": true
   }
 }
