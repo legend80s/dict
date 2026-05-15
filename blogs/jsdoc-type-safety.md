@@ -1,6 +1,7 @@
 # JSDoc 类型体操：在 JavaScript 中获得 TypeScript 级别的类型安全
 
-> 基于 [ydd（有道词典 CLI）](https://github.com/legend80s/dict) 的真实代码，剖析如何在不引入构建步骤的前提下，用 JSDoc 注解 + 声明文件实现完整的类型检查。
+> 如果哪一天 Node.js 支持发布纯 ts 包，`mjs + jsdoc + tsconfig.json` 这套模式就可正式退位了。虽然 Node.js v22.18 起无需任何 flag 支持运行 TS 文件，但是对 node_modules 内文件仍然不支持直接运行。导致才有本文。
+
 
 ## 引言
 
@@ -12,6 +13,10 @@
 但有没有**既要又要**的方案？——用 JavaScript 写代码，用 TypeScript 做类型检查，零构建步骤，但类型安全一应俱全。
 
 答案是 **JSDoc 类型注解 + tsc 无输出检查**。
+
+
+本文灵感来自 [ydd（有道词典 CLI）](https://github.com/legend80s/dict) 的真实代码，剖析如何在不引入构建步骤的前提下，用 JSDoc 注解 + 声明文件实现完整的类型检查。
+
 
 ## 整体架构
 
@@ -284,6 +289,9 @@ type IFlags = {
 ydd 用 14 行 `tsconfig.json` + 200 行 `typings.ts` + 散落在 .mjs 文件中的 JSDoc 注解，在**零构建步骤**的前提下，获得了完整的 TypeScript 类型检查。
 
 它不是 TypeScript vs JavaScript 的二选一，而是**渐进式类型安全**——在 JavaScript 的灵活性和 TypeScript 的安全性之间，找到了一个务实的平衡点。
+
+当然如果哪一天 Node.js 支持发布纯 ts 包，`mjs + jsdoc + tsconfig.json` 这套模式就可正式退位了。
+
 
 ---
 
