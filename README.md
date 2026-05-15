@@ -78,6 +78,14 @@ bunx ydd silhouette
 pnpx ydd silhouette --speak
 ```
 
+### 用法三：流式输出（默认开启）
+
+默认逐词输出，体验如大语言模型般流畅。可通过 `--no-stream` 关闭：
+
+```shell
+pnpx ydd silhouette --no-stream
+```
+
 ## 特性
 
 - **🦸 全能**：查单词、翻译长句、中译英，一应俱全。
@@ -86,6 +94,7 @@ pnpx ydd silhouette --speak
 - **🎈 轻量**：零依赖，零配置，即装即用。
 - **🌍 双语**：内置柯林斯双语例句。
 - **🔊 朗读**：支持单词朗读，`pnpx ydd vite --speak`（仅 macOS）。
+- **🔄 流式**：默认逐词输出（`--no-stream` 关闭），体验如大语言模型般流畅。
 
 ## 技术亮点
 
@@ -100,6 +109,7 @@ pnpx ydd silhouette --speak
     - 优先用经过安全处理的 `node:vm` 执行脚本，失败则回退至健壮的正则解析。
   - `fetch` 不可用时自动降级到 `https.request`。
 - **久经考验**：单元测试、端到端测试，外加随机测试（每次发布前从 789 个单词池中随机抽取若干进行全链路测试验证）。
+- **🔄 流式输出**：`Intl.Segmenter` 分词（完美支持中英文分词）模仿 SSE 逐 token 输出，体验如大语言模型。
 
 ## 待办
 
@@ -161,6 +171,12 @@ Or show more details with bilingual `e`xamples and `s`peak it out:
 pnpx ydd vite -e -s
 ```
 
+stream the output word by word like an LLM by default, use `--no-stream` to disable it:
+
+```shell
+pnpx ydd wonderful --no-stream
+```
+
 ## Features
 
 - **Full-fledged**: **Look up** individual words, **translate** full passages, and handle **Chinese-to-English**. All in one place.
@@ -169,6 +185,7 @@ pnpx ydd vite -e -s
 - **Elegant**: No dependencies, no configuration.
 - **Bilingual**: Show collins bilingual examples.
 - **Speak**: Speak the word out. `pnpx ydd vite --speak` (Macos only).
+- **Stream**: `--stream` flag for word-by-word output, like LLM token streaming.
 
 ## Tech Features
 
