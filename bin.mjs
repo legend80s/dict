@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-// @ts-check
 
-import { query, speak } from './src/core.mjs'
+// @ts-check
 import { config } from './src/core/constants.mjs'
+import { print, query, speak } from './src/core.mjs'
 import { translate } from './src/translator/index.mjs'
 import { help, parsed, showHelp } from './src/utils/arg-parser.mjs'
 import { italic } from './src/utils/lite-lodash.mjs'
@@ -46,13 +46,19 @@ async function init() {
     return true
   }
 
-  const label = italic('查询单词耗时 🕑')
-  console.time(label)
+  const label = italic('查询单词耗时 🕑:')
+  // console.time(label)
+  const start = Date.now()
 
   try {
-    const didQuery = await query(word)
+    const [didQuery, result] = await query(word)
 
-    didQuery && console.timeEnd(label)
+    if (didQuery) {
+      // show query time not print time because print time is affected by stream or not
+      const end = Date.now()
+      await print(word, result)
+      console.log(label, ((end - start) / 1000).toFixed(2), '秒')
+    }
   } catch (err) {
     verbose && console.error('query failed', err)
   }

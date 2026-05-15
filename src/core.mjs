@@ -26,15 +26,16 @@ const verbose = parsed.verbose
  * 1. 如果某个渠道获取失败，则尝试下一个渠道。
  * 2. 参数增加疲劳度控制
  * @param {string} word
- * @returns {Promise<boolean>} false: 没有发起查询请求，true: 发起了查询请求
+ * @returns {Promise<[didQuery: false] | [didQuery: true, result: IParsedResult]>} false: 没有发起查询请求，true: 发起了查询请求
  */
 export const query = async word => {
   debugC('Word:', `"${word}"`)
 
   if (!word) {
+    // console.log('no word provided')
     exitWithErrorMsg(word, genErrorResult(word, 'noWord'))
 
-    return false
+    return [false]
   }
 
   const showExamples = parsed.example
@@ -62,7 +63,7 @@ export const query = async word => {
     }
   }
 
-  return print(word, result)
+  return [true, result]
 }
 
 /**
@@ -104,7 +105,7 @@ function exitWithErrorMsg(word, { errorMsg, error, errorType }) {
  * @param {string} word
  * @param {IParsedResult} result
  */
-async function print(word, result) {
+export async function print(word, result) {
   if ('errorMsg' in result) {
     exitWithErrorMsg(word, result)
 
