@@ -4,6 +4,12 @@
   "description": "Explain English word in Chinese. 查询英文单词的中文释义。",
   "main": "index.mjs",
   "type": "module",
+  "files": [
+    "bin.mjs",
+    "index.mjs",
+    "src/**/*.mjs",
+    "typings.ts"
+  ],
   "bin": {
     "ydd": "./bin.mjs"
   },
