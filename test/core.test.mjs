@@ -1,5 +1,5 @@
 import assert from 'node:assert'
-import { execSync } from 'node:child_process'
+import { execSync, spawnSync } from 'node:child_process'
 import test from 'node:test'
 import { stripVTControlCharacters } from 'node:util'
 import { disableStream } from './global-setup-teardown.mjs'

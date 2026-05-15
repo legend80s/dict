@@ -5,12 +5,12 @@ export function disableStream() {
   // v24 才支持 Global setup and teardown 故还是重复导入吧
   // https://nodejs.org/docs/latest/api/test.html#global-setup-and-teardown
   before(() => {
-    console.log('before')
+    // console.log('before')
     process.env.YDD_NO_STREAM = '1'
   })
 
   after(() => {
-    console.log('end')
+    // console.log('end')
     delete process.env.YDD_NO_STREAM
   })
 }
