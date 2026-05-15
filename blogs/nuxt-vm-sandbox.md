@@ -38,6 +38,23 @@ function extractNuxtScript(html) {
 }
 ```
 
+项目中实际使用的是通用的 `extractTextInTag` 函数（`test/lite-lodash.test.ts` 中有测试）：
+
+```js
+// extractTextInTag(html, 'a') 提取 <a> 标签内容
+assert.deepEqual(extractTextInTag(
+  '<a href="https://google.com">google</a>', 'a'
+), ['google'])
+
+// extractTextInTag(html, 'script') 提取所有 <script> 内容
+assert.deepEqual(extractTextInTag(html, 'script'), [
+  'const b = 1;',
+  'window.__NUXT__=(function (a,b) { return { a, b } }(1, 2))',
+])
+```
+
+然后从中筛选以 `window.__NUXT__=` 开头的脚本内容。
+
 现在拿到 `window.__NUXT__={"data":[...]}`，怎么变成 JavaScript 对象？
 
 最直接的：`JSON.parse`。但问题是——Nuxt 序列化的内容有时包含 `undefined`、函数引用等 JSON 不支持的格式。`JSON.parse` 会直接报错。
@@ -62,6 +79,44 @@ export function evaluateNuxtInScriptTag(html) {
 3. **ESLint 警告**——`eval` 被 lint 工具一致标记为危险操作
 
 **"运行一个来自网络的字符串"本身就是危险的。**
+
+### 测试验证：eval 的安全漏洞
+
+测试文件 `test/lite-lodash.test.ts` 中，有几个测试生动地揭示了 `eval` 的风险。
+
+**用例 1：脚本可以访问 Node.js 进程信息**
+
+```js
+// 攻击脚本中嵌入 process.versions.node
+const html = `<script>window.__NUXT__=(function (a,b) {
+  return { a, b }
+}(1, 2));console.log(process.versions.node);</script>`
+
+const result = evaluateNuxtInScriptTag(html)
+// 输出: 22.18.0  ← process 完全暴露！
+assert.deepEqual(result, { a: 1, b: 2 }) // 数据提取正常
+```
+
+`process.versions.node` 被成功打印——脚本执行环境与主进程共享同一个全局对象。虽然在这个场景中只是打印了版本号，但如果脚本包含恶意代码，它可以读取环境变量、文件系统、甚至执行系统命令。
+
+**用例 2：原型链污染（最危险）**
+
+```js
+const html = `<script>window.__NUXT__=(function (a,b) {
+  return { a, b }
+}(1, 2));Object.prototype.isAdmin1 = true;</script>`
+
+const result = evaluateNuxtInScriptTag(html)
+assert.deepEqual(result, { a: 1, b: 2 })
+
+// 所有对象的原型链都被污染了！
+const permission = {}
+assert.deepEqual(permission.isAdmin1, true) // 一个空对象居然有 isAdmin1！
+```
+
+这段代码在脚本中注入了 `Object.prototype.isAdmin1 = true`。执行后，**进程中所有对象的原型链都被污染了**——新创建的空对象 `permission` 居然有 `isAdmin1` 属性。在真实场景中，这可能导致权限绕过、逻辑漏洞等严重后果。
+
+**"运行一个来自网络的字符串"本身就是危险的。** `eval` 不是方案，是入口。幸运的是，Node.js 内置了更安全的选择。
 
 ## 方案三：node:vm 沙箱（安全的妙）
 
@@ -114,13 +169,78 @@ const sandbox = Object.create(null)
 
 当 `vm.runInContext(scriptContent, sandbox)` 执行时，脚本中的 `window.__NUXT__ = {...}` 只会修改沙箱内的 `window` 对象。脚本无法访问到外层的 `globalThis`、`process`、`require`。
 
+### 测试验证：vm 沙箱如何阻断攻击
+
+同样的攻击，用 `evaluateNuxtInScriptTagUseVM` 测试看看：
+
+**用例 1：阻断 `process` 访问**
+
+```js
+// 脚本试图访问 process.versions
+const html = `<script>window.__NUXT__=(console.log(process.versions),
+function (a,b) { return { a, b } }(1, 2))</script>`
+
+const result = evaluateNuxtInScriptTagUseVM(html)
+// process 不存在 → console.log 抛异常 → catch 捕获
+// 安全返回默认值
+assert.deepEqual(result, { data: [] })
+```
+
+`process` 在沙箱上下文中不存在，脚本抛异常后被 `try/catch` 捕获，函数返回安全的空值 `{ data: [] }`。
+
+**用例 2：阻断原型链污染（关键测试）**
+
+```js
+// 脚本尝试通过 this.constructor.constructor 逃逸沙箱
+const html = `<script>window.__NUXT__=(function (a,b) { return { a, b } }(11, 22));
+
+// 试图逃逸沙箱
+const escapedGlobalThis = this.constructor.constructor('return globalThis')();
+escapedGlobalThis.globalVar = 456;
+escapedGlobalThis.Object.prototype.isAdmin2 = true;
+Object.prototype.isAdmin3 = true;
+</script>`
+
+const result = evaluateNuxtInScriptTagUseVM(html)
+assert.deepEqual(result, { a: 11, b: 22 }) // 数据正常提取
+
+assert.equal(globalThis.globalVar, undefined)     // 全局变量未被修改
+
+const permission = {}
+assert.equal(permission.isAdmin2, undefined)      // 原型链未被污染！
+assert.equal(permission.isAdmin3, undefined)
+```
+
+为什么 `this.constructor.constructor('return globalThis')()` 这条经典逃逸路径在沙箱中失效了？
+
+回顾沙箱的创建方式：
+
+```js
+const sandbox = Object.create(null)
+```
+
+`Object.create(null)` 创建一个**没有原型链的对象**，因此 `sandbox.constructor` 是 `undefined`。脚本中的 `this.constructor` 就是 `undefined`，无法继续链式调用 `constructor('return globalThis')()`，逃逸路径被彻底切断。
+
+### 性能对比：eval vs vm
+
+测试文件中也记录了两种方案的耗时：
+
+```
+evaluateNuxtInScriptTag:     0.665ms    （eval 版本）
+evaluateNuxtInScriptTagUseVM: 0.518ms   （vm 版本）
+```
+
+vm 不仅更安全，性能甚至略优于 `eval`。这是因为 `vm.createContext` 创建的是**预编译的 V8 上下文**，而 `eval` 的全局作用域解析有额外的开销。安全性提升的同时性能没有妥协，这在工程实践中很难得。
+
 ### 那 node:vm 到底多安全？
 
 文档说得很坦率：
 
 > **"The node:vm module is not a security mechanism. Do not use it to run untrusted code."**
 
-它并非牢不可破——原型污染、DoS 等攻击仍然可能。但对有道词典页面这种**半可信来源**（它本身是一个静态页面，脚本内容由 Nuxt 生成而非用户输入）来说，已经足够。
+它并非牢不可破——更大的攻击面仍然存在。但对有道词典页面这种**半可信来源**（它本身是一个静态页面，脚本内容由 Nuxt 生成而非用户输入）来说，配合 `Object.create(null)` 已经足够实用。
+
+可以用一句话总结：**`eval` 是档案室大门敞开，`vm` 是加了把挂锁——不完美，但足以防君子。**
 
 ## 双路降级：没有 __NUXT__ 怎么办？
 
