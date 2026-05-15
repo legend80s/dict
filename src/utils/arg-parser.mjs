@@ -47,7 +47,6 @@ const options = {
     type: 'boolean',
     // @ts-expect-error
     description: '逐字输出结果',
-    default: true,
   },
 }
 
@@ -57,34 +56,74 @@ export const DEFAULTS = {
 
 const args = process.argv.slice(2)
 
-const { values, positionals } = parseArgs({
-  args,
+/**
+ *
+ * @param {string[]} args
+ * @param {NodeJS.ProcessEnv} env
+ * @returns
+ */
+export function parseCLIArgs(args, env) {
+  const { values, positionals } = parseArgs({
+    args,
 
-  strict: true,
-  allowNegative: true,
-  allowPositionals: true,
-  options,
-})
+    strict: true,
+    allowNegative: true,
+    allowPositionals: true,
+    options,
+  })
 
-export const parsed = {
-  args,
+  const stream = resolveStreamOption(values.stream, env)
+  // console.log(`stream:|${stream}|`)
 
-  /** @type {string} */
-  word: positionals[0] || '',
+  return {
+    args,
 
-  help: !!values.help,
-  version: !!values.version,
-  /** @type {boolean} */
-  verbose: !!values.verbose,
+    /** @type {string} */
+    word: positionals[0] || '',
 
-  speak: !!values.speak,
-  example: !!values.example,
-  /** @type {undefined | string} */
-  // @ts-expect-error
-  collins: values.collins?.replace(/^=/, ''),
-  /** @type {boolean} 默认 true */
-  stream: values.stream === undefined ? true : !!values.stream,
+    help: !!values.help,
+    version: !!values.version,
+    /** @type {boolean} */
+    verbose: !!values.verbose,
+
+    speak: !!values.speak,
+    example: !!values.example,
+    /** @type {undefined | string} */
+    // @ts-expect-error
+    collins: values.collins?.replace(/^=/, ''),
+    /** @type {boolean} 默认 true */
+    stream,
+  }
 }
+
+/**
+ * 解析流式输出选项。
+ *
+ * 显式参数（命令行标志） > 环境变量 > 默认值
+ * 环境变量 YDD_NO_STREAM=1 禁止流式输出，命令行参数 --stream 或 --no-stream 覆盖环境变量
+ * 用户在命令行敲了 --verbose，说明他此刻明确想要调试输出，此时环境变量 LOG_LEVEL=error 就不该覆盖这个意图
+ *
+ * @param {*} stream
+ * @param {NodeJS.ProcessEnv} env
+ * @returns
+ */
+function resolveStreamOption(stream, env) {
+  // console.log('stream:', stream, env.YDD_NO_STREAM)
+
+  // 注意不能在 args 里面增加 default true 否则无法区分
+  // 用户是否显式传入了 --stream 或 --no-stream，因为 parseArgs 解析后 stream 的值会是 true 或 false，而不是 undefined
+  if (stream !== undefined) {
+    return !!stream
+  }
+
+  if (env.YDD_NO_STREAM === '1') {
+    return false
+  }
+
+  return true
+}
+
+export const parsed = parseCLIArgs(args, process.env)
 
 /** @returns {boolean} */
 export function showHelp() {

@@ -1,6 +1,7 @@
 import { parsed } from './arg-parser.mjs'
 import { debug } from './lite-lodash.mjs'
 
+// const verbose = true
 const verbose = parsed.verbose
 
 /**

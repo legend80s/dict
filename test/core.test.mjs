@@ -1,7 +1,10 @@
 import assert from 'node:assert'
-import { execSync, spawnSync } from 'node:child_process'
+import { execSync } from 'node:child_process'
 import test from 'node:test'
 import { stripVTControlCharacters } from 'node:util'
+import { disableStream } from './global-setup-teardown.mjs'
+
+disableStream()
 
 test('Should show help', () => {
   const stdout = stripVTControlCharacters(execSync(`node ./bin.mjs -v`).toString('utf-8'))
@@ -82,7 +85,9 @@ test.skip('Should show suggested word when no explanations found', () => {
 })
 
 test('Should show Examples and collins', () => {
-  const stdout = stripVTControlCharacters(execSync(`node ./bin.mjs router -e -c=1`).toString('utf-8'))
+  const stdout = stripVTControlCharacters(
+    execSync(`node ./bin.mjs router -e -c=1`).toString('utf-8'),
+  )
 
   assert.match(stdout, /Explanations/)
   assert.match(stdout, /柯林斯英汉双解大词典/)
