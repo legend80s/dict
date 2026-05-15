@@ -2,6 +2,9 @@ import assert from 'node:assert'
 import { execSync } from 'node:child_process'
 import test from 'node:test'
 import { pickRandomWords } from './asset.mjs'
+import { disableStream } from './global-setup-teardown.mjs'
+
+disableStream()
 
 test('should not throw error on random word', () => {
   const limit = 5

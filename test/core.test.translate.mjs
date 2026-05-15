@@ -1,8 +1,10 @@
 import assert from 'node:assert'
-
+import { execSync } from 'node:child_process'
 import test from 'node:test'
 import { translate } from '../src/translator/engines/baidu.mjs'
-import { execSync } from 'node:child_process'
+import { disableStream } from './global-setup-teardown.mjs'
+
+disableStream()
 
 const text =
   'In reality, there are also implicit implementations of FnMut and FnOnce for Closure, but Fn is the “fundamental” one for this closure.'
