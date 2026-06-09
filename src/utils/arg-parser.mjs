@@ -139,7 +139,7 @@ export function help({
   showUsage = true,
   showOptions = true,
 } = {}) {
-  // @ts-expect-error
+  // @ts-ignore
   const { name, description, version } = require('../../package.json')
 
   if (showVersion) {

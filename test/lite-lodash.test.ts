@@ -120,6 +120,7 @@ describe('extractTextInTag', () => {
     const expected = { a: 11, b: 22 }
     // console.log('globalVar:', globalThis.globalVar);
 
+    // @ts-expect-error
     assert.equal(globalThis.globalVar, undefined)
     assert.deepEqual(result, expected)
 
@@ -128,6 +129,7 @@ describe('extractTextInTag', () => {
     // console.log('permission.isAdmin2:', permission.isAdmin2);
     // @ts-expect-error
     assert.equal(permission.isAdmin2, undefined)
+    // @ts-expect-error
     assert.equal(permission.isAdmin3, undefined)
   })
 })

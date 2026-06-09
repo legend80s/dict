@@ -13,7 +13,7 @@ npx tsc --noEmit                     # type-check (JSDoc + tsconfig)
 node ./bin.mjs -e -c=a "word"        # dev run
 ```
 
-**Important**: `npm run lint` is a noop (`echo not lint yet`). Actual lint configs (`biome.json`, `.oxlintrc.json`) exist but must be invoked manually via `npx biome check` / `npx oxlint`. Preversion hook runs `npm test && npm run lint` (lint is silent).
+**Important**: `npm run typechek` after modification.
 
 ## Test quirks
 

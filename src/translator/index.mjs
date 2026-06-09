@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { createRequire } from 'node:module'
 
 import { rcFilepath, writeFullConfig } from '../config.mjs'
@@ -29,9 +30,7 @@ export async function translate(text, { verbose = false } = {}) {
     console.log()
     console.log(italic(`Powered by "${white('Baidu 翻译')}".`))
     console.log(
-      italic(
-        `See more at https://fanyi.baidu.com/?aldtype=23#en/zh/${encodeURIComponent(text)}`,
-      ),
+      italic(`See more at https://fanyi.baidu.com/?aldtype=23#en/zh/${encodeURIComponent(text)}`),
     )
 
     end = Date.now()

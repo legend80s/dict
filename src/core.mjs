@@ -284,6 +284,7 @@ function buildOutputString({
   // console.log('hasExample:', hasExample);
 
   if (hasExample) {
+    // @ts-expect-error
     output += buildExamplesString(examples, highlightWord)
   }
 

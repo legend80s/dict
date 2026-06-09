@@ -17,9 +17,9 @@
     "pub:patch": "npm version patch",
     "pub:minor": "npm version minor",
     "pub:major": "npm version major",
-    "preversion": "npm test && npm run lint",
+    "preversion": "npm test && npm run typecheck",
     "postversion": "npm publish && git push && git push --tags",
-    "lint": "echo not lint yet",
+    "typecheck": "tsgo --noEmit",
     "cov": "node --test --experimental-test-coverage",
     "test": "node --test"
   },
