@@ -95,7 +95,7 @@ export function renderFront(card, index, total) {
   lines.push(blankLine())
   lines.push(contentLine(bold(word)))
   lines.push(blankLine())
-  lines.push(contentLine(`${italic(white('[p] Speak'))}  ${italic(white('[q] Quit'))}`))
+  lines.push(contentLine(`[${bold('p', { underlined: false })}] Speak  [${bold('q', { underlined: false })}] Quit`))
   lines.push(blankLine())
   lines.push(contentLine(white('Press any key to reveal answer')))
   lines.push(blankLine())
@@ -148,7 +148,7 @@ export function renderBack(card, index, total) {
 
       for (const sent of sentences.slice(0, 2)) {
         for (const line of wrapText(sent, TEXT_WIDTH - 2)) {
-          lines.push(contentLine(`  ${line}`))
+          lines.push(contentLine(`  ${highlightBoldTags(line)}`))
         }
       }
     }
@@ -158,7 +158,7 @@ export function renderBack(card, index, total) {
   if (examples.length > 0) {
     const [sentence, translation] = examples[0]
     for (const line of wrapText(sentence, TEXT_WIDTH)) {
-      lines.push(contentLine(line))
+      lines.push(contentLine(highlightBoldTags(line)))
     }
     for (const line of wrapText(translation, TEXT_WIDTH)) {
       lines.push(contentLine(italic(line)))
@@ -174,7 +174,7 @@ export function renderBack(card, index, total) {
   lines.push(blankLine())
 
   lines.push(bottomBorder())
-  lines.push(`  📊 ${index + 1}/${total}  ${italic('[p] Speak [q] Quit')}`)
+  lines.push(`  📊 ${index + 1}/${total}  [${bold('p', { underlined: false })}] Speak [${bold('q', { underlined: false })}] Quit`)
 
   drawFrame(lines)
 }
@@ -231,6 +231,16 @@ export function renderError(message) {
 /**
  * @param {string[]} lines
  */
+/**
+ * Replace `<b>...</b>` tags with ANSI bold formatting.
+ * @param {string} text
+ * @returns {string}
+ */
+function highlightBoldTags(text) {
+  return text.replace(/<b>(.+?)<\/b>/g, (_, p1) => bold(p1))
+}
+
+/** @param {string[]} lines */
 function drawFrame(lines) {
   process.stdout.write('\x1b[2J\x1b[H')
 
