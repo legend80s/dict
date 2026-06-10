@@ -316,8 +316,8 @@ export function debugDump(word) {
         } else {
           const pos = item.partOfSpeech ? `**${item.partOfSpeech}** ` : ''
           console.log(`${prefix} ${pos}${item.english}`)
-          if (item.eng_sent) console.log(`   ├ ${item.eng_sent}`)
-          if (item.chn_sent) console.log(`   └ ${item.chn_sent}`)
+          if (item.eng_sent) console.log(`    - ${item.eng_sent}`)
+          if (item.chn_sent) console.log(`    - ${item.chn_sent}`)
         }
       }
       console.log()
