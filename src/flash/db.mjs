@@ -244,45 +244,79 @@ export function closeDb() {
   }
 }
 
+/** @param {string} iso */
+function formatDate(iso) {
+  const d = new Date(iso)
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
+}
+
 /**
- * Print all cards and review state to console (for debugging).
- * Skips the full data JSON to keep output readable.
+ * Print cards in markdown format with full data and SM-2 parameters.
  * @param {string} [word]
  */
 export function debugDump(word) {
   const db = getDb()
 
   const sql = word
-    ? `SELECT c.word, c.query_count, c.last_queried_at,
+    ? `SELECT c.data, c.word, c.query_count, c.last_queried_at,
               r.ease_factor, r.interval, r.repetitions, r.next_review_at
        FROM cards c
        LEFT JOIN reviews r ON r.word = c.word
        WHERE c.word = ?
        ORDER BY c.last_queried_at DESC`
-    : `SELECT c.word, c.query_count, c.last_queried_at,
+    : `SELECT c.data, c.word, c.query_count, c.last_queried_at,
               r.ease_factor, r.interval, r.repetitions, r.next_review_at
        FROM cards c
        LEFT JOIN reviews r ON r.word = c.word
        ORDER BY c.last_queried_at DESC`
 
   const params = word ? [word] : []
-  const cards = /** @type {any[]} */ (db.prepare(sql).all(...params))
+  const rows = /** @type {any[]} */ (db.prepare(sql).all(...params))
 
-  console.log()
-  console.log('  ── Flash card database ──')
-  console.log(`  Path: ${DB_PATH}`)
-  console.log(`  Cards: ${cards.length}`)
-  console.log()
-
-  if (cards.length > 0) {
-    for (const card of cards) {
-      console.log(
-        `  ${card.word.padEnd(16)} q:${String(card.query_count).padEnd(2)} EF:${String(card.ease_factor).padEnd(4)} int:${String(card.interval).padEnd(3)} reps:${String(card.repetitions).padEnd(2)} next:${card.next_review_at || '-'}`,
-      )
-    }
+  if (rows.length === 0) {
+    console.log('(no cards)')
+    return
   }
 
-  console.log()
+  for (let i = 0; i < rows.length; i++) {
+    const card = rows[i]
+    /** @type {{ explanations?: string[]; examples?: [string, string, string][] }} */
+    const data = JSON.parse(card.data || '{}')
+
+    // heading
+    console.log(`## ${card.word}`)
+    console.log()
+    console.log(
+      `查询: ${card.query_count} | EF: ${card.ease_factor} | 间隔: ${card.interval}d | 连续正确: ${card.repetitions} | 下次: ${card.next_review_at ? formatDate(card.next_review_at) : '-'}`,
+    )
+    console.log()
+
+    // explanations
+    if (data.explanations?.length) {
+      console.log('### 释义')
+      console.log()
+      for (const exp of data.explanations) {
+        console.log(`- ${exp}`)
+      }
+      console.log()
+    }
+
+    // examples
+    if (data.examples?.length) {
+      console.log('### 例句')
+      console.log()
+      for (const [sentence, translation] of data.examples) {
+        console.log(`- ${sentence}`)
+        console.log(`  ${translation}`)
+      }
+      console.log()
+    }
+
+    if (i < rows.length - 1) {
+      console.log('---')
+      console.log()
+    }
+  }
 }
 
 /**
