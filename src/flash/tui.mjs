@@ -102,6 +102,7 @@ export function renderFront(card, index, total) {
   lines.push(bottomBorder())
   lines.push(`  ${italic(`📊 ${index + 1}/${total}`)}  [${bold('p', { underlined: false })}] Speak  [${bold('q', { underlined: false })}] Quit`)
   lines.push(`  ${white('Press any key to reveal answer')}`)
+  lines.push('')
 
   drawFrame(lines)
 }
