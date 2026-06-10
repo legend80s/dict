@@ -4,6 +4,7 @@ import { createRequire } from 'node:module'
 import { homedir } from 'node:os'
 import path from 'node:path'
 import { sm2, INITIAL_EASE_FACTOR } from './sm2.mjs'
+import { capitalize } from '../utils/lite-lodash.mjs'
 
 const _require = createRequire(import.meta.url)
 
@@ -284,7 +285,7 @@ export function debugDump(word) {
     const data = JSON.parse(card.data || '{}')
 
     // heading
-    console.log(`## ${card.word}`)
+    console.log(`## ${capitalize(card.word)}`)
     console.log()
     console.log(
       `查询: ${card.query_count} | EF: ${card.ease_factor} | 间隔: ${card.interval}d | 连续正确: ${card.repetitions} | 下次: ${card.next_review_at ? formatDate(card.next_review_at) : '-'}`,

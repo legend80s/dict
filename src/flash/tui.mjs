@@ -1,6 +1,6 @@
 // @ts-check
 import { exec } from 'node:child_process'
-import { italic, green, white, bold } from '../utils/lite-lodash.mjs'
+import { italic, green, white, bold, capitalize } from '../utils/lite-lodash.mjs'
 
 /** @import { ICollinsItem, IExample } from '../../typings' */
 
@@ -12,11 +12,6 @@ const BOTTOM_LEFT = '\u2514'
 const BOTTOM_RIGHT = '\u2518'
 
 const MARGIN = 2          // padding on each side inside the box
-
-/** @param {string} str @returns {string} */
-function capitalize(str) {
-  return str && str[0].toUpperCase() + str.slice(1)
-}
 
 /** chars between vertical bars (│...│). Total card width = INNER_WIDTH + 2 */
 function getInnerWidth() {

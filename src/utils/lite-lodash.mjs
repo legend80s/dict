@@ -79,6 +79,11 @@ export function chunk(arr, count) {
   return result
 }
 
+/** @param {string} str @returns {string} */
+export function capitalize(str) {
+  return str && str[0].toUpperCase() + str.slice(1)
+}
+
 /**
  *
  * @param  {...any} args

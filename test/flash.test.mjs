@@ -181,8 +181,8 @@ test('db: debugDump prints all cards', { skip: !isSqliteAvailable() }, () => {
   try {
     debugDump()
     const output = logs.join('\n')
-    assert.match(output, /## dump-all-a/)
-    assert.match(output, /## dump-all-b/)
+    assert.match(output, /## Dump-all-a/)
+    assert.match(output, /## Dump-all-b/)
     assert.match(output, /查询: 1/)
   } finally {
     console.log = origLog
@@ -205,8 +205,8 @@ test('db: debugDump prints single card', { skip: !isSqliteAvailable() }, () => {
   try {
     debugDump('dump-one-x')
     const output = logs.join('\n')
-    assert.match(output, /dump-one-x/)
-    assert.doesNotMatch(output, /dump-one-y/)
+    assert.match(output, /## Dump-one-x/)
+    assert.doesNotMatch(output, /## Dump-one-y/)
   } finally {
     console.log = origLog
     closeDb()
