@@ -100,7 +100,9 @@ export function renderFront(card, index, total) {
   lines.push(blankLine())
   lines.push(blankLine())
   lines.push(bottomBorder())
-  lines.push(`  ${italic(`📊 ${index + 1}/${total}`)}  [${bold('p', { underlined: false })}] Speak  [${bold('q', { underlined: false })}] Quit`)
+  lines.push(
+    `  ${`📊 ${index + 1}/${total}`}  [${bold('p', { underlined: false })}] Speak  [${bold('q', { underlined: false })}] Quit`,
+  )
   lines.push(`  ${white('Press any key to reveal answer')}`)
   lines.push('')
 
@@ -145,7 +147,9 @@ export function renderBack(card, index, total) {
       }
 
       const sentences = Array.isArray(item)
-        ? (item[1] ? [String(item[1])] : [])
+        ? item[1]
+          ? [String(item[1])]
+          : []
         : [item.eng_sent, item.chn_sent].filter(/** @returns {val is string} */ val => !!val)
 
       for (const sent of sentences.slice(0, 2)) {
@@ -176,7 +180,9 @@ export function renderBack(card, index, total) {
   lines.push(blankLine())
 
   lines.push(bottomBorder())
-  lines.push(`  📊 ${index + 1}/${total}  [${bold('p', { underlined: false })}] Speak [${bold('q', { underlined: false })}] Quit`)
+  lines.push(
+    `  📊 ${index + 1}/${total}  [${bold('p', { underlined: false })}] Speak [${bold('q', { underlined: false })}] Quit`,
+  )
 
   drawFrame(lines)
 }
@@ -255,7 +261,9 @@ function centerText(text, width) {
  * @returns {string}
  */
 function highlightBoldTags(text) {
-  return text.replace(/<b>(.+?)<\/b>/g, (/** @type {string} */ _, /** @type {string} */ p1) => bold(p1))
+  return text.replace(/<b>(.+?)<\/b>/g, (/** @type {string} */ _, /** @type {string} */ p1) =>
+    bold(p1),
+  )
 }
 
 /** @param {string[]} lines */
