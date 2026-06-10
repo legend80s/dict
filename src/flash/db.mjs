@@ -301,6 +301,28 @@ export function debugDump(word) {
       console.log()
     }
 
+    // collins
+    /** @type {import('../../typings').ICollinsItem[] | undefined} */
+    const collins = /** @type {any} */ (data).englishExplanation
+    if (collins?.length) {
+      console.log('### 柯林斯英汉双解大词典')
+      console.log()
+      for (let ci = 0; ci < collins.length; ci++) {
+        const item = collins[ci]
+        const prefix = `${ci + 1}.`
+        if (Array.isArray(item)) {
+          console.log(`${prefix} ${item[0]}`)
+          if (item[1]) console.log(`   ${item[1]}`)
+        } else {
+          const pos = item.partOfSpeech ? `**${item.partOfSpeech}** ` : ''
+          console.log(`${prefix} ${pos}${item.english}`)
+          if (item.eng_sent) console.log(`   ├ ${item.eng_sent}`)
+          if (item.chn_sent) console.log(`   └ ${item.chn_sent}`)
+        }
+      }
+      console.log()
+    }
+
     // examples
     if (data.examples?.length) {
       console.log('### 例句')
