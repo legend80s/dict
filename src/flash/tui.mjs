@@ -93,14 +93,15 @@ export function renderFront(card, index, total) {
 
   lines.push(topBorder())
   lines.push(blankLine())
-  lines.push(contentLine(bold(word)))
   lines.push(blankLine())
-  lines.push(contentLine(`[${bold('p', { underlined: false })}] Speak  [${bold('q', { underlined: false })}] Quit`))
   lines.push(blankLine())
-  lines.push(contentLine(white('Press any key to reveal answer')))
+  lines.push(contentLine(centerText(bold(word), TEXT_WIDTH)))
+  lines.push(blankLine())
+  lines.push(blankLine())
   lines.push(blankLine())
   lines.push(bottomBorder())
-  lines.push(`  ${italic(`📊 ${index + 1}/${total}`)}`)
+  lines.push(`  ${italic(`📊 ${index + 1}/${total}`)}  [${bold('p', { underlined: false })}] Speak  [${bold('q', { underlined: false })}] Quit`)
+  lines.push(`  ${white('Press any key to reveal answer')}`)
 
   drawFrame(lines)
 }
@@ -236,8 +237,24 @@ export function renderError(message) {
  * @param {string} text
  * @returns {string}
  */
+/**
+ * Center text within a given display width.
+ * @param {string} text
+ * @param {number} width
+ * @returns {string}
+ */
+function centerText(text, width) {
+  const w = displayWidth(text)
+  const leftPad = Math.max(0, Math.floor((width - w) / 2))
+  return ' '.repeat(leftPad) + text
+}
+
+/**
+ * @param {string} text
+ * @returns {string}
+ */
 function highlightBoldTags(text) {
-  return text.replace(/<b>(.+?)<\/b>/g, (_, p1) => bold(p1))
+  return text.replace(/<b>(.+?)<\/b>/g, (/** @type {string} */ _, /** @type {string} */ p1) => bold(p1))
 }
 
 /** @param {string[]} lines */
