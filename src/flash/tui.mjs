@@ -122,7 +122,7 @@ export function renderBack(card, index, total) {
 
   lines.push(topBorder())
   lines.push(blankLine())
-  lines.push(contentLine(bold(word)))
+  lines.push(contentLine(centerText(bold(word), TEXT_WIDTH)))
   lines.push(blankLine())
 
   for (const exp of explanations) {
