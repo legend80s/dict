@@ -11,7 +11,7 @@ const TOP_RIGHT = '\u2510'
 const BOTTOM_LEFT = '\u2514'
 const BOTTOM_RIGHT = '\u2518'
 
-const MARGIN = 2          // padding on each side inside the box
+const MARGIN = 2 // padding on each side inside the box
 
 /** chars between vertical bars (│...│). Total card width = INNER_WIDTH + 2 */
 function getInnerWidth() {
@@ -183,7 +183,7 @@ export function renderBack(card, index, total) {
   lines.push(contentLine(white(`Queries: ${queryCount}`)))
   lines.push(blankLine())
 
-  const btnLine = `1.${green('Again')} 2.${green('Hard')} 3.${green('Good')} 4.${green('Easy')}`
+  const btnLine = `1. ${green('Again')} 2. ${green('Hard')} 3. ${green('Good')} 4. ${green('Easy')}`
   lines.push(contentLine(btnLine))
   lines.push(blankLine())
 
