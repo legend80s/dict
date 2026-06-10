@@ -254,8 +254,9 @@ function formatDate(iso) {
 /**
  * Print cards in markdown format with full data and SM-2 parameters.
  * @param {string} [word]
+ * @param {boolean} [showSm2]
  */
-export function debugDump(word) {
+export function debugDump(word, showSm2 = true) {
   const db = getDb()
 
   const sql = word
@@ -287,10 +288,12 @@ export function debugDump(word) {
     // heading
     console.log(`## ${capitalize(card.word)}`)
     console.log()
-    console.log(
-      `查询: ${card.query_count} | EF: ${card.ease_factor} | 间隔: ${card.interval}d | 连续正确: ${card.repetitions} | 下次: ${card.next_review_at ? formatDate(card.next_review_at) : '-'}`,
-    )
-    console.log()
+    if (showSm2) {
+      console.log(
+        `查询: ${card.query_count} | 难易因子: ${card.ease_factor} | 间隔: ${card.interval}d | 连续正确: ${card.repetitions} | 下次: ${card.next_review_at ? formatDate(card.next_review_at) : '-'}`,
+      )
+      console.log()
+    }
 
     // explanations
     if (data.explanations?.length) {

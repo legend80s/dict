@@ -59,6 +59,12 @@ const options = {
     // @ts-expect-error
     description: '打印数据库卡片数据。单独使用打印全部；后面跟单词则打印该词，如 `ydd why --flash-dump`',
   },
+  sm2: {
+    type: 'boolean',
+    default: true,
+    // @ts-expect-error
+    description: '显示 SM-2 调度参数（难易因子/间隔/下次复习日期）。使用 --no-sm2 隐藏。默认 true',
+  },
 }
 
 export const DEFAULTS = {
@@ -104,6 +110,8 @@ export function parseCLIArgs(args, env) {
     collins: values.collins?.replace(/^=/, ''),
     flash: !!values.flash,
     flashDump: !!values['flash-dump'],
+    /** @type {boolean} 默认 true */
+    sm2: values.sm2 !== false,
     /** @type {boolean} 默认 true */
     stream,
   }

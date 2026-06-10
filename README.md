@@ -201,6 +201,49 @@ pnpx ydd wonderful --no-stream
 
 - [x] Translate long sentence.
 
+## Flash Card — 间隔重复复习
+
+使用 SM-2 算法（与 Anki 相同）自动调度单词复习。
+
+### 复习模式
+
+```shell
+ydd --flash                          # 进入复习队列（到期卡片优先）
+ydd why --flash                      # 单独复习某个单词，评级后退出
+```
+
+### 卡片正面
+
+```
+┌──────────────────────────────────┐
+│                                  │
+│                                  │
+│                                  │
+│              Why                 │
+│                                  │
+│                                  │
+│                                  │
+└──────────────────────────────────┘
+  📊 1/1  [p] Speak [q] Quit
+  Press any key to reveal answer
+```
+
+按任意键翻到背面，按 `1-4` 评级（Again/Hard/Good/Easy），按 `p` 发音，`q` 退出。
+
+### 导出数据
+
+```shell
+ydd --flash-dump                      # Markdown 格式导出全部卡片
+ydd why --flash-dump                  # 导出单个单词
+ydd why --flash-dump --no-sm2         # 隐藏 SM-2 调度参数
+```
+
+### 数据存储
+
+- 数据库：`~/.ydd/history.db`
+- 每次查询自动保存，查询次数自动累计
+- 需要 Node.js 22.11+（`node:sqlite`）
+
 ## Show your support ❤️
 
 If YDD saved you a second, please [star ⭐️](https://github.com/legend80s/dict) the repo!

@@ -15,7 +15,7 @@ main()
 async function main() {
   if (parsed.flashDump) {
     const { debugDump } = await import('./src/flash/db.mjs')
-    debugDump(parsed.word || undefined)
+    debugDump(parsed.word || undefined, parsed.sm2)
     return
   }
 
