@@ -11,10 +11,18 @@ const TOP_RIGHT = '\u2510'
 const BOTTOM_LEFT = '\u2514'
 const BOTTOM_RIGHT = '\u2518'
 
-// Box dimensions
-const INNER_WIDTH = 34
-const MARGIN = 2
-const TEXT_WIDTH = INNER_WIDTH - MARGIN * 2
+const MARGIN = 2          // padding on each side inside the box
+
+/** chars between vertical bars (│...│). Total card width = INNER_WIDTH + 2 */
+function getInnerWidth() {
+  const termCols = process.stdout.columns || 80
+  return Math.min(80, Math.max(34, Math.round(termCols / 3)))
+}
+
+/** available text area inside the box */
+function getTextWidth() {
+  return getInnerWidth() - MARGIN * 2
+}
 
 /**
  * @param {string} str
@@ -59,7 +67,7 @@ function padText(str, targetWidth) {
  * @returns {string}
  */
 function contentLine(content) {
-  return `${VERTICAL}${' '.repeat(MARGIN)}${padText(content, TEXT_WIDTH)}${' '.repeat(MARGIN)}${VERTICAL}`
+  return `${VERTICAL}${' '.repeat(MARGIN)}${padText(content, getTextWidth())}${' '.repeat(MARGIN)}${VERTICAL}`
 }
 
 /**
@@ -67,15 +75,15 @@ function contentLine(content) {
  * @returns {string}
  */
 function blankLine() {
-  return `${VERTICAL}${' '.repeat(INNER_WIDTH)}${VERTICAL}`
+  return `${VERTICAL}${' '.repeat(getInnerWidth())}${VERTICAL}`
 }
 
 function topBorder() {
-  return `${TOP_LEFT}${HORIZONTAL.repeat(INNER_WIDTH)}${TOP_RIGHT}`
+  return `${TOP_LEFT}${HORIZONTAL.repeat(getInnerWidth())}${TOP_RIGHT}`
 }
 
 function bottomBorder() {
-  return `${BOTTOM_LEFT}${HORIZONTAL.repeat(INNER_WIDTH)}${BOTTOM_RIGHT}`
+  return `${BOTTOM_LEFT}${HORIZONTAL.repeat(getInnerWidth())}${BOTTOM_RIGHT}`
 }
 
 /**
@@ -95,7 +103,7 @@ export function renderFront(card, index, total) {
   lines.push(blankLine())
   lines.push(blankLine())
   lines.push(blankLine())
-  lines.push(contentLine(centerText(bold(word), TEXT_WIDTH)))
+  lines.push(contentLine(centerText(bold(word), getTextWidth())))
   lines.push(blankLine())
   lines.push(blankLine())
   lines.push(blankLine())
@@ -124,12 +132,12 @@ export function renderBack(card, index, total) {
 
   lines.push(topBorder())
   lines.push(blankLine())
-  lines.push(contentLine(centerText(bold(word), TEXT_WIDTH)))
+  lines.push(contentLine(centerText(bold(word), getTextWidth())))
   lines.push(blankLine())
 
   for (const exp of explanations) {
     const cleaned = exp.replace(/（.+?）|<.+?>|\[.+?\]/g, '').trim()
-    for (const line of wrapText(cleaned, TEXT_WIDTH)) {
+    for (const line of wrapText(cleaned, getTextWidth())) {
       lines.push(contentLine(white(line)))
     }
   }
@@ -142,7 +150,7 @@ export function renderBack(card, index, total) {
       const partOfSpeech = !Array.isArray(item) ? item.partOfSpeech : undefined
       const cleaned = english.replace(/^\d+\.\s/, '')
       const label = partOfSpeech ? `[${partOfSpeech}] ${cleaned}` : cleaned
-      for (const line of wrapText(label, TEXT_WIDTH)) {
+      for (const line of wrapText(label, getTextWidth())) {
         lines.push(contentLine(italic(line)))
       }
 
@@ -153,7 +161,7 @@ export function renderBack(card, index, total) {
         : [item.eng_sent, item.chn_sent].filter(/** @returns {val is string} */ val => !!val)
 
       for (const sent of sentences.slice(0, 2)) {
-        for (const line of wrapText(sent, TEXT_WIDTH - 2)) {
+        for (const line of wrapText(sent, getTextWidth() - 2)) {
           lines.push(contentLine(`  ${highlightBoldTags(line)}`))
         }
       }
@@ -163,10 +171,10 @@ export function renderBack(card, index, total) {
 
   if (examples.length > 0) {
     const [sentence, translation] = examples[0]
-    for (const line of wrapText(sentence, TEXT_WIDTH)) {
+    for (const line of wrapText(sentence, getTextWidth())) {
       lines.push(contentLine(highlightBoldTags(line)))
     }
-    for (const line of wrapText(translation, TEXT_WIDTH)) {
+    for (const line of wrapText(translation, getTextWidth())) {
       lines.push(contentLine(italic(line)))
     }
     lines.push(blankLine())
@@ -226,7 +234,7 @@ export function renderError(message) {
   const lines = []
   lines.push(topBorder())
   lines.push(blankLine())
-  for (const line of wrapText(message, TEXT_WIDTH)) {
+  for (const line of wrapText(message, getTextWidth())) {
     lines.push(contentLine(line))
   }
   lines.push(blankLine())
@@ -272,7 +280,7 @@ function drawFrame(lines) {
 
   const pad = '  '
   const terminalWidth = process.stdout.columns || 80
-  const leftPad = Math.max(0, Math.floor((terminalWidth - INNER_WIDTH - 4) / 2))
+  const leftPad = Math.max(0, Math.floor((terminalWidth - getInnerWidth() - 4) / 2))
 
   for (const line of lines) {
     process.stdout.write(' '.repeat(leftPad) + pad + line + '\n')
