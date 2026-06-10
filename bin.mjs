@@ -13,7 +13,43 @@ const verbose = parsed.verbose
 main()
 
 async function main() {
+  if (parsed.flash) {
+    return startFlash()
+  }
+
   await init()
+}
+
+async function startFlash() {
+  try {
+    const { isSqliteAvailable } = await import('./src/flash/db.mjs')
+
+    if (!isSqliteAvailable()) {
+      console.error()
+      console.error('  Flash card mode requires node:sqlite. Run with:')
+      console.error()
+      console.error('    NODE_OPTIONS="--experimental-sqlite" ydd --flash')
+      console.error()
+      process.exit(1)
+    }
+
+    const { startFlashReview, startSingleWordReview } = await import('./src/flash/index.mjs')
+
+    if (parsed.word) {
+      await startSingleWordReview(parsed.word)
+    } else {
+      await startFlashReview()
+    }
+  } catch (/** @type {unknown} */ err) {
+    if (verbose) {
+      console.error('Flash card start failed:', err)
+    } else {
+      const msg = err instanceof Error ? err.message : String(err)
+      console.error(`  Flash card start failed: ${msg}`)
+      console.error('  Run with: NODE_OPTIONS="--experimental-sqlite" ydd --flash')
+    }
+    process.exit(1)
+  }
 }
 
 /**

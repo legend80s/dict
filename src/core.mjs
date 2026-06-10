@@ -12,6 +12,7 @@ import { fetchIt } from './utils/fetch.mjs'
 import { bold, green, h1, h2, highlight, italic, red, white } from './utils/lite-lodash.mjs'
 import { streamToStdout } from './utils/stream.mjs'
 import { debugC } from './utils/logger.mjs'
+import { recordQueryToHistory } from './flash/record.mjs'
 
 /** @import { IParsedResult, IErrorResult } from '../typings' */
 
@@ -61,6 +62,10 @@ export const query = async word => {
     } else {
       result = json
     }
+  }
+
+  if (!('errorMsg' in result)) {
+    recordQueryToHistory(word, result).catch(() => {})
   }
 
   return [true, result]
