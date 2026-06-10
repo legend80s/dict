@@ -245,6 +245,47 @@ export function closeDb() {
 }
 
 /**
+ * Print all cards and review state to console (for debugging).
+ * Skips the full data JSON to keep output readable.
+ * @param {string} [word]
+ */
+export function debugDump(word) {
+  const db = getDb()
+
+  const sql = word
+    ? `SELECT c.word, c.query_count, c.last_queried_at,
+              r.ease_factor, r.interval, r.repetitions, r.next_review_at
+       FROM cards c
+       LEFT JOIN reviews r ON r.word = c.word
+       WHERE c.word = ?
+       ORDER BY c.last_queried_at DESC`
+    : `SELECT c.word, c.query_count, c.last_queried_at,
+              r.ease_factor, r.interval, r.repetitions, r.next_review_at
+       FROM cards c
+       LEFT JOIN reviews r ON r.word = c.word
+       ORDER BY c.last_queried_at DESC`
+
+  const params = word ? [word] : []
+  const cards = /** @type {any[]} */ (db.prepare(sql).all(...params))
+
+  console.log()
+  console.log('  ── Flash card database ──')
+  console.log(`  Path: ${DB_PATH}`)
+  console.log(`  Cards: ${cards.length}`)
+  console.log()
+
+  if (cards.length > 0) {
+    for (const card of cards) {
+      console.log(
+        `  ${card.word.padEnd(16)} q:${String(card.query_count).padEnd(2)} EF:${String(card.ease_factor).padEnd(4)} int:${String(card.interval).padEnd(3)} reps:${String(card.repetitions).padEnd(2)} next:${card.next_review_at || '-'}`,
+      )
+    }
+  }
+
+  console.log()
+}
+
+/**
  * Check if node:sqlite is available and db can be initialized.
  *
  * @returns {boolean}

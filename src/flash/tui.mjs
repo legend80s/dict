@@ -11,7 +11,12 @@ const TOP_RIGHT = '\u2510'
 const BOTTOM_LEFT = '\u2514'
 const BOTTOM_RIGHT = '\u2518'
 
-const MARGIN = 2 // padding on each side inside the box
+const MARGIN = 2          // padding on each side inside the box
+
+/** @param {string} str @returns {string} */
+function capitalize(str) {
+  return str && str[0].toUpperCase() + str.slice(1)
+}
 
 /** chars between vertical bars (│...│). Total card width = INNER_WIDTH + 2 */
 function getInnerWidth() {
@@ -103,7 +108,7 @@ export function renderFront(card, index, total) {
   lines.push(blankLine())
   lines.push(blankLine())
   lines.push(blankLine())
-  lines.push(contentLine(centerText(bold(word), getTextWidth())))
+  lines.push(contentLine(centerText(bold(capitalize(word)), getTextWidth())))
   lines.push(blankLine())
   lines.push(blankLine())
   lines.push(blankLine())
@@ -132,7 +137,7 @@ export function renderBack(card, index, total) {
 
   lines.push(topBorder())
   lines.push(blankLine())
-  lines.push(contentLine(centerText(bold(word), getTextWidth())))
+  lines.push(contentLine(centerText(bold(capitalize(word)), getTextWidth())))
   lines.push(blankLine())
 
   for (const exp of explanations) {

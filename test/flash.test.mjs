@@ -15,6 +15,7 @@ const {
   closeDb,
   isSqliteAvailable,
   useDbPathForTest,
+  debugDump,
 } = await import('../src/flash/db.mjs')
 
 /** @param {string} filePath */
@@ -164,4 +165,51 @@ test('db: getStats returns correct counts', { skip: !isSqliteAvailable() }, () =
 
   closeDb()
   cleanupFile(dbPath)
+})
+
+test('db: debugDump prints all cards', { skip: !isSqliteAvailable() }, () => {
+  const dbPath = `${tmpDir()}/test-dump-all-${Date.now()}.db`
+  useDbPathForTest(dbPath)
+  saveCard('dump-all-a', { explanations: ['n. A'] })
+  saveCard('dump-all-b', { explanations: ['n. B'] })
+
+  /** @type {string[]} */
+  const logs = []
+  const origLog = console.log
+  console.log = (...args) => logs.push(args.join(' '))
+
+  try {
+    debugDump()
+    const output = logs.join('\n')
+    assert.match(output, /dump-all-a/)
+    assert.match(output, /dump-all-b/)
+    assert.match(output, /q:1/)
+  } finally {
+    console.log = origLog
+    closeDb()
+    cleanupFile(dbPath)
+  }
+})
+
+test('db: debugDump prints single card', { skip: !isSqliteAvailable() }, () => {
+  const dbPath = `${tmpDir()}/test-dump-one-${Date.now()}.db`
+  useDbPathForTest(dbPath)
+  saveCard('dump-one-x', { explanations: ['n. X'] })
+  saveCard('dump-one-y', { explanations: ['n. Y'] })
+
+  /** @type {string[]} */
+  const logs = []
+  const origLog = console.log
+  console.log = (...args) => logs.push(args.join(' '))
+
+  try {
+    debugDump('dump-one-x')
+    const output = logs.join('\n')
+    assert.match(output, /dump-one-x/)
+    assert.doesNotMatch(output, /dump-one-y/)
+  } finally {
+    console.log = origLog
+    closeDb()
+    cleanupFile(dbPath)
+  }
 })

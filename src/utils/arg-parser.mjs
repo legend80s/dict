@@ -54,6 +54,11 @@ const options = {
     // @ts-expect-error
     description: 'Flash card 复习模式。单独使用进入复习队列；后面跟单词则单独复习该词，如 `ydd why --flash`',
   },
+  'flash-dump': {
+    type: 'boolean',
+    // @ts-expect-error
+    description: '打印数据库卡片数据。单独使用打印全部；后面跟单词则打印该词，如 `ydd why --flash-dump`',
+  },
 }
 
 export const DEFAULTS = {
@@ -98,6 +103,7 @@ export function parseCLIArgs(args, env) {
     // @ts-expect-error
     collins: values.collins?.replace(/^=/, ''),
     flash: !!values.flash,
+    flashDump: !!values['flash-dump'],
     /** @type {boolean} 默认 true */
     stream,
   }

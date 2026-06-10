@@ -13,6 +13,12 @@ const verbose = parsed.verbose
 main()
 
 async function main() {
+  if (parsed.flashDump) {
+    const { debugDump } = await import('./src/flash/db.mjs')
+    debugDump(parsed.word || undefined)
+    return
+  }
+
   if (parsed.flash) {
     return startFlash()
   }
@@ -31,6 +37,12 @@ async function startFlash() {
       console.error('    NODE_OPTIONS="--experimental-sqlite" ydd --flash')
       console.error()
       process.exit(1)
+    }
+
+    const { debugDump } = await import('./src/flash/db.mjs')
+
+    if (verbose) {
+      debugDump()
     }
 
     const { startFlashReview, startSingleWordReview } = await import('./src/flash/index.mjs')
