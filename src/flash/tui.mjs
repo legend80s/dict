@@ -162,7 +162,7 @@ export function renderBack(card, index, total) {
   if (englishExplanation.length > 0) {
     const collinsTotal = card.englishExplanationTotalCount || englishExplanation.length
     lines.push(contentLine(bold(`### 柯林斯英汉双解大词典 [#${collinsTotal}] 📖`)))
-    for (let ci = 0; ci < englishExplanation.length; ci++) {
+    for (let ci = 0; ci < Math.min(englishExplanation.length, 3); ci++) {
       const item = englishExplanation[ci]
       const english = Array.isArray(item) ? item[0] : item.english
       const partOfSpeech = !Array.isArray(item) ? item.partOfSpeech : undefined
@@ -187,6 +187,9 @@ export function renderBack(card, index, total) {
           lines.push(contentLine(highlightBoldTags(line)))
         }
       }
+    }
+    if (englishExplanation.length > 3) {
+      lines.push(contentLine(italic('...')))
     }
     lines.push(blankLine())
   }
@@ -292,9 +295,7 @@ function centerText(text, width) {
  * @returns {string}
  */
 function highlightBoldTags(text) {
-  return text.replace(/<b>(.+?)<\/b>/g, (/** @type {string} */ _, /** @type {string} */ p1) =>
-    bold(p1),
-  )
+  return text.replace(/<b>(.+?)<\/b>/g, (_, p1) => bold(p1, { underlined: false }))
 }
 
 /** @param {string[]} lines */
