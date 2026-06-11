@@ -165,7 +165,8 @@ export function renderBack(card, index, total) {
 
   if (englishExplanation.length > 0) {
     const collinsTotal = card.englishExplanationTotalCount || englishExplanation.length
-    lines.push(contentLine(bold(`### 柯林斯英汉双解大词典 [#${collinsTotal}] 📖`)))
+    const collinsSuffix = collinsTotal > 3 ? ` [#${collinsTotal}]` : ''
+    lines.push(contentLine(bold(`### 柯林斯英汉双解大词典${collinsSuffix} 📖`)))
     for (let ci = 0; ci < Math.min(englishExplanation.length, 3); ci++) {
       const item = englishExplanation[ci]
       const english = Array.isArray(item) ? item[0] : item.english

@@ -237,7 +237,8 @@ function buildOutputString({
       sub = `. Add ${tips} to show more examples.`
     }
 
-    const header = `柯林斯英汉双解大词典 [#${englishExplanationTotalCount}] 📖`
+    const hasMore = englishExplanationTotalCount > englishExplanation.length
+    const header = `柯林斯英汉双解大词典${hasMore ? ` [#${englishExplanationTotalCount}]` : ''} 📖`
     output += h2(header) + sub + '\n'
 
     const str = englishExplanation

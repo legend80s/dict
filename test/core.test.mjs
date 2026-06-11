@@ -128,7 +128,8 @@ test('Should match as longer as possible', () => {
 test('Should show all collins when -c=a is specified', () => {
   const stdout = execSync(`node ./bin.mjs than -c=a`).toString('utf-8')
 
-  assert.match(stdout, /柯林斯英汉双解大词典 \[#\d\]/)
+  assert.match(stdout, /柯林斯英汉双解大词典/)
+  assert.doesNotMatch(stdout, /#\d+\]/)
   assert.doesNotMatch(stdout, /\.\.\./)
 })
 
