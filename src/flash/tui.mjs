@@ -150,7 +150,8 @@ export function renderBack(card, index, total) {
       const partOfSpeech = !Array.isArray(item) ? item.partOfSpeech : undefined
       const cleaned = english.replace(/^\d+\.\s/, '')
       const label = partOfSpeech ? `[${partOfSpeech}] ${cleaned}` : cleaned
-      for (const line of wrapText(label, getTextWidth())) {
+      const highlighted = highlightBoldTags(label)
+      for (const line of wrapText(highlighted, getTextWidth())) {
         lines.push(contentLine(italic(line)))
       }
 

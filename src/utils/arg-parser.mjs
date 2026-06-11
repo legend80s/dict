@@ -65,6 +65,11 @@ const options = {
     // @ts-expect-error
     description: '显示 SM-2 调度参数（难易因子/间隔/下次复习日期）。使用 --no-sm2 隐藏。默认 true',
   },
+  flip: {
+    type: 'boolean',
+    // @ts-expect-error
+    description: '配合 `ydd <word> --flash` 使用，直接显示卡片背面，跳过正面等待。',
+  },
 }
 
 export const DEFAULTS = {
@@ -112,6 +117,7 @@ export function parseCLIArgs(args, env) {
     flashDump: !!values['flash-dump'],
     /** @type {boolean} 默认 true */
     sm2: values.sm2 !== false,
+    flip: !!values.flip,
     /** @type {boolean} 默认 true */
     stream,
   }

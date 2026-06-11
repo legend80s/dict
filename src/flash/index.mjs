@@ -20,8 +20,9 @@ import { debug } from '../utils/lite-lodash.mjs'
 /**
  * Review a single word: show card front → back → grade → exit.
  * @param {string} word
+ * @param {boolean} [flip] skip front, show back directly
  */
-export async function startSingleWordReview(word) {
+export async function startSingleWordReview(word, flip = false) {
   const card = getCard(word)
 
   if (!card) {
@@ -39,28 +40,32 @@ export async function startSingleWordReview(word) {
       query_count: card.query_count,
     })
 
-    renderFront(cardData, 0, 1)
+    if (flip) {
+      renderBack(cardData, 0, 1)
+    } else {
+      renderFront(cardData, 0, 1)
 
-    let flipToBack = false
-    while (!flipToBack) {
-      const action = await waitForAnyKey()
+      let flipToBack = false
+      while (!flipToBack) {
+        const action = await waitForAnyKey()
 
-      switch (action.action) {
-        case 'quit':
-          exitRawMode()
-          return
+        switch (action.action) {
+          case 'quit':
+            exitRawMode()
+            return
 
-        case 'speak':
-          speak(card.word)
-          break
+          case 'speak':
+            speak(card.word)
+            break
 
-        case 'flip':
-          flipToBack = true
-          break
+          case 'flip':
+            flipToBack = true
+            break
+        }
       }
-    }
 
-    renderBack(cardData, 0, 1)
+      renderBack(cardData, 0, 1)
+    }
 
     let graded = false
     while (!graded) {

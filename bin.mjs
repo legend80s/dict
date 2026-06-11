@@ -48,7 +48,7 @@ async function startFlash() {
     const { startFlashReview, startSingleWordReview } = await import('./src/flash/index.mjs')
 
     if (parsed.word) {
-      await startSingleWordReview(parsed.word)
+      await startSingleWordReview(parsed.word, parsed.flip)
     } else {
       await startFlashReview()
     }
