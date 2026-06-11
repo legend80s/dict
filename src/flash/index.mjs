@@ -38,6 +38,7 @@ export async function startSingleWordReview(word, flip = false) {
       word: card.word,
       ...card.data,
       query_count: card.query_count,
+      last_queried_at: card.last_queried_at,
     })
 
     if (flip) {

@@ -110,8 +110,8 @@ export function saveCard(word, data) {
 }
 
 /**
- * @typedef {{ word: string; data: string; query_count: number; ease_factor: number; interval: number; repetitions: number; next_review_at: string | null }} RawCardRow
- * @typedef {{ word: string; data: any; query_count: number; ease_factor: number; interval: number; repetitions: number; next_review_at: string | null }} CardRow
+ * @typedef {{ word: string; data: string; query_count: number; ease_factor: number; interval: number; repetitions: number; next_review_at: string | null; last_queried_at: string }} RawCardRow
+ * @typedef {{ word: string; data: any; query_count: number; ease_factor: number; interval: number; repetitions: number; next_review_at: string | null; last_queried_at: string }} CardRow
  */
 
 /**
@@ -128,7 +128,7 @@ export function getDueCards(limit) {
   /** @type {RawCardRow[]} */
   const rows = /** @type {any} */ (db
     .prepare(
-      `SELECT c.word, c.data, c.query_count,
+      `SELECT c.word, c.data, c.query_count, c.last_queried_at,
               r.ease_factor, r.interval, r.repetitions, r.next_review_at
        FROM cards c
        LEFT JOIN reviews r ON r.word = c.word
@@ -223,7 +223,7 @@ export function getCard(word) {
   /** @type {RawCardRow | undefined} */
   const row = /** @type {any} */ (db
     .prepare(
-      `SELECT c.word, c.data, c.query_count,
+      `SELECT c.word, c.data, c.query_count, c.last_queried_at,
               r.ease_factor, r.interval, r.repetitions, r.next_review_at
        FROM cards c
        LEFT JOIN reviews r ON r.word = c.word

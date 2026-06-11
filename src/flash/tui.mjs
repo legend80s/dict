@@ -13,6 +13,20 @@ const BOTTOM_RIGHT = '\u2518'
 
 const MARGIN = 2          // padding on each side inside the box
 
+/** @param {string} iso @returns {string} */
+function relativeTime(iso) {
+  const diff = Date.now() - new Date(iso).getTime()
+  const minutes = Math.floor(diff / 60000)
+  const hours = Math.floor(diff / 3600000)
+  const days = Math.floor(diff / 86400000)
+  if (minutes < 1) return 'just now'
+  if (minutes < 60) return `${minutes}m ago`
+  if (hours < 24) return `${hours}h ago`
+  if (days < 30) return `${days}d ago`
+  if (days < 365) return `${Math.floor(days / 30)}mo ago`
+  return `${Math.floor(days / 365)}y ago`
+}
+
 /** chars between vertical bars (│...│). Total card width = INNER_WIDTH + 2 */
 function getInnerWidth() {
   const termCols = process.stdout.columns || 80
@@ -87,7 +101,7 @@ function bottomBorder() {
 }
 
 /**
- * @typedef {{ word: string; explanations: string[]; englishExplanation?: ICollinsItem[]; examples?: IExample[]; query_count: number }} CardData
+ * @typedef {{ word: string; explanations: string[]; englishExplanation?: ICollinsItem[]; englishExplanationTotalCount?: number; examples?: IExample[]; query_count: number; last_queried_at: string }} CardData
  */
 
 /**
@@ -135,24 +149,28 @@ export function renderBack(card, index, total) {
   lines.push(contentLine(centerText(bold(capitalize(word)), getTextWidth())))
   lines.push(blankLine())
 
-  for (const exp of explanations) {
-    const cleaned = exp.replace(/（.+?）|<.+?>|\[.+?\]/g, '').trim()
-    for (const line of wrapText(cleaned, getTextWidth())) {
-      lines.push(contentLine(white(line)))
+  lines.push(contentLine(bold('### Explanations 💡')))
+  for (let ei = 0; ei < explanations.length; ei++) {
+    const cleaned = explanations[ei].replace(/（.+?）|<.+?>|\[.+?\]/g, '').trim()
+    for (const line of wrapText(cleaned, getTextWidth() - 3)) {
+      lines.push(contentLine(white(`🟢 ${line}`)))
     }
   }
 
   lines.push(blankLine())
 
   if (englishExplanation.length > 0) {
-    for (const item of englishExplanation) {
+    const collinsTotal = card.englishExplanationTotalCount || englishExplanation.length
+    lines.push(contentLine(bold(`### 柯林斯英汉双解大词典 [#${collinsTotal}] 📖`)))
+    for (let ci = 0; ci < englishExplanation.length; ci++) {
+      const item = englishExplanation[ci]
       const english = Array.isArray(item) ? item[0] : item.english
       const partOfSpeech = !Array.isArray(item) ? item.partOfSpeech : undefined
       const cleaned = english.replace(/^\d+\.\s/, '')
       const label = partOfSpeech ? `[${partOfSpeech}] ${cleaned}` : cleaned
-      const highlighted = highlightBoldTags(label)
-      for (const line of wrapText(highlighted, getTextWidth())) {
-        lines.push(contentLine(italic(line)))
+      const numbered = `${green(`${ci + 1}.`)} ${highlightBoldTags(label)}`
+      for (const line of wrapText(numbered, getTextWidth())) {
+        lines.push(contentLine(line))
       }
 
       const sentences = Array.isArray(item)
@@ -161,9 +179,12 @@ export function renderBack(card, index, total) {
           : []
         : [item.eng_sent, item.chn_sent].filter(/** @returns {val is string} */ val => !!val)
 
-      for (const sent of sentences.slice(0, 2)) {
-        for (const line of wrapText(sent, getTextWidth() - 2)) {
-          lines.push(contentLine(`  ${highlightBoldTags(line)}`))
+      const sents = sentences.slice(0, 2)
+      for (let si = 0; si < sents.length; si++) {
+        const branch = si === sents.length - 1 ? green('└──') : green('├──')
+        const prefixed = `${branch} ${sents[si]}`
+        for (const line of wrapText(prefixed, getTextWidth())) {
+          lines.push(contentLine(highlightBoldTags(line)))
         }
       }
     }
@@ -171,6 +192,7 @@ export function renderBack(card, index, total) {
   }
 
   if (examples.length > 0) {
+    lines.push(contentLine(bold('### Examples')))
     const [sentence, translation] = examples[0]
     for (const line of wrapText(sentence, getTextWidth())) {
       lines.push(contentLine(highlightBoldTags(line)))
@@ -181,7 +203,7 @@ export function renderBack(card, index, total) {
     lines.push(blankLine())
   }
 
-  lines.push(contentLine(white(`Queries: ${queryCount}`)))
+  lines.push(contentLine(italic(`Queried ${queryCount} times, last ${relativeTime(card.last_queried_at)}`)))
   lines.push(blankLine())
 
   const btnLine = `1. ${green('Again')} 2. ${green('Hard')} 3. ${green('Good')} 4. ${green('Easy')}`
