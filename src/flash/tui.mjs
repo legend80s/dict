@@ -152,8 +152,12 @@ export function renderBack(card, index, total) {
   lines.push(contentLine(bold('### Explanations 💡')))
   for (let ei = 0; ei < explanations.length; ei++) {
     const cleaned = explanations[ei].replace(/（.+?）|<.+?>|\[.+?\]/g, '').trim()
-    for (const line of wrapText(cleaned, getTextWidth() - 3)) {
-      lines.push(contentLine(white(`🟢 ${line}`)))
+    const wrapped = wrapText(cleaned, getTextWidth() - 3)
+    for (let li = 0; li < wrapped.length; li++) {
+      const line = wrapped[li]
+      lines.push(contentLine(white(
+        li === 0 ? `${green(`${ei + 1}.`)} ${line}` : `   ${line}`
+      )))
     }
   }
 
