@@ -1,6 +1,6 @@
 // @ts-check
 import { createRequire } from 'node:module'
-import { parseArgs } from 'node:util'
+import { parseArgs, styleText } from 'node:util'
 
 import { bold, green } from './lite-lodash.mjs'
 
@@ -139,7 +139,6 @@ export function help({
   showUsage = true,
   showOptions = true,
 } = {}) {
-  // @ts-expect-error
   const { name, description, version } = require('../../package.json')
 
   if (showVersion) {
@@ -163,4 +162,8 @@ export function help({
     console.info(`> ${bold('Options')}:`)
     console.table(options)
   }
+
+  console.info(
+    `Made with Love ❤️❤   by「${styleText(['whiteBright', 'bold'], 'JavaScript与编程艺术')}」`,
+  )
 }
