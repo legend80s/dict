@@ -175,10 +175,10 @@ export async function print(word, result) {
   })
 
   if (parsed.stream) {
-    await renderTheBestImage(pics)
+    parsed.showPicture && (await renderTheBestImage(pics))
     await streamToStdout(output)
   } else {
-    await renderTheBestImage(pics)
+    parsed.showPicture && (await renderTheBestImage(pics))
     console.log(output)
   }
 

@@ -1,8 +1,7 @@
 import path from 'node:path'
 import { styleText } from 'node:util'
-import terminalImage from 'terminal-image'
 
-const TIMEOUT = 1 * 1000
+const TIMEOUT = 1.5 * 1000
 
 /**
  *
@@ -105,6 +104,8 @@ async function fetchRendererImageCore(url, options = { width: '50%' }) {
     return resp.bytes()
   })
   // console.timeEnd(`fetch ${url}`)
+
+  const terminalImage = (await import('terminal-image')).default
 
   const renderedMosaic = await terminalImage.buffer(body, options)
 

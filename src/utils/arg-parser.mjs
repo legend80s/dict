@@ -20,11 +20,14 @@ const options = {
     // @ts-expect-error
     description: '展示版本信息',
   },
-  verbose: {
+
+  picture: {
     type: 'boolean',
+    short: 'p',
     // @ts-expect-error
-    description: '展示详细日志',
+    description: '展示单词图片',
   },
+
   speak: {
     type: 'boolean',
     short: 's',
@@ -47,6 +50,12 @@ const options = {
     type: 'boolean',
     // @ts-expect-error
     description: '逐字输出结果',
+  },
+
+  verbose: {
+    type: 'boolean',
+    // @ts-expect-error
+    description: '展示详细日志',
   },
 }
 
@@ -93,6 +102,7 @@ export function parseCLIArgs(args, env) {
     collins: values.collins?.replace(/^=/, ''),
     /** @type {boolean} 默认 true */
     stream,
+    showPicture: !!values.picture,
   }
 }
 
