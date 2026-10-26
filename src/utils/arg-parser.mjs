@@ -164,6 +164,6 @@ export function help({
   }
 
   console.info(
-    `Made with Love ❤️❤   by「${styleText(['whiteBright', 'bold'], 'JavaScript与编程艺术')}」`,
+    `Made with Love ❤️  by「${styleText(['whiteBright', 'bold'], 'JavaScript与编程艺术')}」`,
   )
 }
