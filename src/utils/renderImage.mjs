@@ -1,4 +1,5 @@
 import path from 'node:path'
+import { styleText } from 'node:util'
 import terminalImage from 'terminal-image'
 
 const TIMEOUT = 1 * 1000
@@ -34,7 +35,7 @@ export async function renderTheBestImage(pics) {
   //   rendered1.error,
   // )
   if (!picsWithExt[1]) {
-    return renderPicError(rendered1.error.message)
+    return renderPicError({ url: rendered1.url, message: rendered1.error.message })
   }
 
   let pic2 = picsWithExt.find(pic => pic.ext !== ext1)
@@ -50,15 +51,17 @@ export async function renderTheBestImage(pics) {
   if (rendered2.result !== null) {
     printImage(rendered2.result)
   } else {
-    return renderPicError(rendered2.error.message)
+    return renderPicError({ url: rendered2.url, message: rendered2.error.message })
   }
 }
 
 /**
- * @param {string} message
+ * @param {{message: string, url: string }} message
  */
-function renderPicError(message) {
-  return console.error(`<PIC_ERR: ${message.split(' ').slice(0, 10).join(' ')}>`)
+function renderPicError({ message, url }) {
+  return console.error(
+    `<PIC_ERR: ${styleText('yellow', url)} ${message.split(' ').slice(0, 10).join(' ')}>`,
+  )
 }
 
 /**
@@ -75,16 +78,16 @@ function printImage(imageStr) {
 /**
  * @param {Parameters<typeof fetchRendererImageCore>[0]} url
  * @param {Parameters<typeof fetchRendererImageCore>[1]} options
- * @returns {Promise<{ result: string, error: null } | { result: null, error: Error }>}
+ * @returns {Promise<{ result: string; url: string; error: null } | { result: null; url: string; error: Error }>}
  */
 async function fetchRendererImage(url, options = { width: '50%' }) {
   try {
-    return { result: await fetchRendererImageCore(url, options), error: null }
+    return { result: await fetchRendererImageCore(url, options), url, error: null }
   } catch (err) {
     // Keep silent
     // console.error(error)
     const error = /** @type {Error} */ (err)
-    return { result: null, error }
+    return { result: null, error, url }
   }
 }
 
@@ -110,7 +113,7 @@ async function fetchRendererImageCore(url, options = { width: '50%' }) {
 
 if (import.meta.main) {
   const pics = [
-    // 'https://ydlunacommon.nosdn.127.net/d6000199d1077ade98b628700fc0e448_NOT_FOUND.jpg?',
+    'https://ydlunacommon.nosdn.127.net/d6000199d1077ade98b628700fc0e448_NOT_FOUND.jpg?',
     'https://ydlunacommon.nosdn.127.net/d6000199d1077ade98b628700fc0e448.jpg?',
     'https://ydlunacommon-cdn.nosdn.127.net/19f5ad760de45f2cceb3e730e86116e5.jpg?',
     'https://ydlunacommon.nosdn.127.net/58f23c78f2cdaeec6f77832d8eedbda4.png?',
