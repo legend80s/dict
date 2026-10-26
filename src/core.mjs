@@ -10,8 +10,9 @@ import { help, parsed } from './utils/arg-parser.mjs'
 import { Fatigue } from './utils/fatigue.mjs'
 import { fetchIt } from './utils/fetch.mjs'
 import { bold, green, h1, h2, highlight, italic, red, white } from './utils/lite-lodash.mjs'
-import { streamToStdout } from './utils/stream.mjs'
 import { debugC } from './utils/logger.mjs'
+import { renderTheBestImage } from './utils/renderImage.mjs'
+import { streamToStdout } from './utils/stream.mjs'
 
 /** @import { IParsedResult, IErrorResult } from '../typings' */
 
@@ -42,7 +43,7 @@ export const query = async word => {
   const showCollins = !!parsed.collins
 
   /** @type {IParsedResult} */
-  let result = { explanations: [] }
+  let result = { explanations: [], pics: [] }
 
   if (showExamples || showCollins) {
     result = await translateWithExamples(word, {
@@ -118,6 +119,7 @@ export async function print(word, result) {
     englishExplanationTotalCount = 0,
     examples,
     suggestions,
+    pics,
   } = result
 
   /** @type {string[]} */
@@ -173,8 +175,10 @@ export async function print(word, result) {
   })
 
   if (parsed.stream) {
+    await renderTheBestImage(pics)
     await streamToStdout(output)
   } else {
+    await renderTheBestImage(pics)
     console.log(output)
   }
 
@@ -354,7 +358,7 @@ function buildExamplesString(examples, highlightWord) {
 /**
  * cost: 173.837ms
  * @param {string} word
- * @returns {Promise<{ explanations: string[], suggestions: string[] } | IErrorResult>}
+ * @returns {Promise<{ explanations: string[], suggestions: string[]; pics: string[] } | IErrorResult>}
  * @throws no error
  */
 async function byJSON(word) {

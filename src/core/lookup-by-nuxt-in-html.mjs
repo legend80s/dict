@@ -40,9 +40,12 @@ async function lookupByNuxtInHTML(word, { example = false, collins = false }) {
     return { errorMsg: `fetch "${htmlUrl}" FAILED.`, error }
   }
 
+  // console.log('html:', html)
+
   // debugNuxt('lookupByNuxtInHTML', { method });
 
   const nuxt = evaluateNuxtInScriptTagUseVM(html)
+  // console.log('nuxt:', nuxt)
 
   const data = nuxt.data[0]
   // console.log('data:', JSON.stringify(data))
@@ -60,9 +63,14 @@ async function lookupByNuxtInHTML(word, { example = false, collins = false }) {
     data.wordData.ec?.word.trs.map(item => [item.pos, item.tran].filter(Boolean).join(' ')) ||
     (data.wordData.fanyi?.tran ? [data.wordData.fanyi?.tran] : [])
 
+  /** @type {string[]} */
+  const pics = !data.wordData.pic_dict
+    ? []
+    : Array.from(new Set(data.wordData.pic_dict.pic.map(item => item.url).filter(Boolean)))
+
   // console.log('englishExplanation:', englishExplanation);
   if (!example && !collins) {
-    return { explanations }
+    return { explanations, pics }
   }
 
   const examples = !example ? [] : extractExamples(data)
@@ -76,6 +84,7 @@ async function lookupByNuxtInHTML(word, { example = false, collins = false }) {
     examples,
     englishExplanation,
     englishExplanationTotalCount,
+    pics,
   }
 }
 

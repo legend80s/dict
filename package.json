@@ -48,5 +48,8 @@
   "devDependencies": {
     "@types/node": "^24.7.2",
     "git-commit-msg-linter": "latest"
+  },
+  "dependencies": {
+    "terminal-image": "^5.0.1"
   }
 }

@@ -24,6 +24,7 @@ export type IParsedResult =
       englishExplanationTotalCount?: number
       suggestions?: string[]
       examples?: IExample[]
+      pics: Array<string>
     }
 
 /**
@@ -125,6 +126,17 @@ interface WordData {
   web_trans?: Webtrans
   webster?: OxfordAdvanceHtml
   wikipedia_digest?: Wikipediadigest
+
+  pic_dict?: PicDict
+}
+interface PicDict {
+  pic: Pic[]
+}
+
+interface Pic {
+  image: string
+  host: string
+  url: string
 }
 
 interface Ec {
